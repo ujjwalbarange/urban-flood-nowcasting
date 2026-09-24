@@ -1,0 +1,812 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_critical_buildings",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501001,
+        "name": "Brihanmumbai Municipal Corporation (BMC) Headquarters",
+        "building_type": "civic_government",
+        "category": "emergency_administration",
+        "ward": "A",
+        "building_levels": 5,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.8335,
+              18.9405
+            ],
+            [
+              72.835,
+              18.9405
+            ],
+            [
+              72.835,
+              18.9418
+            ],
+            [
+              72.8335,
+              18.9418
+            ],
+            [
+              72.8335,
+              18.9405
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501002,
+        "name": "BMC Disaster Management Emergency Operations Centre (EOC)",
+        "building_type": "civic_emergency",
+        "category": "disaster_control_hub",
+        "ward": "A",
+        "building_levels": 3,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.8338,
+              18.941
+            ],
+            [
+              72.8345,
+              18.941
+            ],
+            [
+              72.8345,
+              18.9416
+            ],
+            [
+              72.8338,
+              18.9416
+            ],
+            [
+              72.8338,
+              18.941
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501003,
+        "name": "KEM Hospital and Seth G.S. Medical College",
+        "building_type": "hospital",
+        "category": "tertiary_healthcare",
+        "ward": "FS",
+        "building_levels": 7,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.842,
+              18.998
+            ],
+            [
+              72.8445,
+              18.998
+            ],
+            [
+              72.8445,
+              19.0005
+            ],
+            [
+              72.842,
+              19.0005
+            ],
+            [
+              72.842,
+              18.998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501004,
+        "name": "Lokmanya Tilak Municipal General Hospital (Sion Hospital)",
+        "building_type": "hospital",
+        "category": "tertiary_healthcare",
+        "ward": "FN",
+        "building_levels": 6,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.038
+            ],
+            [
+              72.8625,
+              19.038
+            ],
+            [
+              72.8625,
+              19.0405
+            ],
+            [
+              72.86,
+              19.0405
+            ],
+            [
+              72.86,
+              19.038
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501005,
+        "name": "Topiwala National Medical College and BYL Nair Charitable Hospital",
+        "building_type": "hospital",
+        "category": "tertiary_healthcare",
+        "ward": "E",
+        "building_levels": 6,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.822,
+              18.972
+            ],
+            [
+              72.8245,
+              18.972
+            ],
+            [
+              72.8245,
+              18.9745
+            ],
+            [
+              72.822,
+              18.9745
+            ],
+            [
+              72.822,
+              18.972
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501006,
+        "name": "Sir Jamsetjee Jeejebhoy (Sir JJ) Hospital",
+        "building_type": "hospital",
+        "category": "tertiary_healthcare",
+        "ward": "B",
+        "building_levels": 5,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.834,
+              18.961
+            ],
+            [
+              72.8365,
+              18.961
+            ],
+            [
+              72.8365,
+              18.9635
+            ],
+            [
+              72.834,
+              18.9635
+            ],
+            [
+              72.834,
+              18.961
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501007,
+        "name": "Tata Memorial Hospital & ACTREC",
+        "building_type": "hospital",
+        "category": "specialty_healthcare",
+        "ward": "FS",
+        "building_levels": 8,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.841,
+              19.002
+            ],
+            [
+              72.843,
+              19.002
+            ],
+            [
+              72.843,
+              19.004
+            ],
+            [
+              72.841,
+              19.004
+            ],
+            [
+              72.841,
+              19.002
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501008,
+        "name": "Lilavati Hospital and Research Centre",
+        "building_type": "hospital",
+        "category": "private_tertiary_healthcare",
+        "ward": "HW",
+        "building_levels": 10,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.828,
+              19.051
+            ],
+            [
+              72.83,
+              19.051
+            ],
+            [
+              72.83,
+              19.053
+            ],
+            [
+              72.828,
+              19.053
+            ],
+            [
+              72.828,
+              19.051
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501009,
+        "name": "P.D. Hinduja Hospital and Medical Research Centre",
+        "building_type": "hospital",
+        "category": "private_tertiary_healthcare",
+        "ward": "GN",
+        "building_levels": 12,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.839,
+              19.032
+            ],
+            [
+              72.841,
+              19.032
+            ],
+            [
+              72.841,
+              19.034
+            ],
+            [
+              72.839,
+              19.034
+            ],
+            [
+              72.839,
+              19.032
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501010,
+        "name": "Dr. R.N. Cooper Municipal General Hospital",
+        "building_type": "hospital",
+        "category": "tertiary_healthcare",
+        "ward": "KW",
+        "building_levels": 7,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.836,
+              19.108
+            ],
+            [
+              72.8385,
+              19.108
+            ],
+            [
+              72.8385,
+              19.1105
+            ],
+            [
+              72.836,
+              19.1105
+            ],
+            [
+              72.836,
+              19.108
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501011,
+        "name": "Rajawadi Municipal Hospital",
+        "building_type": "hospital",
+        "category": "tertiary_healthcare",
+        "ward": "N",
+        "building_levels": 6,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.902,
+              19.078
+            ],
+            [
+              72.9045,
+              19.078
+            ],
+            [
+              72.9045,
+              19.0805
+            ],
+            [
+              72.902,
+              19.0805
+            ],
+            [
+              72.902,
+              19.078
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501012,
+        "name": "Love Grove Stormwater Pumping Station",
+        "building_type": "industrial_infrastructure",
+        "category": "stormwater_pumping_station",
+        "ward": "GS",
+        "building_levels": 2,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.8155,
+              19.002
+            ],
+            [
+              72.8175,
+              19.002
+            ],
+            [
+              72.8175,
+              19.004
+            ],
+            [
+              72.8155,
+              19.004
+            ],
+            [
+              72.8155,
+              19.002
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501013,
+        "name": "Cleveland Bunder Stormwater Pumping Station",
+        "building_type": "industrial_infrastructure",
+        "category": "stormwater_pumping_station",
+        "ward": "GS",
+        "building_levels": 2,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.816,
+              19.0145
+            ],
+            [
+              72.818,
+              19.0145
+            ],
+            [
+              72.818,
+              19.0165
+            ],
+            [
+              72.816,
+              19.0165
+            ],
+            [
+              72.816,
+              19.0145
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501014,
+        "name": "Haji Ali Stormwater Pumping Station",
+        "building_type": "industrial_infrastructure",
+        "category": "stormwater_pumping_station",
+        "ward": "D",
+        "building_levels": 2,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.809,
+              18.9805
+            ],
+            [
+              72.811,
+              18.9805
+            ],
+            [
+              72.811,
+              18.9825
+            ],
+            [
+              72.809,
+              18.9825
+            ],
+            [
+              72.809,
+              18.9805
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501015,
+        "name": "Irla Nullah Stormwater Pumping Station",
+        "building_type": "industrial_infrastructure",
+        "category": "stormwater_pumping_station",
+        "ward": "KW",
+        "building_levels": 2,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.825,
+              19.108
+            ],
+            [
+              72.827,
+              19.108
+            ],
+            [
+              72.827,
+              19.11
+            ],
+            [
+              72.825,
+              19.11
+            ],
+            [
+              72.825,
+              19.108
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501016,
+        "name": "Gazdarbandh Stormwater Pumping Station",
+        "building_type": "industrial_infrastructure",
+        "category": "stormwater_pumping_station",
+        "ward": "HW",
+        "building_levels": 2,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.826,
+              19.081
+            ],
+            [
+              72.828,
+              19.081
+            ],
+            [
+              72.828,
+              19.083
+            ],
+            [
+              72.826,
+              19.083
+            ],
+            [
+              72.826,
+              19.081
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501017,
+        "name": "Britannia Stormwater Pumping Station (Reay Road)",
+        "building_type": "industrial_infrastructure",
+        "category": "stormwater_pumping_station",
+        "ward": "E",
+        "building_levels": 2,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.8465,
+              18.971
+            ],
+            [
+              72.8485,
+              18.971
+            ],
+            [
+              72.8485,
+              18.973
+            ],
+            [
+              72.8465,
+              18.973
+            ],
+            [
+              72.8465,
+              18.971
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501018,
+        "name": "Chhatrapati Shivaji Maharaj Terminus (CSMT)",
+        "building_type": "transportation",
+        "category": "railway_terminal",
+        "ward": "A",
+        "building_levels": 4,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.834,
+              18.939
+            ],
+            [
+              72.837,
+              18.939
+            ],
+            [
+              72.837,
+              18.943
+            ],
+            [
+              72.834,
+              18.943
+            ],
+            [
+              72.834,
+              18.939
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501019,
+        "name": "Mumbai Central Railway Station",
+        "building_type": "transportation",
+        "category": "railway_terminal",
+        "ward": "D",
+        "building_levels": 3,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.817,
+              18.968
+            ],
+            [
+              72.82,
+              18.968
+            ],
+            [
+              72.82,
+              18.972
+            ],
+            [
+              72.817,
+              18.972
+            ],
+            [
+              72.817,
+              18.968
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 501020,
+        "name": "Chhatrapati Shivaji Maharaj International Airport (Terminal 2 - Sahar)",
+        "building_type": "transportation",
+        "category": "airport_terminal",
+        "ward": "KE",
+        "building_levels": 4,
+        "source": "OpenStreetMap contributors / BMC Disaster Management Portal",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.87,
+              19.095
+            ],
+            [
+              72.876,
+              19.095
+            ],
+            [
+              72.876,
+              19.102
+            ],
+            [
+              72.87,
+              19.102
+            ],
+            [
+              72.87,
+              19.095
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

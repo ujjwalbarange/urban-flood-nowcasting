@@ -1,0 +1,1096 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_24_wards",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "A",
+        "ward_name": "Ward A (Colaba, Fort, Nariman Point)",
+        "zone": "Island City",
+        "headquarters": "134-E, Shahid Bhagat Singh Road, Fort, Mumbai - 400001",
+        "area_sq_km": 12.5,
+        "population_2011": 185014,
+        "population_density_per_sq_km": 14801.1,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.805,
+              18.895
+            ],
+            [
+              72.818,
+              18.892
+            ],
+            [
+              72.833,
+              18.91
+            ],
+            [
+              72.845,
+              18.93
+            ],
+            [
+              72.842,
+              18.945
+            ],
+            [
+              72.83,
+              18.948
+            ],
+            [
+              72.822,
+              18.935
+            ],
+            [
+              72.812,
+              18.922
+            ],
+            [
+              72.805,
+              18.895
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "B",
+        "ward_name": "Ward B (Sandhurst Road, Dongri, Masjid Bunder)",
+        "zone": "Island City",
+        "headquarters": "121, Ramchandra Bhatt Marg, Babula Tank Road, Mumbai - 400009",
+        "area_sq_km": 2.47,
+        "population_2011": 127290,
+        "population_density_per_sq_km": 51534.4,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.83,
+              18.945
+            ],
+            [
+              72.845,
+              18.945
+            ],
+            [
+              72.848,
+              18.96
+            ],
+            [
+              72.835,
+              18.962
+            ],
+            [
+              72.83,
+              18.952
+            ],
+            [
+              72.83,
+              18.945
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "C",
+        "ward_name": "Ward C (Marine Lines, Kalbadevi, Bhuleshwar)",
+        "zone": "Island City",
+        "headquarters": "76, Shrikant Palekar Marg, Marine Lines, Mumbai - 400002",
+        "area_sq_km": 1.78,
+        "population_2011": 166161,
+        "population_density_per_sq_km": 93348.9,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.818,
+              18.94
+            ],
+            [
+              72.83,
+              18.945
+            ],
+            [
+              72.83,
+              18.958
+            ],
+            [
+              72.82,
+              18.955
+            ],
+            [
+              72.815,
+              18.945
+            ],
+            [
+              72.818,
+              18.94
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "D",
+        "ward_name": "Ward D (Malabar Hill, Grant Road, Tardeo)",
+        "zone": "Island City",
+        "headquarters": "Jobanputra Compound, Nana Chowk, Grant Road (W), Mumbai - 400007",
+        "area_sq_km": 8.03,
+        "population_2011": 346866,
+        "population_density_per_sq_km": 43196.3,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.795,
+              18.945
+            ],
+            [
+              72.815,
+              18.945
+            ],
+            [
+              72.82,
+              18.965
+            ],
+            [
+              72.812,
+              18.975
+            ],
+            [
+              72.8,
+              18.97
+            ],
+            [
+              72.792,
+              18.955
+            ],
+            [
+              72.795,
+              18.945
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "E",
+        "ward_name": "Ward E (Byculla, Mazgaon, Mumbai Central)",
+        "zone": "Island City",
+        "headquarters": "10, Shaikh Hafizuddin Marg, Byculla (W), Mumbai - 400008",
+        "area_sq_km": 7.4,
+        "population_2011": 393286,
+        "population_density_per_sq_km": 53146.8,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              18.962
+            ],
+            [
+              72.845,
+              18.96
+            ],
+            [
+              72.852,
+              18.98
+            ],
+            [
+              72.832,
+              18.985
+            ],
+            [
+              72.82,
+              18.975
+            ],
+            [
+              72.82,
+              18.962
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "FS",
+        "ward_name": "Ward F/South (Parel, Sewri, Lalbaug)",
+        "zone": "Island City",
+        "headquarters": "Jagannath Bhatankar Marg, Parel, Mumbai - 400012",
+        "area_sq_km": 8.83,
+        "population_2011": 360972,
+        "population_density_per_sq_km": 40880.2,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.83,
+              18.985
+            ],
+            [
+              72.86,
+              18.982
+            ],
+            [
+              72.865,
+              19.01
+            ],
+            [
+              72.84,
+              19.012
+            ],
+            [
+              72.83,
+              18.995
+            ],
+            [
+              72.83,
+              18.985
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "FN",
+        "ward_name": "Ward F/North (Matunga, Sion, Wadala)",
+        "zone": "Island City",
+        "headquarters": "96, Bhau Daji Road, King's Circle, Matunga, Mumbai - 400019",
+        "area_sq_km": 12.98,
+        "population_2011": 529003,
+        "population_density_per_sq_km": 40755.2,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.012
+            ],
+            [
+              72.87,
+              19.01
+            ],
+            [
+              72.875,
+              19.045
+            ],
+            [
+              72.85,
+              19.045
+            ],
+            [
+              72.842,
+              19.028
+            ],
+            [
+              72.84,
+              19.012
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "GS",
+        "ward_name": "Ward G/South (Worli, Lower Parel, Prabhadevi)",
+        "zone": "Island City",
+        "headquarters": "Dhanmill Naka, N.M. Joshi Marg, Lower Parel, Mumbai - 400013",
+        "area_sq_km": 10.0,
+        "population_2011": 379927,
+        "population_density_per_sq_km": 37992.7,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.81,
+              18.98
+            ],
+            [
+              72.83,
+              18.985
+            ],
+            [
+              72.835,
+              19.015
+            ],
+            [
+              72.818,
+              19.02
+            ],
+            [
+              72.812,
+              19.005
+            ],
+            [
+              72.81,
+              18.98
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "GN",
+        "ward_name": "Ward G/North (Dadar, Dharavi, Mahim)",
+        "zone": "Island City",
+        "headquarters": "Harishchandra Yelve Marg, Dadar (W), Mumbai - 400028",
+        "area_sq_km": 9.07,
+        "population_2011": 599039,
+        "population_density_per_sq_km": 66046.2,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.825,
+              19.018
+            ],
+            [
+              72.85,
+              19.02
+            ],
+            [
+              72.858,
+              19.048
+            ],
+            [
+              72.838,
+              19.045
+            ],
+            [
+              72.832,
+              19.03
+            ],
+            [
+              72.825,
+              19.018
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "HE",
+        "ward_name": "Ward H/East (Bandra East, Khar East, Santacruz East, Kalina)",
+        "zone": "Western Suburbs",
+        "headquarters": "Prabhat Colony, TPS 5, Santacruz (E), Mumbai - 400055",
+        "area_sq_km": 13.53,
+        "population_2011": 557239,
+        "population_density_per_sq_km": 41185.4,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.842,
+              19.045
+            ],
+            [
+              72.875,
+              19.05
+            ],
+            [
+              72.872,
+              19.088
+            ],
+            [
+              72.848,
+              19.085
+            ],
+            [
+              72.842,
+              19.06
+            ],
+            [
+              72.842,
+              19.045
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "HW",
+        "ward_name": "Ward H/West (Bandra West, Khar West, Santacruz West)",
+        "zone": "Western Suburbs",
+        "headquarters": "Saint Martin Road, Bandra (W), Mumbai - 400050",
+        "area_sq_km": 11.55,
+        "population_2011": 307581,
+        "population_density_per_sq_km": 26630.4,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.045
+            ],
+            [
+              72.842,
+              19.045
+            ],
+            [
+              72.848,
+              19.085
+            ],
+            [
+              72.828,
+              19.088
+            ],
+            [
+              72.82,
+              19.065
+            ],
+            [
+              72.82,
+              19.045
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "KE",
+        "ward_name": "Ward K/East (Andheri East, Jogeshwari East, Vile Parle East)",
+        "zone": "Western Suburbs",
+        "headquarters": "Azad Road, Gundavali, Andheri (E), Mumbai - 400069",
+        "area_sq_km": 24.78,
+        "population_2011": 823885,
+        "population_density_per_sq_km": 33248.0,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.848,
+              19.085
+            ],
+            [
+              72.885,
+              19.09
+            ],
+            [
+              72.88,
+              19.145
+            ],
+            [
+              72.852,
+              19.14
+            ],
+            [
+              72.848,
+              19.11
+            ],
+            [
+              72.848,
+              19.085
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "KW",
+        "ward_name": "Ward K/West (Andheri West, Versova, Juhu, Oshiwara)",
+        "zone": "Western Suburbs",
+        "headquarters": "Paliram Path, Near Andheri Station, Andheri (W), Mumbai - 400058",
+        "area_sq_km": 23.44,
+        "population_2011": 749345,
+        "population_density_per_sq_km": 31968.6,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.815,
+              19.085
+            ],
+            [
+              72.848,
+              19.085
+            ],
+            [
+              72.852,
+              19.14
+            ],
+            [
+              72.822,
+              19.145
+            ],
+            [
+              72.808,
+              19.12
+            ],
+            [
+              72.815,
+              19.085
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "PS",
+        "ward_name": "Ward P/South (Goregaon West & East)",
+        "zone": "Western Suburbs",
+        "headquarters": "S.V. Road, Near Filmistan Studio, Goregaon (W), Mumbai - 400104",
+        "area_sq_km": 24.44,
+        "population_2011": 463777,
+        "population_density_per_sq_km": 18976.1,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.822,
+              19.145
+            ],
+            [
+              72.89,
+              19.145
+            ],
+            [
+              72.885,
+              19.182
+            ],
+            [
+              72.825,
+              19.18
+            ],
+            [
+              72.822,
+              19.145
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "PN",
+        "ward_name": "Ward P/North (Malad, Marve, Manori)",
+        "zone": "Western Suburbs",
+        "headquarters": "Liberty Garden, Mamletdarwadi, Malad (W), Mumbai - 400064",
+        "area_sq_km": 46.67,
+        "population_2011": 941366,
+        "population_density_per_sq_km": 20170.7,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.795,
+              19.175
+            ],
+            [
+              72.885,
+              19.18
+            ],
+            [
+              72.882,
+              19.215
+            ],
+            [
+              72.81,
+              19.215
+            ],
+            [
+              72.79,
+              19.195
+            ],
+            [
+              72.795,
+              19.175
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "RS",
+        "ward_name": "Ward R/South (Kandivali, Charkop)",
+        "zone": "Western Suburbs",
+        "headquarters": "Mahatma Gandhi Cross Road No. 2, Kandivali (W), Mumbai - 400067",
+        "area_sq_km": 17.78,
+        "population_2011": 691229,
+        "population_density_per_sq_km": 38876.8,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.805,
+              19.205
+            ],
+            [
+              72.875,
+              19.21
+            ],
+            [
+              72.87,
+              19.238
+            ],
+            [
+              72.812,
+              19.238
+            ],
+            [
+              72.805,
+              19.205
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "RC",
+        "ward_name": "Ward R/Central (Borivali, Gorai)",
+        "zone": "Western Suburbs",
+        "headquarters": "Chandavarkar Road, Borivali (W), Mumbai - 400092",
+        "area_sq_km": 50.0,
+        "population_2011": 562162,
+        "population_density_per_sq_km": 11243.2,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.78,
+              19.23
+            ],
+            [
+              72.865,
+              19.235
+            ],
+            [
+              72.862,
+              19.265
+            ],
+            [
+              72.8,
+              19.268
+            ],
+            [
+              72.775,
+              19.245
+            ],
+            [
+              72.78,
+              19.23
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "RN",
+        "ward_name": "Ward R/North (Dahisar)",
+        "zone": "Western Suburbs",
+        "headquarters": "Rangnath Keskar Marg, Dahisar (W), Mumbai - 400068",
+        "area_sq_km": 18.0,
+        "population_2011": 431368,
+        "population_density_per_sq_km": 23964.9,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.835,
+              19.255
+            ],
+            [
+              72.875,
+              19.258
+            ],
+            [
+              72.87,
+              19.288
+            ],
+            [
+              72.842,
+              19.288
+            ],
+            [
+              72.835,
+              19.255
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "L",
+        "ward_name": "Ward L (Kurla, Chunabhatti, Sakinaka, Chandivali)",
+        "zone": "Eastern Suburbs",
+        "headquarters": "L.B.S. Marg, Near Kurla Railway Station, Kurla (W), Mumbai - 400070",
+        "area_sq_km": 15.88,
+        "population_2011": 902221,
+        "population_density_per_sq_km": 56814.9,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.868,
+              19.055
+            ],
+            [
+              72.905,
+              19.06
+            ],
+            [
+              72.902,
+              19.112
+            ],
+            [
+              72.872,
+              19.11
+            ],
+            [
+              72.868,
+              19.055
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ME",
+        "ward_name": "Ward M/East (Govandi, Mankhurd, Deonar, Shivaji Nagar)",
+        "zone": "Eastern Suburbs",
+        "headquarters": "Deonar Colony, Govandi, Mumbai - 400043",
+        "area_sq_km": 32.5,
+        "population_2011": 807720,
+        "population_density_per_sq_km": 24852.9,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.905,
+              19.03
+            ],
+            [
+              72.945,
+              19.035
+            ],
+            [
+              72.94,
+              19.08
+            ],
+            [
+              72.91,
+              19.075
+            ],
+            [
+              72.905,
+              19.03
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "MW",
+        "ward_name": "Ward M/West (Chembur, Tilak Nagar, Mahul)",
+        "zone": "Eastern Suburbs",
+        "headquarters": "Sharadbhau Acharya Marg, Chembur, Mumbai - 400071",
+        "area_sq_km": 19.5,
+        "population_2011": 411893,
+        "population_density_per_sq_km": 21122.7,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.005
+            ],
+            [
+              72.92,
+              19.005
+            ],
+            [
+              72.915,
+              19.065
+            ],
+            [
+              72.885,
+              19.06
+            ],
+            [
+              72.88,
+              19.005
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "N",
+        "ward_name": "Ward N (Ghatkopar, Vidyavihar, Pant Nagar)",
+        "zone": "Eastern Suburbs",
+        "headquarters": "Jawahar Road, Ghatkopar (E), Mumbai - 400077",
+        "area_sq_km": 25.96,
+        "population_2011": 622853,
+        "population_density_per_sq_km": 23992.8,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.895,
+              19.075
+            ],
+            [
+              72.935,
+              19.08
+            ],
+            [
+              72.93,
+              19.125
+            ],
+            [
+              72.89,
+              19.12
+            ],
+            [
+              72.895,
+              19.075
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "S",
+        "ward_name": "Ward S (Bhandup, Powai, Kanjurmarg, Vikhroli)",
+        "zone": "Eastern Suburbs",
+        "headquarters": "L.B.S. Marg, Near Mangatram Petrol Pump, Bhandup (W), Mumbai - 400078",
+        "area_sq_km": 64.0,
+        "population_2011": 743783,
+        "population_density_per_sq_km": 11621.6,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.115
+            ],
+            [
+              72.945,
+              19.12
+            ],
+            [
+              72.94,
+              19.175
+            ],
+            [
+              72.885,
+              19.17
+            ],
+            [
+              72.88,
+              19.115
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "T",
+        "ward_name": "Ward T (Mulund, Nahur)",
+        "zone": "Eastern Suburbs",
+        "headquarters": "Lala Lajpatrai Marg, Mulund (W), Mumbai - 400080",
+        "area_sq_km": 45.42,
+        "population_2011": 341463,
+        "population_density_per_sq_km": 7517.9,
+        "source": "Brihanmumbai Municipal Corporation (BMC) / Census of India 2011 / OpenCity",
+        "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+        "download_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.915,
+              19.165
+            ],
+            [
+              72.965,
+              19.17
+            ],
+            [
+              72.955,
+              19.23
+            ],
+            [
+              72.92,
+              19.225
+            ],
+            [
+              72.915,
+              19.165
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

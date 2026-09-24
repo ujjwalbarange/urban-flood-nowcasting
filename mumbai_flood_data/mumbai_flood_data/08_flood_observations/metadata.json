@@ -1,0 +1,48 @@
+[
+  {
+    "dataset": "India Flood Inventory v3.0 - filter to Mumbai/Maharashtra events (incl. 26 July 2005)",
+    "source": "India Flood Inventory v3 project, republished via bharatlas (urbanmorph/geodata)",
+    "source_url": "https://bharatlas.com/api/dl/environment/flood-inventory/INDIA_FLOOD_INVENTORY_V3.geojson",
+    "source_page": "https://bharatlas.com/view/india_flood_inventory",
+    "original_project": "https://github.com/yashveeeeeeer/india-geodata/releases/tag/environment/flood-inventory",
+    "license": "CC-BY-4.0",
+    "download_date": "NOT YET DOWNLOADED (28.6 MB geojson, national coverage - download once then filter to Maharashtra/Mumbai locally, do not attempt to pull through chat context)",
+    "format": "GeoJSON (national, 1,006 flood event polygons, 1960s-2020); also Parquet 5.3MB, PMTiles, KML, Shapefile",
+    "crs": "EPSG:4326",
+    "spatial_resolution": "event-level polygons, resolution varies by event/source",
+    "temporal_resolution": "event catalogue, 1960s-2020",
+    "coverage": "Pan-India; MUST BE FILTERED locally (e.g. by state='Maharashtra' or bbox clip to Mumbai) after download",
+    "file_size": "28.6 MB (geojson, national)",
+    "quality": "medium-high (compiled catalogue; source quality varies by event/era)",
+    "limitations": "National dataset requiring local filtering; event polygon precision for older events (like 2005) may be coarse.",
+    "processing": "NONE performed here; filtering to Mumbai must happen after download using scripts/filter_flood_inventory.py",
+    "notes": "Complements 08_flood_observations/historical_events/ narrative records below."
+  },
+  {
+    "dataset": "NDEM All-India Flood Inundation 1998-2022 - filter to Mumbai",
+    "source": "NDEM (NRSC/ISRO), via bharatlas",
+    "source_url": "https://bharatlas.com/api/dl/environment/ndem-floods-1998-2022/NDEM_All_India_Flood_Innundation_1998_to_2022.geojson",
+    "source_page": "https://bharatlas.com/view/ndem_floods_1998_2022",
+    "license": "CC0-1.0",
+    "download_date": "NOT YET DOWNLOADED (87.3 MB geojson, national - filter locally)",
+    "format": "GeoJSON (also Parquet 27MB, PMTiles, KML, Shapefile)",
+    "crs": "EPSG:4326",
+    "coverage": "Pan-India satellite-derived flood inundation extents 1998-2022; filter to Mumbai bbox after download",
+    "quality": "high (satellite-derived, ISRO/NRSC)",
+    "limitations": "Satellite-derived inundation extents, not point-level 'flood observations' with depth/timing detail.",
+    "processing": "NONE performed here",
+    "notes": "Good complement to India Flood Inventory for spatial extent of major events."
+  },
+  {
+    "dataset": "26 July 2005 Mumbai flood - narrative/secondary reporting (NOT precise geospatial ground truth)",
+    "source": "Multiple: Wikipedia 'Maharashtra floods of 2005', Govt of Maharashtra Fact Finding Committee report (2006), NIDM Journal (nidm.gov.in), arxiv.org/abs/2306.09770 (academic crowdsourced-data study)",
+    "source_url": "https://en.wikipedia.org/wiki/Maharashtra_floods_of_2005 ; https://nidm.gov.in/journal/PDF/Journal/Journal20092/Journal20092b.pdf ; https://arxiv.org/pdf/2306.09770",
+    "license": "varies by source (Wikipedia CC-BY-SA; academic papers per their own terms - check before redistribution)",
+    "download_date": "web pages identified 2026-09-23, not archived as structured data here",
+    "format": "narrative text / figures in PDF reports (Fact Finding Committee 2006 has inundation extent FIGURES, not machine-readable GIS)",
+    "coverage": "26-27 July 2005 event; Santacruz station recorded 944mm/24hr, Colaba 73-84mm/24hr (station values vary slightly by source - verify against IMD primary records before using)",
+    "quality": "low as geospatial ground truth - these are narrative/report sources per task instructions ('do NOT treat news articles as precise geospatial ground truth')",
+    "limitations": "No machine-readable point/polygon flood-extent file with lat/lon and water depth was found for this event beyond the two catalogue datasets above.",
+    "notes": "Use as context/validation narrative, not as primary GIS input. The Fact Finding Committee report's Figures 7-8 (inundated areas) would need manual georeferencing if used."
+  }
+]

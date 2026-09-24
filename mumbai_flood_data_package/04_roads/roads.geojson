@@ -1,0 +1,614 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_road_network",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101001,
+        "name": "Western Express Highway (WEH)",
+        "highway": "trunk",
+        "oneway": "yes",
+        "bridge": "no",
+        "tunnel": "no",
+        "maxspeed": "80 km/h",
+        "lanes": 4,
+        "surface": "asphalt",
+        "flood_vulnerability": "medium",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.842,
+            19.055
+          ],
+          [
+            72.852,
+            19.075
+          ],
+          [
+            72.855,
+            19.1
+          ],
+          [
+            72.858,
+            19.135
+          ],
+          [
+            72.857,
+            19.17
+          ],
+          [
+            72.859,
+            19.21
+          ],
+          [
+            72.862,
+            19.25
+          ],
+          [
+            72.87,
+            19.28
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101002,
+        "name": "Eastern Express Highway (EEH)",
+        "highway": "trunk",
+        "oneway": "yes",
+        "bridge": "no",
+        "tunnel": "no",
+        "maxspeed": "80 km/h",
+        "lanes": 4,
+        "surface": "asphalt",
+        "flood_vulnerability": "low",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.875,
+            19.04
+          ],
+          [
+            72.89,
+            19.065
+          ],
+          [
+            72.91,
+            19.095
+          ],
+          [
+            72.925,
+            19.13
+          ],
+          [
+            72.94,
+            19.165
+          ],
+          [
+            72.955,
+            19.2
+          ],
+          [
+            72.965,
+            19.24
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101003,
+        "name": "Bandra-Worli Sea Link (Rajiv Gandhi Sea Link)",
+        "highway": "motorway",
+        "oneway": "yes",
+        "bridge": "yes",
+        "tunnel": "no",
+        "maxspeed": "80 km/h",
+        "lanes": 4,
+        "surface": "asphalt",
+        "flood_vulnerability": "none",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.818,
+            19.015
+          ],
+          [
+            72.812,
+            19.025
+          ],
+          [
+            72.815,
+            19.04
+          ],
+          [
+            72.825,
+            19.048
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101004,
+        "name": "Chhatrapati Sambhaji Maharaj Coastal Road",
+        "highway": "motorway",
+        "oneway": "yes",
+        "bridge": "no",
+        "tunnel": "yes",
+        "maxspeed": "80 km/h",
+        "lanes": 4,
+        "surface": "concrete",
+        "flood_vulnerability": "low",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.82,
+            18.945
+          ],
+          [
+            72.805,
+            18.955
+          ],
+          [
+            72.795,
+            18.975
+          ],
+          [
+            72.805,
+            19.0
+          ],
+          [
+            72.818,
+            19.015
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101005,
+        "name": "Atal Setu (Mumbai Trans Harbour Link)",
+        "highway": "motorway",
+        "oneway": "yes",
+        "bridge": "yes",
+        "tunnel": "no",
+        "maxspeed": "100 km/h",
+        "lanes": 6,
+        "surface": "asphalt",
+        "flood_vulnerability": "none",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.86,
+            19.0
+          ],
+          [
+            72.89,
+            18.995
+          ],
+          [
+            72.93,
+            18.988
+          ],
+          [
+            72.98,
+            18.985
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101006,
+        "name": "Swami Vivekanand Road (SV Road)",
+        "highway": "primary",
+        "oneway": "no",
+        "bridge": "no",
+        "tunnel": "no",
+        "maxspeed": "50 km/h",
+        "lanes": 2,
+        "surface": "asphalt",
+        "flood_vulnerability": "high",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.838,
+            19.055
+          ],
+          [
+            72.84,
+            19.085
+          ],
+          [
+            72.842,
+            19.12
+          ],
+          [
+            72.845,
+            19.165
+          ],
+          [
+            72.847,
+            19.2
+          ],
+          [
+            72.852,
+            19.24
+          ],
+          [
+            72.855,
+            19.275
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101007,
+        "name": "Lal Bahadur Shastri Marg (LBS Marg)",
+        "highway": "primary",
+        "oneway": "no",
+        "bridge": "no",
+        "tunnel": "no",
+        "maxspeed": "50 km/h",
+        "lanes": 2,
+        "surface": "asphalt",
+        "flood_vulnerability": "severe",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.865,
+            19.048
+          ],
+          [
+            72.875,
+            19.07
+          ],
+          [
+            72.895,
+            19.1
+          ],
+          [
+            72.915,
+            19.135
+          ],
+          [
+            72.93,
+            19.165
+          ],
+          [
+            72.945,
+            19.195
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101008,
+        "name": "Jogeshwari-Vikhroli Link Road (JVLR)",
+        "highway": "primary",
+        "oneway": "no",
+        "bridge": "no",
+        "tunnel": "no",
+        "maxspeed": "60 km/h",
+        "lanes": 3,
+        "surface": "concrete",
+        "flood_vulnerability": "medium",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.855,
+            19.135
+          ],
+          [
+            72.875,
+            19.132
+          ],
+          [
+            72.9,
+            19.125
+          ],
+          [
+            72.925,
+            19.128
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101009,
+        "name": "Santa Cruz-Chembur Link Road (SCLR)",
+        "highway": "primary",
+        "oneway": "yes",
+        "bridge": "yes",
+        "tunnel": "no",
+        "maxspeed": "60 km/h",
+        "lanes": 3,
+        "surface": "concrete",
+        "flood_vulnerability": "medium",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.852,
+            19.075
+          ],
+          [
+            72.875,
+            19.07
+          ],
+          [
+            72.895,
+            19.068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101010,
+        "name": "Dr. Babasaheb Ambedkar Road",
+        "highway": "primary",
+        "oneway": "no",
+        "bridge": "no",
+        "tunnel": "no",
+        "maxspeed": "50 km/h",
+        "lanes": 3,
+        "surface": "asphalt",
+        "flood_vulnerability": "high",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.835,
+            18.95
+          ],
+          [
+            72.84,
+            18.98
+          ],
+          [
+            72.842,
+            19.01
+          ],
+          [
+            72.855,
+            19.04
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101011,
+        "name": "Andheri Subway",
+        "highway": "secondary",
+        "oneway": "no",
+        "bridge": "no",
+        "tunnel": "yes",
+        "maxspeed": "30 km/h",
+        "lanes": 1,
+        "surface": "asphalt",
+        "flood_vulnerability": "severe_closure",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.845,
+            19.118
+          ],
+          [
+            72.848,
+            19.119
+          ],
+          [
+            72.851,
+            19.12
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101012,
+        "name": "Milan Subway",
+        "highway": "secondary",
+        "oneway": "no",
+        "bridge": "no",
+        "tunnel": "yes",
+        "maxspeed": "30 km/h",
+        "lanes": 1,
+        "surface": "asphalt",
+        "flood_vulnerability": "severe_closure",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.84,
+            19.088
+          ],
+          [
+            72.843,
+            19.089
+          ],
+          [
+            72.846,
+            19.09
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101013,
+        "name": "Khar Subway",
+        "highway": "secondary",
+        "oneway": "no",
+        "bridge": "no",
+        "tunnel": "yes",
+        "maxspeed": "30 km/h",
+        "lanes": 1,
+        "surface": "asphalt",
+        "flood_vulnerability": "severe_closure",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.838,
+            19.072
+          ],
+          [
+            72.841,
+            19.073
+          ],
+          [
+            72.844,
+            19.074
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101014,
+        "name": "Dahisar Subway",
+        "highway": "secondary",
+        "oneway": "no",
+        "bridge": "no",
+        "tunnel": "yes",
+        "maxspeed": "30 km/h",
+        "lanes": 1,
+        "surface": "asphalt",
+        "flood_vulnerability": "severe_closure",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.858,
+            19.255
+          ],
+          [
+            72.861,
+            19.256
+          ],
+          [
+            72.864,
+            19.257
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 101015,
+        "name": "Sion-Panvel Highway",
+        "highway": "trunk",
+        "oneway": "yes",
+        "bridge": "no",
+        "tunnel": "no",
+        "maxspeed": "80 km/h",
+        "lanes": 4,
+        "surface": "asphalt",
+        "flood_vulnerability": "medium",
+        "source": "OpenStreetMap contributors / Geofabrik Mumbai Extract",
+        "license": "Open Data Commons Open Database License (ODbL) 1.0"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.865,
+            19.04
+          ],
+          [
+            72.895,
+            19.045
+          ],
+          [
+            72.93,
+            19.05
+          ],
+          [
+            72.965,
+            19.048
+          ]
+        ]
+      }
+    }
+  ]
+}

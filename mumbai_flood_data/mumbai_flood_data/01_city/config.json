@@ -1,0 +1,18 @@
+{
+  "city": "Mumbai (Greater Mumbai / BMC jurisdiction)",
+  "country": "India",
+  "state": "Maharashtra",
+  "target_bbox_wgs84": {
+    "note": "Approximate Mumbai + 5-10km buffer bounding box, WGS84 (EPSG:4326). Refine after downloading the actual ward boundary and buffering it in GIS - this is a hand-estimated envelope, not derived from the boundary file.",
+    "west": 72.75,
+    "south": 18.85,
+    "east": 72.98,
+    "north": 19.30
+  },
+  "ward_count_administrative": 24,
+  "ward_count_electoral_2017": 227,
+  "utm_zone_recommended": "EPSG:32643 (WGS 84 / UTM zone 43N) - recommended projected CRS for area/length/hydrology calculations",
+  "sources_used": [
+    "OpenCity / Oorvani Foundation (via bharatlas.com aggregator)"
+  ]
+}

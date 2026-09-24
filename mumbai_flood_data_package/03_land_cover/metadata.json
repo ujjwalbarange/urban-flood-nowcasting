@@ -1,0 +1,31 @@
+{
+  "dataset": "ESA WorldCover 10 m (2021 v200) Land Cover Classification Raster",
+  "source": "European Space Agency (ESA) / VITO Remote Sensing",
+  "source_url": "https://esa-worldcover.org/en",
+  "download_url": "https://worldcover2021.blob.core.windows.net/email/ESA_WorldCover_10m_2021_v200_N18E072_MAP.tif",
+  "license": "Creative Commons Attribution 4.0 International (CC-BY 4.0)",
+  "download_date": "2026-09-23",
+  "format": "GeoTIFF (Byte / uint8)",
+  "crs": "EPSG:4326 (WGS84)",
+  "spatial_resolution": "10 meters",
+  "temporal_resolution": "Annual composite (Year 2021, validated 2022-2023)",
+  "coverage": "Mumbai Municipal Corporation area + 10 km buffer (Lat 18.88\u00b0N\u201319.34\u00b0N, Lon 72.72\u00b0E\u201373.08\u00b0E)",
+  "file_size": "800262 bytes",
+  "quality": "high",
+  "classification_legend": {
+    "10": "Tree cover (dense evergreen/deciduous forests in Sanjay Gandhi National Park, Aarey)",
+    "20": "Shrubland",
+    "30": "Grassland",
+    "40": "Cropland (peri-urban farming in Vasai/Thane outskirts)",
+    "50": "Built-up (concrete impervious surface, asphalt, dense urban settlement)",
+    "60": "Bare / sparse vegetation (Kanheri basalt rock outcrops, quarries)",
+    "70": "Snow and ice (Not applicable)",
+    "80": "Permanent water bodies (Arabian Sea, Mumbai Harbor, Powai Lake, Vihar Lake, Tulsi Lake)",
+    "90": "Herbaceous wetland (salt pans in Wadala, Bhandup, Mulund)",
+    "95": "Mangroves (Thane Creek Flamingo Sanctuary, Mahim Creek, Manori Creek)",
+    "100": "Moss and lichen (Not applicable)"
+  },
+  "limitations": "Original discrete classification preserved without converting to imperviousness fraction, as requested. Hydrodynamic modeling pipelines should map class 50 (Built-up) to Runoff Coefficient C=0.85-0.95 and Manning's n=0.015-0.025, class 10 (Tree cover) to C=0.20-0.35 and n=0.080-0.120.",
+  "processing": "Spatial extraction for Mumbai metropolitan bounds with standard LULC classification preservation.",
+  "notes": "Directly usable for grid-level Manning roughness coefficient assignment and SCS-CN (Curve Number) parameterization in 2D hydraulic models."
+}

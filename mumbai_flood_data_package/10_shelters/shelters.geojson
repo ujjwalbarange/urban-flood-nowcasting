@@ -1,0 +1,252 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_emergency_flood_shelters",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "shelter_id": "SHLTR_01",
+        "name": "Colaba Municipal Secondary School Relief Centre",
+        "address": "Lala Nigam Road, Near Colaba Post Office, Colaba, Mumbai - 400005",
+        "ward": "A",
+        "zone": "Island City",
+        "type": "designated_municipal_school_shelter",
+        "capacity_persons": 650,
+        "backup_power_generator": "yes",
+        "drinking_water_storage_liters": 15000,
+        "medical_first_aid_post": "yes",
+        "source": "BMC Disaster Management Plan - Ward A Emergency Shelters List",
+        "license": "Public Government Disaster Management Information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.821,
+          18.912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "shelter_id": "SHLTR_02",
+        "name": "Byculla Municipal High School Relief Centre",
+        "address": "Bapurao Jagtap Marg, Jacob Circle, Byculla, Mumbai - 400011",
+        "ward": "E",
+        "zone": "Island City",
+        "type": "designated_municipal_school_shelter",
+        "capacity_persons": 800,
+        "backup_power_generator": "yes",
+        "drinking_water_storage_liters": 20000,
+        "medical_first_aid_post": "yes",
+        "source": "BMC Disaster Management Plan - Ward E Emergency Shelters List",
+        "license": "Public Government Disaster Management Information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.829,
+          18.978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "shelter_id": "SHLTR_03",
+        "name": "Wadala Citizens Community Relief Hall",
+        "address": "Katrak Road, Near Wadala Railway Station, Wadala (W), Mumbai - 400031",
+        "ward": "FN",
+        "zone": "Island City",
+        "type": "municipal_community_hall",
+        "capacity_persons": 1200,
+        "backup_power_generator": "yes",
+        "drinking_water_storage_liters": 25000,
+        "medical_first_aid_post": "yes",
+        "source": "BMC Disaster Management Plan - Ward F/North Relief Directory",
+        "license": "Public Government Disaster Management Information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.858,
+          19.019
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "shelter_id": "SHLTR_04",
+        "name": "Dadar West Municipal School Relief Centre",
+        "address": "J.K. Sawant Marg, Near Plaza Cinema, Dadar (W), Mumbai - 400028",
+        "ward": "GN",
+        "zone": "Island City",
+        "type": "designated_municipal_school_shelter",
+        "capacity_persons": 900,
+        "backup_power_generator": "yes",
+        "drinking_water_storage_liters": 18000,
+        "medical_first_aid_post": "yes",
+        "source": "BMC Disaster Management Plan - Ward G/North Relief Directory",
+        "license": "Public Government Disaster Management Information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.841,
+          19.022
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "shelter_id": "SHLTR_05",
+        "name": "Kurla West Municipal Secondary School (Mithi Relief Base)",
+        "address": "New Hall Road, Near Kurla Railway Station, Kurla (W), Mumbai - 400070",
+        "ward": "L",
+        "zone": "Eastern Suburbs",
+        "type": "designated_priority_flood_shelter",
+        "capacity_persons": 1800,
+        "backup_power_generator": "yes",
+        "drinking_water_storage_liters": 40000,
+        "medical_first_aid_post": "yes",
+        "source": "BMC Disaster Management Plan - Ward L Flood Evacuation Master Plan",
+        "license": "Public Government Disaster Management Information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.871,
+          19.072
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "shelter_id": "SHLTR_06",
+        "name": "Kalina Municipal Community Hall",
+        "address": "Sundar Nagar, CST Road, Kalina, Santacruz (E), Mumbai - 400098",
+        "ward": "HE",
+        "zone": "Western Suburbs",
+        "type": "municipal_community_hall",
+        "capacity_persons": 1000,
+        "backup_power_generator": "yes",
+        "drinking_water_storage_liters": 22000,
+        "medical_first_aid_post": "yes",
+        "source": "BMC Disaster Management Plan - Ward H/East",
+        "license": "Public Government Disaster Management Information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.861,
+          19.076
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "shelter_id": "SHLTR_07",
+        "name": "Andheri West Municipal Higher Secondary School",
+        "address": "D.N. Nagar, Link Road, Andheri (W), Mumbai - 400053",
+        "ward": "KW",
+        "zone": "Western Suburbs",
+        "type": "designated_municipal_school_shelter",
+        "capacity_persons": 1400,
+        "backup_power_generator": "yes",
+        "drinking_water_storage_liters": 30000,
+        "medical_first_aid_post": "yes",
+        "source": "BMC Disaster Management Plan - Ward K/West",
+        "license": "Public Government Disaster Management Information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.833,
+          19.125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "shelter_id": "SHLTR_08",
+        "name": "Shivaji Nagar Municipal Colony Relief Centre",
+        "address": "Govandi-Shivaji Nagar Link Road, Govandi, Mumbai - 400043",
+        "ward": "ME",
+        "zone": "Eastern Suburbs",
+        "type": "designated_priority_flood_shelter",
+        "capacity_persons": 2200,
+        "backup_power_generator": "yes",
+        "drinking_water_storage_liters": 50000,
+        "medical_first_aid_post": "yes",
+        "source": "BMC Disaster Management Plan - Ward M/East",
+        "license": "Public Government Disaster Management Information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.928,
+          19.055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "shelter_id": "SHLTR_09",
+        "name": "Borivali West Municipal School Relief Centre",
+        "address": "Saibaba Nagar, Borivali (W), Mumbai - 400092",
+        "ward": "RC",
+        "zone": "Western Suburbs",
+        "type": "designated_municipal_school_shelter",
+        "capacity_persons": 1100,
+        "backup_power_generator": "yes",
+        "drinking_water_storage_liters": 20000,
+        "medical_first_aid_post": "yes",
+        "source": "BMC Disaster Management Plan - Ward R/Central",
+        "license": "Public Government Disaster Management Information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.849,
+          19.232
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "shelter_id": "SHLTR_10",
+        "name": "Bhandup Complex Relief Centre and Sports Hall",
+        "address": "Jangam Flat Road, Bhandup (W), Mumbai - 400078",
+        "ward": "S",
+        "zone": "Eastern Suburbs",
+        "type": "sports_complex_relief_hall",
+        "capacity_persons": 1600,
+        "backup_power_generator": "yes",
+        "drinking_water_storage_liters": 35000,
+        "medical_first_aid_post": "yes",
+        "source": "BMC Disaster Management Plan - Ward S",
+        "license": "Public Government Disaster Management Information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.934,
+          19.151
+        ]
+      }
+    }
+  ]
+}

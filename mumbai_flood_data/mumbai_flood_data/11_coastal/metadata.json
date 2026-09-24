@@ -1,0 +1,27 @@
+[
+  {
+    "dataset": "Mumbai coastline",
+    "source": "OpenStreetMap (natural=coastline) via Overpass, OR derived from the ESA WorldCover water class, OR OSM-derived global coastline extracts (e.g. OSMcoastline project)",
+    "source_url": "https://overpass-api.de/api/interpreter (query natural=coastline within Mumbai+buffer bbox)",
+    "license": "ODbL 1.0 (OpenStreetMap)",
+    "download_date": "NOT DOWNLOADED (Overpass query limitation, same as roads/buildings - see scripts/download_roads.sh, same pattern applies)",
+    "format": "GeoJSON (line geometry)",
+    "crs": "EPSG:4326",
+    "coverage": "Mumbai + buffer coastline (Arabian Sea, Thane Creek, Mahim Bay, Mithi River estuary)",
+    "quality": "medium-high (OSM coastline is generally well mapped for India's west coast)",
+    "limitations": "OSM coastline is a modeled/traced line, not a surveyed MHW/MLW line; for engineering-grade tidal datum lines, INCOIS/Survey of India charts would be needed (see below).",
+    "notes": "For a more authoritative coastline, Survey of India (surveyofindia.gov.in) publishes coastal maps but interactive/paid access - not confirmed freely bulk-downloadable in this session."
+  },
+  {
+    "dataset": "Tide information (Mumbai / Apollo Bandar / Indian coast)",
+    "source": "INCOIS (Indian National Centre for Ocean Information Services) - Tide Tables & Sea Level Forecast",
+    "source_url_portal": "https://incois.gov.in/portal/osf/osf.jsp (Ocean State Forecast) and https://incois.gov.in/tidetables (tide predictions)",
+    "license": "Government of India open data (verify specific terms on the INCOIS site; generally free for public/research use)",
+    "download_date": "NOT DOWNLOADED - live/frequently-updated data, documented as API/portal per task's file-vs-API rule",
+    "format": "Web portal / tables (not a stable bulk-download API endpoint was confirmed in this session)",
+    "coverage": "Mumbai (Apollo Bandar / Mumbai tide station) and nearby stations",
+    "quality": "high (official tidal authority)",
+    "limitations": "Live/current tide predictions are provided as a portal, not a documented REST API with stable parameters in this research pass - treat as a live source per task's API-vs-file rule rather than a bulk file.",
+    "notes": "Historical tide gauge time series (for validation) may require a data request to INCOIS or the Survey of India tide gauge network; not confirmed as open bulk download here."
+  }
+]

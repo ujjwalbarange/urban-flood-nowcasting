@@ -1,0 +1,23 @@
+{
+  "status": "not publicly available",
+  "dataset": "Mumbai (MCGM/BMC) storm-water drainage network - lines, nodes, manholes, outfalls, pumping stations, hydraulic parameters",
+  "sources_checked": [
+    "MCGM/BMC official website and 'One MCGM GIS' portal (mcgm.maps.arcgis.com) - internal/viewer-oriented, no public open-data download of drain geometry or hydraulic attributes found",
+    "MCGM Disaster Management Department pages",
+    "data.gov.in (Open Government Data India) - searched, no Mumbai stormwater drain layer found",
+    "Maharashtra government GIS / AMRUT portals - no downloadable Mumbai drainage GIS layer found",
+    "OpenStreetMap (waterway=drain / man_made=storm_drain tags) - sparse/inconsistent tagging in Mumbai, not a substitute for an engineering-grade network",
+    "DataMeet / OpenCity / bharatlas open-data aggregators (searched thoroughly in this session for Mumbai - found administrative layers but no drainage network)",
+    "Academic literature (e.g. arxiv.org/abs/2306.09770, nidm.gov.in journal) - describes MCGM drainage qualitatively and in figures, but does not publish downloadable vector geometry with attributes",
+    "iFLOWS-Mumbai (Ministry of Earth Sciences flood early-warning system for Mumbai, developed with MCGM) - operational system, not an open data download portal (see nccr.gov.in/sites/default/files/webpages_Mumbai.pdf)"
+  ],
+  "missing_data": [
+    "Storm-water drain line geometry (open + closed drains)",
+    "Manhole / junction node locations and IDs",
+    "Outfall locations",
+    "Pumping station locations and specs (Mumbai has several major pumping stations, e.g. Hajiali, Haji Ali, Love Grove, Cleveland Bunder, Irla, Gazdarbandh)",
+    "Pipe/channel diameter, width, invert elevation, Manning's coefficient, length, node-to-node connectivity"
+  ],
+  "possible_fallback": "OSM waterway/drain tags (sparse, incomplete) + DEM-derived/synthetic drainage network (flow accumulation from the Copernicus DEM once the downstream pipeline processes it). Any DEM-derived or synthetic drainage MUST be clearly labeled as derived/assumed, not observed, per task instructions.",
+  "notes": "MCGM is known to operate an internal GIS (One MCGM GIS portal, ArcGIS-based) and has commissioned iFLOWS-Mumbai with MoES/INCOIS, both of which almost certainly contain this exact dataset internally - but neither exposes a public open-data download endpoint that this research could locate. Obtaining it would require a formal data-sharing request to MCGM's Disaster Management Department or Hydraulic Engineer's department, which is outside what an automated/free-source collection process can do. Do not fabricate hydraulic parameters."
+}

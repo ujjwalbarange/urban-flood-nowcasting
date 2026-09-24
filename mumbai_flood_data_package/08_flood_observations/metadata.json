@@ -1,0 +1,17 @@
+{
+  "dataset": "Mumbai Historical Flood Observation Points, Extents, and Benchmark Event Records",
+  "source": "Government of Maharashtra Chitale Committee Report / BMC Disaster Management Department / OpenCity / IIT Bombay Hydrology Lab",
+  "source_url": "https://opendata.mcgm.gov.in/",
+  "license": "Public Government Hydrological Records / CC-BY 4.0",
+  "download_date": "2026-09-23",
+  "format": "GeoJSON (Points & Polygons), CSV, Markdown",
+  "crs": "EPSG:4326 (WGS84)",
+  "spatial_resolution": "Point coordinates for chronic spots (< 5m accuracy); polygon boundary outlines for historical inundation zones",
+  "temporal_resolution": "Historical events spanning 2005 to 2024",
+  "coverage": "Mumbai Island City, Western Suburbs, Eastern Suburbs, Mithi River Basin",
+  "file_size": "Combined ~65 KB",
+  "quality": "high (Grounded in official government inquiry reports, engineering master plans, and municipal records)",
+  "limitations": "News media reports were strictly excluded unless verified against municipal log sheets and official disaster records. Polygons represent macro-inundation envelopes during peak deluge.",
+  "processing": "Structured into Point and Polygon GeoJSON collections with explicit fields for recorded depth, drainage basin, mitigation measures, and traffic impacts.",
+  "notes": "Primary validation ground truth for calibrating 2D hydrodynamic overland flow models and training Spatio-Temporal Graph Neural Networks (STGNN)."
+}

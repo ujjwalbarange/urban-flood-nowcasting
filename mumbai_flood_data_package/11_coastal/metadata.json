@@ -1,0 +1,17 @@
+{
+  "dataset": "Mumbai Coastal Line, Tidal Benchmarks, and Estuarine Hydrodynamics",
+  "source": "Survey of India Geodetic Branch / Mumbai Port Authority (MbPA) / INCOIS",
+  "source_url": "https://incois.gov.in/",
+  "license": "Open Government Data License India",
+  "download_date": "2026-09-23",
+  "format": "GeoJSON, CSV, JSON, Markdown",
+  "crs": "EPSG:4326 (WGS84 horizontal), Chart Datum / MSL vertical",
+  "spatial_resolution": "Vector coastline (< 10m accuracy); Apollo Bunder tidal point observatory",
+  "temporal_resolution": "Hourly tidal series and real-time harmonic forecasting parameters",
+  "coverage": "Mumbai Island City, Arabian Sea coastline, and Thane Creek estuarine boundary",
+  "file_size": "Combined ~30 KB",
+  "quality": "high",
+  "limitations": "Tidal predictions reflect astronomical forces. Cyclonic pressure drops and wind setup can produce positive storm surges of 0.3m to 0.8m above astronomical tide levels, requiring dynamic coupling with meteorological inputs.",
+  "processing": "Digitized official high water line and structured Apollo Bunder geodetic datum transformations and historical hourly water-level timeseries.",
+  "notes": "Directly provides downstream dynamic head boundary conditions for the 1D-2D coupled hydrodynamic nowcasting model."
+}

@@ -1,0 +1,252 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_chronic_flood_hotspots",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": "FL_PT_001",
+        "location_name": "Hindmata Cinema Junction / Dr. Ambedkar Road",
+        "ward": "FN",
+        "zone": "Island City",
+        "latitude": 19.0125,
+        "longitude": 72.8428,
+        "typical_water_depth_m": 1.2,
+        "maximum_recorded_depth_m": 1.85,
+        "drainage_basin": "Love Grove / Britannia Basin",
+        "mitigation_status": "Underground holding tanks installed at Pramod Mahajan & St. Xavier grounds (2022)",
+        "traffic_impact": "Severe (Halts north-south arterial bus/vehicular transit)",
+        "railway_impact": "None (Overpass nearby)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8428,
+          19.0125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": "FL_PT_002",
+        "location_name": "Gandhi Market, King's Circle (Matunga)",
+        "ward": "FN",
+        "zone": "Island City",
+        "latitude": 19.0285,
+        "longitude": 72.855,
+        "typical_water_depth_m": 0.9,
+        "maximum_recorded_depth_m": 1.5,
+        "drainage_basin": "Mahim Creek Basin",
+        "mitigation_status": "High-capacity dewatering pumps & floodgates installed",
+        "traffic_impact": "Severe (Key north-south corridor blocked)",
+        "railway_impact": "Harbour line track flooding at King's Circle station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.855,
+          19.0285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": "FL_PT_003",
+        "location_name": "Milan Subway (Santacruz West)",
+        "ward": "HW",
+        "zone": "Western Suburbs",
+        "latitude": 19.0885,
+        "longitude": 72.8425,
+        "typical_water_depth_m": 1.5,
+        "maximum_recorded_depth_m": 2.2,
+        "drainage_basin": "Gazdarbandh Basin",
+        "mitigation_status": "Milan flyover constructed; subway fitted with automatic boom barriers and heavy dewatering pumps",
+        "traffic_impact": "Complete road closure",
+        "railway_impact": "Crosses beneath Western Railway tracks"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8425,
+          19.0885
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": "FL_PT_004",
+        "location_name": "Andheri Subway (Andheri Station)",
+        "ward": "KW",
+        "zone": "Western Suburbs",
+        "latitude": 19.119,
+        "longitude": 72.848,
+        "typical_water_depth_m": 1.4,
+        "maximum_recorded_depth_m": 2.1,
+        "drainage_basin": "Mogra Nullah Basin",
+        "mitigation_status": "Dewatering pumps operational; requires Mogra pumping station completion for permanent relief",
+        "traffic_impact": "Complete closure, diverting east-west traffic to Gokhale Bridge",
+        "railway_impact": "Crosses beneath Western & Harbour Railway lines"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.848,
+          19.119
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": "FL_PT_005",
+        "location_name": "Khar Subway",
+        "ward": "HW",
+        "zone": "Western Suburbs",
+        "latitude": 19.073,
+        "longitude": 72.841,
+        "typical_water_depth_m": 1.1,
+        "maximum_recorded_depth_m": 1.7,
+        "drainage_basin": "Gazdarbandh Basin",
+        "mitigation_status": "Dewatering pumps deployed annually",
+        "traffic_impact": "Subway closed to light vehicular traffic",
+        "railway_impact": "Crosses beneath Western Railway tracks"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.841,
+          19.073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": "FL_PT_006",
+        "location_name": "Dahisar Subway",
+        "ward": "RN",
+        "zone": "Western Suburbs",
+        "latitude": 19.256,
+        "longitude": 72.861,
+        "typical_water_depth_m": 1.0,
+        "maximum_recorded_depth_m": 1.6,
+        "drainage_basin": "Dahisar River Basin",
+        "mitigation_status": "Submersible pumps installed",
+        "traffic_impact": "Closure to light motor vehicles",
+        "railway_impact": "Crosses beneath Western Railway line"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.861,
+          19.256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": "FL_PT_007",
+        "location_name": "Kurla West - Kamani Junction & LBS Marg",
+        "ward": "L",
+        "zone": "Eastern Suburbs",
+        "latitude": 19.071,
+        "longitude": 72.872,
+        "typical_water_depth_m": 1.3,
+        "maximum_recorded_depth_m": 2.8,
+        "drainage_basin": "Mithi River Middle Basin",
+        "mitigation_status": "Mithi river retaining walls raised and desilted; chronic backflow during high tide",
+        "traffic_impact": "LBS Marg completely immobilized",
+        "railway_impact": "Kurla Station tracks submerged; Central Railway suburban services suspended"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.872,
+          19.071
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": "FL_PT_008",
+        "location_name": "Sion Railway Station Tracks & Chunabhatti",
+        "ward": "FN",
+        "zone": "Island City / Suburbs",
+        "latitude": 19.041,
+        "longitude": 72.862,
+        "typical_water_depth_m": 0.8,
+        "maximum_recorded_depth_m": 1.4,
+        "drainage_basin": "Mithi River / Mahim Creek",
+        "mitigation_status": "Micro-tunneling drain completed; culverts augmented",
+        "traffic_impact": "Sion Circle inundated",
+        "railway_impact": "Central Main Line tracks submerged"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.862,
+          19.041
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": "FL_PT_009",
+        "location_name": "Saki Naka Junction (Andheri-Kurla Road)",
+        "ward": "L",
+        "zone": "Eastern Suburbs",
+        "latitude": 19.102,
+        "longitude": 72.887,
+        "typical_water_depth_m": 0.9,
+        "maximum_recorded_depth_m": 1.8,
+        "drainage_basin": "Mithi River Basin",
+        "mitigation_status": "Storm drain augmentation completed",
+        "traffic_impact": "Major traffic gridlock connecting Airport and Eastern Suburbs",
+        "railway_impact": "None (Metro Line 1 elevated above)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.887,
+          19.102
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": "FL_PT_010",
+        "location_name": "Postal Colony & Shell Colony, Chembur",
+        "ward": "MW",
+        "zone": "Eastern Suburbs",
+        "latitude": 19.058,
+        "longitude": 72.895,
+        "typical_water_depth_m": 1.0,
+        "maximum_recorded_depth_m": 1.9,
+        "drainage_basin": "Mahul Creek Basin",
+        "mitigation_status": "Requires Mahul pumping station construction",
+        "traffic_impact": "Local residential streets submerged",
+        "railway_impact": "Harbour line services delayed near Tilak Nagar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.895,
+          19.058
+        ]
+      }
+    }
+  ]
+}

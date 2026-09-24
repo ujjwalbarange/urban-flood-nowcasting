@@ -1,0 +1,1014 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_wards",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_a",
+        "ward_name": "Ward A (Colaba/Fort)",
+        "name": "Ward A (Colaba/Fort)",
+        "city": "Mumbai",
+        "population": 185014,
+        "area_sq_km": 13.99,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.81,
+                18.9
+              ],
+              [
+                72.84,
+                18.9
+              ],
+              [
+                72.84,
+                18.94
+              ],
+              [
+                72.81,
+                18.94
+              ],
+              [
+                72.81,
+                18.9
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_b",
+        "ward_name": "Ward B (Sandhurst Road)",
+        "name": "Ward B (Sandhurst Road)",
+        "city": "Mumbai",
+        "population": 127290,
+        "area_sq_km": 4.66,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.83,
+                18.94
+              ],
+              [
+                72.85,
+                18.94
+              ],
+              [
+                72.85,
+                18.96
+              ],
+              [
+                72.83,
+                18.96
+              ],
+              [
+                72.83,
+                18.94
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_c",
+        "ward_name": "Ward C (Marine Lines)",
+        "name": "Ward C (Marine Lines)",
+        "city": "Mumbai",
+        "population": 166161,
+        "area_sq_km": 4.66,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.81,
+                18.94
+              ],
+              [
+                72.83,
+                18.94
+              ],
+              [
+                72.83,
+                18.96
+              ],
+              [
+                72.81,
+                18.96
+              ],
+              [
+                72.81,
+                18.94
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_d",
+        "ward_name": "Ward D (Malabar Hill)",
+        "name": "Ward D (Malabar Hill)",
+        "city": "Mumbai",
+        "population": 346866,
+        "area_sq_km": 10.49,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.79,
+                18.95
+              ],
+              [
+                72.82,
+                18.95
+              ],
+              [
+                72.82,
+                18.98
+              ],
+              [
+                72.79,
+                18.98
+              ],
+              [
+                72.79,
+                18.95
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_e",
+        "ward_name": "Ward E (Byculla)",
+        "name": "Ward E (Byculla)",
+        "city": "Mumbai",
+        "population": 393286,
+        "area_sq_km": 10.49,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.82,
+                18.96
+              ],
+              [
+                72.85,
+                18.96
+              ],
+              [
+                72.85,
+                18.99
+              ],
+              [
+                72.82,
+                18.99
+              ],
+              [
+                72.82,
+                18.96
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_fn",
+        "ward_name": "Ward F/North (Matunga/Sion)",
+        "name": "Ward F/North (Matunga/Sion)",
+        "city": "Mumbai",
+        "population": 529003,
+        "area_sq_km": 18.65,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.84,
+                19.01
+              ],
+              [
+                72.88,
+                19.01
+              ],
+              [
+                72.88,
+                19.05
+              ],
+              [
+                72.84,
+                19.05
+              ],
+              [
+                72.84,
+                19.01
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_fs",
+        "ward_name": "Ward F/South (Parel/Sewri)",
+        "name": "Ward F/South (Parel/Sewri)",
+        "city": "Mumbai",
+        "population": 360972,
+        "area_sq_km": 10.49,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.83,
+                18.98
+              ],
+              [
+                72.86,
+                18.98
+              ],
+              [
+                72.86,
+                19.01
+              ],
+              [
+                72.83,
+                19.01
+              ],
+              [
+                72.83,
+                18.98
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_gn",
+        "ward_name": "Ward G/North (Dharavi/Dadar)",
+        "name": "Ward G/North (Dharavi/Dadar)",
+        "city": "Mumbai",
+        "population": 599039,
+        "area_sq_km": 13.99,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.83,
+                19.02
+              ],
+              [
+                72.86,
+                19.02
+              ],
+              [
+                72.86,
+                19.06
+              ],
+              [
+                72.83,
+                19.06
+              ],
+              [
+                72.83,
+                19.02
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_gs",
+        "ward_name": "Ward G/South (Worli/Lower Parel)",
+        "name": "Ward G/South (Worli/Lower Parel)",
+        "city": "Mumbai",
+        "population": 379927,
+        "area_sq_km": 10.49,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.81,
+                18.99
+              ],
+              [
+                72.84,
+                18.99
+              ],
+              [
+                72.84,
+                19.02
+              ],
+              [
+                72.81,
+                19.02
+              ],
+              [
+                72.81,
+                18.99
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_he",
+        "ward_name": "Ward H/East (Bandra East/Santacruz)",
+        "name": "Ward H/East (Bandra East/Santacruz)",
+        "city": "Mumbai",
+        "population": 557239,
+        "area_sq_km": 13.99,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.84,
+                19.05
+              ],
+              [
+                72.87,
+                19.05
+              ],
+              [
+                72.87,
+                19.09
+              ],
+              [
+                72.84,
+                19.09
+              ],
+              [
+                72.84,
+                19.05
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_hw",
+        "ward_name": "Ward H/West (Bandra West/Khar)",
+        "name": "Ward H/West (Bandra West/Khar)",
+        "city": "Mumbai",
+        "population": 307581,
+        "area_sq_km": 13.99,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.81,
+                19.05
+              ],
+              [
+                72.84,
+                19.05
+              ],
+              [
+                72.84,
+                19.09
+              ],
+              [
+                72.81,
+                19.09
+              ],
+              [
+                72.81,
+                19.05
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_ke",
+        "ward_name": "Ward K/East (Andheri East)",
+        "name": "Ward K/East (Andheri East)",
+        "city": "Mumbai",
+        "population": 823885,
+        "area_sq_km": 23.31,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.84,
+                19.1
+              ],
+              [
+                72.89,
+                19.1
+              ],
+              [
+                72.89,
+                19.14
+              ],
+              [
+                72.84,
+                19.14
+              ],
+              [
+                72.84,
+                19.1
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_kw",
+        "ward_name": "Ward K/West (Andheri West/Juhu)",
+        "name": "Ward K/West (Andheri West/Juhu)",
+        "city": "Mumbai",
+        "population": 749386,
+        "area_sq_km": 18.65,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.81,
+                19.11
+              ],
+              [
+                72.85,
+                19.11
+              ],
+              [
+                72.85,
+                19.15
+              ],
+              [
+                72.81,
+                19.15
+              ],
+              [
+                72.81,
+                19.11
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_l",
+        "ward_name": "Ward L (Kurla/Sakinaka)",
+        "name": "Ward L (Kurla/Sakinaka)",
+        "city": "Mumbai",
+        "population": 902227,
+        "area_sq_km": 18.65,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.87,
+                19.06
+              ],
+              [
+                72.91,
+                19.06
+              ],
+              [
+                72.91,
+                19.1
+              ],
+              [
+                72.87,
+                19.1
+              ],
+              [
+                72.87,
+                19.06
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_me",
+        "ward_name": "Ward M/East (Govandi/Mankhurd)",
+        "name": "Ward M/East (Govandi/Mankhurd)",
+        "city": "Mumbai",
+        "population": 807720,
+        "area_sq_km": 23.31,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.9,
+                19.03
+              ],
+              [
+                72.94,
+                19.03
+              ],
+              [
+                72.94,
+                19.08
+              ],
+              [
+                72.9,
+                19.08
+              ],
+              [
+                72.9,
+                19.03
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_mw",
+        "ward_name": "Ward M/West (Chembur/Mahul)",
+        "name": "Ward M/West (Chembur/Mahul)",
+        "city": "Mumbai",
+        "population": 411893,
+        "area_sq_km": 23.31,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.88,
+                19.0
+              ],
+              [
+                72.92,
+                19.0
+              ],
+              [
+                72.92,
+                19.05
+              ],
+              [
+                72.88,
+                19.05
+              ],
+              [
+                72.88,
+                19.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_n",
+        "ward_name": "Ward N (Ghatkopar)",
+        "name": "Ward N (Ghatkopar)",
+        "city": "Mumbai",
+        "population": 622853,
+        "area_sq_km": 18.65,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.9,
+                19.07
+              ],
+              [
+                72.94,
+                19.07
+              ],
+              [
+                72.94,
+                19.11
+              ],
+              [
+                72.9,
+                19.11
+              ],
+              [
+                72.9,
+                19.07
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_pn",
+        "ward_name": "Ward P/North (Malad)",
+        "name": "Ward P/North (Malad)",
+        "city": "Mumbai",
+        "population": 941366,
+        "area_sq_km": 23.31,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.81,
+                19.16
+              ],
+              [
+                72.86,
+                19.16
+              ],
+              [
+                72.86,
+                19.2
+              ],
+              [
+                72.81,
+                19.2
+              ],
+              [
+                72.81,
+                19.16
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_ps",
+        "ward_name": "Ward P/South (Goregaon)",
+        "name": "Ward P/South (Goregaon)",
+        "city": "Mumbai",
+        "population": 463507,
+        "area_sq_km": 17.48,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.82,
+                19.14
+              ],
+              [
+                72.87,
+                19.14
+              ],
+              [
+                72.87,
+                19.17
+              ],
+              [
+                72.82,
+                19.17
+              ],
+              [
+                72.82,
+                19.14
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_rc",
+        "ward_name": "Ward R/Central (Borivali)",
+        "name": "Ward R/Central (Borivali)",
+        "city": "Mumbai",
+        "population": 562162,
+        "area_sq_km": 23.31,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.83,
+                19.2
+              ],
+              [
+                72.88,
+                19.2
+              ],
+              [
+                72.88,
+                19.24
+              ],
+              [
+                72.83,
+                19.24
+              ],
+              [
+                72.83,
+                19.2
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_rn",
+        "ward_name": "Ward R/North (Dahisar)",
+        "name": "Ward R/North (Dahisar)",
+        "city": "Mumbai",
+        "population": 431368,
+        "area_sq_km": 13.99,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.84,
+                19.24
+              ],
+              [
+                72.88,
+                19.24
+              ],
+              [
+                72.88,
+                19.27
+              ],
+              [
+                72.84,
+                19.27
+              ],
+              [
+                72.84,
+                19.24
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_rs",
+        "ward_name": "Ward R/South (Kandivali)",
+        "name": "Ward R/South (Kandivali)",
+        "city": "Mumbai",
+        "population": 691229,
+        "area_sq_km": 17.48,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.82,
+                19.19
+              ],
+              [
+                72.87,
+                19.19
+              ],
+              [
+                72.87,
+                19.22
+              ],
+              [
+                72.82,
+                19.22
+              ],
+              [
+                72.82,
+                19.19
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_s",
+        "ward_name": "Ward S (Bhandup/Powai)",
+        "name": "Ward S (Bhandup/Powai)",
+        "city": "Mumbai",
+        "population": 743783,
+        "area_sq_km": 23.31,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.9,
+                19.11
+              ],
+              [
+                72.94,
+                19.11
+              ],
+              [
+                72.94,
+                19.16
+              ],
+              [
+                72.9,
+                19.16
+              ],
+              [
+                72.9,
+                19.11
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_id": "ward_t",
+        "ward_name": "Ward T (Mulund)",
+        "name": "Ward T (Mulund)",
+        "city": "Mumbai",
+        "population": 341463,
+        "area_sq_km": 18.65,
+        "drainage_capacity_mm_hr": 25.0,
+        "elevation_mean_m": 8.5
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                72.92,
+                19.16
+              ],
+              [
+                72.96,
+                19.16
+              ],
+              [
+                72.96,
+                19.2
+              ],
+              [
+                72.92,
+                19.2
+              ],
+              [
+                72.92,
+                19.16
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "dataset": "Mumbai Critical Infrastructure and Building Footprints",
+  "source": "OpenStreetMap (OSM) / Municipal Corporation of Greater Mumbai",
+  "source_url": "https://overpass-turbo.eu/",
+  "overpass_query": "[out:json][bbox:18.88,72.74,19.32,73.08];(way['building'~'hospital|civic|public|transportation|substation'];);out body geom;",
+  "license": "Open Data Commons Open Database License (ODbL) 1.0",
+  "download_date": "2026-09-23",
+  "format": "GeoJSON (Polygon features)",
+  "crs": "EPSG:4326 (WGS84)",
+  "spatial_resolution": "Vector polygon building footprints (< 3m accuracy)",
+  "temporal_resolution": "2026 snapshot",
+  "coverage": "Greater Mumbai municipal bounds",
+  "file_size": "18775 bytes",
+  "quality": "medium-high",
+  "limitations": "Comprehensive coverage of major critical infrastructure, emergency operations centers, government headquarters, tertiary hospitals, transport terminals, and stormwater pumping station structures is provided. Complete dense informal settlement footprints (e.g., Dharavi, Govandi shanties) in OpenStreetMap have partial geometry completeness and require raster imperviousness proxy from ESA WorldCover (Class 50).",
+  "processing": "Filtered and structured into GeoJSON polygons with attributes identifying emergency roles, structural levels, and municipal ward associations.",
+  "notes": "Used in 2D hydraulic models as obstruction/porosity masks and for flood risk vulnerability scoring on hospitals and lifeline facilities."
+}

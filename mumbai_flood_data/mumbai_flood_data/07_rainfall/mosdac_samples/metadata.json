@@ -1,0 +1,4 @@
+{
+  "status": "access documented, not downloaded (requires the user's personal MOSDAC login)",
+  "note": "See 13_api_information/mosdac.md for the full product investigation. Nothing downloaded here because MOSDAC's Data Download API explicitly requires MOSDAC account username/password in a local config.json - credentials this session does not have and should not request. The user stated they already have MOSDAC access; scripts/download_mosdac.py is a ready-to-run template for them to fill in their own credentials and execute locally."
+}

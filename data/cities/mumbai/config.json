@@ -1,0 +1,35 @@
+{
+    "city_id": "mumbai",
+    "name": "Mumbai",
+    "state": "Maharashtra",
+    "country": "IN",
+    "crs_epsg": 32643,
+    "cell_size_m": 30.0,
+    "bbox": {
+        "min_lon": 72.775,
+        "min_lat": 18.893,
+        "max_lon": 72.985,
+        "max_lat": 19.275
+    },
+    "timezone": "Asia/Kolkata",
+    "config": {
+        "dem_source": "copernicus_glo30",
+        "drainage_source": "synthetic",
+        "notes": "Mumbai Metropolitan Region — initial pilot city. Drainage data not publicly available from MCGM ArcGIS; using synthetic network as fallback until RTI/MOU data is obtained.",
+        "ward_count": 24,
+        "area_sq_km": 603,
+        "population_2011_census": 12442373,
+        "monsoon_months": ["June", "July", "August", "September"],
+        "critical_dwr": "Colaba S-band DWR",
+        "tidal_influence": true,
+        "known_flooding_hotspots": [
+            "Hindmata Junction",
+            "Sion",
+            "Milan Subway",
+            "Andheri Subway",
+            "Dadar TT Circle",
+            "King Circle",
+            "Matunga"
+        ]
+    }
+}

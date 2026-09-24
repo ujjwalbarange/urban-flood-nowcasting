@@ -1,0 +1,21 @@
+[
+  {
+    "dataset": "Mumbai building footprints (OpenStreetMap)",
+    "source": "OpenStreetMap contributors, via Overpass API",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "query_approach": "Overpass QL bbox query for building=* ways/relations within a tighter Mumbai+2-5km buffer bbox, see scripts/download_buildings.sh",
+    "alternative_source": "Microsoft Building Footprints / Google Open Buildings also cover India but were not verified for Mumbai-specific completeness in this session; OSM was prioritized as the task's stated preferred source.",
+    "license": "ODbL 1.0 - OpenStreetMap contributors",
+    "download_date": "NOT DOWNLOADED (same Overpass-query limitation as roads; see scripts/download_buildings.sh)",
+    "format": "GeoJSON or GeoParquet",
+    "crs": "EPSG:4326",
+    "spatial_resolution": "vector, per-building polygons",
+    "temporal_resolution": "live snapshot at time of query",
+    "coverage": "Mumbai + ~2-5km buffer bbox",
+    "file_size": "unknown until downloaded; likely large (100k+ buildings) - query in ward-sized chunks to stay within Overpass's default timeout/size limits",
+    "quality": "medium-high, uneven by neighborhood; OSM building coverage in Mumbai is substantial in the island city and planned suburbs, sparser in some informal/slum areas",
+    "limitations": "INCOMPLETE COVERAGE - explicitly flagging per task instructions. Slum and informal-settlement footprints are under-represented in OSM. building:levels / building type tags are present only where mapped.",
+    "processing": "none",
+    "notes": "Consider cross-checking against the SRA slum boundaries layer in the sanjanakrishnan/mumbai_spatial_data GitHub repo (see DATA_CATALOG.md) to flag areas of likely OSM building under-coverage."
+  }
+]

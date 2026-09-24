@@ -1,0 +1,34 @@
+[
+  {
+    "dataset": "Ward-level population, Census of India 2011 (BMC ward alphabet mapping)",
+    "source": "Census of India 2011 primary source, collated to BMC ward alphabets by community project mickeykedia/Mumbai-Population-Map",
+    "source_url": "https://raw.githubusercontent.com/mickeykedia/Mumbai-Population-Map/master/Ward_Level_Data.csv",
+    "source_repo": "https://github.com/mickeykedia/Mumbai-Population-Map",
+    "original_source": "http://censusindia.gov.in/pca/pcadata/pca.html (Primary Census Abstract)",
+    "license": "Underlying Census of India data is public/open government data; the collation repo itself states no explicit license - attribute both Census of India 2011 and the compiling repo",
+    "download_date": "NOT YET DOWNLOADED (raw.githubusercontent.com is blocked by this session's fetch tool per robots.txt, but is a normal public file - see scripts/download_population.sh which uses wget/curl)",
+    "format": "CSV, 98 rows (sub-ward/ward level), full Primary Census Abstract schema (total population, male/female, literacy, worker categories, SC/ST, etc.)",
+    "crs": "N/A (tabular, joins to ward boundary geometry via Ward_Alphabet field)",
+    "spatial_resolution": "ward-level (24 BMC wards)",
+    "temporal_resolution": "2011 Census (most recent full Indian census; 2021 Census was postponed)",
+    "coverage": "All Mumbai City + Mumbai Suburban census wards, grouped to BMC's 24 alphabetic wards",
+    "file_size": "42.7 KB",
+    "quality": "high (primary Census source), but note: this is 2011 data, now 15 years old",
+    "limitations": "No 2021/2024 census exists yet for India. Ward-to-census-ward mapping was done by the community maintainer per the DataMeet mailing list method documented in the repo README - verify the join before use.",
+    "processing": "none - keep as retrieved; join to 01_city wards.geojson via Ward_Alphabet",
+    "notes": "This satisfies the P1 population requirement at ward level. Gridded population (e.g. WorldPop 100m) was not pulled into this package - see notes below."
+  },
+  {
+    "dataset": "Gridded population (WorldPop, ~100m) - NOT downloaded, documented only",
+    "source": "WorldPop (University of Southampton)",
+    "source_url": "https://hub.worldpop.org/geodata/summary?id=49730 (India 2020 UN-adjusted constrained population count, 100m) - exact download URL should be confirmed on the WorldPop hub page as file paths change between releases",
+    "license": "CC-BY 4.0",
+    "download_date": "NOT DOWNLOADED",
+    "format": "GeoTIFF, national (India), needs clipping to Mumbai bbox after download",
+    "spatial_resolution": "~100m (3 arc-second) or ~1km depending on product",
+    "coverage": "national India raster - clip to Mumbai bbox locally",
+    "quality": "high (WorldPop is a well-validated global product)",
+    "limitations": "National file size is large; must be clipped locally. Not fetched in this session per the file-size/API-construction limits described in MISSING_DATA.md.",
+    "notes": "Optional enhancement over the ward-level census data above; the task said ward-level is acceptable if gridded isn't readily available, so this was not blocking."
+  }
+]

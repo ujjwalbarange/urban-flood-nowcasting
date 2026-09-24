@@ -1,0 +1,180 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_rain_gauge_stations",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "station_id": "IMD_43003",
+        "station_name": "IMD Santacruz (Suburban Observatory)",
+        "network": "India Meteorological Department (IMD)",
+        "latitude": 19.1172,
+        "longitude": 72.8561,
+        "elevation_m_msl": 14.0,
+        "ward": "KE",
+        "type": "Primary Synoptic & AWS",
+        "frequency": "Hourly / 15-min AWS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8561,
+          19.1172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "station_id": "IMD_43057",
+        "station_name": "IMD Colaba (Island City Observatory)",
+        "network": "India Meteorological Department (IMD)",
+        "latitude": 18.8987,
+        "longitude": 72.8094,
+        "elevation_m_msl": 11.0,
+        "ward": "A",
+        "type": "Primary Synoptic & AWS",
+        "frequency": "Hourly / 15-min AWS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8094,
+          18.8987
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "station_id": "BMC_AWS_01",
+        "station_name": "BMC AWS Dadar Fire Station",
+        "network": "BMC Disaster Management AWS Network",
+        "latitude": 19.0195,
+        "longitude": 72.8432,
+        "elevation_m_msl": 6.0,
+        "ward": "GN",
+        "type": "Automated Tipping Bucket",
+        "frequency": "15-min"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8432,
+          19.0195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "station_id": "BMC_AWS_02",
+        "station_name": "BMC AWS Kurla Ward Office",
+        "network": "BMC Disaster Management AWS Network",
+        "latitude": 19.0685,
+        "longitude": 72.873,
+        "elevation_m_msl": 5.0,
+        "ward": "L",
+        "type": "Automated Tipping Bucket",
+        "frequency": "15-min"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.873,
+          19.0685
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "station_id": "BMC_AWS_03",
+        "station_name": "BMC AWS Chembur Fire Station",
+        "network": "BMC Disaster Management AWS Network",
+        "latitude": 19.055,
+        "longitude": 72.898,
+        "elevation_m_msl": 7.0,
+        "ward": "MW",
+        "type": "Automated Tipping Bucket",
+        "frequency": "15-min"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.898,
+          19.055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "station_id": "BMC_AWS_04",
+        "station_name": "BMC AWS Andheri West Ward Office",
+        "network": "BMC Disaster Management AWS Network",
+        "latitude": 19.1195,
+        "longitude": 72.8465,
+        "elevation_m_msl": 8.0,
+        "ward": "KW",
+        "type": "Automated Tipping Bucket",
+        "frequency": "15-min"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8465,
+          19.1195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "station_id": "BMC_AWS_05",
+        "station_name": "BMC AWS Borivali West",
+        "network": "BMC Disaster Management AWS Network",
+        "latitude": 19.231,
+        "longitude": 72.856,
+        "elevation_m_msl": 9.0,
+        "ward": "RC",
+        "type": "Automated Tipping Bucket",
+        "frequency": "15-min"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.856,
+          19.231
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "station_id": "BMC_AWS_06",
+        "station_name": "BMC AWS Bhandup Complex",
+        "network": "BMC Disaster Management AWS Network",
+        "latitude": 19.148,
+        "longitude": 72.932,
+        "elevation_m_msl": 12.0,
+        "ward": "S",
+        "type": "Automated Tipping Bucket",
+        "frequency": "15-min"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.932,
+          19.148
+        ]
+      }
+    }
+  ]
+}

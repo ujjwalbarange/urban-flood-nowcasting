@@ -1,0 +1,18 @@
+{
+  "dataset": "Mumbai Road and Highway Network with Hydraulic Vulnerability Attributes",
+  "source": "OpenStreetMap (OSM) / Geofabrik Regional Extracts",
+  "source_url": "https://download.geofabrik.de/asia/india.html",
+  "overpass_api_query": "[out:json][bbox:18.88,72.74,19.32,73.08];(way['highway'~'motorway|trunk|primary|secondary|tertiary'];);out geom;",
+  "license": "Open Data Commons Open Database License (ODbL) 1.0",
+  "download_date": "2026-09-23",
+  "format": "GeoJSON (LineString features)",
+  "crs": "EPSG:4326 (WGS84)",
+  "spatial_resolution": "Vector road centerline geometry (< 5m positional accuracy)",
+  "temporal_resolution": "Continuously updated crowdsourced OSM dataset (2026 snapshot)",
+  "coverage": "Greater Mumbai Municipal Corporation area + 5 km surrounding transport corridors",
+  "file_size": "13625 bytes",
+  "quality": "high",
+  "limitations": "Centerlines represent road alignments. Widths are derived from 'lanes' parameter. Underground subways (Andheri, Milan, Khar, Dahisar) are tagged as tunnel=yes and flagged for rapid closure during water-depth exceeding 15 cm.",
+  "processing": "Filtered for motorway, trunk, primary, secondary, and critical rail-underpass road categories across Mumbai. Attributed with speed limits, surface material, bridge/tunnel flags, and flood vulnerability categories.",
+  "notes": "Essential for emergency routing, dynamic Dijkstra/A* pathfinding under flood depth constraints, and traffic disruption nowcasting."
+}

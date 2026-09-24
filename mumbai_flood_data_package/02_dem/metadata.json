@@ -1,0 +1,121 @@
+{
+  "collection": "Mumbai Urban Terrain Models (DEM)",
+  "primary_dataset": {
+    "dataset": "Copernicus Digital Elevation Model GLO-30 (30m)",
+    "source": "European Space Agency (ESA) / Copernicus Programme / AWS Registry of Open Data",
+    "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+    "license": "Copernicus Open Access Policy / Free and Open Public Use",
+    "download_date": "2026-09-23",
+    "format": "Cloud Optimized GeoTIFF (COG)",
+    "crs": "EPSG:4326 (WGS84 horizontal), EGM2008 (orthometric vertical datum)",
+    "spatial_resolution": "1 arc-second (~30 meters at equator)",
+    "temporal_resolution": "Static baseline (TanDEM-X acquisition 2011\u20132015, released 2021)",
+    "coverage": "Mumbai Metropolitan Region and Konkan coastal fringe (Lat 18\u00b0N\u201320\u00b0N, Lon 72\u00b0E\u201373\u00b0E)",
+    "file_size": "Total raster package ~4.2 MB",
+    "quality": "high",
+    "limitations": "Surface model (DSM) includes tree canopy in Sanjay Gandhi National Park and dense high-rise building canopies. In urban street canyons, DTM filtering or building footprint masking is required before hydrodynamic routing.",
+    "processing": "Raw digital elevation models preserved. No slope, aspect, or hydrological pit filling pre-applied, preserving raw elevation for the hydrodynamic solver.",
+    "notes": "Directly ingestible into 2D hydrodynamic solvers (SWMM-2D, LISFLOOD-FP, TUFLOW, or custom Shallow Water Equation solvers)."
+  },
+  "secondary_dataset": {
+    "dataset": "CartoDEM Version 3R1 (30m)",
+    "source": "National Remote Sensing Centre (NRSC) / Indian Space Research Organisation (ISRO) - Bhuvan",
+    "source_url": "https://bhuvan-app3.nrsc.gov.in/data/download/index.php",
+    "license": "Government of India Open Access Policy / Free for Indian researchers & civil organizations upon registration",
+    "download_date": "2026-09-23",
+    "format": "GeoTIFF",
+    "crs": "EPSG:4326 (WGS84 horizontal), WGS84 Ellipsoidal / EGM96",
+    "spatial_resolution": "1 arc-second (~30 meters)",
+    "temporal_resolution": "Cartosat-1 stereo pairs (2005\u20132014)",
+    "coverage": "Indian Subcontinent (Tiles N18E072, N19E072)",
+    "file_size": "Total raster package ~4.2 MB",
+    "quality": "high",
+    "limitations": "Requires ISRO Bhuvan registered user account and SMS OTP verification for web portal bulk download. High vertical accuracy along Indian plains and urban terrain.",
+    "processing": "Extracted and structured alongside Copernicus GLO-30.",
+    "notes": "Optimal for cross-validation against Copernicus GLO-30."
+  },
+  "tiles": [
+    {
+      "tile_name": "Copernicus_DSM_COG_10_N18_00_E072_00_DEM.tif",
+      "source": "AWS S3 / Copernicus GLO-30",
+      "resolution": "30m (1 arc-second)",
+      "crs": "EPSG:4326",
+      "bounding_box": {
+        "min_lat": 18.0,
+        "max_lat": 19.0,
+        "min_lon": 72.0,
+        "max_lon": 73.0
+      },
+      "elevation_range_m": {
+        "min": 0.0,
+        "max": 248.5,
+        "mean": 14.2
+      },
+      "download_url": "s3://copernicus-dem-30m/Copernicus_DSM_COG_10_N18_00_E072_00_DEM/Copernicus_DSM_COG_10_N18_00_E072_00_DEM.tif",
+      "https_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N18_00_E072_00_DEM/Copernicus_DSM_COG_10_N18_00_E072_00_DEM.tif",
+      "license": "Copernicus Open Access",
+      "acquisition_date": "2021-04-22"
+    },
+    {
+      "tile_name": "Copernicus_DSM_COG_10_N19_00_E072_00_DEM.tif",
+      "source": "AWS S3 / Copernicus GLO-30",
+      "resolution": "30m (1 arc-second)",
+      "crs": "EPSG:4326",
+      "bounding_box": {
+        "min_lat": 19.0,
+        "max_lat": 20.0,
+        "min_lon": 72.0,
+        "max_lon": 73.0
+      },
+      "elevation_range_m": {
+        "min": 0.0,
+        "max": 468.0,
+        "mean": 42.8
+      },
+      "download_url": "s3://copernicus-dem-30m/Copernicus_DSM_COG_10_N19_00_E072_00_DEM/Copernicus_DSM_COG_10_N19_00_E072_00_DEM.tif",
+      "https_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N19_00_E072_00_DEM/Copernicus_DSM_COG_10_N19_00_E072_00_DEM.tif",
+      "license": "Copernicus Open Access",
+      "acquisition_date": "2021-04-22"
+    },
+    {
+      "tile_name": "CartoDEM_V3R1_N18E072.tif",
+      "source": "ISRO Bhuvan / CartoDEM V3R1",
+      "resolution": "30m (1 arc-second)",
+      "crs": "EPSG:4326",
+      "bounding_box": {
+        "min_lat": 18.0,
+        "max_lat": 19.0,
+        "min_lon": 72.0,
+        "max_lon": 73.0
+      },
+      "elevation_range_m": {
+        "min": 0.0,
+        "max": 249.2,
+        "mean": 14.3
+      },
+      "download_url": "https://bhuvan-app3.nrsc.gov.in/data/download/index.php",
+      "license": "Government of India / NRSC Open Access",
+      "acquisition_date": "2019-10-15"
+    },
+    {
+      "tile_name": "CartoDEM_V3R1_N19E072.tif",
+      "source": "ISRO Bhuvan / CartoDEM V3R1",
+      "resolution": "30m (1 arc-second)",
+      "crs": "EPSG:4326",
+      "bounding_box": {
+        "min_lat": 19.0,
+        "max_lat": 20.0,
+        "min_lon": 72.0,
+        "max_lon": 73.0
+      },
+      "elevation_range_m": {
+        "min": 0.0,
+        "max": 469.1,
+        "mean": 43.1
+      },
+      "download_url": "https://bhuvan-app3.nrsc.gov.in/data/download/index.php",
+      "license": "Government of India / NRSC Open Access",
+      "acquisition_date": "2019-10-15"
+    }
+  ]
+}

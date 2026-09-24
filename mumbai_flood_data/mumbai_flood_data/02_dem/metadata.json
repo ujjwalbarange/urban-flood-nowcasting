@@ -1,0 +1,21 @@
+[
+  {
+    "dataset": "Copernicus DEM GLO-30 (DSM, ~30m) - Mumbai + buffer tiles",
+    "source": "European Space Agency / Copernicus, hosted by OpenTopography (post-Jul-2024: direct ESA PRISM mirror; also historically via AWS Open Data / Sinergise S3 bucket)",
+    "source_url_primary": "https://portal.opentopography.org/API/globaldem?demtype=COP30&south=18.85&north=19.30&west=72.75&east=72.98&outputFormat=GTiff&API_Key=YOUR_API_KEY",
+    "source_url_bulk_aws": "s3://raster/COP30/ (endpoint https://opentopography.s3.sdsc.edu, --no-sign-request, no auth needed for AWS CLI bulk listing/copy)",
+    "portal_page": "https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.3",
+    "license": "Copernicus DEM license: \u00a9 DLR e.V. 2010-2014 and \u00a9 Airbus Defence and Space GmbH 2014-2018, provided under COPERNICUS by the EU and ESA. Free for general public use; attribution required. Full terms: https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex.pdf",
+    "download_date": "NOT DOWNLOADED (requires network access this chat session does not have; see scripts/download_dem.sh)",
+    "format": "GeoTIFF",
+    "crs": "EPSG:4326 (geographic)",
+    "spatial_resolution": "~30m (1 arc-second)",
+    "temporal_resolution": "static (2010-2015 TanDEM-X acquisition epoch, DGED 2023_1 release)",
+    "coverage": "Mumbai bbox approx 72.75-72.98E, 18.85-19.30N (see 01_city/config.json) - the API call above subsets exactly this",
+    "file_size": "unknown until downloaded; a ~0.23deg x 0.45deg tile at 30m is roughly 5-15 MB as GeoTIFF",
+    "quality": "high",
+    "limitations": "This is a DSM (includes buildings/vegetation), not a bare-earth DTM. No hydro-conditioning applied. Requires a free OpenTopography account for the API-key route (instant approval, no cost) OR unauthenticated AWS S3 bulk access.",
+    "processing": "NONE PERFORMED - raw DEM only, as instructed. Do not derive slope/flow-direction/flow-accumulation here; that belongs to the downstream pipeline.",
+    "notes": "SECONDARY (CartoDEM / India-specific DEM): No legitimate open/free public download of CartoDEM (Bhuvan/NRSC product) for Mumbai was found without an active, approved Bhuvan account with project-specific access. Bhuvan (https://bhuvan.nrsc.gov.in) offers a free account and a DEM download tool (Bhuvan Data Download), but its terms and the exact tile boundaries require interactive account-based access this session cannot complete. Documented as NOT VERIFIED / requires manual retrieval via a free Bhuvan account."
+  }
+]

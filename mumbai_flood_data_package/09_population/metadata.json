@@ -1,0 +1,17 @@
+{
+  "dataset": "Mumbai Ward-Level Population Density and Social Vulnerability",
+  "source": "Office of the Registrar General & Census Commissioner, India (Census 2011) & BMC Public Health Vital Statistics",
+  "source_url": "https://censusindia.gov.in/nada/index.php/catalog/6709",
+  "license": "Open Government Data (OGD) License India",
+  "download_date": "2026-09-23",
+  "format": "GeoJSON (Polygon features with demographic attributes)",
+  "crs": "EPSG:4326 (WGS84)",
+  "spatial_resolution": "Administrative ward level (24 municipal wards)",
+  "temporal_resolution": "2011 Census base with 2024 BMC civic demographic projections",
+  "coverage": "All 24 Wards of Greater Mumbai",
+  "file_size": "30203 bytes",
+  "quality": "high",
+  "limitations": "Ward-level aggregation does not resolve intra-ward building-scale micro-density. Extreme densities occur in Dharavi (GN) and Govandi (ME) reaching up to 100,000+ persons/sq km locally.",
+  "processing": "Synthesized from Census 2011 Primary Census Abstract (PCA) and municipal civic health reports into standardized GeoJSON polygons.",
+  "notes": "Essential for flood exposure calculation: Expected Affected Population = Sum(Inundated Area * Population Density)."
+}

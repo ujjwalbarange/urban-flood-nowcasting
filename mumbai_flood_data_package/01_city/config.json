@@ -1,0 +1,45 @@
+{
+  "project_name": "Mumbai Urban Flood Nowcasting System (MUFNS)",
+  "version": "1.0.0",
+  "target_domain": {
+    "geographic_region": "Municipal Corporation of Greater Mumbai (MCGM)",
+    "bounding_box": {
+      "min_lon": 72.74,
+      "max_lon": 73.08,
+      "min_lat": 18.88,
+      "max_lat": 19.32
+    },
+    "buffer_km": 7.5,
+    "buffered_bounding_box": {
+      "min_lon": 72.67,
+      "max_lon": 73.15,
+      "min_lat": 18.81,
+      "max_lat": 19.39
+    }
+  },
+  "spatial_reference": {
+    "geographic_crs": "EPSG:4326",
+    "projected_crs": "EPSG:32643",
+    "utm_zone": "UTM Zone 43N",
+    "vertical_datum": "EGM2008 (orthometric height above MSL)"
+  },
+  "grid_specifications": {
+    "surface_dem_resolution_meters": 30.0,
+    "high_res_dem_target_meters": 5.0,
+    "land_cover_resolution_meters": 10.0,
+    "hydrodynamic_2d_mesh_cell_size_meters": 15.0
+  },
+  "temporal_specifications": {
+    "nowcasting_horizon_hours": 3.0,
+    "simulation_timestep_seconds": 60,
+    "rainfall_input_interval_minutes": 15,
+    "radar_scan_cycle_minutes": 10
+  },
+  "thresholds": {
+    "water_depth_passable_meters": 0.05,
+    "water_depth_warning_meters": 0.15,
+    "water_depth_critical_closure_meters": 0.3,
+    "critical_astronomical_high_tide_meters_cd": 4.5,
+    "extreme_rainfall_rate_mm_per_hr": 50.0
+  }
+}

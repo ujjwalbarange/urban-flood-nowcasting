@@ -1,0 +1,20 @@
+[
+  {
+    "dataset": "Mumbai road network (OpenStreetMap)",
+    "source": "OpenStreetMap contributors, via Overpass API",
+    "source_url": "https://overpass-api.de/api/interpreter (public Overpass instance; alternates: https://lz4.overpass-api.de, https://overpass.kumi.systems)",
+    "query_approach": "Overpass QL bbox query for highway=* ways within Mumbai+5km buffer bbox (72.75,18.85,72.98,19.30), see scripts/download_roads.sh for exact query",
+    "license": "Open Database License (ODbL) 1.0 - OpenStreetMap Foundation. Attribution required: \u00a9 OpenStreetMap contributors",
+    "download_date": "NOT DOWNLOADED (Overpass requires a live parameterized query this chat session's fetch tool cannot construct/execute against a fresh URL; see scripts/download_roads.sh)",
+    "format": "GeoJSON (via Overpass + osmtogeojson) or GeoParquet (via osmium/ogr2ogr conversion)",
+    "crs": "EPSG:4326",
+    "spatial_resolution": "vector, full OSM line detail",
+    "temporal_resolution": "live snapshot at time of query",
+    "coverage": "Mumbai + ~5km buffer bbox",
+    "file_size": "unknown until downloaded; likely tens of MB for Mumbai's dense road network",
+    "quality": "high (OSM Mumbai coverage is generally good for major/secondary roads; local street coverage varies by neighborhood)",
+    "limitations": "OSM completeness varies by area (slums/informal settlements often under-mapped). One-way, bridge, tunnel, speed tags are present only where OSM contributors added them - do not assume 100% attribute completeness.",
+    "processing": "none - keep as retrieved from Overpass, converted to GeoJSON",
+    "notes": "Requested attributes (geometry, OSM ID, name, highway class, oneway, bridge, tunnel, maxspeed) map directly to OSM tags: name, highway, oneway, bridge, tunnel, maxspeed."
+  }
+]

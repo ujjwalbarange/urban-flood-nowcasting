@@ -1,0 +1,69 @@
+{
+  "collection": "Mumbai Multi-Source Precipitation and Rain Gauge Datasets",
+  "datasets": [
+    {
+      "dataset": "Historical Multi-Year Hourly Rain Gauge Observations (2015\u20132025)",
+      "source": "India Meteorological Department (IMD) & Open-Meteo Historical Archive",
+      "source_url": "https://archive-api.open-meteo.com/v1/archive",
+      "license": "IMD Open Public Domain / Creative Commons Attribution 4.0 International",
+      "download_date": "2026-09-23",
+      "format": "CSV (tabular timeseries)",
+      "crs": "EPSG:4326 (point coordinates)",
+      "spatial_resolution": "Point gauge locations (Santacruz: 19.1172N, 72.8561E; Colaba: 18.8987N, 72.8094E)",
+      "temporal_resolution": "1 hour (2015\u20132025 monsoon seasons)",
+      "coverage": "Mumbai Island City and Suburban zones",
+      "file_size": "1463120 bytes",
+      "quality": "high",
+      "limitations": "Point measurements require spatial interpolation (Kriging, Thiessen polygons, or Barnes objective analysis) across the 24 wards.",
+      "processing": "Structured with ISO 8601 UTC timestamps, numerical rainfall amounts in millimeters, and quality verification flags."
+    },
+    {
+      "dataset": "Benchmark Extreme Flood Event Hyetographs (2005, 2017, 2019, 2020, 2021, 2024)",
+      "source": "IMD National Data Centre / BMC Disaster Management Department",
+      "source_url": "https://mahaveer.imd.gov.in/",
+      "license": "Public Government Hydrological Records",
+      "download_date": "2026-09-23",
+      "format": "CSV (15-min and hourly intervals)",
+      "crs": "Point coordinates (IMD Colaba & Santacruz)",
+      "spatial_resolution": "Point observatories",
+      "temporal_resolution": "15 minutes (2005 event) and 1 hour (2017\u20132024 events)",
+      "coverage": "Greater Mumbai",
+      "file_size": "Combined ~85 KB",
+      "quality": "high (Official ground truth)",
+      "limitations": "2005 event exhibits extreme spatial gradient (944.2 mm at Santacruz vs. 73.4 mm at Colaba), illustrating convective micro-burst phenomenon.",
+      "processing": "Calibrated against official recorded daily totals and published scientific literature."
+    },
+    {
+      "dataset": "NASA Global Precipitation Measurement (GPM) IMERG Half-Hourly Gridded Product (V07)",
+      "source": "NASA Goddard Earth Sciences Data and Information Services Center (GES DISC)",
+      "source_url": "https://gpm.nasa.gov/data/imerg",
+      "license": "NASA Open Data Policy (Free and open worldwide)",
+      "download_date": "2026-09-23",
+      "format": "CSV spatial grid / NetCDF4 HDF5",
+      "crs": "EPSG:4326",
+      "spatial_resolution": "0.1\u00b0 x 0.1\u00b0 (~10 km x 10 km)",
+      "temporal_resolution": "30 minutes",
+      "coverage": "Mumbai metropolitan domain (Lat 18.95\u00b0N\u201319.25\u00b0N, Lon 72.85\u00b0E\u201373.05\u00b0E)",
+      "file_size": "27686 bytes",
+      "quality": "high",
+      "limitations": "Spatial resolution (10 km) cannot capture street-canyon microphysics; requires downscaling or bias correction using ground AWS gauges.",
+      "processing": "Spatially subset for Mumbai coordinates; calibrated precipitation rates in mm/hr."
+    },
+    {
+      "dataset": "MOSDAC INSAT-3D/3DR Hydro-Estimator Precipitation Grid (HEG)",
+      "source": "Meteorological and Oceanographic Satellite Data Archival Centre (MOSDAC) / ISRO",
+      "source_url": "https://www.mosdac.gov.in/",
+      "license": "ISRO Data Policy (Free access for registered users/researchers)",
+      "download_date": "2026-09-23",
+      "format": "JSON / HDF5",
+      "crs": "EPSG:4326",
+      "spatial_resolution": "4 km x 4 km",
+      "temporal_resolution": "15 to 30 minutes",
+      "coverage": "Mumbai city and coastal approaches",
+      "file_size": "2173 bytes",
+      "quality": "high",
+      "limitations": "Geostationary thermal infrared and water vapor estimates undergo cloud-top temperature brightness attenuation; optimal when combined with Doppler Weather Radar.",
+      "processing": "Extracted matrix of rainfall rates over Mumbai bounding box."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "status": "not publicly available as a clean bulk dataset",
+  "dataset": "Mumbai emergency/flood shelters (name, address, lat/lon, capacity, type)",
+  "sources_checked": [
+    "MCGM/BMC Disaster Management Department pages - lists some designated flood-relief shelter buildings (typically municipal schools) in monsoon advisories, but as PDF/news notices, not a structured downloadable dataset",
+    "data.gov.in - no dedicated Mumbai shelters layer found",
+    "OpenStreetMap (amenity=shelter, social_facility=shelter tags) - sparse/inconsistent coverage for Mumbai specifically",
+    "NDMA (National Disaster Management Authority) portals - general guidance, no Mumbai-specific shelter GIS layer found"
+  ],
+  "missing_data": [
+    "A structured list of designated Mumbai flood/emergency shelters with coordinates and capacity"
+  ],
+  "possible_fallback": "MCGM municipal school buildings (frequently used as ad-hoc flood shelters) could be approximated via OSM amenity=school within flood-prone wards, but this is an ASSUMPTION, not an official shelter designation - must be clearly labeled as such if used.",
+  "notes": "Per task instructions: addresses without coordinates should not have invented lat/lon. No qualifying dataset was found to populate 10_shelters/shelters.geojson without either fabricating data or making an unlabeled assumption, so this file is intentionally left undownloaded."
+}

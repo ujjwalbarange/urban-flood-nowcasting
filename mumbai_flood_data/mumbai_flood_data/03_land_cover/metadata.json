@@ -1,0 +1,22 @@
+[
+  {
+    "dataset": "ESA WorldCover 10m (v200, 2021) - Mumbai tile",
+    "source": "ESA WorldCover consortium (VITO), hosted on AWS Open Data Registry",
+    "source_url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif",
+    "source_url_note": "Tile naming is by 3x3-degree SW-corner grid. Mumbai (~18.9-19.3N, 72.7-73.0E) falls in tile N18E072. VERIFY exact tile filename against the grid file before downloading: https://esa-worldcover.s3.eu-central-1.amazonaws.com/esa_worldcover_grid.geojson",
+    "aws_bulk_sync": "aws s3 sync s3://esa-worldcover/v200/2021/map /local/path --no-sign-request --exclude '*' --include 'ESA_WorldCover_10m_2021_v200_N18E072*'",
+    "aws_registry_page": "https://registry.opendata.aws/esa-worldcover/",
+    "license": "CC-BY 4.0",
+    "download_date": "NOT DOWNLOADED (see scripts/download_landcover.sh)",
+    "format": "Cloud-Optimized GeoTIFF (COG)",
+    "crs": "EPSG:4326",
+    "spatial_resolution": "10m",
+    "temporal_resolution": "static, 2021 (v200); a 2020 v100 edition also exists",
+    "coverage": "One 3x3-degree tile (N18E072) fully covers Mumbai + the requested 5-10km buffer with large margin",
+    "file_size": "each WorldCover tile is roughly 500MB-1GB (117GB total dataset across 2651 tiles globally; one tile is a small fraction)",
+    "quality": "high",
+    "limitations": "No authentication needed, but the file is large for a single tile - a full 3x3deg GeoTIFF at 10m, not pre-clipped to Mumbai. Clip to the Mumbai+buffer bbox after download to save space.",
+    "processing": "NONE - keep original classification raster as instructed; do not convert to imperviousness here.",
+    "notes": "11-class land cover: tree cover, shrubland, grassland, cropland, built-up, bare/sparse veg, snow/ice, permanent water bodies, herbaceous wetland, mangroves, moss/lichen."
+  }
+]

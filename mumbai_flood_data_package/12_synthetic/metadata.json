@@ -1,0 +1,18 @@
+{
+  "dataset": "Synthetic Benchmark Precipitation Scenarios for Hydrodynamic Model Testing",
+  "status": "SYNTHETIC / TESTING ONLY (NOT GROUND TRUTH)",
+  "source": "Algorithmic Design / Synthetic Hyetograph Generator based on Chicago and Huff Storm Distributions",
+  "source_url": "Internal Simulation Module",
+  "license": "Creative Commons Zero (CC0 - Public Domain Dedication)",
+  "download_date": "2026-09-23",
+  "format": "CSV (15-minute interval timesteps)",
+  "crs": "Temporal series (spatially uniform domain driver)",
+  "spatial_resolution": "Lumped uniform catchment forcing / spatial test input",
+  "temporal_resolution": "15 minutes across a 6-hour simulation window (24 timesteps)",
+  "coverage": "Mumbai hydrologic domain",
+  "file_size": "Combined ~12 KB",
+  "quality": "synthetic (Controlled boundary inputs for automated test suites)",
+  "limitations": "STRICTLY FOR SOFTWARE BENCHMARKING, UNIT TESTING, AND SYSTEM VERIFICATION. Do NOT use as empirical meteorological observations.",
+  "processing": "Generated using standard synthetic storm profile curves with peak convective pulses.",
+  "notes": "Includes 5 scenarios: light_rain, moderate_rain, heavy_rain, extreme_rain, and cloudburst_pulse."
+}

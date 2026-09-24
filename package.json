@@ -1,0 +1,21 @@
+{
+  "name": "urban-flood-nowcasting-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SIH26085: High-Resolution Urban Flood Nowcasting & Real-Time Drainage Coupling System",
+  "scripts": {
+    "dev": "npm --prefix apps/city-dashboard run dev",
+    "dev:dashboard": "npm --prefix apps/city-dashboard run dev -- -p 3001",
+    "dev:citizen": "npm --prefix apps/citizen-web run dev -- -p 3000",
+    "dev:api": "python -m uvicorn services.api.main:app --host 127.0.0.1 --port 8000 --reload",
+    "test": "python -m pytest -v",
+    "test:backend": "python -m pytest -v",
+    "build": "npm --prefix apps/city-dashboard run build && npm --prefix apps/citizen-web run build",
+    "build:dashboard": "npm --prefix apps/city-dashboard run build",
+    "build:citizen": "npm --prefix apps/citizen-web run build"
+  },
+  "workspaces": [
+    "apps/citizen-web",
+    "apps/city-dashboard"
+  ]
+}

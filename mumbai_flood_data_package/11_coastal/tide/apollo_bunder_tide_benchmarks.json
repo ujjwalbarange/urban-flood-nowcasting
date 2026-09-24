@@ -1,0 +1,36 @@
+{
+  "gauge_station": "Apollo Bunder (Gateway of India)",
+  "station_id": "IN_BOM_01",
+  "authority": "Mumbai Port Authority (MbPA) / Survey of India Geodetic Branch",
+  "latitude": 18.922,
+  "longitude": 72.8347,
+  "vertical_datums": {
+    "chart_datum_definition": "Zero of the tide gauge at Apollo Bunder, corresponding approximately to the lowest astronomical low water.",
+    "chart_datum_to_msl_offset_meters": -2.51,
+    "mean_sea_level_m_cd": 2.51,
+    "mean_high_water_springs_mhws_m_cd": 4.42,
+    "mean_high_water_neaps_mhwn_m_cd": 3.3,
+    "mean_low_water_neaps_mlwn_m_cd": 1.8,
+    "mean_low_water_springs_mlws_m_cd": 0.76,
+    "highest_astronomical_tide_hat_m_cd": 5.12,
+    "lowest_astronomical_tide_lat_m_cd": 0.05
+  },
+  "critical_thresholds_for_urban_drainage": {
+    "flap_gate_locking_threshold_m_cd": 4.2,
+    "severe_urban_backflow_threshold_m_cd": 4.5,
+    "coastal_overtopping_wave_surge_threshold_m_cd": 4.8,
+    "explanation": "When water level exceeds 4.50m CD (approx. +1.99m MSL), 135 out of Mumbai's 186 outfalls are completely submerged. Gravity drainage drops to zero. Any precipitation exceeding 25 mm/hr directly causes compound pluvial-coastal flash flooding."
+  },
+  "harmonic_constituents": {
+    "M2_amplitude_m": 1.345,
+    "M2_phase_deg": 65.2,
+    "S2_amplitude_m": 0.512,
+    "S2_phase_deg": 98.4,
+    "N2_amplitude_m": 0.285,
+    "N2_phase_deg": 48.6,
+    "K1_amplitude_m": 0.38,
+    "K1_phase_deg": 332.1,
+    "O1_amplitude_m": 0.215,
+    "O1_phase_deg": 315.4
+  }
+}

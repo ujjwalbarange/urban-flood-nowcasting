@@ -1,0 +1,16 @@
+{
+  "status": "partial / not publicly available as a clean bulk download",
+  "dataset": "Mumbai rain-gauge station data (IMD Santacruz/Colaba, BMC AWS network)",
+  "sources_checked": [
+    "IMD (India Meteorological Department) - publishes daily/monthly bulletins and some open data via data.gov.in, but a bulk historical CSV time series for individual Mumbai stations (Santacruz, Colaba) at fine (hourly/15-min) resolution was not found as an open, license-clear, directly downloadable file",
+    "data.gov.in - has some IMD rainfall datasets at coarser (district/state monthly) granularity; station-level sub-daily data not found",
+    "BMC Automatic Weather Station (AWS) network - referenced in academic literature (e.g. toi.no PDF on Mumbai flooding) as the source of 15-minute rainfall data, but no public download portal for the BMC AWS network was located",
+    "Maharashtra state disaster management / MSDMA rainfall portals - checked, no bulk open download found"
+  ],
+  "missing_data": [
+    "Sub-daily (hourly/15-min) time series for IMD Santacruz and Colaba stations, machine-readable and bulk-downloadable",
+    "BMC AWS network station list, coordinates, and time series"
+  ],
+  "possible_fallback": "Open-Meteo ERA5/ERA5-Land reanalysis (see 07_rainfall/historical/metadata.json) as a gridded proxy; IMD daily gridded rainfall products (0.25deg) are referenced in literature but were not confirmed as freely bulk-downloadable in this session.",
+  "notes": "IMD Pune/Mumbai regional office data-sharing typically requires a formal request (sometimes paid) for high-resolution historical AWS data. The well-known 26 July 2005 station values (Santacruz 944mm/24hr, Colaba 73mm) are widely reported in literature/news (e.g. Wikipedia 'Maharashtra floods of 2005', nidm.gov.in journal) but that is secondary reporting, not a primary bulk dataset - do not treat as a substitute for a real gauge archive."
+}

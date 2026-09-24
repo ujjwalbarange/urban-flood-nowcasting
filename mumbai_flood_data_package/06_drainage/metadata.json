@@ -1,0 +1,40 @@
+{
+  "dataset": "Mumbai Stormwater Drainage and River Network (BRIMSTOWAD Master Plan)",
+  "status": "partial",
+  "sources_checked": [
+    "MCGM / BMC Open Data Portal (opendata.mcgm.gov.in)",
+    "MCGM OneGIS Enterprise Web Portal",
+    "Chitale Fact Finding Committee on Mumbai Floods (2006 Comprehensive Final Report)",
+    "Brihanmumbai Storm Water Disposal System (BRIMSTOWAD) Project Reports (1993, 2006, 2015)",
+    "Maharashtra State Disaster Management Authority (SDMA) Flood Hazard Atlas",
+    "Ministry of Housing and Urban Affairs (MoHUA) AMRUT Programme GIS Database",
+    "OpenStreetMap waterway (river, stream, canal, drain) and manhole database",
+    "Mumbai Metropolitan Region Development Authority (MMRDA) Mithi River Development Project"
+  ],
+  "collected_data": {
+    "nodes": "Major BRIMSTOWAD stormwater pumping stations, lake overflow intake weirs, holding ponds, and critical river junctions with known pump capacities and invert elevations.",
+    "links": "Major drainage rivers (Mithi, Dahisar, Poisar, Oshiwara) and primary trunk storm nullahs (Irla, Chunabhatti) with hydraulic dimensions (width, depth, Manning's roughness, slope).",
+    "outfalls": "11 critical tidal discharge outfalls into the Arabian Sea, Mahim Bay, and Thane Creek with tidal backflow flap gate status and invert elevations."
+  },
+  "missing_data": [
+    "Micro-scale subterranean pipe network geometry (approx. 2,000+ km of minor roadside underground box drains and cylindrical pipes under 1200 mm diameter) is maintained in internal BMC OneGIS but restricted from public download.",
+    "Measured surveyed invert elevations and silt accumulation levels for over 25,000 roadside stormwater inspection manholes.",
+    "Live SCADA telemetry feeds from municipal automated flap gates and sluice valve positions at sea outfalls."
+  ],
+  "possible_fallback": "OSM + DEM-derived/synthetic drainage",
+  "fallback_implementation_details": "To achieve 1D-2D coupled hydrodynamic nowcasting, the system must route overland surface runoff using 2D Shallow Water Equations (SWE) on the 30m DEM, while routing subterranean flow through the provided major river/trunk network (links.geojson). For unmapped minor collector drains, an effective synthetic urban drainage network should be derived using hydrological D8/D-infinity flow direction algorithms on the depression-filled DEM, burned along the OpenStreetMap street centerline network (roads.geojson), assuming standard municipal minimum pipe slopes (0.15% to 0.5%) and typical BMC diameter profiles (450mm to 900mm).",
+  "source": "Brihanmumbai Municipal Corporation (BMC) / Chitale Committee / MMRDA / OSM",
+  "source_url": "https://www.mcgm.gov.in/irj/portal/anonymous/qlStormWater",
+  "license": "Public Government Documentation / Open Data Commons ODbL",
+  "download_date": "2026-09-23",
+  "format": "GeoJSON (RFC 7946)",
+  "crs": "EPSG:4326 (WGS84)",
+  "spatial_resolution": "Trunk network (< 5m accuracy); micro-pipes require synthetic fallback",
+  "temporal_resolution": "2026 infrastructure baseline",
+  "coverage": "Greater Mumbai catchment basins (Mithi, Dahisar, Poisar, Oshiwara, Mahim, City outfalls)",
+  "file_size": "Combined ~25 KB",
+  "quality": "medium (High for trunk rivers and pumping stations; partial for minor underground sewers)",
+  "limitations": "DO NOT assume 100% underground pipe coverage without synthetic drainage derivation. Real-world drainage choking due to solid waste and silt must be modeled via an anomaly decay factor or empirical intake reduction.",
+  "processing": "Consolidated from official municipal flood reports and satellite tracing of open nullahs into standardized GeoJSON formats.",
+  "notes": "Essential for 1D Saint-Venant hydraulic routing coupled with 2D overland flow."
+}

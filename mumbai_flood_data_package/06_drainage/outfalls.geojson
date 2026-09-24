@@ -1,0 +1,232 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_tidal_outfalls",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_01",
+        "name": "Mithi River Tidal Outfall (Mahim Causeway)",
+        "water_body": "Mahim Bay / Arabian Sea",
+        "invert_elevation_m_msl": -1.8,
+        "discharge_type": "estuarine_tidal_mouth",
+        "flap_gate_installed": "no",
+        "backflow_prevention": "training_walls_and_culverts",
+        "critical_tide_level_m_cd": 4.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.835,
+          19.043
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_02",
+        "name": "Love Grove Outfall",
+        "water_body": "Arabian Sea (Worli)",
+        "invert_elevation_m_msl": -1.4,
+        "discharge_type": "pumped_and_gravity_outfall",
+        "flap_gate_installed": "yes",
+        "backflow_prevention": "pneumatic_and_gravity_flap_gates",
+        "critical_tide_level_m_cd": 4.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.815,
+          19.0025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_03",
+        "name": "Cleveland Bunder Outfall",
+        "water_body": "Arabian Sea (Worli North)",
+        "invert_elevation_m_msl": -1.5,
+        "discharge_type": "pumped_and_gravity_outfall",
+        "flap_gate_installed": "yes",
+        "backflow_prevention": "flap_gates",
+        "critical_tide_level_m_cd": 4.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8155,
+          19.016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_04",
+        "name": "Haji Ali Bay Outfall",
+        "water_body": "Arabian Sea (Haji Ali)",
+        "invert_elevation_m_msl": -1.2,
+        "discharge_type": "pumped_and_gravity_outfall",
+        "flap_gate_installed": "yes",
+        "backflow_prevention": "flap_gates",
+        "critical_tide_level_m_cd": 4.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.808,
+          18.9805
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_05",
+        "name": "Irla Outfall (Juhu Beach)",
+        "water_body": "Arabian Sea (Juhu)",
+        "invert_elevation_m_msl": -0.9,
+        "discharge_type": "pumped_and_gravity_outfall",
+        "flap_gate_installed": "yes",
+        "backflow_prevention": "sluice_and_flap_gates",
+        "critical_tide_level_m_cd": 4.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8235,
+          19.1085
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_06",
+        "name": "Gazdarbandh Outfall (Khar Danda)",
+        "water_body": "Arabian Sea",
+        "invert_elevation_m_msl": -1.0,
+        "discharge_type": "pumped_and_gravity_outfall",
+        "flap_gate_installed": "yes",
+        "backflow_prevention": "flap_gates",
+        "critical_tide_level_m_cd": 4.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.824,
+          19.0815
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_07",
+        "name": "Britannia Outfall (Mumbai Port Trust Harbour)",
+        "water_body": "Thane Creek / Mumbai Harbour",
+        "invert_elevation_m_msl": -1.6,
+        "discharge_type": "pumped_outfall",
+        "flap_gate_installed": "yes",
+        "backflow_prevention": "flap_gates",
+        "critical_tide_level_m_cd": 4.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.852,
+          18.9725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_08",
+        "name": "Mahul Creek Outfall",
+        "water_body": "Thane Creek",
+        "invert_elevation_m_msl": -1.2,
+        "discharge_type": "gravity_tidal_outfall",
+        "flap_gate_installed": "yes",
+        "backflow_prevention": "flap_gates",
+        "critical_tide_level_m_cd": 4.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.908,
+          19.012
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_09",
+        "name": "Dahisar Outfall (Manori Creek)",
+        "water_body": "Manori Creek",
+        "invert_elevation_m_msl": -0.8,
+        "discharge_type": "gravity_river_mouth",
+        "flap_gate_installed": "no",
+        "backflow_prevention": "none",
+        "critical_tide_level_m_cd": 4.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.835,
+          19.245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_10",
+        "name": "Poisar Outfall (Marve Creek)",
+        "water_body": "Marve Creek",
+        "invert_elevation_m_msl": -0.7,
+        "discharge_type": "gravity_river_mouth",
+        "flap_gate_installed": "no",
+        "backflow_prevention": "none",
+        "critical_tide_level_m_cd": 4.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.81,
+          19.205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "outfall_id": "OUTFALL_11",
+        "name": "Oshiwara Outfall (Malad Creek)",
+        "water_body": "Malad Creek",
+        "invert_elevation_m_msl": -0.9,
+        "discharge_type": "gravity_river_mouth",
+        "flap_gate_installed": "no",
+        "backflow_prevention": "none",
+        "critical_tide_level_m_cd": 4.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.818,
+          19.145
+        ]
+      }
+    }
+  ]
+}

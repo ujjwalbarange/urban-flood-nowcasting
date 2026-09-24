@@ -1,0 +1,17 @@
+{
+  "dataset": "Mumbai Administrative Boundary and Ward Geometries",
+  "source": "Municipal Corporation of Greater Mumbai (MCGM / BMC) & OpenCity Data Portal",
+  "source_url": "https://data.opencity.in/dataset/mumbai-ward-wise-census-data",
+  "license": "Open Government Data (OGD) License India / CC-BY 4.0",
+  "download_date": "2026-09-23",
+  "format": "GeoJSON (RFC 7946)",
+  "crs": "EPSG:4326 (WGS84)",
+  "spatial_resolution": "Administrative ward level (24 municipal wards)",
+  "temporal_resolution": "Decennial Census (2011) with 2024 demographic projections",
+  "coverage": "Greater Mumbai Municipal Corporation (437.71 sq km) + Island City, Western & Eastern Suburbs",
+  "file_size": "Estimated ~35 KB across GeoJSON and configuration files",
+  "quality": "high",
+  "limitations": "Ward boundaries represent official administrative delineation. Sub-ward electoral prabhag/constituency subdivisions (227 electoral wards) are aggregated into the 24 primary administrative wards.",
+  "processing": "Digitized and harmonized from BMC ward boundaries and Census 2011 Primary Census Abstract into clean GeoJSON polygons in EPSG:4326 with standard attribute schemas.",
+  "notes": "Includes full metadata for each ward: unique ward ID, official name, administrative zone, headquarters address, area in square kilometers, and population."
+}

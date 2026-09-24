@@ -1,0 +1,288 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_drainage_links",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "link_id": "LINK_MITHI_01",
+        "name": "Mithi River (Upper Reach - Vihar to Powai)",
+        "channel_type": "open_natural_channel",
+        "from_node": "NODE_JN_01",
+        "to_node": "NODE_JN_02",
+        "length_m": 3200.0,
+        "width_m": 25.0,
+        "depth_m": 3.5,
+        "manning_n": 0.04,
+        "slope": 0.0056
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.905,
+            19.145
+          ],
+          [
+            72.9,
+            19.135
+          ],
+          [
+            72.898,
+            19.122
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "link_id": "LINK_MITHI_02",
+        "name": "Mithi River (Middle Reach - Powai to Saki Naka to Kurla)",
+        "channel_type": "channelized_nullah",
+        "from_node": "NODE_JN_02",
+        "to_node": "NODE_JN_03",
+        "length_m": 5800.0,
+        "width_m": 45.0,
+        "depth_m": 4.2,
+        "manning_n": 0.03,
+        "slope": 0.0018
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.898,
+            19.122
+          ],
+          [
+            72.887,
+            19.105
+          ],
+          [
+            72.878,
+            19.088
+          ],
+          [
+            72.869,
+            19.071
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "link_id": "LINK_MITHI_03",
+        "name": "Mithi River (Lower Reach - Kurla to BKC to Mahim Creek)",
+        "channel_type": "retaining_wall_channel",
+        "from_node": "NODE_JN_03",
+        "to_node": "OUTFALL_MAHIM_BAY",
+        "length_m": 8800.0,
+        "width_m": 80.0,
+        "depth_m": 5.0,
+        "manning_n": 0.025,
+        "slope": 0.0003
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.869,
+            19.071
+          ],
+          [
+            72.855,
+            19.06
+          ],
+          [
+            72.842,
+            19.052
+          ],
+          [
+            72.835,
+            19.043
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "link_id": "LINK_DAHISAR_01",
+        "name": "Dahisar River (SGNP to Manori Creek)",
+        "channel_type": "open_river_channel",
+        "from_node": "NODE_DAHISAR_ORIGIN",
+        "to_node": "OUTFALL_MANORI_CREEK",
+        "length_m": 12000.0,
+        "width_m": 35.0,
+        "depth_m": 3.8,
+        "manning_n": 0.035,
+        "slope": 0.0022
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.895,
+            19.23
+          ],
+          [
+            72.868,
+            19.248
+          ],
+          [
+            72.852,
+            19.255
+          ],
+          [
+            72.835,
+            19.245
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "link_id": "LINK_POISAR_01",
+        "name": "Poisar River (Kandivali to Marve Creek)",
+        "channel_type": "open_river_channel",
+        "from_node": "NODE_POISAR_ORIGIN",
+        "to_node": "OUTFALL_MARVE_CREEK",
+        "length_m": 7200.0,
+        "width_m": 30.0,
+        "depth_m": 3.2,
+        "manning_n": 0.032,
+        "slope": 0.0015
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.875,
+            19.21
+          ],
+          [
+            72.85,
+            19.215
+          ],
+          [
+            72.83,
+            19.21
+          ],
+          [
+            72.81,
+            19.205
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "link_id": "LINK_OSHIWARA_01",
+        "name": "Oshiwara River (Aarey / Goregaon to Malad Creek)",
+        "channel_type": "open_river_channel",
+        "from_node": "NODE_OSHIWARA_ORIGIN",
+        "to_node": "OUTFALL_MALAD_CREEK",
+        "length_m": 7500.0,
+        "width_m": 32.0,
+        "depth_m": 3.5,
+        "manning_n": 0.032,
+        "slope": 0.0016
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.87,
+            19.155
+          ],
+          [
+            72.85,
+            19.152
+          ],
+          [
+            72.832,
+            19.148
+          ],
+          [
+            72.818,
+            19.145
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "link_id": "LINK_IRLA_01",
+        "name": "Irla Nullah Trunk Channel",
+        "channel_type": "concrete_box_culvert_channel",
+        "from_node": "NODE_IRLA_UPSTREAM",
+        "to_node": "NODE_PS_04",
+        "length_m": 4200.0,
+        "width_m": 12.0,
+        "depth_m": 3.0,
+        "manning_n": 0.018,
+        "slope": 0.001
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.842,
+            19.118
+          ],
+          [
+            72.835,
+            19.112
+          ],
+          [
+            72.826,
+            19.109
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "link_id": "LINK_CHUNABHATTI_01",
+        "name": "Chunabhatti / Chamdawala Nullah to Mahul Creek",
+        "channel_type": "box_drain_channel",
+        "from_node": "NODE_CHUNABHATTI_UPSTREAM",
+        "to_node": "OUTFALL_MAHUL_CREEK",
+        "length_m": 5100.0,
+        "width_m": 15.0,
+        "depth_m": 2.8,
+        "manning_n": 0.022,
+        "slope": 0.0008
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.875,
+            19.055
+          ],
+          [
+            72.89,
+            19.04
+          ],
+          [
+            72.905,
+            19.015
+          ]
+        ]
+      }
+    }
+  ]
+}

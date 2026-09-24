@@ -1,0 +1,53 @@
+[
+  {
+    "dataset": "Mumbai (BMC) Wards - 24 administrative wards",
+    "source": "OpenCity / Oorvani Foundation, republished via bharatlas (urbanmorph/geodata, a DataMeet-adjacent open geodata project)",
+    "source_url": "https://bharatlas.com/api/dl/admin/wards-mumbai/wards_mumbai.geojson",
+    "source_page": "https://bharatlas.com/view/wards_mumbai",
+    "original_source": "https://data.opencity.in/ (MCGM ward boundaries)",
+    "license": "ODbL-1.0",
+    "download_date": "NOT YET DOWNLOADED - verified live 2026-09-23, not fetched into this package (776 KB GeoJSON; too large to pull reliably through this chat session's tools without risking silent truncation)",
+    "format": "GeoJSON (also available as Parquet 225KB, PMTiles 83KB, KML 525KB, Shapefile 263KB at the same source page)",
+    "crs": "EPSG:4326",
+    "spatial_resolution": "vector, ward-level polygons",
+    "temporal_resolution": "static, last updated 2026-05-26 per source",
+    "coverage": "All 24 BMC administrative wards (A-T plus city-island spread)",
+    "file_size": "776 KB (geojson)",
+    "quality": "high",
+    "limitations": "Administrative/municipal wards, not census wards (see 09_population for the census-ward mismatch). Verify field names after download.",
+    "processing": "none - direct from source",
+    "notes": "Run scripts/download_boundaries.sh to fetch. Include ward ID, name, geometry as delivered - do not invent missing attributes per task instructions."
+  },
+  {
+    "dataset": "Mumbai Electoral Wards (2017) - 227 electoral ward divisions",
+    "source": "OpenCity / Oorvani Foundation, via bharatlas",
+    "source_url": "https://bharatlas.com/api/dl/electoral/wards-mumbai-2017/electoral_wards_mumbai_2017.geojson",
+    "source_page": "https://bharatlas.com/view/electoral_wards_mumbai_2017",
+    "license": "ODbL-1.0",
+    "download_date": "NOT YET DOWNLOADED - verified live 2026-09-23",
+    "format": "GeoJSON (1.9 MB); also Parquet/PMTiles/KML/Shapefile",
+    "crs": "EPSG:4326",
+    "spatial_resolution": "vector, electoral-ward-level polygons",
+    "temporal_resolution": "static, 2017 delimitation",
+    "coverage": "227 electoral wards, finer than the 24 administrative wards",
+    "file_size": "1.9 MB",
+    "quality": "high",
+    "limitations": "Different unit than the 24 administrative wards requested; kept as a supplementary layer, not a substitute.",
+    "processing": "none",
+    "notes": "Optional supplementary layer, useful for finer-grained ward-level joins."
+  },
+  {
+    "dataset": "MCGM / Mumbai municipal (administrative) boundary",
+    "source": "Derivable as the dissolved union of the 24 BMC wards above; MCGM/BMC do not publish a single standalone municipal-boundary GeoJSON on an open portal that was found",
+    "source_url": "https://bharatlas.com/api/dl/admin/wards-mumbai/wards_mumbai.geojson",
+    "license": "ODbL-1.0 (inherited from wards layer)",
+    "download_date": "NOT YET DOWNLOADED",
+    "format": "GeoJSON (derive via dissolve)",
+    "crs": "EPSG:4326",
+    "coverage": "Greater Mumbai (BMC jurisdiction)",
+    "quality": "medium (derived, not an original single-polygon publication)",
+    "limitations": "This is a derived product (dissolve of ward polygons), not an independently sourced official boundary file. An official MCGM boundary shapefile was not found on an open, license-clear portal.",
+    "processing": "Dissolve required (ogr2ogr / geopandas .dissolve()) - see scripts/download_boundaries.sh for the command.",
+    "notes": "See MISSING_DATA.md"
+  }
+]

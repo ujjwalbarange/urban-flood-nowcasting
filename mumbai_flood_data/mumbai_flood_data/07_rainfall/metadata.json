@@ -1,0 +1,20 @@
+[
+  {
+    "dataset": "Historical rainfall - Open-Meteo ERA5/ERA5-Land reanalysis, Mumbai point/grid",
+    "source": "Open-Meteo Historical Weather API (backed by ECMWF ERA5 and ERA5-Land reanalysis)",
+    "source_url": "https://archive-api.open-meteo.com/v1/archive?latitude=19.0760&longitude=72.8777&start_date=2015-01-01&end_date=2025-12-31&hourly=precipitation&timezone=Asia%2FKolkata",
+    "docs_url": "https://open-meteo.com/en/docs/historical-weather-api",
+    "license": "CC-BY 4.0 (Open-Meteo); underlying ERA5 data by ECMWF, Copernicus Climate Change Service, free and open for any use with attribution",
+    "download_date": "NOT DOWNLOADED (this session's web_fetch tool cannot call parameterized/constructed API URLs - it can only re-fetch URLs that already appear verbatim in search results or the conversation; see scripts/download_rainfall.py which calls this exact endpoint)",
+    "format": "JSON (convert to CSV/Parquet after download)",
+    "crs": "N/A (point time series; ERA5-Land native grid is ~9km, ERA5 is ~25-31km)",
+    "spatial_resolution": "~9km (ERA5-Land) or ~25km (ERA5) grid cell containing the query point - NOT truly station-level",
+    "temporal_resolution": "hourly (aggregable to daily/15-min is not physically meaningful beyond hourly)",
+    "coverage": "2015-01-01 to present (exceeds the requested 2015-2025 range; full archive back to 1940 available)",
+    "file_size": "~1-2 MB per decade of hourly data for one point",
+    "quality": "medium - reanalysis, not ground-truth gauge data; smooths out convective extremes like the 2005 cloudburst",
+    "limitations": "No API key required (keyless/free), but IS reanalysis-modeled, not observed rainfall. For ground-truth station data see 07_rainfall/gauges/metadata.json.",
+    "processing": "none - request hourly precipitation directly",
+    "notes": "Query multiple points across Mumbai's 24 wards (or a coarse grid) for spatial variation, since ERA5-Land's ~9km cells are coarser than the city. Script provided pulls a small multi-point sample."
+  }
+]

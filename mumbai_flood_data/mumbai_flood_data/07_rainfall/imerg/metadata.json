@@ -1,0 +1,20 @@
+{
+  "dataset": "NASA GPM IMERG precipitation - Mumbai subset",
+  "source": "NASA GES DISC (Goddard Earth Sciences Data and Information Services Center)",
+  "recommended_product": "GPM_3IMERGDF (IMERG Final Run, Daily, V07, 0.1deg x 0.1deg) for research-quality historical analysis; GPM_3IMERGHH (Final Run, 30-min, V07) for sub-daily storm structure",
+  "source_url_catalog": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGDF_07/summary",
+  "aws_open_data": "https://registry.opendata.aws/nasa-gpm3imergdf/ (also on AWS S3, requires NASA Earthdata credentials via S3 bearer token, see https://data.gesdisc.earthdata.nasa.gov/s3credentialsREADME)",
+  "giovanni_timeseries_api": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GPM_3IMERGDF_07_precipitation&location=%5B19.0760%2C72.8777%5D&time=2015-01-01/2025-12-31",
+  "license": "Free and open for public use (NASA data policy); attribution to NASA GES DISC requested",
+  "download_date": "NOT DOWNLOADED (requires a free NASA Earthdata account - registration is instant at https://urs.earthdata.nasa.gov/users/new - and this session cannot complete interactive login or call the token-authenticated subset service; see scripts/download_imerg.py template)",
+  "format": "NetCDF4/HDF5 (native), GeoTIFF (via subset service), or JSON (Giovanni timeseries API)",
+  "crs": "EPSG:4326",
+  "spatial_resolution": "0.1deg x 0.1deg (~11km at Mumbai's latitude)",
+  "temporal_resolution": "30-minute (HH product) or daily (DF product); data record spans 2000-present (TRMM+GPM merged)",
+  "coverage": "Recommend subsetting to Mumbai bbox (72.75-72.98E, 18.85-19.30N) via the GES DISC Simple Subset Wizard or OPeNDAP, rather than downloading global granules",
+  "file_size": "a Mumbai-subset daily granule is a few KB-MB; global daily granules are much larger before subsetting",
+  "quality": "high for research use (Final Run); satellite-derived, so still an estimate rather than a gauge",
+  "limitations": "Requires free Earthdata login (instant approval). 0.1deg resolution is coarser than the city itself, similar caveat to ERA5.",
+  "processing": "none planned",
+  "notes": "Per task instructions: prioritize a few representative historical heavy-rainfall events (e.g. 26-27 July 2005, and recent 2017/2019/2021/2024 Mumbai monsoon flood dates) rather than downloading the full global archive. Exact event date list should be finalized against flood_observations records once available."
+}
