@@ -1,0 +1,563 @@
+{
+  "timestamp": "2026-09-25T18:50:31.147155+00:00",
+  "stage": "Stage 0: Database Connectivity Diagnostic",
+  "checks": [
+    {
+      "check": "DATABASE_URL present",
+      "status": "pass",
+      "detail": "Found (129 chars)"
+    },
+    {
+      "check": "URL parsing",
+      "status": "pass",
+      "detail": "host=pg-ba8ce32-omsatange5788-0a38.h.aivencloud.com, port=21135, db=defaultdb, user=avnadmin"
+    },
+    {
+      "check": "DNS resolution",
+      "status": "pass",
+      "detail": "Resolved to ['143.110.254.176']"
+    },
+    {
+      "check": "TCP connection",
+      "status": "pass",
+      "detail": "Connected to pg-ba8ce32-omsatange5788-0a38.h.aivencloud.com:21135"
+    },
+    {
+      "check": "SSL handshake",
+      "status": "pass",
+      "detail": "Protocol: TLSv1.3, Cipher: TLS_AES_256_GCM_SHA384"
+    },
+    {
+      "check": "asyncpg connect",
+      "status": "pass",
+      "detail": "Connected in 372.1ms"
+    },
+    {
+      "check": "PostgreSQL version",
+      "status": "pass",
+      "detail": "PostgreSQL 18.6 on x86_64-pc-linux-gnu"
+    },
+    {
+      "check": "PostGIS version",
+      "status": "pass",
+      "detail": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" PROJ=\""
+    },
+    {
+      "check": "Database name",
+      "status": "pass",
+      "detail": "defaultdb"
+    },
+    {
+      "check": "Table count",
+      "status": "pass",
+      "detail": "43 tables found"
+    },
+    {
+      "check": "  alerts",
+      "status": "warn",
+      "detail": "0 rows"
+    },
+    {
+      "check": "  bridges_and_culverts",
+      "status": "pass",
+      "detail": "33 rows"
+    },
+    {
+      "check": "  buildings",
+      "status": "pass",
+      "detail": "30,000 rows"
+    },
+    {
+      "check": "  cities",
+      "status": "pass",
+      "detail": "1 rows"
+    },
+    {
+      "check": "  citizen_reports",
+      "status": "pass",
+      "detail": "2 rows"
+    },
+    {
+      "check": "  coastal_exposure_zones",
+      "status": "pass",
+      "detail": "15 rows"
+    },
+    {
+      "check": "  critical_arterial_corridors",
+      "status": "pass",
+      "detail": "78 rows"
+    },
+    {
+      "check": "  critical_infrastructure",
+      "status": "pass",
+      "detail": "2,002 rows"
+    },
+    {
+      "check": "  data_ingestion_runs",
+      "status": "pass",
+      "detail": "7 rows"
+    },
+    {
+      "check": "  data_sources",
+      "status": "pass",
+      "detail": "8 rows"
+    },
+    {
+      "check": "  dem_tiles",
+      "status": "pass",
+      "detail": "1 rows"
+    },
+    {
+      "check": "  drainage_links",
+      "status": "pass",
+      "detail": "8 rows"
+    },
+    {
+      "check": "  drainage_nodes",
+      "status": "pass",
+      "detail": "35 rows"
+    },
+    {
+      "check": "  drainage_structures",
+      "status": "pass",
+      "detail": "41 rows"
+    },
+    {
+      "check": "  emergency_facilities",
+      "status": "pass",
+      "detail": "9 rows"
+    },
+    {
+      "check": "  fire_stations",
+      "status": "pass",
+      "detail": "37 rows"
+    },
+    {
+      "check": "  flood_hotspots",
+      "status": "pass",
+      "detail": "35 rows"
+    },
+    {
+      "check": "  flood_hotspots_v1_legacy",
+      "status": "pass",
+      "detail": "10 rows"
+    },
+    {
+      "check": "  flood_snapshots",
+      "status": "warn",
+      "detail": "0 rows"
+    },
+    {
+      "check": "  green_open_spaces",
+      "status": "pass",
+      "detail": "25 rows"
+    },
+    {
+      "check": "  historical_flood_events",
+      "status": "pass",
+      "detail": "209 rows"
+    },
+    {
+      "check": "  hospitals",
+      "status": "pass",
+      "detail": "1,667 rows"
+    },
+    {
+      "check": "  impervious_surface_grid",
+      "status": "pass",
+      "detail": "128 rows"
+    },
+    {
+      "check": "  land_use_land_cover",
+      "status": "pass",
+      "detail": "69 rows"
+    },
+    {
+      "check": "  low_lying_areas",
+      "status": "pass",
+      "detail": "15 rows"
+    },
+    {
+      "check": "  police",
+      "status": "pass",
+      "detail": "122 rows"
+    },
+    {
+      "check": "  population_grids",
+      "status": "pass",
+      "detail": "1,242 rows"
+    },
+    {
+      "check": "  primary_drainage_network",
+      "status": "pass",
+      "detail": "39 rows"
+    },
+    {
+      "check": "  pumping_stations",
+      "status": "pass",
+      "detail": "8 rows"
+    },
+    {
+      "check": "  railway_stations",
+      "status": "pass",
+      "detail": "167 rows"
+    },
+    {
+      "check": "  rainfall_observations",
+      "status": "pass",
+      "detail": "27 rows"
+    },
+    {
+      "check": "  rainfall_satellite",
+      "status": "pass",
+      "detail": "576 rows"
+    },
+    {
+      "check": "  road_segments",
+      "status": "pass",
+      "detail": "14,563 rows"
+    },
+    {
+      "check": "  satellite_rainfall_observations",
+      "status": "pass",
+      "detail": "1,073 rows"
+    },
+    {
+      "check": "  shelters",
+      "status": "pass",
+      "detail": "10 rows"
+    },
+    {
+      "check": "  simulation_runs",
+      "status": "pass",
+      "detail": "19 rows"
+    },
+    {
+      "check": "  spatial_ref_sys",
+      "status": "pass",
+      "detail": "8,500 rows"
+    },
+    {
+      "check": "  terrain_derivatives",
+      "status": "pass",
+      "detail": "6 rows"
+    },
+    {
+      "check": "  tide_observations",
+      "status": "pass",
+      "detail": "72 rows"
+    },
+    {
+      "check": "  wards",
+      "status": "pass",
+      "detail": "24 rows"
+    },
+    {
+      "check": "  water_bodies",
+      "status": "pass",
+      "detail": "1,730 rows"
+    },
+    {
+      "check": "  weather_forecasts",
+      "status": "pass",
+      "detail": "30,240 rows"
+    },
+    {
+      "check": "  weather_observations",
+      "status": "pass",
+      "detail": "108 rows"
+    },
+    {
+      "check": "Distinct SRIDs in use",
+      "status": "pass",
+      "detail": "1"
+    },
+    {
+      "check": "  SRID 4326",
+      "status": "pass",
+      "detail": "used in 47 geometry columns"
+    },
+    {
+      "check": "INSAT-3DR total",
+      "status": "pass",
+      "detail": "1073 granules (HEM=644, IMC=429)"
+    },
+    {
+      "check": "GPM IMERG",
+      "status": "pass",
+      "detail": "576 records"
+    },
+    {
+      "check": "AWS rainfall gauges",
+      "status": "pass",
+      "detail": "27 records"
+    },
+    {
+      "check": "Historical flood events",
+      "status": "pass",
+      "detail": "209 records"
+    },
+    {
+      "check": "Flood hotspots",
+      "status": "pass",
+      "detail": "35 records"
+    },
+    {
+      "check": "Tide observations",
+      "status": "pass",
+      "detail": "72 records"
+    },
+    {
+      "check": "DEM metadata",
+      "status": "fail",
+      "detail": "relation \"dem_metadata\" does not exist"
+    },
+    {
+      "check": "LULC",
+      "status": "pass",
+      "detail": "69 records"
+    },
+    {
+      "check": "Impervious surface",
+      "status": "fail",
+      "detail": "relation \"impervious_surface_fractions\" does not exist"
+    },
+    {
+      "check": "Soil: soil_types",
+      "status": "fail",
+      "detail": "relation \"soil_types\" does not exist"
+    },
+    {
+      "check": "Soil: soil_hydro_groups",
+      "status": "fail",
+      "detail": "relation \"soil_hydro_groups\" does not exist"
+    },
+    {
+      "check": "Soil: soil_percolation_parameters",
+      "status": "fail",
+      "detail": "relation \"soil_percolation_parameters\" does not exist"
+    },
+    {
+      "check": "Roads",
+      "status": "fail",
+      "detail": "relation \"mumbai_roads\" does not exist"
+    },
+    {
+      "check": "Buildings",
+      "status": "pass",
+      "detail": "30000 records"
+    },
+    {
+      "check": "Population",
+      "status": "fail",
+      "detail": "relation \"population_distribution_grids\" does not exist"
+    },
+    {
+      "check": "Infrastructure",
+      "status": "pass",
+      "detail": "2002 records"
+    },
+    {
+      "check": "Wards",
+      "status": "fail",
+      "detail": "relation \"mumbai_wards\" does not exist"
+    },
+    {
+      "check": "Weather forecasts",
+      "status": "fail",
+      "detail": "relation \"weather_forecasts_grid\" does not exist"
+    },
+    {
+      "check": "Data sources registry",
+      "status": "pass",
+      "detail": "8 records"
+    }
+  ],
+  "connection": {
+    "host": "pg-ba8ce32-omsatange5788-0a38.h.aivencloud.com",
+    "port": 21135,
+    "database": "defaultdb",
+    "user": "avnadmin"
+  },
+  "dns": {
+    "resolved_ips": [
+      "143.110.254.176"
+    ]
+  },
+  "tables": [
+    {
+      "table": "alerts",
+      "rows": 0
+    },
+    {
+      "table": "bridges_and_culverts",
+      "rows": 33
+    },
+    {
+      "table": "buildings",
+      "rows": 30000
+    },
+    {
+      "table": "cities",
+      "rows": 1
+    },
+    {
+      "table": "citizen_reports",
+      "rows": 2
+    },
+    {
+      "table": "coastal_exposure_zones",
+      "rows": 15
+    },
+    {
+      "table": "critical_arterial_corridors",
+      "rows": 78
+    },
+    {
+      "table": "critical_infrastructure",
+      "rows": 2002
+    },
+    {
+      "table": "data_ingestion_runs",
+      "rows": 7
+    },
+    {
+      "table": "data_sources",
+      "rows": 8
+    },
+    {
+      "table": "dem_tiles",
+      "rows": 1
+    },
+    {
+      "table": "drainage_links",
+      "rows": 8
+    },
+    {
+      "table": "drainage_nodes",
+      "rows": 35
+    },
+    {
+      "table": "drainage_structures",
+      "rows": 41
+    },
+    {
+      "table": "emergency_facilities",
+      "rows": 9
+    },
+    {
+      "table": "fire_stations",
+      "rows": 37
+    },
+    {
+      "table": "flood_hotspots",
+      "rows": 35
+    },
+    {
+      "table": "flood_hotspots_v1_legacy",
+      "rows": 10
+    },
+    {
+      "table": "flood_snapshots",
+      "rows": 0
+    },
+    {
+      "table": "green_open_spaces",
+      "rows": 25
+    },
+    {
+      "table": "historical_flood_events",
+      "rows": 209
+    },
+    {
+      "table": "hospitals",
+      "rows": 1667
+    },
+    {
+      "table": "impervious_surface_grid",
+      "rows": 128
+    },
+    {
+      "table": "land_use_land_cover",
+      "rows": 69
+    },
+    {
+      "table": "low_lying_areas",
+      "rows": 15
+    },
+    {
+      "table": "police",
+      "rows": 122
+    },
+    {
+      "table": "population_grids",
+      "rows": 1242
+    },
+    {
+      "table": "primary_drainage_network",
+      "rows": 39
+    },
+    {
+      "table": "pumping_stations",
+      "rows": 8
+    },
+    {
+      "table": "railway_stations",
+      "rows": 167
+    },
+    {
+      "table": "rainfall_observations",
+      "rows": 27
+    },
+    {
+      "table": "rainfall_satellite",
+      "rows": 576
+    },
+    {
+      "table": "road_segments",
+      "rows": 14563
+    },
+    {
+      "table": "satellite_rainfall_observations",
+      "rows": 1073
+    },
+    {
+      "table": "shelters",
+      "rows": 10
+    },
+    {
+      "table": "simulation_runs",
+      "rows": 19
+    },
+    {
+      "table": "spatial_ref_sys",
+      "rows": 8500
+    },
+    {
+      "table": "terrain_derivatives",
+      "rows": 6
+    },
+    {
+      "table": "tide_observations",
+      "rows": 72
+    },
+    {
+      "table": "wards",
+      "rows": 24
+    },
+    {
+      "table": "water_bodies",
+      "rows": 1730
+    },
+    {
+      "table": "weather_forecasts",
+      "rows": 30240
+    },
+    {
+      "table": "weather_observations",
+      "rows": 108
+    }
+  ],
+  "table_count": 43,
+  "overall": "CONNECTED"
+}

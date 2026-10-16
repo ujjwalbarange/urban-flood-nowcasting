@@ -1,0 +1,459 @@
+{
+  "folder_path": "mumbai_flood_spatial_data",
+  "nested_duplicate_found": true,
+  "datasets": {
+    "01_roads/mumbai_full_road_network.geojson": {
+      "file": "01_roads/mumbai_full_road_network.geojson",
+      "category": "01_roads",
+      "size_bytes": 65190,
+      "sha256": "29a8ae160d262d9479c398cd28429a6f3019569acdfd76527aeedd016ebb5fba",
+      "feature_count": 78,
+      "geometry_type_breakdown": {
+        "LineString": 78
+      },
+      "bounding_box": [
+        72.795,
+        18.91,
+        72.97,
+        19.278
+      ],
+      "inside_mumbai_bbox": true,
+      "invalid_geometry_count": 0,
+      "invalid_reasons_sample": [],
+      "empty_geometry_count": 0,
+      "duplicate_ids": 0,
+      "duplicate_geometries": 0,
+      "attributes": [
+        "road_id",
+        "name",
+        "highway",
+        "length_m",
+        "surface",
+        "lanes",
+        "bridge",
+        "tunnel",
+        "one_way",
+        "maxspeed",
+        "access",
+        "ward_id",
+        "source"
+      ],
+      "null_percentages": {
+        "road_id": 0.0,
+        "name": 0.0,
+        "highway": 0.0,
+        "length_m": 0.0,
+        "surface": 0.0,
+        "lanes": 0.0,
+        "bridge": 0.0,
+        "tunnel": 0.0,
+        "one_way": 0.0,
+        "maxspeed": 0.0,
+        "access": 0.0,
+        "ward_id": 6.4,
+        "source": 0.0
+      },
+      "sources": [
+        "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      ],
+      "confidence_avg": null
+    },
+    "02_drainage/mumbai_public_drainage_network.geojson": {
+      "file": "02_drainage/mumbai_public_drainage_network.geojson",
+      "category": "02_drainage",
+      "size_bytes": 29518,
+      "sha256": "e84287f70bd31bda2b6578b6fa11e12e131c1dafd7389e4bd179d12e31dba954",
+      "feature_count": 39,
+      "geometry_type_breakdown": {
+        "LineString": 39
+      },
+      "bounding_box": [
+        72.792,
+        18.946,
+        72.975,
+        19.265
+      ],
+      "inside_mumbai_bbox": true,
+      "invalid_geometry_count": 0,
+      "invalid_reasons_sample": [],
+      "empty_geometry_count": 0,
+      "duplicate_ids": 0,
+      "duplicate_geometries": 0,
+      "attributes": [
+        "drainage_id",
+        "name",
+        "drainage_type",
+        "length_m",
+        "ward_id",
+        "source",
+        "source_date",
+        "confidence"
+      ],
+      "null_percentages": {
+        "drainage_id": 0.0,
+        "name": 0.0,
+        "drainage_type": 0.0,
+        "length_m": 0.0,
+        "ward_id": 2.6,
+        "source": 0.0,
+        "source_date": 0.0,
+        "confidence": 0.0
+      },
+      "sources": [
+        "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors"
+      ],
+      "confidence_avg": null
+    },
+    "02_drainage/mumbai_drainage_structures.geojson": {
+      "file": "02_drainage/mumbai_drainage_structures.geojson",
+      "category": "02_drainage",
+      "size_bytes": 21955,
+      "sha256": "d8e943c54a5c41a50415fefce0f7ae37ae1e3b0abcbf52e9a1d7fa63ebb8f1e2",
+      "feature_count": 41,
+      "geometry_type_breakdown": {
+        "Point": 41
+      },
+      "bounding_box": [
+        72.811,
+        18.9745,
+        72.975,
+        19.265
+      ],
+      "inside_mumbai_bbox": true,
+      "invalid_geometry_count": 0,
+      "invalid_reasons_sample": [],
+      "empty_geometry_count": 0,
+      "duplicate_ids": 0,
+      "duplicate_geometries": 2,
+      "attributes": [
+        "structure_id",
+        "structure_type",
+        "name",
+        "connected_drainage_id",
+        "ward_id",
+        "source",
+        "confidence"
+      ],
+      "null_percentages": {
+        "structure_id": 0.0,
+        "structure_type": 0.0,
+        "name": 0.0,
+        "connected_drainage_id": 9.8,
+        "ward_id": 12.2,
+        "source": 0.0,
+        "confidence": 0.0
+      },
+      "sources": [
+        "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan"
+      ],
+      "confidence_avg": null
+    },
+    "03_land_cover/mumbai_land_use_land_cover.geojson": {
+      "file": "03_land_cover/mumbai_land_use_land_cover.geojson",
+      "category": "03_land_cover",
+      "size_bytes": 62252,
+      "sha256": "cb1134a8d79c91bd2bd5f90cdae57e430b6ddebac77c8aedd86274f84b3d13f1",
+      "feature_count": 69,
+      "geometry_type_breakdown": {
+        "Polygon": 69
+      },
+      "bounding_box": [
+        72.785,
+        18.922,
+        72.975,
+        19.28
+      ],
+      "inside_mumbai_bbox": true,
+      "invalid_geometry_count": 0,
+      "invalid_reasons_sample": [],
+      "empty_geometry_count": 0,
+      "duplicate_ids": 0,
+      "duplicate_geometries": 0,
+      "attributes": [
+        "lulc_id",
+        "name",
+        "class",
+        "class_code",
+        "area_m2",
+        "source",
+        "source_date",
+        "confidence"
+      ],
+      "null_percentages": {
+        "lulc_id": 0.0,
+        "name": 0.0,
+        "class": 0.0,
+        "class_code": 0.0,
+        "area_m2": 0.0,
+        "source": 0.0,
+        "source_date": 0.0,
+        "confidence": 0.0
+      },
+      "sources": [
+        "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC"
+      ],
+      "confidence_avg": null
+    },
+    "03_land_cover/mumbai_impervious_surface.geojson": {
+      "file": "03_land_cover/mumbai_impervious_surface.geojson",
+      "category": "03_land_cover",
+      "size_bytes": 107029,
+      "sha256": "844e17a0b2ecf5b30072e1b8eb03ed04ab91459d365b05b9f195003ab4ccd38f",
+      "feature_count": 128,
+      "geometry_type_breakdown": {
+        "Polygon": 128
+      },
+      "bounding_box": [
+        72.78,
+        18.9,
+        72.98,
+        19.3
+      ],
+      "inside_mumbai_bbox": true,
+      "invalid_geometry_count": 0,
+      "invalid_reasons_sample": [],
+      "empty_geometry_count": 0,
+      "duplicate_ids": 0,
+      "duplicate_geometries": 0,
+      "attributes": [
+        "cell_id",
+        "impervious_fraction",
+        "built_up_fraction",
+        "source",
+        "confidence"
+      ],
+      "null_percentages": {
+        "cell_id": 0.0,
+        "impervious_fraction": 0.0,
+        "built_up_fraction": 0.0,
+        "source": 0.0,
+        "confidence": 0.0
+      },
+      "sources": [
+        "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline"
+      ],
+      "confidence_avg": null
+    },
+    "04_flood_risk/mumbai_flood_hotspots.geojson": {
+      "file": "04_flood_risk/mumbai_flood_hotspots.geojson",
+      "category": "04_flood_risk",
+      "size_bytes": 24239,
+      "sha256": "818848915d902778445a4abed2e27234a36ee876b0f7f1cc06e89e1e53be8b11",
+      "feature_count": 35,
+      "geometry_type_breakdown": {
+        "Point": 35
+      },
+      "bounding_box": [
+        72.805,
+        18.962,
+        72.952,
+        19.278
+      ],
+      "inside_mumbai_bbox": true,
+      "invalid_geometry_count": 0,
+      "invalid_reasons_sample": [],
+      "empty_geometry_count": 0,
+      "duplicate_ids": 0,
+      "duplicate_geometries": 0,
+      "attributes": [
+        "hotspot_id",
+        "name",
+        "hotspot_type",
+        "evidence",
+        "source",
+        "source_url",
+        "confidence",
+        "recurrence"
+      ],
+      "null_percentages": {
+        "hotspot_id": 0.0,
+        "name": 0.0,
+        "hotspot_type": 0.0,
+        "evidence": 0.0,
+        "source": 0.0,
+        "source_url": 0.0,
+        "confidence": 0.0,
+        "recurrence": 0.0
+      },
+      "sources": [
+        "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report"
+      ],
+      "confidence_avg": null
+    },
+    "04_flood_risk/mumbai_low_lying_areas.geojson": {
+      "file": "04_flood_risk/mumbai_low_lying_areas.geojson",
+      "category": "04_flood_risk",
+      "size_bytes": 13786,
+      "sha256": "7d5bce3bfb99005d2e44fdc18ba1cc494b4300bd2df4094450ee7d8f7a0788b0",
+      "feature_count": 15,
+      "geometry_type_breakdown": {
+        "Polygon": 15
+      },
+      "bounding_box": [
+        72.805,
+        18.965,
+        72.975,
+        19.265
+      ],
+      "inside_mumbai_bbox": true,
+      "invalid_geometry_count": 0,
+      "invalid_reasons_sample": [],
+      "empty_geometry_count": 0,
+      "duplicate_ids": 0,
+      "duplicate_geometries": 0,
+      "attributes": [
+        "area_id",
+        "name",
+        "type",
+        "elevation_min",
+        "elevation_mean",
+        "area_m2",
+        "source",
+        "confidence"
+      ],
+      "null_percentages": {
+        "area_id": 0.0,
+        "name": 0.0,
+        "type": 0.0,
+        "elevation_min": 0.0,
+        "elevation_mean": 0.0,
+        "area_m2": 0.0,
+        "source": 0.0,
+        "confidence": 0.0
+      },
+      "sources": [
+        "Copernicus GLO-30 DEM Topographic Sink Analysis / BRIMSTOWAD Master Plan"
+      ],
+      "confidence_avg": null
+    },
+    "04_flood_risk/mumbai_coastal_exposure.geojson": {
+      "file": "04_flood_risk/mumbai_coastal_exposure.geojson",
+      "category": "04_flood_risk",
+      "size_bytes": 12868,
+      "sha256": "ee904ec07e8875eebd4beb443b9bfea59c6e238040a35e618f674c9baff15953",
+      "feature_count": 15,
+      "geometry_type_breakdown": {
+        "LineString": 3,
+        "Polygon": 12
+      },
+      "bounding_box": [
+        72.785,
+        18.895,
+        72.975,
+        19.285
+      ],
+      "inside_mumbai_bbox": true,
+      "invalid_geometry_count": 0,
+      "invalid_reasons_sample": [],
+      "empty_geometry_count": 0,
+      "duplicate_ids": 0,
+      "duplicate_geometries": 0,
+      "attributes": [
+        "zone_id",
+        "name",
+        "zone_type",
+        "source",
+        "confidence"
+      ],
+      "null_percentages": {
+        "zone_id": 0.0,
+        "name": 0.0,
+        "zone_type": 0.0,
+        "source": 0.0,
+        "confidence": 0.0
+      },
+      "sources": [
+        "National Centre for Coastal Research (NCCR) / Survey of India / OSM"
+      ],
+      "confidence_avg": null
+    },
+    "05_structures/mumbai_bridges_culverts.geojson": {
+      "file": "05_structures/mumbai_bridges_culverts.geojson",
+      "category": "05_structures",
+      "size_bytes": 19176,
+      "sha256": "5ade93d6e15934a321cd99cb5945449dcff006f5414b116574a738f618095747",
+      "feature_count": 33,
+      "geometry_type_breakdown": {
+        "Point": 33
+      },
+      "bounding_box": [
+        72.818,
+        19.025,
+        72.965,
+        19.263
+      ],
+      "inside_mumbai_bbox": true,
+      "invalid_geometry_count": 0,
+      "invalid_reasons_sample": [],
+      "empty_geometry_count": 0,
+      "duplicate_ids": 0,
+      "duplicate_geometries": 0,
+      "attributes": [
+        "structure_id",
+        "name",
+        "structure_type",
+        "road_name",
+        "waterway_name",
+        "source",
+        "confidence"
+      ],
+      "null_percentages": {
+        "structure_id": 0.0,
+        "name": 0.0,
+        "structure_type": 0.0,
+        "road_name": 0.0,
+        "waterway_name": 0.0,
+        "source": 0.0,
+        "confidence": 0.0
+      },
+      "sources": [
+        "OpenStreetMap contributors / MCGM Bridges Dept / Central & Western Railway"
+      ],
+      "confidence_avg": null
+    },
+    "06_green_infrastructure/mumbai_green_open_spaces.geojson": {
+      "file": "06_green_infrastructure/mumbai_green_open_spaces.geojson",
+      "category": "06_green_infrastructure",
+      "size_bytes": 21497,
+      "sha256": "9000b5f6501e7e5b6973377a22315c193c3bfc3d34b75c842a3a58f2748b608c",
+      "feature_count": 25,
+      "geometry_type_breakdown": {
+        "Polygon": 25
+      },
+      "bounding_box": [
+        72.801,
+        18.922,
+        72.975,
+        19.28
+      ],
+      "inside_mumbai_bbox": true,
+      "invalid_geometry_count": 0,
+      "invalid_reasons_sample": [],
+      "empty_geometry_count": 0,
+      "duplicate_ids": 0,
+      "duplicate_geometries": 0,
+      "attributes": [
+        "area_id",
+        "name",
+        "type",
+        "area_m2",
+        "source",
+        "confidence"
+      ],
+      "null_percentages": {
+        "area_id": 0.0,
+        "name": 0.0,
+        "type": 0.0,
+        "area_m2": 0.0,
+        "source": 0.0,
+        "confidence": 0.0
+      },
+      "sources": [
+        "MCGM Open Spaces Inventory / Forest Survey of India / Maharashtra Forest Dept / OSM"
+      ],
+      "confidence_avg": null
+    }
+  },
+  "overall_summary": {},
+  "nested_mirror_status": "10/10 identical files"
+}

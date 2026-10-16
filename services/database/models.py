@@ -165,14 +165,14 @@ class RainfallObservationDB(Base):
 
 
 class SimulationRun(Base):
-    """Simulation run record."""
+    """Simulation run record with full lifecycle and result persistence."""
 
     __tablename__ = "simulation_runs"
 
     run_id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
     city_id = Column(String(32), ForeignKey("cities.city_id"))
     mode = Column(String(32), nullable=False)
-    status = Column(String(32), default="queued")
+    status = Column(String(32), default="queued")  # queued, running, completed, failed
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     started_at = Column(DateTime(timezone=True))
     completed_at = Column(DateTime(timezone=True))
@@ -180,6 +180,25 @@ class SimulationRun(Base):
     mass_balance = Column(JSONB)
     output_manifest = Column(JSONB)
     error = Column(JSONB)
+
+    # Phase 2A additions — result persistence
+    runtime_seconds = Column(Float)
+    max_depth_m = Column(Float)
+    mean_depth_m = Column(Float)
+    flooded_area_km2 = Column(Float)
+    flooded_cells = Column(Integer)
+    terrain_version = Column(String(128))  # e.g. "copernicus_glo30_v1"
+    parameter_set = Column(JSONB)  # Manning's n, Horton params, LULC version
+    confidence_score = Column(Float)  # 0-100
+    confidence_factors = Column(JSONB)  # list of contributing factors
+    validation_metadata = Column(JSONB)  # IoU, CSI, etc. if validated
+    flood_extent_geojson_uri = Column(Text)  # URI to GeoJSON result
+    rainfall_summary = Column(JSONB)  # cumulative, peak, duration, source
+
+    __table_args__ = (
+        Index("idx_simrun_status", status),
+        Index("idx_simrun_created", created_at),
+    )
 
 
 class FloodSnapshotDB(Base):
@@ -245,20 +264,44 @@ class Shelter(Base):
 
 
 class Alert(Base):
-    """Flood alert / warning."""
+    """Flood alert / warning with full operational lifecycle."""
 
     __tablename__ = "alerts"
 
     alert_id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
     city_id = Column(String(32))
     run_id = Column(UUID(as_uuid=True), ForeignKey("simulation_runs.run_id"))
-    severity = Column(String(32))
+    severity = Column(String(32))  # minor, moderate, severe, extreme
     cap_xml = Column(Text)
     issued_at = Column(DateTime(timezone=True), server_default=func.now())
     expires_at = Column(DateTime(timezone=True))
     affected_area = Column(Geometry("POLYGON", srid=4326))
     affected_wards = Column(ARRAY(Text))
     metadata_ = Column("metadata", JSONB, default={})
+
+    # Phase 2A additions — alert lifecycle
+    ward_id = Column(String(32))  # primary affected ward
+    status = Column(String(32), default="active")  # active, acknowledged, expired, resolved, cancelled
+    valid_from = Column(DateTime(timezone=True), server_default=func.now())
+    valid_until = Column(DateTime(timezone=True))
+    source = Column(String(64), default="nowcast")  # nowcast, manual, citizen, threshold
+    affected_population = Column(Integer)
+    recommended_action = Column(Text)
+    escalation_level = Column(Integer, default=0)  # 0=initial, 1=escalated, 2=emergency
+    acknowledged_at = Column(DateTime(timezone=True))
+    acknowledged_by = Column(String(255))
+    resolved_at = Column(DateTime(timezone=True))
+    resolution_notes = Column(Text)
+    deduplication_key = Column(String(255))  # prevents duplicate alerts for same event
+    confidence_score = Column(Float)  # 0-100
+
+    __table_args__ = (
+        Index("idx_alert_status", status),
+        Index("idx_alert_severity", severity),
+        Index("idx_alert_issued", issued_at),
+        Index("idx_alert_dedup", deduplication_key),
+        Index("idx_alert_geom", affected_area, postgresql_using="gist"),
+    )
 
 
 class HistoricalFloodEvent(Base):
@@ -418,4 +461,123 @@ class FloodHotspot(Base):
     __table_args__ = (
         Index("idx_hotspot_geom", location, postgresql_using="gist"),
     )
+
+
+class ValidationReport(Base):
+    """Persisted validation report (Phase 2A: replaces in-memory _validation_reports dict)."""
+
+    __tablename__ = "validation_reports"
+
+    report_id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
+    city_id = Column(String(32), default="mumbai")
+    event_id = Column(String(128))  # historical event identifier
+    run_id = Column(UUID(as_uuid=True), ForeignKey("simulation_runs.run_id"))
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    status = Column(String(32), default="completed")
+
+    # Validation metrics
+    iou = Column(Float)  # Intersection over Union
+    csi = Column(Float)  # Critical Success Index
+    pod = Column(Float)  # Probability of Detection (Recall)
+    far = Column(Float)  # False Alarm Ratio
+    precision_ = Column("precision", Float)
+    rmse_m = Column(Float)
+    mae_m = Column(Float)
+    mass_balance_error = Column(Float)
+
+    # Comparison data
+    observed_flooded_cells = Column(Integer)
+    predicted_flooded_cells = Column(Integer)
+    true_positives = Column(Integer)
+    false_positives = Column(Integer)
+    false_negatives = Column(Integer)
+    true_negatives = Column(Integer)
+
+    confusion_geojson = Column(JSONB)  # spatial confusion matrix as GeoJSON
+    report_data = Column(JSONB)  # full report payload
+
+    __table_args__ = (
+        Index("idx_valreport_event", event_id),
+        Index("idx_valreport_created", created_at),
+    )
+
+
+class NowcastRun(Base):
+    """Persisted nowcast run result (Phase 2A: replaces in-memory _latest_nowcast global)."""
+
+    __tablename__ = "nowcast_runs"
+
+    nowcast_id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
+    city_id = Column(String(32), default="mumbai")
+    run_id = Column(UUID(as_uuid=True), ForeignKey("simulation_runs.run_id"))
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    status = Column(String(32), default="completed")  # running, completed, failed
+
+    # Weather state
+    weather_timestamp = Column(DateTime(timezone=True))
+    mean_rainfall_mmh = Column(Float)
+    max_rainfall_mmh = Column(Float)
+    weather_points_count = Column(Integer)
+    weather_source = Column(String(128))
+
+    # Flood result summary
+    max_depth_m = Column(Float)
+    mean_depth_m = Column(Float)
+    flooded_cells = Column(Integer)
+    flooded_area_km2 = Column(Float)
+    duration_hours = Column(Float)
+    grid_size = Column(Integer)
+    catchment = Column(String(128))
+
+    # Quality & confidence
+    mass_balance_error = Column(Float)
+    confidence_score = Column(Float)
+    confidence_level = Column(String(32))  # HIGH, MODERATE, LOW
+    confidence_factors = Column(JSONB)
+
+    # Rainfall provenance
+    rainfall_providers_used = Column(ARRAY(Text))
+    rainfall_providers_failed = Column(ARRAY(Text))
+    rainfall_summary = Column(JSONB)
+
+    # Flood output references
+    flood_geojson = Column(JSONB)  # GeoJSON FeatureCollection
+    depth_statistics = Column(JSONB)
+    ward_risk_snapshot = Column(JSONB)  # ward risk at time of nowcast
+
+    __table_args__ = (
+        Index("idx_nowcast_created", created_at),
+        Index("idx_nowcast_status", status),
+    )
+
+
+class FieldTask(Base):
+    """Field operational task dispatched to BMC/NDRF crews (Phase 2H)."""
+
+    __tablename__ = "field_tasks"
+
+    task_id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
+    city_id = Column(String(32), default="mumbai")
+    task_type = Column(String(64), nullable=False)  # dewatering, gate_inspection, debris_clearance, rescue_boat, barricading, citizen_check
+    ward_id = Column(String(32), nullable=False)
+    location = Column(Geometry("POINT", srid=4326), nullable=False)
+    priority = Column(String(32), default="HIGH")  # CRITICAL, HIGH, MEDIUM, LOW
+    status = Column(String(32), default="PENDING")  # PENDING, ASSIGNED, IN_PROGRESS, COMPLETED, CANCELLED
+    title = Column(String(255), nullable=False)
+    description = Column(Text)
+    assigned_to = Column(String(128))  # crew ID or leader name
+    assigned_at = Column(DateTime(timezone=True))
+    completed_at = Column(DateTime(timezone=True))
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    notes = Column(Text)
+    evidence_photo_url = Column(Text)
+    citizen_report_id = Column(UUID(as_uuid=True), ForeignKey("citizen_reports.report_id"), nullable=True)
+    metadata_ = Column("metadata", JSONB, default={})
+
+    __table_args__ = (
+        Index("idx_field_tasks_geom", location, postgresql_using="gist"),
+        Index("idx_field_tasks_status", status),
+        Index("idx_field_tasks_ward", ward_id),
+    )
+
 

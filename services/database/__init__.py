@@ -8,11 +8,14 @@ from services.database.models import (
     DEMTile,
     DrainageLinkDB,
     DrainageNodeDB,
+    FieldTask,
     FloodSnapshotDB,
+    NowcastRun,
     RainfallObservationDB,
     RoadSegment,
     Shelter,
     SimulationRun,
+    ValidationReport,
     Ward,
 )
 
@@ -26,10 +29,14 @@ __all__ = [
     "DEMTile",
     "DrainageLinkDB",
     "DrainageNodeDB",
+    "FieldTask",
     "FloodSnapshotDB",
+    "NowcastRun",
     "RainfallObservationDB",
     "RoadSegment",
     "Shelter",
     "SimulationRun",
+    "ValidationReport",
     "Ward",
 ]
+

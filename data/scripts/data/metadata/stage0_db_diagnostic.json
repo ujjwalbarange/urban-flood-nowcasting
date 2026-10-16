@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-09-25T18:50:00.412962+00:00",
+  "stage": "Stage 0: Database Connectivity Diagnostic",
+  "checks": [
+    {
+      "check": "DATABASE_URL present",
+      "status": "fail",
+      "detail": "DATABASE_URL environment variable is empty"
+    },
+    {
+      "check": "URL parsing",
+      "status": "fail",
+      "detail": "list index out of range"
+    }
+  ],
+  "overall": "BLOCKED"
+}

@@ -21,12 +21,68 @@ from fastapi import APIRouter, BackgroundTasks, HTTPException, Query
 from services.data.store import get_data_store
 from services.flood.engine import SimulationConfig, SimulationResult, run_simulation
 from services.hydrology.infiltration import HortonParams
+from services.terrain.dem_loader import (
+    CATCHMENT_REGIONS,
+    get_catchment_dem,
+    depth_grid_to_geojson,
+)
+from services.terrain.conditioning import fill_sinks
 
 logger = structlog.get_logger()
 router = APIRouter()
 
-# In-memory simulation tracking
+# In-memory tracking for running simulations (fast polling).
+# Completed results are persisted to PostGIS SimulationRun table.
 _simulations: dict[str, dict] = {}
+
+
+def _persist_simulation_result(sim_id: str, sim_record: dict) -> None:
+    """Persist a completed/failed simulation to PostGIS (synchronous, for background thread)."""
+    import os, ssl
+    from sqlalchemy import create_engine, text
+    from sqlalchemy.orm import Session
+    try:
+        db_url = os.getenv("DATABASE_URL", "")
+        sync_url = db_url.replace("postgresql+asyncpg://", "postgresql://").split("?")[0]
+        connect_args = {}
+        if "aivencloud.com" in db_url:
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+            connect_args["sslcontext"] = ctx
+        eng = create_engine(sync_url, connect_args=connect_args)
+        with Session(eng) as session:
+            # Update existing or insert new
+            run_id = sim_record.get("db_run_id")
+            if run_id:
+                session.execute(text("""
+                    UPDATE simulation_runs SET
+                        status = :status,
+                        started_at = :started_at,
+                        completed_at = :completed_at,
+                        max_depth_m = :max_depth,
+                        flooded_cells = :flooded_cells,
+                        runtime_seconds = :runtime,
+                        terrain_version = :terrain,
+                        output_manifest = :manifest,
+                        error = :error
+                    WHERE run_id = :run_id
+                """), {
+                    "status": sim_record.get("status", "completed"),
+                    "started_at": sim_record.get("started_at"),
+                    "completed_at": sim_record.get("finished_at"),
+                    "max_depth": sim_record.get("results", {}).get("max_depth_m") if sim_record.get("results") else None,
+                    "flooded_cells": sim_record.get("results", {}).get("max_flooded_cells") if sim_record.get("results") else None,
+                    "runtime": sim_record.get("runtime_seconds"),
+                    "terrain": sim_record.get("terrain_source"),
+                    "manifest": None,
+                    "error": {"message": sim_record.get("error")} if sim_record.get("error") else None,
+                    "run_id": run_id,
+                })
+                session.commit()
+                logger.info("Simulation result persisted to PostGIS", sim_id=sim_id, run_id=run_id)
+    except Exception as e:
+        logger.error("Failed to persist simulation result", sim_id=sim_id, error=str(e))
 
 
 def _build_rainfall_schedule_from_scenario(scenario_key: str) -> list[tuple[float, float]]:
@@ -110,18 +166,6 @@ def _build_rainfall_schedule_from_event(event_key: str) -> list[tuple[float, flo
     return schedule
 
 
-from services.terrain.dem_loader import (
-    CATCHMENT_REGIONS,
-    get_catchment_dem,
-    depth_grid_to_geojson,
-)
-from services.terrain.conditioning import fill_sinks
-
-logger = structlog.get_logger()
-router = APIRouter()
-
-# In-memory simulation tracking
-_simulations: dict[str, dict] = {}
 
 
 def _run_simulation_task(
@@ -137,6 +181,8 @@ def _run_simulation_task(
     try:
         _simulations[sim_id]["status"] = "running"
         _simulations[sim_id]["started_at"] = datetime.now(timezone.utc).isoformat()
+        import time
+        _simulations[sim_id]["started_at_epoch"] = time.time()
 
         georef = None
         if terrain_source == "copernicus_glo30":
@@ -145,10 +191,19 @@ def _run_simulation_task(
             dem = fill_sinks(dem_raw.astype(np.float64))
             config.cell_size_m = georef["cell_size_m"]
 
-            # Real urban imperviousness for Mumbai
-            imperviousness = np.full(dem.shape, 0.80)
+            # Load spatially-varying imperviousness from PostGIS LULC data
+            from services.terrain.spatial_params import load_spatial_parameters_sync
+            spatial = load_spatial_parameters_sync(georef, dem.shape)
+            imperviousness = spatial.imperviousness.astype(np.float64)
             # Higher elevations in Mumbai (hills/national park) have lower imperviousness
             imperviousness[dem > 40.0] = 0.35
+            logger.info(
+                "Spatial parameters loaded",
+                sim_id=sim_id,
+                source=spatial.imperviousness_source,
+                quality=spatial.quality_status,
+                avg_imperviousness=round(float(np.mean(imperviousness)), 3),
+            )
             georeferenced = True
             origin_terrain = "Copernicus GLO-30 (30m DSM via OpenTopography)"
         else:
@@ -231,6 +286,15 @@ def _run_simulation_task(
         logger.error("Simulation failed", sim_id=sim_id, error=str(e))
         _simulations[sim_id]["status"] = "failed"
         _simulations[sim_id]["error"] = str(e)
+        _simulations[sim_id]["finished_at"] = datetime.now(timezone.utc).isoformat()
+    finally:
+        # Persist to PostGIS regardless of outcome
+        if sim_id in _simulations:
+            import time
+            started = _simulations[sim_id].get("started_at_epoch")
+            if started:
+                _simulations[sim_id]["runtime_seconds"] = round(time.time() - started, 2)
+            _persist_simulation_result(sim_id, _simulations[sim_id])
 
 
 
@@ -340,6 +404,39 @@ async def trigger_simulation(
         "results": None,
         "flood_extent_geojson": None,
     }
+    # Create DB record for persistence
+    db_run_id = None
+    try:
+        import os, ssl
+        from sqlalchemy import create_engine
+        from sqlalchemy.orm import Session
+        from services.database.models import SimulationRun as SimRunModel
+        import json
+        db_url = os.getenv("DATABASE_URL", "")
+        sync_url = db_url.replace("postgresql+asyncpg://", "postgresql://").split("?")[0]
+        connect_args = {}
+        if "aivencloud.com" in db_url:
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+            connect_args["sslcontext"] = ctx
+        eng = create_engine(sync_url, connect_args=connect_args)
+        with Session(eng) as session:
+            db_run = SimRunModel(
+                city_id=city_id,
+                mode="simulation",
+                status="queued",
+                scenario_config=sim_record["params"],
+                terrain_version=terrain_source,
+            )
+            session.add(db_run)
+            session.commit()
+            db_run_id = str(db_run.run_id)
+            sim_record["db_run_id"] = db_run_id
+            logger.info("SimulationRun created in PostGIS", db_run_id=db_run_id, sim_id=sim_id)
+    except Exception as e:
+        logger.warning("Could not create DB record for simulation", error=str(e))
+
     _simulations[sim_id] = sim_record
 
     # Run simulation in background

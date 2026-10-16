@@ -1,0 +1,25 @@
+[
+  {
+    "model_id": "mufns_convgru_v1_hindmata",
+    "version": "v1.0.0",
+    "architecture": "Skip-ConvGRU + FloodPredictionHead",
+    "catchment": "hindmata_dadar",
+    "weights_path": "data/models/checkpoints/convgru_hindmata_v1.pt",
+    "registered_at": "2026-09-25T21:43:34.257950+00:00",
+    "status": "ACTIVE",
+    "parameters_count": 84350,
+    "input_channels": 2,
+    "hidden_channels": 16,
+    "benchmark_metrics": {
+      "csi": 0.76,
+      "iou": 0.62,
+      "pod": 0.82,
+      "far": 0.21,
+      "mae_depth_m": 0.048,
+      "rmse_depth_m": 0.089,
+      "inference_latency_ms": 138.0
+    },
+    "training_epochs": 15,
+    "author": "MUFNS ML Pipeline"
+  }
+]

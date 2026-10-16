@@ -1,0 +1,89 @@
+[
+  {
+    "event_id": "july_7_11_2024_deluge",
+    "event_name": "July 7-11 2024 Mumbai Extended Monsoon Deluge",
+    "simulation_id": "21be732e-303c-49dd-be88-b9a9b93eca4c",
+    "strategy": "hem_only",
+    "tide_scenario": "rainfall_high_tide",
+    "rainfall_granules": 244,
+    "rainfall_cumulative_mm": 40.38,
+    "rainfall_peak_mmh": 98.74,
+    "max_depth_m": 27.115558955421488,
+    "mean_depth_m": 18.672,
+    "flooded_area_km2": 123.9651,
+    "coastal_flooded_area_km2": 1.1907,
+    "hotspot_hit_rate_pct": 100.0,
+    "mass_balance_error_pct": 0.22868679898343244,
+    "runtime_seconds": 71.82,
+    "input_datasets": [
+      "ISRO MOSDAC INSAT-3DR (HEM L2B)",
+      "Tide: Apollo Bunder benchmark model: Spring High Tide (MHWS 4.45m CD -> +1.94m MSL, calibrated from Apollo Bunder)",
+      "Copernicus GLO-30 DEM",
+      "LULC (69 classes, source=PostGIS:land_use_land_cover)",
+      "Impervious surface (0.7% coverage)",
+      "Drainage nodes (4 coupled)"
+    ],
+    "assumptions": [
+      "LULC-derived parameters from literature (quality: assumed)",
+      "Tidal boundary: Apollo Bunder benchmark model: Spring High Tide (MHWS 4.45m CD -> +1.94m MSL, calibrated from Apollo Bunder) (status: calibrated_from_apollo_bunder_tide_observations)"
+    ]
+  },
+  {
+    "event_id": "july_23_26_2024_surge",
+    "event_name": "July 23-26 2024 Mumbai Late-Monsoon Surge",
+    "simulation_id": "a7917e1c-21a8-4a62-8005-2ab794c9c5dc",
+    "strategy": "imc_only",
+    "tide_scenario": "rainfall_normal_tide",
+    "rainfall_granules": 192,
+    "rainfall_cumulative_mm": 229.51,
+    "rainfall_peak_mmh": 60.0,
+    "max_depth_m": 2.4294053631063433,
+    "mean_depth_m": 0.406,
+    "flooded_area_km2": 35.4564,
+    "coastal_flooded_area_km2": 1.1466,
+    "hotspot_hit_rate_pct": 100.0,
+    "mass_balance_error_pct": 0.1108769908897776,
+    "runtime_seconds": 57.7,
+    "input_datasets": [
+      "ISRO MOSDAC INSAT-3DR (IMC L2B)",
+      "Tide: Apollo Bunder benchmark model: Normal Neap Tide (MHWN 3.48m CD -> +0.97m MSL)",
+      "Copernicus GLO-30 DEM",
+      "LULC (69 classes, source=PostGIS:land_use_land_cover)",
+      "Impervious surface (0.7% coverage)",
+      "Drainage nodes (4 coupled)"
+    ],
+    "assumptions": [
+      "LULC-derived parameters from literature (quality: assumed)",
+      "Tidal boundary: Apollo Bunder benchmark model: Normal Neap Tide (MHWN 3.48m CD -> +0.97m MSL) (status: assumed_standard_neap_tide)"
+    ]
+  },
+  {
+    "event_id": "aug_13_21_2025_monsoon",
+    "event_name": "August 13-21 2025 Mumbai Extended Monsoon Deluge",
+    "simulation_id": "2120c503-502b-4053-ba11-36f94ace4e2b",
+    "strategy": "hem_only",
+    "tide_scenario": "rainfall_normal_tide",
+    "rainfall_granules": 400,
+    "rainfall_cumulative_mm": 162.31,
+    "rainfall_peak_mmh": 66.98,
+    "max_depth_m": 2.7542765057413456,
+    "mean_depth_m": 0.537,
+    "flooded_area_km2": 36.9999,
+    "coastal_flooded_area_km2": 1.1466,
+    "hotspot_hit_rate_pct": 100.0,
+    "mass_balance_error_pct": 0.14240455009446637,
+    "runtime_seconds": 116.88,
+    "input_datasets": [
+      "ISRO MOSDAC INSAT-3DR (HEM L2B)",
+      "Tide: Apollo Bunder benchmark model: Normal Neap Tide (MHWN 3.48m CD -> +0.97m MSL)",
+      "Copernicus GLO-30 DEM",
+      "LULC (69 classes, source=PostGIS:land_use_land_cover)",
+      "Impervious surface (0.7% coverage)",
+      "Drainage nodes (4 coupled)"
+    ],
+    "assumptions": [
+      "LULC-derived parameters from literature (quality: assumed)",
+      "Tidal boundary: Apollo Bunder benchmark model: Normal Neap Tide (MHWN 3.48m CD -> +0.97m MSL) (status: assumed_standard_neap_tide)"
+    ]
+  }
+]

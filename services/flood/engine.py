@@ -50,6 +50,8 @@ class SimulationConfig:
     horton_params: HortonParams = field(default_factory=HortonParams)
     coupling_params: CouplingParams = field(default_factory=CouplingParams)
     snapshot_interval_s: float = 300.0  # Save snapshot every 5 min
+    tide_schedule: Optional[list[tuple[float, float]]] = None  # [(time_hours, tide_m_msl), ...]
+    coastal_mask: Optional[np.ndarray] = None                  # 2D boolean mask for coastal cells
 
 
 @dataclass
@@ -77,8 +79,12 @@ class SimulationResult:
     coupling_events: int = 0
     max_depth_m: float = 0.0
     max_flooded_cells: int = 0
+    coastal_flooded_cells: int = 0
+    coastal_flooded_area_km2: float = 0.0
+    peak_timing_hours: float = 0.0
     final_depth_grid: Optional[np.ndarray] = None
     max_depth_grid: Optional[np.ndarray] = None
+
 
 
 def run_simulation(
@@ -145,15 +151,36 @@ def run_simulation(
             return rainfall_schedule[0][1]
         return rainfall_schedule[-1][1]
 
+    # Build tide interpolation
+    def get_tide_level(t_hours: float) -> Optional[float]:
+        """Interpolate tide height (m MSL) at time t."""
+        if not config.tide_schedule:
+            return None
+        sched = config.tide_schedule
+        for i in range(len(sched) - 1):
+            t0, h0 = sched[i]
+            t1, h1 = sched[i + 1]
+            if t0 <= t_hours <= t1:
+                dt = t1 - t0
+                if dt < 1e-12:
+                    return h0
+                frac = (t_hours - t0) / dt
+                return h0 + frac * (h1 - h0)
+        if t_hours <= sched[0][0]:
+            return sched[0][1]
+        return sched[-1][1]
+
     logger.info(
         "Starting simulation",
         city=config.city_id,
         duration_h=config.duration_hours,
         grid_shape=dem.shape,
         cell_size=config.cell_size_m,
+        tide_active=config.tide_schedule is not None,
     )
 
     max_depth_grid = state.depth.copy()
+    peak_depth_seen = 0.0
 
     while state.time_s < total_time_s:
         dt = config.routing_dt_s
@@ -175,10 +202,21 @@ def run_simulation(
         )
         apply_infiltration(state, infil, dt)
 
-        # 4. Route surface flow
-        route_flow_step(state, dt)
+        # 4. Route surface flow with tidal boundary condition
+        current_tide = get_tide_level(t_hours)
+        route_flow_step(
+            state,
+            dt,
+            tide_level_m=current_tide,
+            coastal_mask=config.coastal_mask,
+        )
 
-        # Track max depth grid
+        # Track max depth grid and peak timing
+        curr_max_depth = float(np.max(state.depth))
+        if curr_max_depth > peak_depth_seen:
+            peak_depth_seen = curr_max_depth
+            result.peak_timing_hours = round(t_hours, 2)
+
         max_depth_grid = np.maximum(max_depth_grid, state.depth)
 
         # 5. Surface-drainage coupling (at coupling stride)
@@ -214,6 +252,7 @@ def run_simulation(
     # Final mass balance
     result.mass_balance = MassBalance(
         total_rainfall_m3=state.total_rainfall_m3,
+        total_tide_inflow_m3=state.total_tide_inflow_m3,
         total_infiltration_m3=state.total_infiltration_m3,
         total_boundary_outflow_m3=state.total_outflow_m3,
         initial_surface_volume_m3=0.0,
@@ -225,6 +264,13 @@ def run_simulation(
     result.final_depth_grid = state.depth.copy()
     result.max_depth_grid = max_depth_grid.copy()
 
+    # Coastal flooded metrics
+    if config.coastal_mask is not None and np.any(config.coastal_mask):
+        coastal_flood_mask = (max_depth_grid > 0.05) & config.coastal_mask
+        result.coastal_flooded_cells = int(np.sum(coastal_flood_mask))
+        result.coastal_flooded_area_km2 = round(
+            result.coastal_flooded_cells * (config.cell_size_m ** 2) / 1e6, 4
+        )
 
     closure = result.mass_balance.compute_closure()
     logger.info(
@@ -232,8 +278,11 @@ def run_simulation(
         steps=step,
         max_depth_m=round(result.max_depth_m, 3),
         max_flooded_cells=result.max_flooded_cells,
+        coastal_flooded_cells=result.coastal_flooded_cells,
+        peak_timing_hours=result.peak_timing_hours,
         mass_balance_error_pct=round(closure, 2),
         coupling_events=result.coupling_events,
     )
 
     return result
+

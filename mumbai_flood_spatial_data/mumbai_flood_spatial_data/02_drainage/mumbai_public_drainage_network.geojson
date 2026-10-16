@@ -1,0 +1,1237 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_public_drainage_network",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "DRN_0001",
+      "properties": {
+        "drainage_id": "DRN_0001",
+        "name": "Mithi River - Upper Reach (Vihar Spillway to Saki Naka)",
+        "drainage_type": "river",
+        "length_m": 5057.45,
+        "ward_id": "S",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.905,
+            19.145
+          ],
+          [
+            72.898,
+            19.13
+          ],
+          [
+            72.888,
+            19.115
+          ],
+          [
+            72.882,
+            19.105
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0002",
+      "properties": {
+        "drainage_id": "DRN_0002",
+        "name": "Mithi River - Middle Reach (Saki Naka to Kurla Bail Bazar)",
+        "drainage_type": "river",
+        "length_m": 4372.92,
+        "ward_id": "H/E",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.882,
+            19.105
+          ],
+          [
+            72.875,
+            19.09
+          ],
+          [
+            72.87,
+            19.078
+          ],
+          [
+            72.868,
+            19.068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0003",
+      "properties": {
+        "drainage_id": "DRN_0003",
+        "name": "Mithi River - Lower Reach (Kurla to BKC)",
+        "drainage_type": "river",
+        "length_m": 3269.11,
+        "ward_id": "H/E",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.868,
+            19.068
+          ],
+          [
+            72.86,
+            19.062
+          ],
+          [
+            72.852,
+            19.058
+          ],
+          [
+            72.842,
+            19.052
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0004",
+      "properties": {
+        "drainage_id": "DRN_0004",
+        "name": "Mithi River - Estuary & Tidal Reach (BKC to Mahim Bay Outfall)",
+        "drainage_type": "river",
+        "length_m": 2395.43,
+        "ward_id": "G/N",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.842,
+            19.052
+          ],
+          [
+            72.835,
+            19.048
+          ],
+          [
+            72.83,
+            19.042
+          ],
+          [
+            72.825,
+            19.038
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0005",
+      "properties": {
+        "drainage_id": "DRN_0005",
+        "name": "Vakola Nullah - Upper (Santacruz East to CST Road Kalina)",
+        "drainage_type": "major_nullah",
+        "length_m": 1843.32,
+        "ward_id": "H/E",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.848,
+            19.08
+          ],
+          [
+            72.855,
+            19.075
+          ],
+          [
+            72.862,
+            19.07
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0006",
+      "properties": {
+        "drainage_id": "DRN_0006",
+        "name": "Vakola Nullah - Lower (Kalina to Mithi River Confluence)",
+        "drainage_type": "major_nullah",
+        "length_m": 929.66,
+        "ward_id": "H/E",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.862,
+            19.07
+          ],
+          [
+            72.865,
+            19.066
+          ],
+          [
+            72.868,
+            19.064
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0007",
+      "properties": {
+        "drainage_id": "DRN_0007",
+        "name": "Oshiwara River - Upper (Aarey Colony to Goregaon East)",
+        "drainage_type": "river",
+        "length_m": 2380.83,
+        "ward_id": "P/S",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.88,
+            19.155
+          ],
+          [
+            72.868,
+            19.152
+          ],
+          [
+            72.858,
+            19.15
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0008",
+      "properties": {
+        "drainage_id": "DRN_0008",
+        "name": "Oshiwara River - Middle (Goregaon West to Oshiwara Link Road)",
+        "drainage_type": "river",
+        "length_m": 2460.99,
+        "ward_id": "P/S",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.858,
+            19.15
+          ],
+          [
+            72.845,
+            19.148
+          ],
+          [
+            72.835,
+            19.146
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0009",
+      "properties": {
+        "drainage_id": "DRN_0009",
+        "name": "Oshiwara River - Estuary (Link Road to Malad Creek Outfall)",
+        "drainage_type": "river",
+        "length_m": 2116.15,
+        "ward_id": "K/W",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.835,
+            19.146
+          ],
+          [
+            72.825,
+            19.145
+          ],
+          [
+            72.815,
+            19.144
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0010",
+      "properties": {
+        "drainage_id": "DRN_0010",
+        "name": "Walbhat Nullah (Goregaon East Hub to Oshiwara Confluence)",
+        "drainage_type": "major_nullah",
+        "length_m": 2293.52,
+        "ward_id": "P/S",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.875,
+            19.162
+          ],
+          [
+            72.865,
+            19.158
+          ],
+          [
+            72.858,
+            19.15
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0011",
+      "properties": {
+        "drainage_id": "DRN_0011",
+        "name": "Poisar River - Upper (Sanjay Gandhi National Park to Kandivali East)",
+        "drainage_type": "river",
+        "length_m": 2132.56,
+        "ward_id": "R/S",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.878,
+            19.208
+          ],
+          [
+            72.868,
+            19.206
+          ],
+          [
+            72.858,
+            19.205
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0012",
+      "properties": {
+        "drainage_id": "DRN_0012",
+        "name": "Poisar River - Middle (Kandivali SV Road to Charkop)",
+        "drainage_type": "river",
+        "length_m": 2446.82,
+        "ward_id": "P/N",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.858,
+            19.205
+          ],
+          [
+            72.845,
+            19.206
+          ],
+          [
+            72.835,
+            19.208
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0013",
+      "properties": {
+        "drainage_id": "DRN_0013",
+        "name": "Poisar River - Lower (Charkop to Marve Creek Outfall)",
+        "drainage_type": "river",
+        "length_m": 2149.82,
+        "ward_id": "P/N",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.835,
+            19.208
+          ],
+          [
+            72.825,
+            19.21
+          ],
+          [
+            72.815,
+            19.212
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0014",
+      "properties": {
+        "drainage_id": "DRN_0014",
+        "name": "Dahisar River - Upper (Tulsi Lake Spillway to Dahisar East)",
+        "drainage_type": "river",
+        "length_m": 3049.64,
+        "ward_id": "R/N",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.895,
+            19.245
+          ],
+          [
+            72.88,
+            19.25
+          ],
+          [
+            72.868,
+            19.255
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0015",
+      "properties": {
+        "drainage_id": "DRN_0015",
+        "name": "Dahisar River - Middle (Dahisar WEH to SV Road)",
+        "drainage_type": "river",
+        "length_m": 1771.39,
+        "ward_id": "R/N",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.868,
+            19.255
+          ],
+          [
+            72.858,
+            19.258
+          ],
+          [
+            72.852,
+            19.26
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0016",
+      "properties": {
+        "drainage_id": "DRN_0016",
+        "name": "Dahisar River - Tidal Reach (SV Road to Gorai Creek Outfall)",
+        "drainage_type": "river",
+        "length_m": 1871.36,
+        "ward_id": "R/N",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.852,
+            19.26
+          ],
+          [
+            72.842,
+            19.263
+          ],
+          [
+            72.835,
+            19.265
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0017",
+      "properties": {
+        "drainage_id": "DRN_0017",
+        "name": "Irla Nullah (Vile Parle to Juhu Pumping Station & Outfall)",
+        "drainage_type": "major_nullah",
+        "length_m": 1911.85,
+        "ward_id": "K/W",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.845,
+            19.102
+          ],
+          [
+            72.838,
+            19.105
+          ],
+          [
+            72.828,
+            19.108
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0018",
+      "properties": {
+        "drainage_id": "DRN_0018",
+        "name": "Gazdarbandh Nullah (Santacruz West to Khar Danda Outfall)",
+        "drainage_type": "major_nullah",
+        "length_m": 1578.99,
+        "ward_id": "H/W",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.842,
+            19.082
+          ],
+          [
+            72.835,
+            19.082
+          ],
+          [
+            72.827,
+            19.082
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0019",
+      "properties": {
+        "drainage_id": "DRN_0019",
+        "name": "Mogra Nullah (Andheri East MIDC to Malad Creek)",
+        "drainage_type": "major_nullah",
+        "length_m": 3613.7,
+        "ward_id": "K/E",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.868,
+            19.125
+          ],
+          [
+            72.852,
+            19.128
+          ],
+          [
+            72.834,
+            19.129
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0020",
+      "properties": {
+        "drainage_id": "DRN_0020",
+        "name": "Versova Nullah (Lokhandwala Complex to Versova Creek)",
+        "drainage_type": "major_nullah",
+        "length_m": 1538.38,
+        "ward_id": "K/W",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.832,
+            19.138
+          ],
+          [
+            72.825,
+            19.136
+          ],
+          [
+            72.818,
+            19.134
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0021",
+      "properties": {
+        "drainage_id": "DRN_0021",
+        "name": "Malad Mindspace Drainage Channel (Malad West to Malad Creek)",
+        "drainage_type": "stormwater_channel",
+        "length_m": 2150.13,
+        "ward_id": "P/N",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.842,
+            19.182
+          ],
+          [
+            72.832,
+            19.184
+          ],
+          [
+            72.822,
+            19.186
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0022",
+      "properties": {
+        "drainage_id": "DRN_0022",
+        "name": "Gorai Creek Drainage Channel (Borivali West to Gorai Creek)",
+        "drainage_type": "stormwater_channel",
+        "length_m": 2509.85,
+        "ward_id": "R/C",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.848,
+            19.232
+          ],
+          [
+            72.838,
+            19.235
+          ],
+          [
+            72.825,
+            19.238
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0023",
+      "properties": {
+        "drainage_id": "DRN_0023",
+        "name": "Dharavi Nullah (Dharavi 90ft Road to Mahim Creek)",
+        "drainage_type": "major_nullah",
+        "length_m": 1522.14,
+        "ward_id": "F/N",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.855,
+            19.042
+          ],
+          [
+            72.848,
+            19.045
+          ],
+          [
+            72.842,
+            19.048
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0024",
+      "properties": {
+        "drainage_id": "DRN_0024",
+        "name": "Somaiya Nullah (Vidyavihar to Kurla / Mithi Confluence)",
+        "drainage_type": "major_nullah",
+        "length_m": 3145.39,
+        "ward_id": "L",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.898,
+            19.082
+          ],
+          [
+            72.885,
+            19.075
+          ],
+          [
+            72.872,
+            19.068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0025",
+      "properties": {
+        "drainage_id": "DRN_0025",
+        "name": "Chunabhatti Drainage Channel (Sion Border to Mahim Creek)",
+        "drainage_type": "stormwater_channel",
+        "length_m": 2151.8,
+        "ward_id": "F/N",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.875,
+            19.048
+          ],
+          [
+            72.865,
+            19.046
+          ],
+          [
+            72.855,
+            19.044
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0026",
+      "properties": {
+        "drainage_id": "DRN_0026",
+        "name": "Chembur Nullah (Chembur East to Mahul Creek)",
+        "drainage_type": "major_nullah",
+        "length_m": 3333.32,
+        "ward_id": "M/W",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.898,
+            19.055
+          ],
+          [
+            72.905,
+            19.042
+          ],
+          [
+            72.912,
+            19.028
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0027",
+      "properties": {
+        "drainage_id": "DRN_0027",
+        "name": "Mahul Creek Drainage Canal (Trombay to Thane Creek)",
+        "drainage_type": "canal",
+        "length_m": 2565.6,
+        "ward_id": "M/E",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.912,
+            19.028
+          ],
+          [
+            72.922,
+            19.02
+          ],
+          [
+            72.932,
+            19.015
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0028",
+      "properties": {
+        "drainage_id": "DRN_0028",
+        "name": "Deonar - Govandi Nullah (Shivaji Nagar to Thane Creek)",
+        "drainage_type": "major_nullah",
+        "length_m": 2569.42,
+        "ward_id": "M/E",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.92,
+            19.062
+          ],
+          [
+            72.93,
+            19.058
+          ],
+          [
+            72.942,
+            19.052
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0029",
+      "properties": {
+        "drainage_id": "DRN_0029",
+        "name": "Vashi Nullah (Mankhurd East to Vashi Creek Outfall)",
+        "drainage_type": "open_drain",
+        "length_m": 2358.32,
+        "ward_id": null,
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.938,
+            19.06
+          ],
+          [
+            72.948,
+            19.058
+          ],
+          [
+            72.96,
+            19.056
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0030",
+      "properties": {
+        "drainage_id": "DRN_0030",
+        "name": "Ghatkopar Pant Nagar Nullah (Ghatkopar East to Thane Creek)",
+        "drainage_type": "major_nullah",
+        "length_m": 2644.47,
+        "ward_id": "N",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.918,
+            19.085
+          ],
+          [
+            72.93,
+            19.088
+          ],
+          [
+            72.942,
+            19.092
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0031",
+      "properties": {
+        "drainage_id": "DRN_0031",
+        "name": "Vikhroli Godrej Creek Channel (Vikhroli East to Thane Creek)",
+        "drainage_type": "stormwater_channel",
+        "length_m": 2815.67,
+        "ward_id": "S",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.932,
+            19.112
+          ],
+          [
+            72.945,
+            19.115
+          ],
+          [
+            72.958,
+            19.118
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0032",
+      "properties": {
+        "drainage_id": "DRN_0032",
+        "name": "Bhandup Pumping Drainage Channel (Bhandup East to Creek)",
+        "drainage_type": "stormwater_channel",
+        "length_m": 2150.41,
+        "ward_id": "S",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.942,
+            19.148
+          ],
+          [
+            72.952,
+            19.15
+          ],
+          [
+            72.962,
+            19.152
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0033",
+      "properties": {
+        "drainage_id": "DRN_0033",
+        "name": "Kanjurmarg Nullah (Kanjurmarg to Thane Creek Salt Pans)",
+        "drainage_type": "open_drain",
+        "length_m": 2713.33,
+        "ward_id": "S",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.935,
+            19.132
+          ],
+          [
+            72.948,
+            19.135
+          ],
+          [
+            72.96,
+            19.138
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0034",
+      "properties": {
+        "drainage_id": "DRN_0034",
+        "name": "Mulund Drainage Nullah (Mulund East to Thane Creek)",
+        "drainage_type": "major_nullah",
+        "length_m": 2244.54,
+        "ward_id": "T",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.955,
+            19.175
+          ],
+          [
+            72.965,
+            19.178
+          ],
+          [
+            72.975,
+            19.182
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0035",
+      "properties": {
+        "drainage_id": "DRN_0035",
+        "name": "Love Grove Outfall Channel (Worli Sump to Arabian Sea)",
+        "drainage_type": "open_drain",
+        "length_m": 669.56,
+        "ward_id": "G/S",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.818,
+            19.008
+          ],
+          [
+            72.815,
+            19.007
+          ],
+          [
+            72.812,
+            19.006
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0036",
+      "properties": {
+        "drainage_id": "DRN_0036",
+        "name": "Cleave Land Bunder Channel (Worli Naka to Arabian Sea)",
+        "drainage_type": "open_drain",
+        "length_m": 669.54,
+        "ward_id": "G/S",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.822,
+            19.014
+          ],
+          [
+            72.819,
+            19.013
+          ],
+          [
+            72.816,
+            19.012
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0037",
+      "properties": {
+        "drainage_id": "DRN_0037",
+        "name": "Haji Ali Outfall Lead Channel (Tardeo / Mahalaxmi to Bay)",
+        "drainage_type": "stormwater_channel",
+        "length_m": 572.82,
+        "ward_id": "D",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.816,
+            18.98
+          ],
+          [
+            72.814,
+            18.979
+          ],
+          [
+            72.811,
+            18.978
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0038",
+      "properties": {
+        "drainage_id": "DRN_0038",
+        "name": "Britannia Outfall Channel (Reay Road to Mumbai Harbour)",
+        "drainage_type": "stormwater_channel",
+        "length_m": 1053.32,
+        "ward_id": "E",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.845,
+            18.975
+          ],
+          [
+            72.85,
+            18.975
+          ],
+          [
+            72.855,
+            18.975
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DRN_0039",
+      "properties": {
+        "drainage_id": "DRN_0039",
+        "name": "Walkeshwar Coastal Drainage Cascade (Malabar Hill to Sea)",
+        "drainage_type": "open_drain",
+        "length_m": 771.83,
+        "ward_id": "D",
+        "source": "BRIMSTOWAD Master Plan / Chitale Committee Report / OpenStreetMap contributors",
+        "source_date": "2006-2024",
+        "confidence": "medium"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.798,
+            18.95
+          ],
+          [
+            72.795,
+            18.948
+          ],
+          [
+            72.792,
+            18.946
+          ]
+        ]
+      }
+    }
+  ]
+}

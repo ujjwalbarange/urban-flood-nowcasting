@@ -38,6 +38,7 @@ if "aivencloud.com" in DATABASE_URL or "ssl=require" in DATABASE_URL:
 
 engine = create_async_engine(DATABASE_URL, **_engine_kwargs)
 async_session = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+async_session_factory = async_session
 
 
 

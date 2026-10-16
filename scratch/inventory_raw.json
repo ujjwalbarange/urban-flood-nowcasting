@@ -1,0 +1,1384 @@
+[
+  {
+    "path": "mumbai_flood_data_package\\01_city\\config.json",
+    "name": "config.json",
+    "size_bytes": 1310,
+    "extension": ".json",
+    "keys": [
+      "project_name",
+      "version",
+      "target_domain",
+      "spatial_reference",
+      "grid_specifications",
+      "temporal_specifications",
+      "thresholds"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\01_city\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1339,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "source",
+      "source_url",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\01_city\\mumbai_boundary.geojson",
+    "name": "mumbai_boundary.geojson",
+    "size_bytes": 2505,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 1,
+    "geom_types": [
+      "Polygon"
+    ],
+    "bbox_wgs84": [
+      72.775,
+      18.89,
+      72.965,
+      19.29
+    ],
+    "sample_properties": [
+      "license",
+      "num_wards",
+      "download_url",
+      "source",
+      "country",
+      "state",
+      "projected_population_2024",
+      "city_name",
+      "total_population_2011",
+      "total_area_sq_km",
+      "admin_body"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\01_city\\wards.geojson",
+    "name": "wards.geojson",
+    "size_bytes": 28371,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 24,
+    "geom_types": [
+      "Polygon"
+    ],
+    "bbox_wgs84": [
+      72.775,
+      18.892,
+      72.965,
+      19.288
+    ],
+    "sample_properties": [
+      "population_2011",
+      "license",
+      "download_url",
+      "zone",
+      "ward_id",
+      "area_sq_km",
+      "source",
+      "population_density_per_sq_km",
+      "ward_name",
+      "headquarters"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\02_dem\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 5368,
+    "extension": ".json",
+    "keys": [
+      "collection",
+      "primary_dataset",
+      "secondary_dataset",
+      "tiles"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\02_dem\\cartodem\\CartoDEM_V3R1_N18E072.tif",
+    "name": "CartoDEM_V3R1_N18E072.tif",
+    "size_bytes": 2073874,
+    "extension": ".tif",
+    "format": "GeoTIFF",
+    "shape": [
+      720,
+      720
+    ],
+    "dtype": "float32",
+    "min_value": -2.6588778495788574,
+    "max_value": 139.26904296875,
+    "geotags": {
+      "ModelPixelScaleTag": "(0.001388888888888889, 0.001388888888888889, 0.0)",
+      "ModelTiepointTag": "(0.0, 0.0, 0.0, 72.0, 19.0, 0.0)",
+      "GeoKeyDirectoryTag": "(1, 1, 0, 3, 1024, 0, 1, 2, 1025, 0, 1, 1, 2048, 0, 1, 4326)"
+    }
+  },
+  {
+    "path": "mumbai_flood_data_package\\02_dem\\cartodem\\CartoDEM_V3R1_N19E072.tif",
+    "name": "CartoDEM_V3R1_N19E072.tif",
+    "size_bytes": 2073874,
+    "extension": ".tif",
+    "format": "GeoTIFF",
+    "shape": [
+      720,
+      720
+    ],
+    "dtype": "float32",
+    "min_value": -2.294487714767456,
+    "max_value": 468.3811950683594,
+    "geotags": {
+      "ModelPixelScaleTag": "(0.001388888888888889, 0.001388888888888889, 0.0)",
+      "ModelTiepointTag": "(0.0, 0.0, 0.0, 72.0, 20.0, 0.0)",
+      "GeoKeyDirectoryTag": "(1, 1, 0, 3, 1024, 0, 1, 2, 1025, 0, 1, 1, 2048, 0, 1, 4326)"
+    }
+  },
+  {
+    "path": "mumbai_flood_data_package\\02_dem\\copernicus_glo30\\Copernicus_DSM_COG_10_N18_00_E072_00_DEM.tif",
+    "name": "Copernicus_DSM_COG_10_N18_00_E072_00_DEM.tif",
+    "size_bytes": 2073874,
+    "extension": ".tif",
+    "format": "GeoTIFF",
+    "shape": [
+      720,
+      720
+    ],
+    "dtype": "float32",
+    "min_value": 0.0,
+    "max_value": 139.77850341796875,
+    "geotags": {
+      "ModelPixelScaleTag": "(0.001388888888888889, 0.001388888888888889, 0.0)",
+      "ModelTiepointTag": "(0.0, 0.0, 0.0, 72.0, 19.0, 0.0)",
+      "GeoKeyDirectoryTag": "(1, 1, 0, 3, 1024, 0, 1, 2, 1025, 0, 1, 1, 2048, 0, 1, 4326)"
+    }
+  },
+  {
+    "path": "mumbai_flood_data_package\\02_dem\\copernicus_glo30\\Copernicus_DSM_COG_10_N19_00_E072_00_DEM.tif",
+    "name": "Copernicus_DSM_COG_10_N19_00_E072_00_DEM.tif",
+    "size_bytes": 2073874,
+    "extension": ".tif",
+    "format": "GeoTIFF",
+    "shape": [
+      720,
+      720
+    ],
+    "dtype": "float32",
+    "min_value": 0.0,
+    "max_value": 467.9761047363281,
+    "geotags": {
+      "ModelPixelScaleTag": "(0.001388888888888889, 0.001388888888888889, 0.0)",
+      "ModelTiepointTag": "(0.0, 0.0, 0.0, 72.0, 20.0, 0.0)",
+      "GeoKeyDirectoryTag": "(1, 1, 0, 3, 1024, 0, 1, 2, 1025, 0, 1, 1, 2048, 0, 1, 4326)"
+    }
+  },
+  {
+    "path": "mumbai_flood_data_package\\03_land_cover\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 2126,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "source",
+      "source_url",
+      "download_url",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "classification_legend",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\03_land_cover\\worldcover.tif",
+    "name": "worldcover.tif",
+    "size_bytes": 800262,
+    "extension": ".tif",
+    "format": "GeoTIFF",
+    "shape": [
+      1000,
+      800
+    ],
+    "dtype": "uint8",
+    "min_value": 10.0,
+    "max_value": 95.0,
+    "geotags": {
+      "ModelPixelScaleTag": "(0.00045, 0.00045, 0.0)",
+      "ModelTiepointTag": "(0.0, 0.0, 0.0, 72.72, 19.34, 0.0)",
+      "GeoKeyDirectoryTag": "(1, 1, 0, 3, 1024, 0, 1, 2, 1025, 0, 1, 1, 2048, 0, 1, 4326)"
+    }
+  },
+  {
+    "path": "mumbai_flood_data_package\\04_roads\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1483,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "source",
+      "source_url",
+      "overpass_api_query",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\04_roads\\roads.geojson",
+    "name": "roads.geojson",
+    "size_bytes": 13625,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 15,
+    "geom_types": [
+      "LineString"
+    ],
+    "bbox_wgs84": [
+      72.795,
+      18.945,
+      72.98,
+      19.28
+    ],
+    "sample_properties": [
+      "bridge",
+      "license",
+      "oneway",
+      "maxspeed",
+      "name",
+      "osm_id",
+      "highway",
+      "flood_vulnerability",
+      "source",
+      "lanes",
+      "tunnel",
+      "surface"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\05_buildings\\buildings.geojson",
+    "name": "buildings.geojson",
+    "size_bytes": 18775,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 20,
+    "geom_types": [
+      "Polygon"
+    ],
+    "bbox_wgs84": [
+      72.809,
+      18.939,
+      72.9045,
+      19.1105
+    ],
+    "sample_properties": [
+      "license",
+      "building_type",
+      "category",
+      "name",
+      "osm_id",
+      "source",
+      "ward",
+      "building_levels"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\05_buildings\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1488,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "source",
+      "source_url",
+      "overpass_query",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\06_drainage\\links.geojson",
+    "name": "links.geojson",
+    "size_bytes": 6184,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 8,
+    "geom_types": [
+      "LineString"
+    ],
+    "bbox_wgs84": [
+      72.81,
+      19.015,
+      72.905,
+      19.255
+    ],
+    "sample_properties": [
+      "name",
+      "link_id",
+      "channel_type",
+      "depth_m",
+      "from_node",
+      "width_m",
+      "to_node",
+      "length_m",
+      "manning_n",
+      "slope"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\06_drainage\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 3771,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "status",
+      "sources_checked",
+      "collected_data",
+      "missing_data",
+      "possible_fallback",
+      "fallback_implementation_details",
+      "source",
+      "source_url",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\06_drainage\\nodes.geojson",
+    "name": "nodes.geojson",
+    "size_bytes": 7114,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 14,
+    "geom_types": [
+      "Point"
+    ],
+    "bbox_wgs84": [
+      72.81,
+      18.972,
+      72.905,
+      19.145
+    ],
+    "sample_properties": [
+      "ground_elevation_m_msl",
+      "node_id",
+      "num_pumps",
+      "name",
+      "status",
+      "ward",
+      "type",
+      "invert_elevation_m_msl",
+      "pump_capacity_m3_per_sec",
+      "storage_capacity_m3"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\06_drainage\\outfalls.geojson",
+    "name": "outfalls.geojson",
+    "size_bytes": 6114,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 11,
+    "geom_types": [
+      "Point"
+    ],
+    "bbox_wgs84": [
+      72.808,
+      18.9725,
+      72.908,
+      19.245
+    ],
+    "sample_properties": [
+      "flap_gate_installed",
+      "outfall_id",
+      "name",
+      "water_body",
+      "invert_elevation_m_msl",
+      "critical_tide_level_m_cd",
+      "backflow_prevention",
+      "discharge_type"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 4066,
+    "extension": ".json",
+    "keys": [
+      "collection",
+      "datasets"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\gauges\\hourly_gauge_data_2015_2025.csv",
+    "name": "hourly_gauge_data_2015_2025.csv",
+    "size_bytes": 1463120,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 25000,
+    "column_count": 7,
+    "columns": [
+      "timestamp_utc",
+      "station_id",
+      "station_name",
+      "rainfall_amount",
+      "unit",
+      "temporal_interval",
+      "quality_flag"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\gauges\\station_metadata.geojson",
+    "name": "station_metadata.geojson",
+    "size_bytes": 4462,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 8,
+    "geom_types": [
+      "Point"
+    ],
+    "bbox_wgs84": [
+      72.8094,
+      18.8987,
+      72.932,
+      19.231
+    ],
+    "sample_properties": [
+      "frequency",
+      "station_name",
+      "latitude",
+      "network",
+      "ward",
+      "elevation_m_msl",
+      "type",
+      "station_id",
+      "longitude"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\historical\\event_2005_07_26_santacruz_colaba_15min.csv",
+    "name": "event_2005_07_26_santacruz_colaba_15min.csv",
+    "size_bytes": 10654,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 192,
+    "column_count": 6,
+    "columns": [
+      "timestamp_utc",
+      "station_id",
+      "station_name",
+      "rainfall_15min_mm",
+      "rainfall_intensity_mm_per_hr",
+      "cumulative_rainfall_mm"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\historical\\event_2017_08_29_mumbai_deluge_hourly.csv",
+    "name": "event_2017_08_29_mumbai_deluge_hourly.csv",
+    "size_bytes": 1610,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 48,
+    "column_count": 3,
+    "columns": [
+      "timestamp",
+      "station",
+      "rainfall_mm"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\historical\\event_2019_07_02_malad_santacruz_hourly.csv",
+    "name": "event_2019_07_02_malad_santacruz_hourly.csv",
+    "size_bytes": 1612,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 48,
+    "column_count": 3,
+    "columns": [
+      "timestamp",
+      "station",
+      "rainfall_mm"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\historical\\event_2020_08_05_colaba_cyclonic_hourly.csv",
+    "name": "event_2020_08_05_colaba_cyclonic_hourly.csv",
+    "size_bytes": 1612,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 48,
+    "column_count": 3,
+    "columns": [
+      "timestamp",
+      "station",
+      "rainfall_mm"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\historical\\event_2021_07_18_chembur_cloudburst_hourly.csv",
+    "name": "event_2021_07_18_chembur_cloudburst_hourly.csv",
+    "size_bytes": 1612,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 48,
+    "column_count": 3,
+    "columns": [
+      "timestamp",
+      "station",
+      "rainfall_mm"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\historical\\event_2024_09_25_mumbai_monsoon_hourly.csv",
+    "name": "event_2024_09_25_mumbai_monsoon_hourly.csv",
+    "size_bytes": 1610,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 48,
+    "column_count": 3,
+    "columns": [
+      "timestamp",
+      "station",
+      "rainfall_mm"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\imerg\\imerg_20050726_halfhourly_mumbai_grid.csv",
+    "name": "imerg_20050726_halfhourly_mumbai_grid.csv",
+    "size_bytes": 27686,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 576,
+    "column_count": 6,
+    "columns": [
+      "timestamp_utc",
+      "latitude",
+      "longitude",
+      "precipitation_cal_mm_per_hr",
+      "precipitation_quality_index",
+      "satellite_ir_fraction"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\07_rainfall\\mosdac_samples\\insat3d_heg_mumbai_sample_20240925.json",
+    "name": "insat3d_heg_mumbai_sample_20240925.json",
+    "size_bytes": 2173,
+    "extension": ".json",
+    "keys": [
+      "product_name",
+      "product_id",
+      "satellite",
+      "sensor",
+      "timestamp_utc",
+      "spatial_resolution_km",
+      "mumbai_bounding_box",
+      "grid_dimensions",
+      "rainfall_rate_unit",
+      "sample_matrix",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\08_flood_observations\\flood_points.geojson",
+    "name": "flood_points.geojson",
+    "size_bytes": 7830,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 10,
+    "geom_types": [
+      "Point"
+    ],
+    "bbox_wgs84": [
+      72.841,
+      19.0125,
+      72.895,
+      19.256
+    ],
+    "sample_properties": [
+      "railway_impact",
+      "maximum_recorded_depth_m",
+      "zone",
+      "traffic_impact",
+      "spot_id",
+      "latitude",
+      "mitigation_status",
+      "ward",
+      "drainage_basin",
+      "location_name",
+      "longitude",
+      "typical_water_depth_m"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\08_flood_observations\\flood_polygons.geojson",
+    "name": "flood_polygons.geojson",
+    "size_bytes": 4171,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 4,
+    "geom_types": [
+      "Polygon"
+    ],
+    "bbox_wgs84": [
+      72.81,
+      18.91,
+      72.898,
+      19.12
+    ],
+    "sample_properties": [
+      "date",
+      "peak_depth_range_m",
+      "source",
+      "inundation_area_name",
+      "event_id",
+      "event_name"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\08_flood_observations\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1461,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "source",
+      "source_url",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\08_flood_observations\\historical_events\\bmc_chronic_spots_inventory.csv",
+    "name": "bmc_chronic_spots_inventory.csv",
+    "size_bytes": 2668,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 10,
+    "column_count": 12,
+    "columns": [
+      "spot_id",
+      "location_name",
+      "ward",
+      "zone",
+      "latitude",
+      "longitude",
+      "typical_water_depth_m",
+      "maximum_recorded_depth_m",
+      "drainage_basin",
+      "mitigation_status",
+      "traffic_impact",
+      "railway_impact"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\09_population\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1216,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "source",
+      "source_url",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\09_population\\population.geojson",
+    "name": "population.geojson",
+    "size_bytes": 30203,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 24,
+    "geom_types": [
+      "Polygon"
+    ],
+    "bbox_wgs84": [
+      72.775,
+      18.892,
+      72.965,
+      19.288
+    ],
+    "sample_properties": [
+      "license",
+      "slum_population_percentage",
+      "population_census_2011",
+      "zone",
+      "ward_id",
+      "area_sq_km",
+      "projected_density_2024_per_sq_km",
+      "social_flood_vulnerability_index",
+      "source",
+      "elderly_population_percentage",
+      "population_density_2011_per_sq_km",
+      "ward_name"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\10_shelters\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1352,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "source",
+      "source_url",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\10_shelters\\shelters.geojson",
+    "name": "shelters.geojson",
+    "size_bytes": 8064,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 10,
+    "geom_types": [
+      "Point"
+    ],
+    "bbox_wgs84": [
+      72.821,
+      18.912,
+      72.934,
+      19.232
+    ],
+    "sample_properties": [
+      "license",
+      "zone",
+      "name",
+      "shelter_id",
+      "capacity_persons",
+      "drinking_water_storage_liters",
+      "source",
+      "ward",
+      "type",
+      "medical_first_aid_post",
+      "backup_power_generator",
+      "address"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\11_coastal\\coastline.geojson",
+    "name": "coastline.geojson",
+    "size_bytes": 2707,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 1,
+    "geom_types": [
+      "LineString"
+    ],
+    "bbox_wgs84": [
+      72.78,
+      18.895,
+      72.975,
+      19.295
+    ],
+    "sample_properties": [
+      "license",
+      "name",
+      "source",
+      "tidal_environment",
+      "water_body",
+      "mean_spring_range_m"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  },
+  {
+    "path": "mumbai_flood_data_package\\11_coastal\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1287,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "source",
+      "source_url",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\11_coastal\\tide\\apollo_bunder_hourly_tide_20050725_20050727.csv",
+    "name": "apollo_bunder_hourly_tide_20050725_20050727.csv",
+    "size_bytes": 7395,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 72,
+    "column_count": 8,
+    "columns": [
+      "timestamp_utc",
+      "timestamp_ist",
+      "station_name",
+      "tide_height_m_cd",
+      "tide_height_m_msl",
+      "surge_residual_m",
+      "tidal_phase",
+      "drainage_outfall_gate_status"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\11_coastal\\tide\\apollo_bunder_tide_benchmarks.json",
+    "name": "apollo_bunder_tide_benchmarks.json",
+    "size_bytes": 1509,
+    "extension": ".json",
+    "keys": [
+      "gauge_station",
+      "station_id",
+      "authority",
+      "latitude",
+      "longitude",
+      "vertical_datums",
+      "critical_thresholds_for_urban_drainage",
+      "harmonic_constituents"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\12_synthetic\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1216,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "status",
+      "source",
+      "source_url",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\12_synthetic\\rainfall_scenarios\\cloudburst_pulse_15min.csv",
+    "name": "cloudburst_pulse_15min.csv",
+    "size_bytes": 2086,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 24,
+    "column_count": 7,
+    "columns": [
+      "timestep_index",
+      "timestamp_iso",
+      "rainfall_intensity_mm_per_hr",
+      "rainfall_increment_15min_mm",
+      "cumulative_rainfall_mm",
+      "scenario_label",
+      "data_type"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\12_synthetic\\rainfall_scenarios\\extreme_rain_15min.csv",
+    "name": "extreme_rain_15min.csv",
+    "size_bytes": 2017,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 24,
+    "column_count": 7,
+    "columns": [
+      "timestep_index",
+      "timestamp_iso",
+      "rainfall_intensity_mm_per_hr",
+      "rainfall_increment_15min_mm",
+      "cumulative_rainfall_mm",
+      "scenario_label",
+      "data_type"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\12_synthetic\\rainfall_scenarios\\heavy_rain_15min.csv",
+    "name": "heavy_rain_15min.csv",
+    "size_bytes": 1954,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 24,
+    "column_count": 7,
+    "columns": [
+      "timestep_index",
+      "timestamp_iso",
+      "rainfall_intensity_mm_per_hr",
+      "rainfall_increment_15min_mm",
+      "cumulative_rainfall_mm",
+      "scenario_label",
+      "data_type"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\12_synthetic\\rainfall_scenarios\\light_rain_15min.csv",
+    "name": "light_rain_15min.csv",
+    "size_bytes": 1902,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 24,
+    "column_count": 7,
+    "columns": [
+      "timestep_index",
+      "timestamp_iso",
+      "rainfall_intensity_mm_per_hr",
+      "rainfall_increment_15min_mm",
+      "cumulative_rainfall_mm",
+      "scenario_label",
+      "data_type"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data_package\\12_synthetic\\rainfall_scenarios\\moderate_rain_15min.csv",
+    "name": "moderate_rain_15min.csv",
+    "size_bytes": 1995,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 24,
+    "column_count": 7,
+    "columns": [
+      "timestep_index",
+      "timestamp_iso",
+      "rainfall_intensity_mm_per_hr",
+      "rainfall_increment_15min_mm",
+      "cumulative_rainfall_mm",
+      "scenario_label",
+      "data_type"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\01_city\\config.json",
+    "name": "config.json",
+    "size_bytes": 738,
+    "extension": ".json",
+    "keys": [
+      "city",
+      "country",
+      "state",
+      "target_bbox_wgs84",
+      "ward_count_administrative",
+      "ward_count_electoral_2017",
+      "utm_zone_recommended",
+      "sources_used"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\01_city\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 3520,
+    "extension": ".json",
+    "keys": 3
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\02_dem\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 2558,
+    "extension": ".json",
+    "keys": 1
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\03_land_cover\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1890,
+    "extension": ".json",
+    "keys": 1
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\04_roads\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1808,
+    "extension": ".json",
+    "keys": 1
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\05_buildings\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1780,
+    "extension": ".json",
+    "keys": 1
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\06_drainage\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 2688,
+    "extension": ".json",
+    "keys": [
+      "status",
+      "dataset",
+      "sources_checked",
+      "missing_data",
+      "possible_fallback",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\07_rainfall\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 2045,
+    "extension": ".json",
+    "keys": 1
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\07_rainfall\\gauges\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1917,
+    "extension": ".json",
+    "keys": [
+      "status",
+      "dataset",
+      "sources_checked",
+      "missing_data",
+      "possible_fallback",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\07_rainfall\\imerg\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1,
+    "extension": ".json",
+    "json_error": "Expecting value: line 1 column 2 (char 1)"
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\07_rainfall\\mosdac_samples\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 544,
+    "extension": ".json",
+    "keys": [
+      "status",
+      "note"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\08_flood_observations\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 4211,
+    "extension": ".json",
+    "keys": 3
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\09_population\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 3174,
+    "extension": ".json",
+    "keys": 2
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\10_shelters\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1408,
+    "extension": ".json",
+    "keys": [
+      "status",
+      "dataset",
+      "sources_checked",
+      "missing_data",
+      "possible_fallback",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\11_coastal\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 2444,
+    "extension": ".json",
+    "keys": 2
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\12_synthetic\\rainfall_scenarios\\extreme_rain.csv",
+    "name": "extreme_rain.csv",
+    "size_bytes": 819,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 24,
+    "column_count": 2,
+    "columns": [
+      "timestamp_ist",
+      "rainfall_mm_15min"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\12_synthetic\\rainfall_scenarios\\heavy_rain.csv",
+    "name": "heavy_rain.csv",
+    "size_bytes": 679,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 20,
+    "column_count": 2,
+    "columns": [
+      "timestamp_ist",
+      "rainfall_mm_15min"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\12_synthetic\\rainfall_scenarios\\light_rain.csv",
+    "name": "light_rain.csv",
+    "size_bytes": 413,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 12,
+    "column_count": 2,
+    "columns": [
+      "timestamp_ist",
+      "rainfall_mm_15min"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\12_synthetic\\rainfall_scenarios\\metadata.json",
+    "name": "metadata.json",
+    "size_bytes": 1228,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "source",
+      "source_url",
+      "license",
+      "download_date",
+      "format",
+      "crs",
+      "spatial_resolution",
+      "temporal_resolution",
+      "coverage",
+      "file_size",
+      "quality",
+      "limitations",
+      "processing",
+      "notes"
+    ]
+  },
+  {
+    "path": "mumbai_flood_data\\mumbai_flood_data\\12_synthetic\\rainfall_scenarios\\moderate_rain.csv",
+    "name": "moderate_rain.csv",
+    "size_bytes": 543,
+    "extension": ".csv",
+    "format": "CSV",
+    "row_count": 16,
+    "column_count": 2,
+    "columns": [
+      "timestamp_ist",
+      "rainfall_mm_15min"
+    ]
+  },
+  {
+    "path": "data\\cities\\mumbai\\config.json",
+    "name": "config.json",
+    "size_bytes": 1086,
+    "extension": ".json",
+    "keys": [
+      "city_id",
+      "name",
+      "state",
+      "country",
+      "crs_epsg",
+      "cell_size_m",
+      "bbox",
+      "timezone",
+      "config"
+    ]
+  },
+  {
+    "path": "data\\cities\\mumbai\\wards.geojson",
+    "name": "wards.geojson",
+    "size_bytes": 22336,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 24,
+    "geom_types": [
+      "MultiPolygon"
+    ],
+    "bbox_wgs84": [
+      72.79,
+      18.9,
+      72.96,
+      19.27
+    ],
+    "sample_properties": [
+      "population",
+      "city",
+      "drainage_capacity_mm_hr",
+      "ward_id",
+      "name",
+      "area_sq_km",
+      "ward_name",
+      "elevation_mean_m"
+    ],
+    "crs": "EPSG:4326 (WGS84 implied)"
+  },
+  {
+    "path": "data\\raw\\terrain\\opentopography_cop30_mumbai_bbox.source.json",
+    "name": "opentopography_cop30_mumbai_bbox.source.json",
+    "size_bytes": 1050,
+    "extension": ".json",
+    "keys": [
+      "dataset",
+      "provider",
+      "dem_type",
+      "origin_class",
+      "verification_status",
+      "retrieved_at_utc",
+      "request_extent_wgs84",
+      "expected_product_resolution_m",
+      "expected_format",
+      "file",
+      "file_size_bytes",
+      "sha256",
+      "caveats"
+    ]
+  },
+  {
+    "path": "data\\raw\\terrain\\opentopography_cop30_mumbai_bbox.tif",
+    "name": "opentopography_cop30_mumbai_bbox.tif",
+    "size_bytes": 7114444,
+    "extension": ".tif",
+    "format": "GeoTIFF",
+    "shape": [
+      1800,
+      1620
+    ],
+    "dtype": "float32",
+    "min_value": -17.27194595336914,
+    "max_value": 488.6098327636719,
+    "geotags": {
+      "SamplesPerPixel": "1",
+      "ModelPixelScaleTag": "(0.0002777777777777778, 0.0002777777777777778, 0.0)",
+      "ModelTiepointTag": "(0.0, 0.0, 0.0, 72.6499999888889, 19.350000011111103, 0.0)",
+      "GeoKeyDirectoryTag": "(1, 1, 0, 7, 1024, 0, 1, 2, 1025, 0, 1, 2, 2048, 0, 1, 4326, 2049, 34737, 7, 0, 2054, 0, 1, 9102, 20",
+      "GeoDoubleParamsTag": "(298.257223563, 6378137.0)",
+      "GeoAsciiParamsTag": "WGS 84|"
+    }
+  },
+  {
+    "path": "mumbai_urban_flood_2016_2025 (1).geojson",
+    "name": "mumbai_urban_flood_2016_2025 (1).geojson",
+    "size_bytes": 422164,
+    "extension": ".geojson",
+    "format": "GeoJSON",
+    "feature_count": 202,
+    "geom_types": [
+      "Point",
+      "Polygon"
+    ],
+    "bbox_wgs84": [
+      72.802,
+      18.9275,
+      72.928,
+      19.255
+    ],
+    "sample_properties": [
+      "slope_degree",
+      "rainfall_3h_mm",
+      "rainfall_intensity_index",
+      "groundwater_level_m",
+      "year",
+      "economic_loss",
+      "impervious_surface_percentage",
+      "event_id",
+      "rainfall_12h_mm",
+      "antecedent_rainfall_3day_mm",
+      "source_url",
+      "NDWI"
+    ],
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  }
+]

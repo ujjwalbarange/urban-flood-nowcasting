@@ -1,0 +1,18 @@
+{
+  "dem_product": "Copernicus GLO-30 DSM",
+  "dem_resolution_m": 30.0,
+  "rows": 1800,
+  "cols": 1620,
+  "min_elevation_m": -17.27194595336914,
+  "max_elevation_m": 488.6098327636719,
+  "mean_elevation_m": 17.437061309814453,
+  "slope_mean_deg": 2.834730386734009,
+  "slope_max_deg": 62.080806732177734,
+  "aspect_mean_deg": 180.72398376464844,
+  "sink_max_depth_m": 24.481107711791992,
+  "sink_mean_depth_m": 0.11322357505559921,
+  "sink_volume_m3": 297143936.0,
+  "flow_accumulation_max_cells": 1668,
+  "flow_accumulation_max_area_sq_km": 1.5012,
+  "derivation_algorithm": "Barnes Priority-Flood (2014) + Horn Central Differences (1981)"
+}

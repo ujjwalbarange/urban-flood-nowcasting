@@ -1,0 +1,747 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_flood_hotspots",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0001",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0001",
+        "name": "Hindmata Cinema Junction",
+        "hotspot_type": "low_lying_depression",
+        "evidence": "Documented saucer-shaped depression surcharging during intense rain & high tides; holding tanks installed 2021",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.844,
+          19.0125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0002",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0002",
+        "name": "Gandhi Market / King's Circle",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Documented chronic waterlogging zone on Dr. Ambedkar Road; traffic diverted every monsoon",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.855,
+          19.032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0003",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0003",
+        "name": "Dadar TT Circle",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Documented junction inundation disrupting central Island City bus routes",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.846,
+          19.022
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0004",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0004",
+        "name": "Nana Chowk (Grant Road)",
+        "hotspot_type": "low_lying_depression",
+        "evidence": "Topographic depression near Grant Road railway underpass experiencing surface runoff accumulation",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.815,
+          18.962
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0005",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0005",
+        "name": "Byculla Fire Brigade Junction",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Low elevation junction on Dr. Ambedkar Road causing localized vehicle stranding",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.833,
+          18.975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0006",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0006",
+        "name": "Sion Railway Station & Matunga Road Tracks",
+        "hotspot_type": "railway_track_flooding",
+        "evidence": "Central Railway mainline tracks submerged up to 0.6m during high tide coincidence",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.86,
+          19.04
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0007",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0007",
+        "name": "Chunabhatti Priyadarshini Circle",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Major bottleneck connecting Eastern Express Highway, SCLR, and BKC connector",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.875,
+          19.048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0008",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0008",
+        "name": "Worli Naka Junction",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Inundation point near Love Grove outfall when sluice gates close against rising tide",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "extreme_tide_coincidence"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.818,
+          19.012
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0009",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0009",
+        "name": "Mahim Junction & Causeway Approach",
+        "hotspot_type": "low_lying_depression",
+        "evidence": "Tidal backwater from Mahim Bay impeding outfall discharges from Dharavi and Mithi",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "extreme_tide_coincidence"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.84,
+          19.042
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0010",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0010",
+        "name": "Breach Candy / Warden Road Low Point",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Runoff cascade from Cumballa Hill trapped against coastal seawall during cloudbursts",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.805,
+          18.972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0011",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0011",
+        "name": "Milan Subway (Santacruz)",
+        "hotspot_type": "subway_inundation",
+        "evidence": "Subway under Western Railway lines submerging up to 1.5m despite dedicated pumping",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.845,
+          19.086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0012",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0012",
+        "name": "Andheri Subway",
+        "hotspot_type": "subway_inundation",
+        "evidence": "Chronic railway subway inundation linked to Mogra nullah backwater; traffic halted during high tide",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.846,
+          19.119
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0013",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0013",
+        "name": "Malad Subway",
+        "hotspot_type": "subway_inundation",
+        "evidence": "Subway flooding trapping buses and light vehicles during cloudburst storms",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.85,
+          19.187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0014",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0014",
+        "name": "Khar Subway",
+        "hotspot_type": "subway_inundation",
+        "evidence": "Railway underpass flooding connecting SV Road to Western Express Highway",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.841,
+          19.073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0015",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0015",
+        "name": "Dahisar Subway",
+        "hotspot_type": "subway_inundation",
+        "evidence": "Northernmost suburban subway inundated by Dahisar river overbank spillage",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.858,
+          19.257
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0016",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0016",
+        "name": "Dahisar Check Naka (WEH)",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Highway waterlogging choking inter-district transit between Mumbai and Mira-Bhayandar",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.868,
+          19.278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0017",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0017",
+        "name": "SV Road Bandra Talkies Junction",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Gazdarbandh nullah catchment drainage bottleneck causing SV road submergence",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.838,
+          19.055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0018",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0018",
+        "name": "Vile Parle East Nehru Road",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Urban ponding near domestic airport approach flyover",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.852,
+          19.098
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0019",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0019",
+        "name": "Goregaon Siddharth Nagar Low Point",
+        "hotspot_type": "low_lying_depression",
+        "evidence": "Oshiwara River tributary overflow into residential colony streets",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.845,
+          19.162
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0020",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0020",
+        "name": "Chincholi Bunder Malad Link Road",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Waterlogging along commercial Link Road corridor due to Malad Creek tidal backwater",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "extreme_tide_coincidence"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.836,
+          19.182
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0021",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0021",
+        "name": "Borivali SV Road Station Area",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Intense footfall and surface runoff accumulation around suburban railway station precinct",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.854,
+          19.232
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0022",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0022",
+        "name": "Kurla West Bail Bazar & Kamani Junction",
+        "hotspot_type": "riverine_overflow",
+        "evidence": "Severe riverine flooding from Mithi River overtopping banks; catastrophic submergence in 2005, 2017, 2019",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.875,
+          19.07
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0023",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0023",
+        "name": "Kalina CST Road (Airport Perimeter)",
+        "hotspot_type": "riverine_overflow",
+        "evidence": "Vakola Nullah overbank spillage flooding arterial connection between WEH and SCLR",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.862,
+          19.072
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0024",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0024",
+        "name": "Bandra-Kurla Complex (BKC) G-Block Lowland",
+        "hotspot_type": "riverine_overflow",
+        "evidence": "Mithi river flood spillage into commercial basements and peripheral service roads",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.865,
+          19.062
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0025",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0025",
+        "name": "Chembur Postal Colony",
+        "hotspot_type": "low_lying_depression",
+        "evidence": "Reclaimed salt pan depression suffering prolonged waterlogging during high tide coincidence",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.902,
+          19.055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0026",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0026",
+        "name": "Tilak Nagar Railway Colony Lowland",
+        "hotspot_type": "low_lying_depression",
+        "evidence": "Low-lying residential sector between Central and Harbour railway lines prone to ponding",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.895,
+          19.065
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0027",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0027",
+        "name": "Govandi Shivaji Nagar Lotus Colony",
+        "hotspot_type": "low_lying_depression",
+        "evidence": "High-density settlement adjacent to Deonar nullah outfall suffering drainage blockage",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.925,
+          19.058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0028",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0028",
+        "name": "Mankhurd Railway Station Underpass",
+        "hotspot_type": "subway_inundation",
+        "evidence": "Harbour line tracks and pedestrian underpass submerged during high tide events",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.935,
+          19.048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0029",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0029",
+        "name": "Vidyavihar Station Underpass",
+        "hotspot_type": "subway_inundation",
+        "evidence": "Somaiya Nullah crossing surcharge inundating east-west vehicular underpass",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "annual_monsoon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.898,
+          19.08
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0030",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0030",
+        "name": "Ghatkopar LBS Marg / Shreyas Cinema",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "LBS Marg road flooding due to hill runoff from Ghatkopar West hills exceeding roadside capacity",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.905,
+          19.102
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0031",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0031",
+        "name": "Sakinaka Junction (Andheri-Kurla Road)",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Major metro and arterial traffic node experiencing Mithi tributary overflow",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.885,
+          19.105
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0032",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0032",
+        "name": "Bhandup Sonapur Junction (LBS Marg)",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "LBS Marg corridor waterlogging from overflowing hill drainage channels",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.932,
+          19.155
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0033",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0033",
+        "name": "Mulund Check Naka (LBS Marg / EEH)",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Waterlogging near boundary toll naka during heavy cloudburst downpours",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.952,
+          19.185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0034",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0034",
+        "name": "Deonar Abattoir & Highway Junction",
+        "hotspot_type": "road_junction_waterlogging",
+        "evidence": "Sion-Panvel highway service road inundation linked to Mahul creek tidal choke",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.915,
+          19.06
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HOTSPOT_0035",
+      "properties": {
+        "hotspot_id": "HOTSPOT_0035",
+        "name": "Wadala Antop Hill Lowland",
+        "hotspot_type": "low_lying_depression",
+        "evidence": "Inter-hill trough with poor stormwater gravity gradient towards Mumbai harbour",
+        "source": "MCGM Disaster Management Department / BMC Monsoon Action Plan / Chitale Committee Report",
+        "source_url": "https://dm.mcgm.gov.in",
+        "confidence": "high",
+        "recurrence": "frequent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.865,
+          19.018
+        ]
+      }
+    }
+  ]
+}

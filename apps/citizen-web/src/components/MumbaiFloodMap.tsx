@@ -59,6 +59,75 @@ const API_BASE = 'http://127.0.0.1:8000/api/v1';
 // Mumbai center coordinates
 const MUMBAI_CENTER: [number, number] = [19.076, 72.877];
 
+/** Safely extract a [lat, lng] center coordinate from any GeoJSON geometry type */
+function getFeatureCenter(geometry: any): [number, number] | null {
+  if (!geometry || !geometry.coordinates) return null;
+  const { type, coordinates } = geometry;
+
+  if (type === 'Point' && Array.isArray(coordinates)) {
+    const [lng, lat] = coordinates;
+    if (typeof lat === 'number' && typeof lng === 'number' && !isNaN(lat) && !isNaN(lng)) {
+      return [lat, lng];
+    }
+    return null;
+  }
+
+  if (type === 'Polygon' && Array.isArray(coordinates) && Array.isArray(coordinates[0])) {
+    const ring = coordinates[0];
+    if (!ring || ring.length === 0) return null;
+    let sumLat = 0;
+    let sumLng = 0;
+    let count = 0;
+    for (const pt of ring) {
+      if (Array.isArray(pt) && typeof pt[1] === 'number' && typeof pt[0] === 'number') {
+        sumLng += pt[0];
+        sumLat += pt[1];
+        count++;
+      }
+    }
+    if (count === 0) return null;
+    return [sumLat / count, sumLng / count];
+  }
+
+  if (type === 'MultiPolygon' && Array.isArray(coordinates) && Array.isArray(coordinates[0]?.[0])) {
+    const ring = coordinates[0][0];
+    if (!ring || ring.length === 0) return null;
+    let sumLat = 0;
+    let sumLng = 0;
+    let count = 0;
+    for (const pt of ring) {
+      if (Array.isArray(pt) && typeof pt[1] === 'number' && typeof pt[0] === 'number') {
+        sumLng += pt[0];
+        sumLat += pt[1];
+        count++;
+      }
+    }
+    if (count === 0) return null;
+    return [sumLat / count, sumLng / count];
+  }
+
+  if (type === 'LineString' && Array.isArray(coordinates)) {
+    let sumLat = 0;
+    let sumLng = 0;
+    let count = 0;
+    for (const pt of coordinates) {
+      if (Array.isArray(pt) && typeof pt[1] === 'number' && typeof pt[0] === 'number') {
+        sumLng += pt[0];
+        sumLat += pt[1];
+        count++;
+      }
+    }
+    if (count === 0) return null;
+    return [sumLat / count, sumLng / count];
+  }
+
+  if (Array.isArray(coordinates) && typeof coordinates[0] === 'number' && typeof coordinates[1] === 'number') {
+    return [coordinates[1], coordinates[0]];
+  }
+
+  return null;
+}
+
 // ── Layer toggle component ──
 function LayerToggle({
   label,
@@ -370,7 +439,7 @@ export function MumbaiFloodMap() {
               background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(4px)',
               fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 600,
             }}>
-              Loading local candidate data (source audit incomplete)...
+              Loading Mumbai GIS & Flood Layers...
             </div>
           )}
           <MapContainer
@@ -428,7 +497,8 @@ export function MumbaiFloodMap() {
 
             {/* Flood hotspots (circle markers) */}
             {showHotspots && floodHotspots?.features?.map((f, i) => {
-              const coords = f.geometry.coordinates;
+              const center = getFeatureCenter(f.geometry);
+              if (!center) return null;
               const p = f.properties;
               const depth = p.typical_water_depth_m || 0;
               const color = depth >= 1.5 ? '#dc2626' : depth >= 1.0 ? '#ea580c' : depth >= 0.5 ? '#d97706' : '#059669';
@@ -436,7 +506,7 @@ export function MumbaiFloodMap() {
               return (
                 <CircleMarker
                   key={`hotspot-${i}`}
-                  center={[coords[1], coords[0]]}
+                  center={center}
                   radius={radius}
                   pathOptions={{
                     fillColor: color,
@@ -481,12 +551,13 @@ export function MumbaiFloodMap() {
 
             {/* Drainage nodes (pumping stations) */}
             {showDrainage && drainageNodes?.features?.map((f, i) => {
-              const coords = f.geometry.coordinates;
+              const center = getFeatureCenter(f.geometry);
+              if (!center) return null;
               const p = f.properties;
               return (
                 <CircleMarker
                   key={`drain-node-${i}`}
-                  center={[coords[1], coords[0]]}
+                  center={center}
                   radius={6}
                   pathOptions={{
                     fillColor: '#0284c7',
@@ -513,12 +584,13 @@ export function MumbaiFloodMap() {
 
             {/* Shelters */}
             {showShelters && shelters?.features?.map((f, i) => {
-              const coords = f.geometry.coordinates;
+              const center = getFeatureCenter(f.geometry);
+              if (!center) return null;
               const p = f.properties;
               return (
                 <CircleMarker
                   key={`shelter-${i}`}
-                  center={[coords[1], coords[0]]}
+                  center={center}
                   radius={7}
                   pathOptions={{
                     fillColor: '#059669',

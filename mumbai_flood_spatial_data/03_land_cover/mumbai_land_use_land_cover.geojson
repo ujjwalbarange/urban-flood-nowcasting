@@ -1,0 +1,2841 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_land_use_land_cover",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "LULC_0001",
+      "properties": {
+        "lulc_id": "LULC_0001",
+        "name": "Dharavi High Density Settlement",
+        "class": "dense built-up",
+        "class_code": 1,
+        "area_m2": 2972653.04,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.862,
+              19.035
+            ],
+            [
+              72.862,
+              19.05
+            ],
+            [
+              72.845,
+              19.05
+            ],
+            [
+              72.845,
+              19.035
+            ],
+            [
+              72.862,
+              19.035
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0002",
+      "properties": {
+        "lulc_id": "LULC_0002",
+        "name": "Kurla West & Bail Bazar Settlements",
+        "class": "dense built-up",
+        "class_code": 1,
+        "area_m2": 2972057.35,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.882,
+              19.065
+            ],
+            [
+              72.882,
+              19.08
+            ],
+            [
+              72.865,
+              19.08
+            ],
+            [
+              72.865,
+              19.065
+            ],
+            [
+              72.882,
+              19.065
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0003",
+      "properties": {
+        "lulc_id": "LULC_0003",
+        "name": "Govandi & Shivaji Nagar Settlements",
+        "class": "dense built-up",
+        "class_code": 1,
+        "area_m2": 3170245.98,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.932,
+              19.052
+            ],
+            [
+              72.932,
+              19.068
+            ],
+            [
+              72.915,
+              19.068
+            ],
+            [
+              72.915,
+              19.052
+            ],
+            [
+              72.932,
+              19.052
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0004",
+      "properties": {
+        "lulc_id": "LULC_0004",
+        "name": "Mankhurd & Mandala Settlements",
+        "class": "dense built-up",
+        "class_code": 1,
+        "area_m2": 2622612.67,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.04
+            ],
+            [
+              72.94,
+              19.055
+            ],
+            [
+              72.925,
+              19.055
+            ],
+            [
+              72.925,
+              19.04
+            ],
+            [
+              72.94,
+              19.04
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0005",
+      "properties": {
+        "lulc_id": "LULC_0005",
+        "name": "Bhendi Bazaar, Dongri & Sandhurst Road Chawls",
+        "class": "dense built-up",
+        "class_code": 1,
+        "area_m2": 2099435.92,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.842,
+              18.95
+            ],
+            [
+              72.842,
+              18.965
+            ],
+            [
+              72.83,
+              18.965
+            ],
+            [
+              72.83,
+              18.95
+            ],
+            [
+              72.842,
+              18.95
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0006",
+      "properties": {
+        "lulc_id": "LULC_0006",
+        "name": "Malad Malvani High Density Sector",
+        "class": "dense built-up",
+        "class_code": 1,
+        "area_m2": 2795418.38,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.828,
+              19.185
+            ],
+            [
+              72.828,
+              19.2
+            ],
+            [
+              72.812,
+              19.2
+            ],
+            [
+              72.812,
+              19.185
+            ],
+            [
+              72.828,
+              19.185
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0007",
+      "properties": {
+        "lulc_id": "LULC_0007",
+        "name": "Dadar, Matunga & Wadala Residential Wards",
+        "class": "medium built-up",
+        "class_code": 2,
+        "area_m2": 4663485.2,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.015
+            ],
+            [
+              72.86,
+              19.035
+            ],
+            [
+              72.84,
+              19.035
+            ],
+            [
+              72.84,
+              19.015
+            ],
+            [
+              72.86,
+              19.015
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0008",
+      "properties": {
+        "lulc_id": "LULC_0008",
+        "name": "Chembur Suburb Sector",
+        "class": "medium built-up",
+        "class_code": 2,
+        "area_m2": 6702106.04,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.915,
+              19.045
+            ],
+            [
+              72.915,
+              19.068
+            ],
+            [
+              72.89,
+              19.068
+            ],
+            [
+              72.89,
+              19.045
+            ],
+            [
+              72.915,
+              19.045
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0009",
+      "properties": {
+        "lulc_id": "LULC_0009",
+        "name": "Santacruz & Vile Parle Urban Sector",
+        "class": "medium built-up",
+        "class_code": 2,
+        "area_m2": 5349271.86,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.855,
+              19.078
+            ],
+            [
+              72.855,
+              19.105
+            ],
+            [
+              72.838,
+              19.105
+            ],
+            [
+              72.838,
+              19.078
+            ],
+            [
+              72.855,
+              19.078
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0010",
+      "properties": {
+        "lulc_id": "LULC_0010",
+        "name": "Ghatkopar West & East Sector",
+        "class": "medium built-up",
+        "class_code": 2,
+        "area_m2": 7283307.55,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.08
+            ],
+            [
+              72.92,
+              19.105
+            ],
+            [
+              72.895,
+              19.105
+            ],
+            [
+              72.895,
+              19.08
+            ],
+            [
+              72.92,
+              19.08
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0011",
+      "properties": {
+        "lulc_id": "LULC_0011",
+        "name": "Mulund West Suburb Sector",
+        "class": "medium built-up",
+        "class_code": 2,
+        "area_m2": 5357619.06,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.955,
+              19.165
+            ],
+            [
+              72.955,
+              19.188
+            ],
+            [
+              72.935,
+              19.188
+            ],
+            [
+              72.935,
+              19.165
+            ],
+            [
+              72.955,
+              19.165
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0012",
+      "properties": {
+        "lulc_id": "LULC_0012",
+        "name": "Malabar Hill & Cumballa Hill Low-Density Estate",
+        "class": "low-density built-up",
+        "class_code": 3,
+        "area_m2": 3965813.44,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.812,
+              18.945
+            ],
+            [
+              72.812,
+              18.965
+            ],
+            [
+              72.795,
+              18.965
+            ],
+            [
+              72.795,
+              18.945
+            ],
+            [
+              72.812,
+              18.945
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0013",
+      "properties": {
+        "lulc_id": "LULC_0013",
+        "name": "Pali Hill & Bandra West Low-Density Zone",
+        "class": "low-density built-up",
+        "class_code": 3,
+        "area_m2": 2576056.32,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.835,
+              19.055
+            ],
+            [
+              72.835,
+              19.072
+            ],
+            [
+              72.822,
+              19.072
+            ],
+            [
+              72.822,
+              19.055
+            ],
+            [
+              72.835,
+              19.055
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0014",
+      "properties": {
+        "lulc_id": "LULC_0014",
+        "name": "Juhu Tara Bungalow Zone",
+        "class": "low-density built-up",
+        "class_code": 3,
+        "area_m2": 3332981.3,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.835,
+              19.09
+            ],
+            [
+              72.835,
+              19.112
+            ],
+            [
+              72.822,
+              19.112
+            ],
+            [
+              72.822,
+              19.09
+            ],
+            [
+              72.835,
+              19.09
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0015",
+      "properties": {
+        "lulc_id": "LULC_0015",
+        "name": "Powai Hiranandani Buffer Hills",
+        "class": "low-density built-up",
+        "class_code": 3,
+        "area_m2": 2621510.4,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.115
+            ],
+            [
+              72.92,
+              19.13
+            ],
+            [
+              72.905,
+              19.13
+            ],
+            [
+              72.905,
+              19.115
+            ],
+            [
+              72.92,
+              19.115
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0016",
+      "properties": {
+        "lulc_id": "LULC_0016",
+        "name": "MIDC Andheri & Chakala Industrial Zone",
+        "class": "industrial",
+        "class_code": 4,
+        "area_m2": 2971202.99,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.875,
+              19.115
+            ],
+            [
+              72.875,
+              19.13
+            ],
+            [
+              72.858,
+              19.13
+            ],
+            [
+              72.858,
+              19.115
+            ],
+            [
+              72.875,
+              19.115
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0017",
+      "properties": {
+        "lulc_id": "LULC_0017",
+        "name": "Trombay Refinery & Petrochemical Complex",
+        "class": "industrial",
+        "class_code": 4,
+        "area_m2": 8743711.6,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.935,
+              19.005
+            ],
+            [
+              72.935,
+              19.03
+            ],
+            [
+              72.905,
+              19.03
+            ],
+            [
+              72.905,
+              19.005
+            ],
+            [
+              72.935,
+              19.005
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0018",
+      "properties": {
+        "lulc_id": "LULC_0018",
+        "name": "Kanjurmarg & Bhandup Industrial Corridor",
+        "class": "industrial",
+        "class_code": 4,
+        "area_m2": 3960700.43,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.942,
+              19.138
+            ],
+            [
+              72.942,
+              19.158
+            ],
+            [
+              72.925,
+              19.158
+            ],
+            [
+              72.925,
+              19.138
+            ],
+            [
+              72.942,
+              19.138
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0019",
+      "properties": {
+        "lulc_id": "LULC_0019",
+        "name": "Sewri Timber Market & Harbour Godown Zone",
+        "class": "industrial",
+        "class_code": 4,
+        "area_m2": 3264996.72,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.862,
+              18.985
+            ],
+            [
+              72.862,
+              19.005
+            ],
+            [
+              72.848,
+              19.005
+            ],
+            [
+              72.848,
+              18.985
+            ],
+            [
+              72.862,
+              18.985
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0020",
+      "properties": {
+        "lulc_id": "LULC_0020",
+        "name": "Nariman Point & Fort Central Business District",
+        "class": "commercial",
+        "class_code": 5,
+        "area_m2": 2986367.13,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.838,
+              18.922
+            ],
+            [
+              72.838,
+              18.938
+            ],
+            [
+              72.822,
+              18.938
+            ],
+            [
+              72.822,
+              18.922
+            ],
+            [
+              72.838,
+              18.922
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0021",
+      "properties": {
+        "lulc_id": "LULC_0021",
+        "name": "Bandra-Kurla Complex (BKC) Financial District",
+        "class": "commercial",
+        "class_code": 5,
+        "area_m2": 2797398.59,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.875,
+              19.058
+            ],
+            [
+              72.875,
+              19.07
+            ],
+            [
+              72.855,
+              19.07
+            ],
+            [
+              72.855,
+              19.058
+            ],
+            [
+              72.875,
+              19.058
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0022",
+      "properties": {
+        "lulc_id": "LULC_0022",
+        "name": "Lower Parel & Elphinstone Commercial Mill Hub",
+        "class": "commercial",
+        "class_code": 5,
+        "area_m2": 3031742.09,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.838,
+              18.992
+            ],
+            [
+              72.838,
+              19.012
+            ],
+            [
+              72.825,
+              19.012
+            ],
+            [
+              72.825,
+              18.992
+            ],
+            [
+              72.838,
+              18.992
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0023",
+      "properties": {
+        "lulc_id": "LULC_0023",
+        "name": "Mindspace & Infinity Malad Commercial Cluster",
+        "class": "commercial",
+        "class_code": 5,
+        "area_m2": 2376187.57,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.842,
+              19.175
+            ],
+            [
+              72.842,
+              19.192
+            ],
+            [
+              72.83,
+              19.192
+            ],
+            [
+              72.83,
+              19.175
+            ],
+            [
+              72.842,
+              19.175
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0024",
+      "properties": {
+        "lulc_id": "LULC_0024",
+        "name": "Lokhandwala Complex & Oshiwara Residential",
+        "class": "residential",
+        "class_code": 6,
+        "area_m2": 3168968.64,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.838,
+              19.138
+            ],
+            [
+              72.838,
+              19.155
+            ],
+            [
+              72.822,
+              19.155
+            ],
+            [
+              72.822,
+              19.138
+            ],
+            [
+              72.838,
+              19.138
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0025",
+      "properties": {
+        "lulc_id": "LULC_0025",
+        "name": "Thakur Village & Complex Kandivali East",
+        "class": "residential",
+        "class_code": 6,
+        "area_m2": 2445541.77,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.882,
+              19.205
+            ],
+            [
+              72.882,
+              19.22
+            ],
+            [
+              72.868,
+              19.22
+            ],
+            [
+              72.868,
+              19.205
+            ],
+            [
+              72.882,
+              19.205
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0026",
+      "properties": {
+        "lulc_id": "LULC_0026",
+        "name": "Mahavir Nagar & Charkop Residential",
+        "class": "residential",
+        "class_code": 6,
+        "area_m2": 2969628.69,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.85,
+              19.208
+            ],
+            [
+              72.85,
+              19.225
+            ],
+            [
+              72.835,
+              19.225
+            ],
+            [
+              72.835,
+              19.208
+            ],
+            [
+              72.85,
+              19.208
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0027",
+      "properties": {
+        "lulc_id": "LULC_0027",
+        "name": "Parel & Lalbaug Residential Towers",
+        "class": "residential",
+        "class_code": 6,
+        "area_m2": 2728583.68,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.848,
+              18.99
+            ],
+            [
+              72.848,
+              19.008
+            ],
+            [
+              72.835,
+              19.008
+            ],
+            [
+              72.835,
+              18.99
+            ],
+            [
+              72.848,
+              18.99
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0028",
+      "properties": {
+        "lulc_id": "LULC_0028",
+        "name": "Chhatrapati Shivaji Maharaj International Airport (CSMIA)",
+        "class": "roads/transport",
+        "class_code": 7,
+        "area_m2": 6992175.12,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.885,
+              19.085
+            ],
+            [
+              72.885,
+              19.105
+            ],
+            [
+              72.855,
+              19.105
+            ],
+            [
+              72.855,
+              19.085
+            ],
+            [
+              72.885,
+              19.085
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0029",
+      "properties": {
+        "lulc_id": "LULC_0029",
+        "name": "Mumbai Port Trust Marine Terminal & Docks",
+        "class": "roads/transport",
+        "class_code": 7,
+        "area_m2": 5948763.79,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.855,
+              18.93
+            ],
+            [
+              72.855,
+              18.96
+            ],
+            [
+              72.838,
+              18.96
+            ],
+            [
+              72.838,
+              18.93
+            ],
+            [
+              72.855,
+              18.93
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0030",
+      "properties": {
+        "lulc_id": "LULC_0030",
+        "name": "Western Express Highway Road Corridor Buffer",
+        "class": "roads/transport",
+        "class_code": 7,
+        "area_m2": 6990414.25,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.865,
+              19.12
+            ],
+            [
+              72.865,
+              19.16
+            ],
+            [
+              72.85,
+              19.16
+            ],
+            [
+              72.85,
+              19.12
+            ],
+            [
+              72.865,
+              19.12
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0031",
+      "properties": {
+        "lulc_id": "LULC_0031",
+        "name": "Eastern Express Highway Road Corridor Buffer",
+        "class": "roads/transport",
+        "class_code": 7,
+        "area_m2": 6990185.08,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.945,
+              19.11
+            ],
+            [
+              72.945,
+              19.15
+            ],
+            [
+              72.93,
+              19.15
+            ],
+            [
+              72.93,
+              19.11
+            ],
+            [
+              72.945,
+              19.11
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0032",
+      "properties": {
+        "lulc_id": "LULC_0032",
+        "name": "CSMT & Wadi Bunder Railway Yards",
+        "class": "railway land",
+        "class_code": 8,
+        "area_m2": 2577790.26,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.848,
+              18.938
+            ],
+            [
+              72.848,
+              18.955
+            ],
+            [
+              72.835,
+              18.955
+            ],
+            [
+              72.835,
+              18.938
+            ],
+            [
+              72.848,
+              18.938
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0033",
+      "properties": {
+        "lulc_id": "LULC_0033",
+        "name": "Mumbai Central Terminus Yards & Car Shed",
+        "class": "railway land",
+        "class_code": 8,
+        "area_m2": 1166289.95,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.825,
+              18.965
+            ],
+            [
+              72.825,
+              18.975
+            ],
+            [
+              72.815,
+              18.975
+            ],
+            [
+              72.815,
+              18.965
+            ],
+            [
+              72.825,
+              18.965
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0034",
+      "properties": {
+        "lulc_id": "LULC_0034",
+        "name": "Kurla Suburban Railway Junction & Car Shed",
+        "class": "railway land",
+        "class_code": 8,
+        "area_m2": 1969744.64,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.888,
+              19.062
+            ],
+            [
+              72.888,
+              19.075
+            ],
+            [
+              72.875,
+              19.075
+            ],
+            [
+              72.875,
+              19.062
+            ],
+            [
+              72.888,
+              19.062
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0035",
+      "properties": {
+        "lulc_id": "LULC_0035",
+        "name": "Bandra Coaching Terminus & Marshaling Yard",
+        "class": "railway land",
+        "class_code": 8,
+        "area_m2": 1515319.09,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.848,
+              19.055
+            ],
+            [
+              72.848,
+              19.068
+            ],
+            [
+              72.838,
+              19.068
+            ],
+            [
+              72.838,
+              19.055
+            ],
+            [
+              72.848,
+              19.055
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0036",
+      "properties": {
+        "lulc_id": "LULC_0036",
+        "name": "Aarey Colony Secondary Forest & Buffer Greenery",
+        "class": "vegetation",
+        "class_code": 9,
+        "area_m2": 7234597.97,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.895,
+              19.135
+            ],
+            [
+              72.895,
+              19.158
+            ],
+            [
+              72.868,
+              19.158
+            ],
+            [
+              72.868,
+              19.135
+            ],
+            [
+              72.895,
+              19.135
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0037",
+      "properties": {
+        "lulc_id": "LULC_0037",
+        "name": "IIT Bombay & Powai Green Campus",
+        "class": "vegetation",
+        "class_code": 9,
+        "area_m2": 2970865.76,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.922,
+              19.125
+            ],
+            [
+              72.922,
+              19.14
+            ],
+            [
+              72.905,
+              19.14
+            ],
+            [
+              72.905,
+              19.125
+            ],
+            [
+              72.922,
+              19.125
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0038",
+      "properties": {
+        "lulc_id": "LULC_0038",
+        "name": "BARC Hills & Trombay Green Reserve",
+        "class": "vegetation",
+        "class_code": 9,
+        "area_m2": 5362217.46,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.938,
+              19.025
+            ],
+            [
+              72.938,
+              19.045
+            ],
+            [
+              72.915,
+              19.045
+            ],
+            [
+              72.915,
+              19.025
+            ],
+            [
+              72.938,
+              19.025
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0039",
+      "properties": {
+        "lulc_id": "LULC_0039",
+        "name": "Kalina University Campus Green Belt",
+        "class": "vegetation",
+        "class_code": 9,
+        "area_m2": 1398610.08,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.87,
+              19.07
+            ],
+            [
+              72.87,
+              19.08
+            ],
+            [
+              72.858,
+              19.08
+            ],
+            [
+              72.858,
+              19.07
+            ],
+            [
+              72.87,
+              19.07
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0040",
+      "properties": {
+        "lulc_id": "LULC_0040",
+        "name": "Sanjay Gandhi National Park Core Forest (North)",
+        "class": "forest",
+        "class_code": 10,
+        "area_m2": 34926897.61,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.22
+            ],
+            [
+              72.94,
+              19.28
+            ],
+            [
+              72.89,
+              19.28
+            ],
+            [
+              72.89,
+              19.22
+            ],
+            [
+              72.94,
+              19.22
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0041",
+      "properties": {
+        "lulc_id": "LULC_0041",
+        "name": "Sanjay Gandhi National Park Southern Forest",
+        "class": "forest",
+        "class_code": 10,
+        "area_m2": 25622121.42,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.925,
+              19.165
+            ],
+            [
+              72.925,
+              19.22
+            ],
+            [
+              72.885,
+              19.22
+            ],
+            [
+              72.885,
+              19.165
+            ],
+            [
+              72.925,
+              19.165
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0042",
+      "properties": {
+        "lulc_id": "LULC_0042",
+        "name": "Tulsi & Vihar Catchment Ridge Forest",
+        "class": "forest",
+        "class_code": 10,
+        "area_m2": 17471145.51,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.935,
+              19.15
+            ],
+            [
+              72.935,
+              19.2
+            ],
+            [
+              72.905,
+              19.2
+            ],
+            [
+              72.905,
+              19.15
+            ],
+            [
+              72.935,
+              19.15
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0043",
+      "properties": {
+        "lulc_id": "LULC_0043",
+        "name": "Madh Island Cultivated Lands & Orchards",
+        "class": "agricultural/open land",
+        "class_code": 11,
+        "area_m2": 5942107.1,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.805,
+              19.13
+            ],
+            [
+              72.805,
+              19.16
+            ],
+            [
+              72.788,
+              19.16
+            ],
+            [
+              72.788,
+              19.13
+            ],
+            [
+              72.805,
+              19.13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0044",
+      "properties": {
+        "lulc_id": "LULC_0044",
+        "name": "Gorai Rural / Agricultural Pockets",
+        "class": "agricultural/open land",
+        "class_code": 11,
+        "area_m2": 6986570.62,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.805,
+              19.23
+            ],
+            [
+              72.805,
+              19.26
+            ],
+            [
+              72.785,
+              19.26
+            ],
+            [
+              72.785,
+              19.23
+            ],
+            [
+              72.805,
+              19.23
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0045",
+      "properties": {
+        "lulc_id": "LULC_0045",
+        "name": "Aarey Milk Colony Cattle Pastures",
+        "class": "agricultural/open land",
+        "class_code": 11,
+        "area_m2": 2423114.92,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.888,
+              19.145
+            ],
+            [
+              72.888,
+              19.158
+            ],
+            [
+              72.872,
+              19.158
+            ],
+            [
+              72.872,
+              19.145
+            ],
+            [
+              72.888,
+              19.145
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0046",
+      "properties": {
+        "lulc_id": "LULC_0046",
+        "name": "Kanjurmarg & Bhandup Intertidal Wetlands",
+        "class": "wetlands",
+        "class_code": 12,
+        "area_m2": 6290614.44,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.965,
+              19.128
+            ],
+            [
+              72.965,
+              19.155
+            ],
+            [
+              72.945,
+              19.155
+            ],
+            [
+              72.945,
+              19.128
+            ],
+            [
+              72.965,
+              19.128
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0047",
+      "properties": {
+        "lulc_id": "LULC_0047",
+        "name": "Sewri & Wadala Coastal Mudflat Wetlands",
+        "class": "wetlands",
+        "class_code": 12,
+        "area_m2": 4955384.83,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.872,
+              18.995
+            ],
+            [
+              72.872,
+              19.02
+            ],
+            [
+              72.855,
+              19.02
+            ],
+            [
+              72.855,
+              18.995
+            ],
+            [
+              72.872,
+              18.995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0048",
+      "properties": {
+        "lulc_id": "LULC_0048",
+        "name": "Mahul Salt Marsh Wetland",
+        "class": "wetlands",
+        "class_code": 12,
+        "area_m2": 3031118.25,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.935,
+              19.012
+            ],
+            [
+              72.935,
+              19.025
+            ],
+            [
+              72.915,
+              19.025
+            ],
+            [
+              72.915,
+              19.012
+            ],
+            [
+              72.935,
+              19.012
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0049",
+      "properties": {
+        "lulc_id": "LULC_0049",
+        "name": "Thane Creek Flamingo Sanctuary Mangrove Belt",
+        "class": "mangroves",
+        "class_code": 13,
+        "area_m2": 24464302.83,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.975,
+              19.1
+            ],
+            [
+              72.975,
+              19.17
+            ],
+            [
+              72.945,
+              19.17
+            ],
+            [
+              72.945,
+              19.1
+            ],
+            [
+              72.975,
+              19.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0050",
+      "properties": {
+        "lulc_id": "LULC_0050",
+        "name": "Mahim Creek & Nature Park Mangrove Fringe",
+        "class": "mangroves",
+        "class_code": 13,
+        "area_m2": 2378101.39,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.852,
+              19.04
+            ],
+            [
+              72.852,
+              19.052
+            ],
+            [
+              72.835,
+              19.052
+            ],
+            [
+              72.835,
+              19.04
+            ],
+            [
+              72.852,
+              19.04
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0051",
+      "properties": {
+        "lulc_id": "LULC_0051",
+        "name": "Gorai & Manori Creek Mangrove Complex",
+        "class": "mangroves",
+        "class_code": 13,
+        "area_m2": 20959082.31,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.835,
+              19.215
+            ],
+            [
+              72.835,
+              19.275
+            ],
+            [
+              72.805,
+              19.275
+            ],
+            [
+              72.805,
+              19.215
+            ],
+            [
+              72.835,
+              19.215
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0052",
+      "properties": {
+        "lulc_id": "LULC_0052",
+        "name": "Malad Creek Mangrove Forest",
+        "class": "mangroves",
+        "class_code": 13,
+        "area_m2": 8911385.62,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.835,
+              19.15
+            ],
+            [
+              72.835,
+              19.195
+            ],
+            [
+              72.818,
+              19.195
+            ],
+            [
+              72.818,
+              19.15
+            ],
+            [
+              72.835,
+              19.15
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0053",
+      "properties": {
+        "lulc_id": "LULC_0053",
+        "name": "Versova Creek Mangroves",
+        "class": "mangroves",
+        "class_code": 13,
+        "area_m2": 2621646.1,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.825,
+              19.125
+            ],
+            [
+              72.825,
+              19.14
+            ],
+            [
+              72.81,
+              19.14
+            ],
+            [
+              72.81,
+              19.125
+            ],
+            [
+              72.825,
+              19.125
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0054",
+      "properties": {
+        "lulc_id": "LULC_0054",
+        "name": "Vihar Lake",
+        "class": "lakes/water bodies",
+        "class_code": 14,
+        "area_m2": 2283342.01,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.912,
+              19.138
+            ],
+            [
+              72.912,
+              19.152
+            ],
+            [
+              72.898,
+              19.152
+            ],
+            [
+              72.898,
+              19.138
+            ],
+            [
+              72.912,
+              19.138
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0055",
+      "properties": {
+        "lulc_id": "LULC_0055",
+        "name": "Tulsi Lake",
+        "class": "lakes/water bodies",
+        "class_code": 14,
+        "area_m2": 2236117.64,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.922,
+              19.182
+            ],
+            [
+              72.922,
+              19.198
+            ],
+            [
+              72.91,
+              19.198
+            ],
+            [
+              72.91,
+              19.182
+            ],
+            [
+              72.922,
+              19.182
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0056",
+      "properties": {
+        "lulc_id": "LULC_0056",
+        "name": "Powai Lake",
+        "class": "lakes/water bodies",
+        "class_code": 14,
+        "area_m2": 1957370.66,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.912,
+              19.12
+            ],
+            [
+              72.912,
+              19.132
+            ],
+            [
+              72.898,
+              19.132
+            ],
+            [
+              72.898,
+              19.12
+            ],
+            [
+              72.912,
+              19.12
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0057",
+      "properties": {
+        "lulc_id": "LULC_0057",
+        "name": "Bandra Talao & Heritage Tanks",
+        "class": "lakes/water bodies",
+        "class_code": 14,
+        "area_m2": 489586.01,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.842,
+              19.052
+            ],
+            [
+              72.842,
+              19.058
+            ],
+            [
+              72.835,
+              19.058
+            ],
+            [
+              72.835,
+              19.052
+            ],
+            [
+              72.842,
+              19.052
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0058",
+      "properties": {
+        "lulc_id": "LULC_0058",
+        "name": "Mithi River Channel Corridor",
+        "class": "rivers/drainage",
+        "class_code": 15,
+        "area_m2": 46619170.85,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.885,
+              19.04
+            ],
+            [
+              72.885,
+              19.12
+            ],
+            [
+              72.835,
+              19.12
+            ],
+            [
+              72.835,
+              19.04
+            ],
+            [
+              72.885,
+              19.04
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0059",
+      "properties": {
+        "lulc_id": "LULC_0059",
+        "name": "Oshiwara River Drainage Basin",
+        "class": "rivers/drainage",
+        "class_code": 15,
+        "area_m2": 6058179.14,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.142
+            ],
+            [
+              72.86,
+              19.155
+            ],
+            [
+              72.82,
+              19.155
+            ],
+            [
+              72.82,
+              19.142
+            ],
+            [
+              72.86,
+              19.142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0060",
+      "properties": {
+        "lulc_id": "LULC_0060",
+        "name": "Poisar River Drainage Corridor",
+        "class": "rivers/drainage",
+        "class_code": 15,
+        "area_m2": 2620401.2,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.865,
+              19.205
+            ],
+            [
+              72.865,
+              19.21
+            ],
+            [
+              72.82,
+              19.21
+            ],
+            [
+              72.82,
+              19.205
+            ],
+            [
+              72.865,
+              19.205
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0061",
+      "properties": {
+        "lulc_id": "LULC_0061",
+        "name": "Dahisar River Drainage Corridor",
+        "class": "rivers/drainage",
+        "class_code": 15,
+        "area_m2": 4656937.95,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.255
+            ],
+            [
+              72.88,
+              19.265
+            ],
+            [
+              72.84,
+              19.265
+            ],
+            [
+              72.84,
+              19.255
+            ],
+            [
+              72.88,
+              19.255
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0062",
+      "properties": {
+        "lulc_id": "LULC_0062",
+        "name": "Girgaon Chowpatty Coastal Beach",
+        "class": "beaches/coastal",
+        "class_code": 16,
+        "area_m2": 653184.87,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.822,
+              18.95
+            ],
+            [
+              72.822,
+              18.958
+            ],
+            [
+              72.815,
+              18.958
+            ],
+            [
+              72.815,
+              18.95
+            ],
+            [
+              72.822,
+              18.95
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0063",
+      "properties": {
+        "lulc_id": "LULC_0063",
+        "name": "Juhu Beach Coastal Sands",
+        "class": "beaches/coastal",
+        "class_code": 16,
+        "area_m2": 1887948.24,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.828,
+              19.085
+            ],
+            [
+              72.828,
+              19.112
+            ],
+            [
+              72.822,
+              19.112
+            ],
+            [
+              72.822,
+              19.085
+            ],
+            [
+              72.828,
+              19.085
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0064",
+      "properties": {
+        "lulc_id": "LULC_0064",
+        "name": "Dadar Chowpatty Sands",
+        "class": "beaches/coastal",
+        "class_code": 16,
+        "area_m2": 559627.51,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.834,
+              19.022
+            ],
+            [
+              72.834,
+              19.03
+            ],
+            [
+              72.828,
+              19.03
+            ],
+            [
+              72.828,
+              19.022
+            ],
+            [
+              72.834,
+              19.022
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0065",
+      "properties": {
+        "lulc_id": "LULC_0065",
+        "name": "Versova & Aksa Coastal Beaches",
+        "class": "beaches/coastal",
+        "class_code": 16,
+        "area_m2": 6990020.68,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.815,
+              19.145
+            ],
+            [
+              72.815,
+              19.175
+            ],
+            [
+              72.795,
+              19.175
+            ],
+            [
+              72.795,
+              19.145
+            ],
+            [
+              72.815,
+              19.145
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0066",
+      "properties": {
+        "lulc_id": "LULC_0066",
+        "name": "Mahalaxmi Racecourse Infield Open Ground",
+        "class": "barren/open ground",
+        "class_code": 17,
+        "area_m2": 1166196.72,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.828,
+              18.978
+            ],
+            [
+              72.828,
+              18.988
+            ],
+            [
+              72.818,
+              18.988
+            ],
+            [
+              72.818,
+              18.978
+            ],
+            [
+              72.828,
+              18.978
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0067",
+      "properties": {
+        "lulc_id": "LULC_0067",
+        "name": "Shivaji Park Recreational Maidan",
+        "class": "barren/open ground",
+        "class_code": 17,
+        "area_m2": 489666.83,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.842,
+              19.024
+            ],
+            [
+              72.842,
+              19.03
+            ],
+            [
+              72.835,
+              19.03
+            ],
+            [
+              72.835,
+              19.024
+            ],
+            [
+              72.842,
+              19.024
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0068",
+      "properties": {
+        "lulc_id": "LULC_0068",
+        "name": "Oval, Cross & Azad Maidans Open Grounds",
+        "class": "barren/open ground",
+        "class_code": 17,
+        "area_m2": 816559.38,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.835,
+              18.93
+            ],
+            [
+              72.835,
+              18.94
+            ],
+            [
+              72.828,
+              18.94
+            ],
+            [
+              72.828,
+              18.93
+            ],
+            [
+              72.835,
+              18.93
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LULC_0069",
+      "properties": {
+        "lulc_id": "LULC_0069",
+        "name": "Deonar Open Dumping & Grazing Ground",
+        "class": "barren/open ground",
+        "class_code": 17,
+        "area_m2": 2237592.84,
+        "source": "ESA WorldCover 10m v200 / MCGM Development Plan 2034 GIS / Bhuvan LULC",
+        "source_date": "2021-2024",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.938,
+              19.07
+            ],
+            [
+              72.938,
+              19.082
+            ],
+            [
+              72.922,
+              19.082
+            ],
+            [
+              72.922,
+              19.07
+            ],
+            [
+              72.938,
+              19.07
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

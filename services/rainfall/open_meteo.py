@@ -42,6 +42,8 @@ class OpenMeteoProvider(RainfallProvider):
     - Historical hourly data from 1940 to present (ERA5/ERA5-Land)
     """
 
+    _last_current_cache: dict[str, tuple[float, list[RainfallObservation]]] = {}
+
     @property
     def provider_name(self) -> str:
         return "Open-Meteo"
@@ -51,7 +53,16 @@ class OpenMeteoProvider(RainfallProvider):
         latitude: float,
         longitude: float,
     ) -> list[RainfallObservation]:
-        """Fetch current weather including precipitation."""
+        """Fetch current weather including precipitation with cache and graceful fallback."""
+        import time
+        cache_key = f"{round(latitude, 3)},{round(longitude, 3)}"
+        now_ts = time.time()
+
+        if cache_key in self._last_current_cache:
+            cached_time, cached_obs = self._last_current_cache[cache_key]
+            if now_ts - cached_time < 60.0:  # 60-second cache
+                return cached_obs
+
         params = {
             "latitude": latitude,
             "longitude": longitude,
@@ -61,46 +72,68 @@ class OpenMeteoProvider(RainfallProvider):
             "forecast_days": 1,
         }
 
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            response = await client.get(FORECAST_URL, params=params)
-            response.raise_for_status()
-            data = response.json()
+        try:
+            async with httpx.AsyncClient(timeout=10.0) as client:
+                response = await client.get(FORECAST_URL, params=params)
+                response.raise_for_status()
+                data = response.json()
 
-        observations = []
+            observations = []
+            current = data.get("current", {})
+            if current:
+                precip = current.get("precipitation", 0) or 0
+                rain = current.get("rain", 0) or 0
+                rate_mmh = max(precip, rain)
 
-        # Parse current conditions
-        current = data.get("current", {})
-        if current:
-            precip = current.get("precipitation", 0) or 0
-            rain = current.get("rain", 0) or 0
-            rate_mmh = max(precip, rain)
-
-            obs = RainfallObservation(
-                source=DataSource.OPEN_METEO,
-                observed_at=datetime.now(timezone.utc),
-                rate_mmh=rate_mmh,
-                spatial_type=RainfallSpatialType.POINT,
-                latitude=latitude,
-                longitude=longitude,
-                quality=DataQuality.ESTIMATED,
-                provenance=Provenance(
+                obs = RainfallObservation(
                     source=DataSource.OPEN_METEO,
-                    source_uri=FORECAST_URL,
-                    processing_method="open_meteo_forecast_current",
+                    observed_at=datetime.now(timezone.utc),
+                    rate_mmh=rate_mmh,
+                    spatial_type=RainfallSpatialType.POINT,
+                    latitude=latitude,
+                    longitude=longitude,
                     quality=DataQuality.ESTIMATED,
-                    notes="ERA5-based model output, not direct measurement",
-                ),
-            )
-            observations.append(obs)
+                    provenance=Provenance(
+                        source=DataSource.OPEN_METEO,
+                        source_uri=FORECAST_URL,
+                        processing_method="open_meteo_forecast_current",
+                        quality=DataQuality.ESTIMATED,
+                        notes="ERA5-based model output, not direct measurement",
+                    ),
+                )
+                observations.append(obs)
 
-        logger.info(
-            "Fetched current rainfall",
-            provider="open_meteo",
-            lat=latitude,
-            lon=longitude,
-            rate_mmh=observations[0].rate_mmh if observations else 0,
-        )
-        return observations
+            self._last_current_cache[cache_key] = (now_ts, observations)
+            logger.info(
+                "Fetched current rainfall",
+                provider="open_meteo",
+                lat=latitude,
+                lon=longitude,
+                rate_mmh=observations[0].rate_mmh if observations else 0,
+            )
+            return observations
+        except Exception as exc:
+            logger.warning("Open-Meteo fetch failed, returning cached or dry baseline", error=str(exc))
+            if cache_key in self._last_current_cache:
+                return self._last_current_cache[cache_key][1]
+            return [
+                RainfallObservation(
+                    source=DataSource.OPEN_METEO,
+                    observed_at=datetime.now(timezone.utc),
+                    rate_mmh=0.0,
+                    spatial_type=RainfallSpatialType.POINT,
+                    latitude=latitude,
+                    longitude=longitude,
+                    quality=DataQuality.ESTIMATED,
+                    provenance=Provenance(
+                        source=DataSource.OPEN_METEO,
+                        source_uri=FORECAST_URL,
+                        processing_method="fallback_dry_baseline",
+                        quality=DataQuality.ESTIMATED,
+                        notes="External API timeout fallback",
+                    ),
+                )
+            ]
 
     async def fetch_historical(
         self,

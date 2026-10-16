@@ -1,0 +1,247 @@
+[
+  {
+    "target_path": "data/raw/administrative_boundaries/mumbai_boundary.geojson",
+    "original_path": "mumbai_flood_data_package/01_city/mumbai_boundary.geojson",
+    "file_name": "mumbai_boundary.geojson",
+    "size_bytes": 2505,
+    "sha256": "941d70094d4f283bdcb38b2345409902371bd076e92090a9b84bb8a2e44933d7"
+  },
+  {
+    "target_path": "data/raw/administrative_boundaries/wards.geojson",
+    "original_path": "mumbai_flood_data_package/01_city/wards.geojson",
+    "file_name": "wards.geojson",
+    "size_bytes": 28371,
+    "sha256": "ca794be831793c9c638be1c2fa4734edc01fec9a698944c4c9b62503e5225ec1"
+  },
+  {
+    "target_path": "data/raw/administrative_boundaries/city_config.json",
+    "original_path": "mumbai_flood_data_package/01_city/config.json",
+    "file_name": "city_config.json",
+    "size_bytes": 1310,
+    "sha256": "1406b85b897180be9cf2eec189cd893974d32852c924d386b766ae289f7ce33f"
+  },
+  {
+    "target_path": "data/raw/historical_floods/mumbai_urban_flood_2016_2025.geojson",
+    "original_path": "mumbai_urban_flood_2016_2025 (1).geojson",
+    "file_name": "mumbai_urban_flood_2016_2025.geojson",
+    "size_bytes": 422164,
+    "sha256": "4e5d4e9727f1b89479017a2230dab9e343af139152592e40ba27549a343b6397"
+  },
+  {
+    "target_path": "data/raw/historical_floods/flood_points.geojson",
+    "original_path": "mumbai_flood_data_package/08_flood_observations/flood_points.geojson",
+    "file_name": "flood_points.geojson",
+    "size_bytes": 7830,
+    "sha256": "22d8bb485f084a6e3516cab949b31b61a77d3bd8c4bbec2f826d6e450697ea22"
+  },
+  {
+    "target_path": "data/raw/historical_floods/flood_polygons.geojson",
+    "original_path": "mumbai_flood_data_package/08_flood_observations/flood_polygons.geojson",
+    "file_name": "flood_polygons.geojson",
+    "size_bytes": 4171,
+    "sha256": "a12cd3800cb94785b9ab55b868e7985873407c6cacfec08d4ed766571168d895"
+  },
+  {
+    "target_path": "data/raw/historical_floods/bmc_chronic_spots_inventory.csv",
+    "original_path": "mumbai_flood_data_package/08_flood_observations/historical_events/bmc_chronic_spots_inventory.csv",
+    "file_name": "bmc_chronic_spots_inventory.csv",
+    "size_bytes": 2668,
+    "sha256": "1d60b7f2a8ab1e68450d5921cd11627dd7f74c85f3ace085828cf9577c8763af"
+  },
+  {
+    "target_path": "data/raw/rainfall/hourly_gauge_data_2015_2025.csv",
+    "original_path": "mumbai_flood_data_package/07_rainfall/gauges/hourly_gauge_data_2015_2025.csv",
+    "file_name": "hourly_gauge_data_2015_2025.csv",
+    "size_bytes": 1463120,
+    "sha256": "eba28628492010047c624dafa6a11876c6fc645e738d2f2b55a9cbca1bfbbe0c"
+  },
+  {
+    "target_path": "data/raw/rainfall/station_metadata.geojson",
+    "original_path": "mumbai_flood_data_package/07_rainfall/gauges/station_metadata.geojson",
+    "file_name": "station_metadata.geojson",
+    "size_bytes": 4462,
+    "sha256": "68922a7a010473d910bd8ad7b72cf46aba9b799aa7a92a8b63bc9ab6cd36ebfb"
+  },
+  {
+    "target_path": "data/raw/rainfall/event_2005_07_26_santacruz_colaba_15min.csv",
+    "original_path": "mumbai_flood_data_package/07_rainfall/historical/event_2005_07_26_santacruz_colaba_15min.csv",
+    "file_name": "event_2005_07_26_santacruz_colaba_15min.csv",
+    "size_bytes": 10654,
+    "sha256": "28a182c33cfaacee82239067ff3ed0f2163f4850a17f10e25d342f216a4d4d0e"
+  },
+  {
+    "target_path": "data/raw/rainfall/event_2017_08_29_mumbai_deluge_hourly.csv",
+    "original_path": "mumbai_flood_data_package/07_rainfall/historical/event_2017_08_29_mumbai_deluge_hourly.csv",
+    "file_name": "event_2017_08_29_mumbai_deluge_hourly.csv",
+    "size_bytes": 1610,
+    "sha256": "7c6044bea8de53c8b5c378e7cb0419888c0fd117f9cb5b8a199fb91736145dc0"
+  },
+  {
+    "target_path": "data/raw/rainfall/event_2019_07_02_malad_santacruz_hourly.csv",
+    "original_path": "mumbai_flood_data_package/07_rainfall/historical/event_2019_07_02_malad_santacruz_hourly.csv",
+    "file_name": "event_2019_07_02_malad_santacruz_hourly.csv",
+    "size_bytes": 1612,
+    "sha256": "508bf26b9b5d1e0560d29eebb0e31908bbd28845d2264678f4d9253acc966866"
+  },
+  {
+    "target_path": "data/raw/rainfall/event_2020_08_05_colaba_cyclonic_hourly.csv",
+    "original_path": "mumbai_flood_data_package/07_rainfall/historical/event_2020_08_05_colaba_cyclonic_hourly.csv",
+    "file_name": "event_2020_08_05_colaba_cyclonic_hourly.csv",
+    "size_bytes": 1612,
+    "sha256": "a1c08b581b6cac2a4a7dd75f99b17f676926993871abc8b8cf9c1bd85a39e810"
+  },
+  {
+    "target_path": "data/raw/rainfall/event_2021_07_18_chembur_cloudburst_hourly.csv",
+    "original_path": "mumbai_flood_data_package/07_rainfall/historical/event_2021_07_18_chembur_cloudburst_hourly.csv",
+    "file_name": "event_2021_07_18_chembur_cloudburst_hourly.csv",
+    "size_bytes": 1612,
+    "sha256": "056244b8bf640592a9c11c8de8b466714e43242bf579564986bfff556b4e88c5"
+  },
+  {
+    "target_path": "data/raw/rainfall/event_2024_09_25_mumbai_monsoon_hourly.csv",
+    "original_path": "mumbai_flood_data_package/07_rainfall/historical/event_2024_09_25_mumbai_monsoon_hourly.csv",
+    "file_name": "event_2024_09_25_mumbai_monsoon_hourly.csv",
+    "size_bytes": 1610,
+    "sha256": "ecffc6d5aaf335a947f0258f1fdf29b671522bc19693e8ac9476717f744d1a45"
+  },
+  {
+    "target_path": "data/raw/satellite/imerg_20050726_halfhourly_mumbai_grid.csv",
+    "original_path": "NASA GES DISC GPM_3IMERGHH_V06B",
+    "file_name": "imerg_20050726_halfhourly_mumbai_grid.csv",
+    "size_bytes": 27686,
+    "sha256": "7b5214c2b896d643c4007d64353832dd3dd0cd7c465ee0633ffd54b27dee9f80"
+  },
+  {
+    "target_path": "data/raw/satellite/insat3d_heg_mumbai_sample_20240925.json",
+    "original_path": "mumbai_flood_data_package/07_rainfall/mosdac_samples/insat3d_heg_mumbai_sample_20240925.json",
+    "file_name": "insat3d_heg_mumbai_sample_20240925.json",
+    "size_bytes": 2173,
+    "sha256": "2977b1bd129e0e4c1bed52edbfbda9c7e92ab2948b803cd2ebcaedaec14d1119"
+  },
+  {
+    "target_path": "data/raw/drainage/nodes.geojson",
+    "original_path": "mumbai_flood_data_package/06_drainage/nodes.geojson",
+    "file_name": "nodes.geojson",
+    "size_bytes": 7114,
+    "sha256": "8a9f3e7ebef643e8bed5ee57449558740215544d870b51cfc57782aabe7719dd"
+  },
+  {
+    "target_path": "data/raw/drainage/links.geojson",
+    "original_path": "mumbai_flood_data_package/06_drainage/links.geojson",
+    "file_name": "links.geojson",
+    "size_bytes": 6184,
+    "sha256": "716a3fd52f811d5c6f5e2cd3af19c79e2beef7a20b09386b348ddd50d2b58f16"
+  },
+  {
+    "target_path": "data/raw/drainage/outfalls.geojson",
+    "original_path": "mumbai_flood_data_package/06_drainage/outfalls.geojson",
+    "file_name": "outfalls.geojson",
+    "size_bytes": 6114,
+    "sha256": "432aa173cd024ec5c98716d0b7b728d7b967d7077487f754a14115fcbe888e12"
+  },
+  {
+    "target_path": "data/raw/landuse/worldcover.tif",
+    "original_path": "mumbai_flood_data_package/03_land_cover/worldcover.tif",
+    "file_name": "worldcover.tif",
+    "size_bytes": 800262,
+    "sha256": "17fb2584a3ccd9f2201bfdae188cbc86cff03a18366daa01030c1b20634d18d6"
+  },
+  {
+    "target_path": "data/raw/roads/roads.geojson",
+    "original_path": "mumbai_flood_data_package/04_roads/roads.geojson",
+    "file_name": "roads.geojson",
+    "size_bytes": 13625,
+    "sha256": "b1d3e8e746d78d7260fc5a936d501a44fe3104294d4bcaa251041ca91d9f77bb"
+  },
+  {
+    "target_path": "data/raw/buildings/buildings.geojson",
+    "original_path": "mumbai_flood_data_package/05_buildings/buildings.geojson",
+    "file_name": "buildings.geojson",
+    "size_bytes": 18775,
+    "sha256": "bdad9f79738b91b435219fc3f28ee8a381c840158a335bf566f7b10f2fe8cb3e"
+  },
+  {
+    "target_path": "data/raw/population/population.geojson",
+    "original_path": "mumbai_flood_data_package/09_population/population.geojson",
+    "file_name": "population.geojson",
+    "size_bytes": 30203,
+    "sha256": "abae3edea9388a4d9402797bb02b9e22a0a489b91dc4a741dbc904d820c2fb19"
+  },
+  {
+    "target_path": "data/raw/shelters/shelters.geojson",
+    "original_path": "mumbai_flood_data_package/10_shelters/shelters.geojson",
+    "file_name": "shelters.geojson",
+    "size_bytes": 8064,
+    "sha256": "c1cc08e9721ccc3c4737ece1d41b3befed89adc55f45b06ab8b048d832e9feb0"
+  },
+  {
+    "target_path": "data/raw/tides/coastline.geojson",
+    "original_path": "mumbai_flood_data_package/11_coastal/coastline.geojson",
+    "file_name": "coastline.geojson",
+    "size_bytes": 2707,
+    "sha256": "4b50169cc3bfce2d899a023e6bdfd6fdc39ffc25825e653d362eec17741e9859"
+  },
+  {
+    "target_path": "data/raw/tides/apollo_bunder_hourly_tide_20050725_20050727.csv",
+    "original_path": "mumbai_flood_data_package/11_coastal/tide/apollo_bunder_hourly_tide_20050725_20050727.csv",
+    "file_name": "apollo_bunder_hourly_tide_20050725_20050727.csv",
+    "size_bytes": 7395,
+    "sha256": "cf79952fcb2782e9af61b9472956321daa889d257c52aecc205a6cac3417ec6c"
+  },
+  {
+    "target_path": "data/raw/tides/apollo_bunder_tide_benchmarks.json",
+    "original_path": "mumbai_flood_data_package/11_coastal/tide/apollo_bunder_tide_benchmarks.json",
+    "file_name": "apollo_bunder_tide_benchmarks.json",
+    "size_bytes": 1509,
+    "sha256": "41f04ca87445288d3f90520300cfab00c7ff7480854a031a7bfb5c90a5e36484"
+  },
+  {
+    "target_path": "data/raw/dem/CartoDEM_V3R1_N18E072.tif",
+    "original_path": "mumbai_flood_data_package/02_dem/cartodem/CartoDEM_V3R1_N18E072.tif",
+    "file_name": "CartoDEM_V3R1_N18E072.tif",
+    "size_bytes": 2073874,
+    "sha256": "11fdc8cbddd2155eb4bc52cbe65a555ce658d9c5443f5ce900eea0104a45e00b"
+  },
+  {
+    "target_path": "data/raw/dem/CartoDEM_V3R1_N19E072.tif",
+    "original_path": "mumbai_flood_data_package/02_dem/cartodem/CartoDEM_V3R1_N19E072.tif",
+    "file_name": "CartoDEM_V3R1_N19E072.tif",
+    "size_bytes": 2073874,
+    "sha256": "8d7525221a09eb63650446c03af30119cf7cc2a2f0e948d524cfbe654b4402c0"
+  },
+  {
+    "target_path": "data/raw/dem/Copernicus_DSM_COG_10_N18_00_E072_00_DEM.tif",
+    "original_path": "mumbai_flood_data_package/02_dem/copernicus_glo30/Copernicus_DSM_COG_10_N18_00_E072_00_DEM.tif",
+    "file_name": "Copernicus_DSM_COG_10_N18_00_E072_00_DEM.tif",
+    "size_bytes": 2073874,
+    "sha256": "44119ca1466bb86eb20ebafec73b63faa52d4dd38d90587372d2bc0c759f7689"
+  },
+  {
+    "target_path": "data/raw/dem/Copernicus_DSM_COG_10_N19_00_E072_00_DEM.tif",
+    "original_path": "mumbai_flood_data_package/02_dem/copernicus_glo30/Copernicus_DSM_COG_10_N19_00_E072_00_DEM.tif",
+    "file_name": "Copernicus_DSM_COG_10_N19_00_E072_00_DEM.tif",
+    "size_bytes": 2073874,
+    "sha256": "69c500cf92664c8da7be43398ce6ac1cf8fabf2a14ba930284661be21bff3937"
+  },
+  {
+    "target_path": "data/raw/buildings/ms_buildings_mumbai_qk123300311.csv.gz",
+    "original_path": "https://minedbuildings.z5.web.core.windows.net/global-buildings/2026-02-03/global-buildings.geojsonl/RegionName=India/quadkey=123300311",
+    "file_name": "ms_buildings_mumbai_qk123300311.csv.gz",
+    "size_bytes": 33160498,
+    "sha256": "876ec3aa5a75a2d4967c4ccb6a80b4cddcbedf892cba6aa979a78f1bc4bd630f"
+  },
+  {
+    "target_path": "data/raw/roads/osm_roads_raw.json",
+    "original_path": "OpenStreetMap Overpass API (bbox: 18.89,72.77,19.34,73.04)",
+    "file_name": "osm_roads_raw.json",
+    "size_bytes": 7818293,
+    "sha256": "2510672cf37d809a3b1302478b2b76e0715fa553aefe77c3aea55b7c1ea99dc1"
+  },
+  {
+    "target_path": "data/raw/population/ind_pop_2020_CN_1km_R2025A_UA_v1.tif",
+    "original_path": "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/2020/IND/v1/1km_ua/constrained/ind_pop_2020_CN_1km_R2025A_UA_v1.tif",
+    "file_name": "ind_pop_2020_CN_1km_R2025A_UA_v1.tif",
+    "size_bytes": 16295176,
+    "sha256": "d8d7cc885f5e7e0e71bf1f909a13a1f398129af19c6b9ea631e7b9679dc7e55c"
+  }
+]

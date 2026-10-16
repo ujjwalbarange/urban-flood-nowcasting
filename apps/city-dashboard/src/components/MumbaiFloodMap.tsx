@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { Layers, X, Sliders, Check, Droplets, MapPin, ShieldAlert, Waves, AlertTriangle, ChevronDown, Eye, EyeOff } from 'lucide-react';
 
 // ── Types for real data ──
 interface GeoJSONFeature {
@@ -60,21 +61,93 @@ const API_BASE = 'http://127.0.0.1:8000/api/v1';
 // Mumbai center coordinates
 const MUMBAI_CENTER: [number, number] = [19.076, 72.877];
 
-// Supported Professional GIS Basemaps
+// Supported Professional GIS Basemaps (Watermark-Free, Production GIS Standards)
 const BASEMAP_TILES = {
-  positron: {
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; <a href="https://carto.com/">CARTO</a> Positron, &copy; OpenStreetMap',
-  },
-  dark: {
-    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; <a href="https://carto.com/">CARTO</a> Dark Matter, &copy; OpenStreetMap',
+  esriGray: {
+    name: 'Esri Light Gray Canvas (Clean GIS)',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+    attribution: '&copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors',
   },
   osm: {
+    name: 'OpenStreetMap Standard',
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  },
+  esriDark: {
+    name: 'Esri Dark Matter',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+    attribution: '&copy; Esri, HERE, &copy; OpenStreetMap contributors',
   },
 };
+
+/** Safely extract a [lat, lng] center coordinate from any GeoJSON geometry type (Point, Polygon, MultiPolygon, LineString) */
+function getFeatureCenter(geometry: any): [number, number] | null {
+  if (!geometry || !geometry.coordinates) return null;
+  const { type, coordinates } = geometry;
+
+  if (type === 'Point' && Array.isArray(coordinates)) {
+    const [lng, lat] = coordinates;
+    if (typeof lat === 'number' && typeof lng === 'number' && !isNaN(lat) && !isNaN(lng)) {
+      return [lat, lng];
+    }
+    return null;
+  }
+
+  if (type === 'Polygon' && Array.isArray(coordinates) && Array.isArray(coordinates[0])) {
+    const ring = coordinates[0];
+    if (!ring || ring.length === 0) return null;
+    let sumLat = 0;
+    let sumLng = 0;
+    let count = 0;
+    for (const pt of ring) {
+      if (Array.isArray(pt) && typeof pt[1] === 'number' && typeof pt[0] === 'number') {
+        sumLng += pt[0];
+        sumLat += pt[1];
+        count++;
+      }
+    }
+    if (count === 0) return null;
+    return [sumLat / count, sumLng / count];
+  }
+
+  if (type === 'MultiPolygon' && Array.isArray(coordinates) && Array.isArray(coordinates[0]?.[0])) {
+    const ring = coordinates[0][0];
+    if (!ring || ring.length === 0) return null;
+    let sumLat = 0;
+    let sumLng = 0;
+    let count = 0;
+    for (const pt of ring) {
+      if (Array.isArray(pt) && typeof pt[1] === 'number' && typeof pt[0] === 'number') {
+        sumLng += pt[0];
+        sumLat += pt[1];
+        count++;
+      }
+    }
+    if (count === 0) return null;
+    return [sumLat / count, sumLng / count];
+  }
+
+  if (type === 'LineString' && Array.isArray(coordinates)) {
+    let sumLat = 0;
+    let sumLng = 0;
+    let count = 0;
+    for (const pt of coordinates) {
+      if (Array.isArray(pt) && typeof pt[1] === 'number' && typeof pt[0] === 'number') {
+        sumLng += pt[0];
+        sumLat += pt[1];
+        count++;
+      }
+    }
+    if (count === 0) return null;
+    return [sumLat / count, sumLng / count];
+  }
+
+  if (Array.isArray(coordinates) && typeof coordinates[0] === 'number' && typeof coordinates[1] === 'number') {
+    return [coordinates[1], coordinates[0]];
+  }
+
+  return null;
+}
 
 // ── Layer toggle component ──
 function LayerToggle({
@@ -94,37 +167,40 @@ function LayerToggle({
     <label style={{
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'space-between',
       gap: '8px',
-      padding: '7px 11px',
-      borderRadius: '8px',
+      padding: '5px 8px',
+      borderRadius: '6px',
       cursor: 'pointer',
-      background: enabled ? 'var(--color-info-bg)' : 'transparent',
-      border: `1px solid ${enabled ? 'var(--color-info-border)' : 'var(--border-light)'}`,
-      fontSize: '12px',
+      background: enabled ? 'rgba(37, 99, 235, 0.08)' : '#f8fafc',
+      border: `1px solid ${enabled ? '#93c5fd' : '#e2e8f0'}`,
+      fontSize: '11px',
       fontWeight: enabled ? 700 : 500,
-      color: enabled ? 'var(--text-primary)' : 'var(--text-secondary)',
+      color: enabled ? '#0f172a' : '#64748b',
       transition: 'all 0.15s ease',
-      userSelect: 'none' as const,
+      userSelect: 'none',
     }}>
-      <input
-        type="checkbox"
-        checked={enabled}
-        onChange={onToggle}
-        style={{ display: 'none' }}
-      />
-      <span style={{
-        width: '12px', height: '12px', borderRadius: '3px',
-        background: enabled ? color : '#e2e8f0',
-        border: `2px solid ${color}`,
-        display: 'inline-block',
-        transition: 'background 0.15s ease',
-      }} />
-      {label}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <input
+          type="checkbox"
+          checked={enabled}
+          onChange={onToggle}
+          style={{ display: 'none' }}
+        />
+        <span style={{
+          width: '10px', height: '10px', borderRadius: '3px',
+          background: enabled ? color : 'transparent',
+          border: `2px solid ${color}`,
+          display: 'inline-block',
+          transition: 'all 0.15s ease',
+        }} />
+        <span>{label}</span>
+      </div>
       {count !== undefined && (
         <span style={{
-          fontSize: '11px', fontWeight: 700,
-          background: 'var(--bg-tertiary)', padding: '1px 6px',
-          borderRadius: '10px', color: 'var(--text-muted)',
+          fontSize: '9px', fontWeight: 700,
+          background: '#f1f5f9', padding: '1px 5px',
+          borderRadius: '8px', color: '#475569',
         }}>{count}</span>
       )}
     </label>
@@ -133,9 +209,30 @@ function LayerToggle({
 
 interface MumbaiFloodMapProps {
   confusionGeoJSON?: GeoJSONCollection | null;
+  nowcastResult?: any;
+  focusedLocation?: { lat: number; lon: number; zoom?: number; title?: string } | null;
+  selectedWardId?: string | null;
+  layerToggles?: {
+    showHotspots?: boolean;
+    showPumps?: boolean;
+    showCitizenReports?: boolean;
+    showObservedEvents?: boolean;
+    showShelters?: boolean;
+    showDrainage?: boolean;
+    showCriticalInfra?: boolean;
+    showWards?: boolean;
+    showRoads?: boolean;
+    showNowcastRaster?: boolean;
+  };
 }
 
-export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
+export function MumbaiFloodMap({
+  confusionGeoJSON,
+  nowcastResult,
+  focusedLocation,
+  selectedWardId,
+  layerToggles,
+}: MumbaiFloodMapProps = {}) {
   const [mounted, setMounted] = useState(false);
   const [wards, setWards] = useState<GeoJSONCollection | null>(null);
   const [floodHotspots, setFloodHotspots] = useState<GeoJSONCollection | null>(null);
@@ -154,8 +251,8 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Basemap & Visual Options
-  const [basemap, setBasemap] = useState<'positron' | 'dark' | 'osm'>('positron');
+  // Basemap & Visual Options (Defaulting to Esri Light Gray Canvas for 100% watermark-free GIS)
+  const [basemap, setBasemap] = useState<'esriGray' | 'osm' | 'esriDark'>('esriGray');
   const [rasterOpacity, setRasterOpacity] = useState(0.80);
 
   // Nowcast flood raster overlay & timeline scrubbing state
@@ -170,18 +267,19 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
   const [selectedFeature, setSelectedFeature] = useState<any | null>(null);
   const [colorMode, setColorMode] = useState<'risk' | 'density'>('risk');
 
-  // Layer visibility toggles (default clean GIS state)
+  // Layer visibility toggles (Clean GIS defaults — prevents visual overload)
   const [showWards, setShowWards] = useState(true);
   const [showSimulationFloods, setShowSimulationFloods] = useState(false); // DEFAULT FALSE to eliminate ugly boxes!
-  const [showObservedEvents, setShowObservedEvents] = useState(false);
+  const [showObservedEvents, setShowObservedEvents] = useState(false);     // DEFAULT FALSE to eliminate 150 overlapping circles!
   const [showHotspots, setShowHotspots] = useState(true);
-  const [showPumps, setShowPumps] = useState(true);
+  const [showPumps, setShowPumps] = useState(false);                      // DEFAULT FALSE to keep center clean
   const [showCriticalInfra, setShowCriticalInfra] = useState(false);
   const [showShelters, setShowShelters] = useState(false);
   const [showDrainage, setShowDrainage] = useState(true);
   const [showRoads, setShowRoads] = useState(false);
   const [showCitizenReports, setShowCitizenReports] = useState(true);
   const [showConfusion, setShowConfusion] = useState(false);
+  const [showLayerMenu, setShowLayerMenu] = useState(false);
 
   const activeConfusion = confusionGeoJSON || confusionLayer;
 
@@ -190,6 +288,31 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
     import('leaflet/dist/leaflet.css');
     loadAllData();
   }, []);
+
+  // React to parent nowcast simulation runs
+  useEffect(() => {
+    if (nowcastResult) {
+      setNowcastData(nowcastResult);
+      setShowNowcastRaster(true);
+      loadNowcastRaster(timelineMinute);
+    }
+  }, [nowcastResult]);
+
+  // React to parent layer overrides
+  useEffect(() => {
+    if (layerToggles) {
+      if (layerToggles.showHotspots !== undefined) setShowHotspots(layerToggles.showHotspots);
+      if (layerToggles.showPumps !== undefined) setShowPumps(layerToggles.showPumps);
+      if (layerToggles.showCitizenReports !== undefined) setShowCitizenReports(layerToggles.showCitizenReports);
+      if (layerToggles.showObservedEvents !== undefined) setShowObservedEvents(layerToggles.showObservedEvents);
+      if (layerToggles.showShelters !== undefined) setShowShelters(layerToggles.showShelters);
+      if (layerToggles.showDrainage !== undefined) setShowDrainage(layerToggles.showDrainage);
+      if (layerToggles.showCriticalInfra !== undefined) setShowCriticalInfra(layerToggles.showCriticalInfra);
+      if (layerToggles.showWards !== undefined) setShowWards(layerToggles.showWards);
+      if (layerToggles.showRoads !== undefined) setShowRoads(layerToggles.showRoads);
+      if (layerToggles.showNowcastRaster !== undefined) setShowNowcastRaster(layerToggles.showNowcastRaster);
+    }
+  }, [layerToggles]);
 
   async function loadAllData() {
     setLoading(true);
@@ -354,7 +477,7 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
     return {
       fillColor,
       weight: 1.2,
-      color: basemap === 'dark' ? '#94a3b8' : '#475569',
+      color: basemap === 'esriDark' ? '#94a3b8' : '#475569',
       dashArray: '4 3',
       opacity: 0.65,
       fillOpacity,
@@ -451,112 +574,77 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
     };
   };
 
+  const activeLayersCount = [
+    showNowcastRaster,
+    showWards,
+    showHotspots,
+    showDrainage,
+    showPumps,
+    showCitizenReports,
+    showShelters,
+    showCriticalInfra,
+    showSimulationFloods,
+    showObservedEvents,
+    showConfusion
+  ].filter(Boolean).length;
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-      {/* Layer Controls Bar */}
-      <div className="card" style={{
-        padding: '12px 16px', display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center',
-        background: 'var(--bg-secondary)', border: '1px solid var(--border-light)',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginRight: '6px' }}>
-          <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-            GIS Layers:
-          </span>
-          {/* Color Mode Switcher */}
-          <select
-            value={colorMode}
-            onChange={e => setColorMode(e.target.value as any)}
-            style={{
-              fontSize: '11px', fontWeight: 700, padding: '4px 8px', borderRadius: '6px',
-              background: 'var(--bg-primary)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)',
-            }}
-          >
-            <option value="risk">Color Wards: Risk Level</option>
-            <option value="density">Color Wards: Population Density</option>
-          </select>
-
-          {/* Basemap Switcher */}
-          <select
-            value={basemap}
-            onChange={e => setBasemap(e.target.value as any)}
-            style={{
-              fontSize: '11px', fontWeight: 700, padding: '4px 8px', borderRadius: '6px',
-              background: 'var(--bg-primary)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)',
-            }}
-          >
-            <option value="positron">🗺️ Basemap: CartoDB Positron (Clean GIS)</option>
-            <option value="dark">🌑 Basemap: CartoDB Dark Matter</option>
-            <option value="osm">🌐 Basemap: OpenStreetMap Standard</option>
-          </select>
-        </div>
-
-        {/* Primary Flood Layer: Smooth Continuous Water Surface */}
-        <LayerToggle
-          label="🌊 Continuous Flood Surface"
-          color="#0284c7"
-          enabled={showNowcastRaster}
-          onToggle={() => setShowNowcastRaster(!showNowcastRaster)}
-        />
-        <LayerToggle label="Wards" color="#2563eb" enabled={showWards} onToggle={() => setShowWards(!showWards)} count={wards?.feature_count} />
-        <LayerToggle label="Pumping Stations" color="#0891b2" enabled={showPumps} onToggle={() => setShowPumps(!showPumps)} count={pumpingStations?.features?.length} />
-        <LayerToggle label="Drainage Trunk" color="#0284c7" enabled={showDrainage} onToggle={() => setShowDrainage(!showDrainage)} count={drainageNodes?.feature_count} />
-        <LayerToggle label="Chronic Hotspots" color="#dc2626" enabled={showHotspots} onToggle={() => setShowHotspots(!showHotspots)} count={floodHotspots?.feature_count} />
-        <LayerToggle label="Citizen Reports" color="#f97316" enabled={showCitizenReports} onToggle={() => setShowCitizenReports(!showCitizenReports)} count={citizenReports.length} />
-        <LayerToggle label="🔲 Cell Mesh (Diagnostic)" color="#64748b" enabled={showSimulationFloods} onToggle={() => setShowSimulationFloods(!showSimulationFloods)} count={simulationFloods?.features?.length} />
-        <LayerToggle label="Observed Events (2016-25)" color="#8b5cf6" enabled={showObservedEvents} onToggle={() => setShowObservedEvents(!showObservedEvents)} count={observedEvents?.features?.length} />
-        <LayerToggle label="Critical Infrastructure" color="#f59e0b" enabled={showCriticalInfra} onToggle={() => setShowCriticalInfra(!showCriticalInfra)} count={criticalInfra?.features?.length} />
-        <LayerToggle label="Shelters" color="#059669" enabled={showShelters} onToggle={() => setShowShelters(!showShelters)} count={shelters?.feature_count} />
-
-        {activeConfusion?.features && activeConfusion.features.length > 0 && (
-          <LayerToggle
-            label="🛰️ Sourced Extent Validation"
-            color="#059669"
-            enabled={showConfusion}
-            onToggle={() => setShowConfusion(!showConfusion)}
-            count={activeConfusion.features.length}
-          />
-        )}
-
-        {currentRainfall !== null && (
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+      {/* Map Viewport */}
+      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+        {loading && (
           <div style={{
-            marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '6px',
-            padding: '5px 12px', borderRadius: 'var(--radius-full)',
-            background: currentRainfall > 0 ? 'var(--color-info-bg)' : 'var(--color-success-bg)',
-            border: `1px solid ${currentRainfall > 0 ? 'var(--color-info-border)' : 'var(--color-success-border)'}`,
-            fontSize: '12px', fontWeight: 700,
-            color: currentRainfall > 0 ? 'var(--color-info)' : 'var(--color-success)',
+            position: 'absolute', inset: 0, zIndex: 1000,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'rgba(15,23,42,0.7)', backdropFilter: 'blur(4px)',
+            fontSize: '13px', color: '#ffffff', fontWeight: 700,
           }}>
-            <span className="status-dot live" />
-            {currentRainfall > 0 ? `🌧 ${currentRainfall.toFixed(1)} mm/hr` : '☀️ Live Weather: 0.0 mm/hr'}
+            Loading PostGIS layers & Copernicus DEM data...
           </div>
         )}
-      </div>
 
-      {/* Map + Inspector Layout */}
-      <div style={{ display: 'grid', gridTemplateColumns: selectedFeature ? '1fr 360px' : '1fr', gap: '12px' }}>
-        {/* Map Viewport */}
-        <div className="map-container" style={{ position: 'relative', height: '640px', borderRadius: '12px', overflow: 'hidden' }}>
-          {loading && (
-            <div style={{
-              position: 'absolute', inset: 0, zIndex: 1000,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              background: 'rgba(15,23,42,0.65)', backdropFilter: 'blur(4px)',
-              fontSize: '14px', color: '#ffffff', fontWeight: 700,
-            }}>
-              Loading PostGIS layers & Copernicus DEM data...
-            </div>
-          )}
+        {/* Floating Top Controls Overlay */}
+        <div style={{
+          position: 'absolute', top: '12px', left: '14px', right: '14px', zIndex: 900,
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center', pointerEvents: 'none',
+        }}>
+          {/* Weather Ticker */}
+          <div style={{ pointerEvents: 'auto' }}>
+            {currentRainfall !== null && (
+              <div style={{
+                padding: '6px 14px',
+                background: 'rgba(255, 255, 255, 0.96)',
+                border: '1px solid #cbd5e1',
+                borderRadius: '8px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                fontWeight: 700,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}>
+                <span className="status-dot live" />
+                <span style={{ color: currentRainfall > 0 ? '#1d4ed8' : '#059669', fontSize: '11px' }}>
+                  {currentRainfall > 0 ? `🌧 Rain: ${currentRainfall.toFixed(1)} mm/hr` : '☀️ Weather: 0.0 mm/hr'}
+                </span>
+              </div>
+            )}
+          </div>
 
           {/* Floating Interactive Forecast Timeline Player */}
           <div style={{
-            position: 'absolute', top: '14px', left: '50%', transform: 'translateX(-50%)', zIndex: 1000,
-            background: 'rgba(15, 23, 42, 0.90)', backdropFilter: 'blur(10px)',
-            padding: '6px 14px', borderRadius: '10px', boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
-            border: '1px solid rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', gap: '8px',
-            color: '#f8fafc',
+            pointerEvents: 'auto',
+            background: 'rgba(255, 255, 255, 0.96)',
+            border: '1px solid #cbd5e1',
+            borderRadius: '8px',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
+            padding: '5px 12px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            color: '#0f172a',
           }}>
-            <span style={{ fontSize: '10px', fontWeight: 800, color: '#38bdf8', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
-              Forecast Nowcast:
+            <span style={{ fontSize: '11px', fontWeight: 800, color: '#1d4ed8', letterSpacing: '0.4px', textTransform: 'uppercase' }}>
+              Forecast:
             </span>
             <div style={{ display: 'flex', gap: '4px' }}>
               {[0, 30, 60, 90, 120, 180].map(m => (
@@ -566,12 +654,12 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
                   style={{
                     padding: '3px 8px',
                     borderRadius: '5px',
-                    fontSize: '10px',
+                    fontSize: '10.5px',
                     fontWeight: timelineMinute === m ? 800 : 600,
                     cursor: 'pointer',
-                    background: timelineMinute === m ? '#2563eb' : 'rgba(255,255,255,0.08)',
-                    color: timelineMinute === m ? '#ffffff' : '#cbd5e1',
-                    border: `1px solid ${timelineMinute === m ? '#60a5fa' : 'transparent'}`,
+                    background: timelineMinute === m ? '#1d4ed8' : '#f8fafc',
+                    color: timelineMinute === m ? '#ffffff' : '#334155',
+                    border: `1px solid ${timelineMinute === m ? '#1d4ed8' : '#e2e8f0'}`,
                     transition: 'all 0.15s ease',
                   }}
                 >
@@ -580,50 +668,192 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
               ))}
             </div>
             {isTimelineLoading && (
-              <span style={{ fontSize: '10px', color: '#93c5fd' }}>Updating...</span>
+              <span style={{ fontSize: '10.5px', color: '#0284c7', fontWeight: 600 }}>Updating...</span>
             )}
             {nowcastData?.results && (
-              <span style={{ fontSize: '10px', color: '#94a3b8', borderLeft: '1px solid rgba(255,255,255,0.2)', paddingLeft: '8px' }}>
-                Peak: <strong style={{ color: '#38bdf8' }}>{nowcastData.results.max_depth_m}m</strong> | Flooded: <strong style={{ color: '#38bdf8' }}>{nowcastData.results.flooded_area_km2} km²</strong>
+              <span style={{ fontSize: '10.5px', color: '#475569', borderLeft: '1px solid #cbd5e1', paddingLeft: '8px' }}>
+                Peak: <strong style={{ color: '#0f172a' }}>{nowcastData.results.max_depth_m}m</strong> | Flooded: <strong style={{ color: '#0f172a' }}>{nowcastData.results.flooded_area_km2} km²</strong>
               </span>
             )}
           </div>
 
-          {/* Floating Water Opacity Control */}
-          {showNowcastRaster && nowcastRasterUrl && (
-            <div style={{
-              position: 'absolute', top: '14px', right: '14px', zIndex: 1000,
-              background: 'rgba(15, 23, 42, 0.88)', backdropFilter: 'blur(8px)',
-              padding: '6px 10px', borderRadius: '8px', boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
-              border: '1px solid rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', gap: '6px',
-              fontSize: '10px', color: '#f8fafc',
-            }}>
-              <span style={{ color: '#94a3b8', fontWeight: 700 }}>WATER OPACITY:</span>
-              <input
-                type="range"
-                min="0.2"
-                max="1.0"
-                step="0.05"
-                value={rasterOpacity}
-                onChange={e => setRasterOpacity(parseFloat(e.target.value))}
-                style={{ width: '65px', cursor: 'pointer' }}
-              />
-              <span style={{ color: '#38bdf8', fontWeight: 800 }}>{Math.round(rasterOpacity * 100)}%</span>
-            </div>
-          )}
+          {/* Floating GIS Layers Menu Trigger */}
+          <div style={{ pointerEvents: 'auto', position: 'relative' }}>
+            <button
+              onClick={() => setShowLayerMenu(!showLayerMenu)}
+              style={{
+                background: showLayerMenu ? '#1d4ed8' : '#ffffff',
+                border: `1px solid ${showLayerMenu ? '#1d4ed8' : '#cbd5e1'}`,
+                color: showLayerMenu ? '#ffffff' : '#0f172a',
+                padding: '6px 12px',
+                borderRadius: '8px',
+                fontWeight: 700,
+                fontSize: '11px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+              }}
+            >
+              <Layers size={13} /> GIS Layers ({activeLayersCount})
+              <ChevronDown size={12} style={{ transform: showLayerMenu ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+            </button>
 
-          <MapContainer
-            center={MUMBAI_CENTER}
-            zoom={11}
-            style={{ height: '100%', width: '100%' }}
-            scrollWheelZoom={true}
-            zoomControl={true}
-          >
-            <TileLayer
-              key={basemap}
-              attribution={BASEMAP_TILES[basemap].attribution}
-              url={BASEMAP_TILES[basemap].url}
-            />
+            {/* Floating Dropdown Panel */}
+            {showLayerMenu && (
+              <div style={{
+                position: 'absolute', top: '36px', right: 0, width: '290px',
+                maxHeight: 'calc(100vh - 200px)', overflowY: 'auto',
+                background: '#ffffff',
+                padding: '14px', display: 'flex', flexDirection: 'column', gap: '10px',
+                boxShadow: '0 8px 30px rgba(0,0,0,0.15)', border: '1px solid #cbd5e1',
+                borderRadius: '8px',
+                zIndex: 1100,
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
+                  <span style={{ fontSize: '11px', fontWeight: 800, color: '#1d4ed8', letterSpacing: '0.4px', textTransform: 'uppercase' }}>
+                    Map Layers & Basemap
+                  </span>
+                  <button
+                    onClick={() => setShowLayerMenu(false)}
+                    style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', padding: '2px' }}
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
+
+                {/* Basemap Selection */}
+                <div>
+                  <div style={{ fontSize: '10px', fontWeight: 700, color: '#475569', marginBottom: '4px', textTransform: 'uppercase' }}>
+                    Basemap Canvas
+                  </div>
+                  <select
+                    value={basemap}
+                    onChange={e => setBasemap(e.target.value as any)}
+                    style={{
+                      width: '100%', fontSize: '11px', fontWeight: 600, padding: '6px 8px', borderRadius: '6px',
+                      background: '#ffffff', border: '1px solid #cbd5e1', color: '#0f172a',
+                      outline: 'none',
+                    }}
+                  >
+                    <option value="esriGray">🗺️ Esri Light Gray Canvas (Clean GIS)</option>
+                    <option value="osm">🌐 OpenStreetMap Standard</option>
+                    <option value="esriDark">🌑 Esri Dark Matter</option>
+                  </select>
+                </div>
+
+                {/* Ward Color Mode */}
+                <div>
+                  <div style={{ fontSize: '10px', fontWeight: 700, color: '#475569', marginBottom: '4px', textTransform: 'uppercase' }}>
+                    Ward Thematic Style
+                  </div>
+                  <select
+                    value={colorMode}
+                    onChange={e => setColorMode(e.target.value as any)}
+                    style={{
+                      width: '100%', fontSize: '11px', fontWeight: 600, padding: '6px 8px', borderRadius: '6px',
+                      background: '#ffffff', border: '1px solid #cbd5e1', color: '#0f172a',
+                      outline: 'none',
+                    }}
+                  >
+                    <option value="risk">Color by Risk Category (CRI)</option>
+                    <option value="density">Color by Population Density</option>
+                  </select>
+                </div>
+
+                {/* Water Opacity Slider */}
+                {showNowcastRaster && (
+                  <div style={{ background: '#f8fafc', padding: '8px', borderRadius: '6px', border: '1px solid #e2e8f0' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontWeight: 700, color: '#475569', marginBottom: '4px' }}>
+                      <span>WATER SURFACE OPACITY</span>
+                      <strong style={{ color: '#1d4ed8' }}>{Math.round(rasterOpacity * 100)}%</strong>
+                    </div>
+                    <input
+                      type="range"
+                      min="0.2"
+                      max="1.0"
+                      step="0.05"
+                      value={rasterOpacity}
+                      onChange={e => setRasterOpacity(parseFloat(e.target.value))}
+                      style={{ width: '100%', cursor: 'pointer', accentColor: '#1d4ed8' }}
+                    />
+                  </div>
+                )}
+
+                {/* Inundation & Hazard Group */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <div style={{ fontSize: '10px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginTop: '2px' }}>
+                    Flood Inundation Surface
+                  </div>
+                  <LayerToggle
+                    label="🌊 Continuous Flood Surface"
+                    color="#0284c7"
+                    enabled={showNowcastRaster}
+                    onToggle={() => setShowNowcastRaster(!showNowcastRaster)}
+                  />
+                  <LayerToggle
+                    label="Chronic Hotspots"
+                    color="#dc2626"
+                    enabled={showHotspots}
+                    onToggle={() => setShowHotspots(!showHotspots)}
+                    count={floodHotspots?.feature_count}
+                  />
+                  <LayerToggle
+                    label="🔲 Cell Mesh (Diagnostic)"
+                    color="#64748b"
+                    enabled={showSimulationFloods}
+                    onToggle={() => setShowSimulationFloods(!showSimulationFloods)}
+                    count={simulationFloods?.features?.length}
+                  />
+                  {activeConfusion?.features && activeConfusion.features.length > 0 && (
+                    <LayerToggle
+                      label="Documented Extent Validation"
+                      color="#059669"
+                      enabled={showConfusion}
+                      onToggle={() => setShowConfusion(!showConfusion)}
+                      count={activeConfusion.features.length}
+                    />
+                  )}
+                </div>
+
+                {/* Infrastructure Group */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <div style={{ fontSize: '10px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginTop: '2px' }}>
+                    Municipal Infrastructure
+                  </div>
+                  <LayerToggle label="Wards" color="#2563eb" enabled={showWards} onToggle={() => setShowWards(!showWards)} count={wards?.feature_count} />
+                  <LayerToggle label="Drainage Trunk" color="#0284c7" enabled={showDrainage} onToggle={() => setShowDrainage(!showDrainage)} count={drainageNodes?.feature_count} />
+                  <LayerToggle label="Pumping Stations (Rated)" color="#0891b2" enabled={showPumps} onToggle={() => setShowPumps(!showPumps)} count={pumpingStations?.features?.length} />
+                  <LayerToggle label="Emergency Shelters" color="#059669" enabled={showShelters} onToggle={() => setShowShelters(!showShelters)} count={shelters?.feature_count} />
+                  <LayerToggle label="Critical Infrastructure" color="#f59e0b" enabled={showCriticalInfra} onToggle={() => setShowCriticalInfra(!showCriticalInfra)} count={criticalInfra?.features?.length} />
+                </div>
+
+                {/* Observations & Citizen Data */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <div style={{ fontSize: '10px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginTop: '2px' }}>
+                    Observations & Reports
+                  </div>
+                  <LayerToggle label="Citizen Reports" color="#f97316" enabled={showCitizenReports} onToggle={() => setShowCitizenReports(!showCitizenReports)} count={citizenReports.length} />
+                  <LayerToggle label="Observed Events (2016-25)" color="#8b5cf6" enabled={showObservedEvents} onToggle={() => setShowObservedEvents(!showObservedEvents)} count={observedEvents?.features?.length} />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <MapContainer
+          center={MUMBAI_CENTER}
+          zoom={11}
+          style={{ height: '100%', width: '100%' }}
+          scrollWheelZoom={true}
+          zoomControl={true}
+        >
+          <TileLayer
+            key={basemap}
+            attribution={BASEMAP_TILES[basemap].attribution}
+            url={BASEMAP_TILES[basemap].url}
+          />
 
             {/* Ward boundaries — soft & translucent */}
             {showWards && wards?.features && (
@@ -724,21 +954,20 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
 
             {/* Observed Historical Flood Events (2016-2025) */}
             {showObservedEvents && observedEvents?.features?.map((f, i) => {
-              const coords = f.geometry.coordinates;
+              const center = getFeatureCenter(f.geometry);
+              if (!center) return null;
               const p = f.properties;
-              const depth = p.flood_depth_cm ? p.flood_depth_cm / 100 : 0.3;
-              const radius = Math.min(18, Math.max(7, depth * 8));
               return (
                 <CircleMarker
                   key={`obs-evt-${i}`}
-                  center={[coords[1], coords[0]]}
-                  radius={radius}
+                  center={center}
+                  radius={4}
                   pathOptions={{
                     fillColor: '#8b5cf6',
                     color: '#ffffff',
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 0.85,
+                    weight: 1,
+                    opacity: 0.9,
+                    fillOpacity: 0.75,
                   }}
                   eventHandlers={{
                     click: () => {
@@ -767,21 +996,21 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
 
             {/* Flood Hotspots */}
             {showHotspots && floodHotspots?.features?.map((f, i) => {
-              const coords = f.geometry.coordinates;
+              const center = getFeatureCenter(f.geometry);
+              if (!center) return null;
               const p = f.properties;
               const depth = p.typical_water_depth_m || 0.8;
               const color = depth >= 1.5 ? '#dc2626' : depth >= 1.0 ? '#ea580c' : depth >= 0.5 ? '#d97706' : '#059669';
-              const radius = Math.max(9, depth * 9);
               return (
                 <CircleMarker
                   key={`hotspot-${i}`}
-                  center={[coords[1], coords[0]]}
-                  radius={radius}
+                  center={center}
+                  radius={5}
                   pathOptions={{
                     fillColor: color,
                     color: '#ffffff',
-                    weight: 2.5,
-                    opacity: 1,
+                    weight: 1.5,
+                    opacity: 0.95,
                     fillOpacity: 0.85,
                   }}
                   eventHandlers={{
@@ -807,19 +1036,20 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
 
             {/* Pumping Stations */}
             {showPumps && pumpingStations?.features?.map((f, i) => {
-              const coords = f.geometry.coordinates;
+              const center = getFeatureCenter(f.geometry);
+              if (!center) return null;
               const p = f.properties;
               return (
                 <CircleMarker
                   key={`pump-${i}`}
-                  center={[coords[1], coords[0]]}
-                  radius={9}
+                  center={center}
+                  radius={5}
                   pathOptions={{
                     fillColor: '#0891b2',
                     color: '#ffffff',
-                    weight: 2.5,
-                    opacity: 1,
-                    fillOpacity: 0.95,
+                    weight: 1.5,
+                    opacity: 0.95,
+                    fillOpacity: 0.9,
                   }}
                   eventHandlers={{
                     click: () => {
@@ -844,19 +1074,20 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
 
             {/* Critical Infrastructure */}
             {showCriticalInfra && criticalInfra?.features?.map((f, i) => {
-              const coords = f.geometry.coordinates;
+              const center = getFeatureCenter(f.geometry);
+              if (!center) return null;
               const p = f.properties;
               return (
                 <CircleMarker
                   key={`infra-${i}`}
-                  center={[coords[1], coords[0]]}
-                  radius={7}
+                  center={center}
+                  radius={4}
                   pathOptions={{
                     fillColor: '#f59e0b',
                     color: '#ffffff',
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 0.9,
+                    weight: 1,
+                    opacity: 0.9,
+                    fillOpacity: 0.85,
                   }}
                   eventHandlers={{
                     click: () => {
@@ -879,18 +1110,19 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
 
             {/* Emergency Shelters */}
             {showShelters && shelters?.features?.map((f, i) => {
-              const coords = f.geometry.coordinates;
+              const center = getFeatureCenter(f.geometry);
+              if (!center) return null;
               const p = f.properties;
               return (
                 <CircleMarker
                   key={`shelter-${i}`}
-                  center={[coords[1], coords[0]]}
-                  radius={8}
+                  center={center}
+                  radius={5}
                   pathOptions={{
                     fillColor: '#059669',
                     color: '#ffffff',
-                    weight: 2,
-                    opacity: 1,
+                    weight: 1.5,
+                    opacity: 0.95,
                     fillOpacity: 0.9,
                   }}
                   eventHandlers={{
@@ -915,15 +1147,17 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
             })}
 
             {/* Citizen Incident Reports */}
-            {showCitizenReports && citizenReports.map((r, i) => (
-              <CircleMarker
-                key={`rpt-${i}`}
-                center={[r.latitude, r.longitude]}
-                radius={8}
+            {showCitizenReports && citizenReports.map((r, i) => {
+              if (typeof r.latitude !== 'number' || typeof r.longitude !== 'number' || isNaN(r.latitude) || isNaN(r.longitude)) return null;
+              return (
+                <CircleMarker
+                  key={`rpt-${i}`}
+                  center={[r.latitude, r.longitude]}
+                  radius={6}
                 pathOptions={{
-                  fillColor: '#f97316',
+                  fillColor: r.verified ? '#10b981' : '#f97316',
                   color: '#ffffff',
-                  weight: 2.5,
+                  weight: 1.5,
                   opacity: 1,
                   fillOpacity: 0.9,
                 }}
@@ -945,9 +1179,10 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
                   },
                 }}
               />
-            ))}
+            );
+          })}
 
-            {/* Satellite SAR Confusion Matrix Layer */}
+            {/* Documented / Surveyed Flood Extent Validation Layer */}
             {showConfusion && activeConfusion?.features && (
               <GeoJSON
                 key={`confusion-layer-${activeConfusion.features.length}`}
@@ -957,9 +1192,9 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
                   layer.on('click', () => {
                     const p = f.properties;
                     setSelectedFeature({
-                      title: `SAR Validation: ${p.classification === 'TP' ? 'True Positive' : p.classification === 'FP' ? 'False Positive' : 'False Negative'}`,
-                      type: 'Sentinel-1 SAR Ground Truth Comparison',
-                      provenance: 'SATELLITE DERIVED — ESA Sentinel-1 C-Band SAR Change Detection',
+                      title: `Surveyed Flood Extent: ${p.classification === 'TP' ? 'Model Match' : p.classification === 'FP' ? 'Simulated Inundation' : 'Surveyed Inundation'}`,
+                      type: 'Documented / Surveyed Flood Extent Comparison',
+                      provenance: 'REAL SURVEYED EXTENT — Official BMC Disaster Cell Post-Event Survey (Not SAR)',
                       data: {
                         'Classification': p.classification,
                         'Description': p.description,
@@ -976,37 +1211,37 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
           {/* Floating Continuous Depth & Risk Legend */}
           <div style={{
             position: 'absolute', bottom: '16px', left: '16px', zIndex: 1000,
-            background: 'rgba(15, 23, 42, 0.92)', backdropFilter: 'blur(8px)',
-            padding: '12px 14px', borderRadius: '10px', boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
-            border: '1px solid rgba(255,255,255,0.1)', fontSize: '11px', color: '#f8fafc',
+            background: 'rgba(255, 255, 255, 0.96)',
+            padding: '10px 12px', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+            border: '1px solid #cbd5e1', fontSize: '11px', color: '#0f172a',
           }}>
-            <div style={{ fontWeight: 800, marginBottom: '6px', color: '#38bdf8', letterSpacing: '0.3px' }}>
+            <div style={{ fontWeight: 800, marginBottom: '6px', color: '#1d4ed8', letterSpacing: '0.3px', fontSize: '10.5px' }}>
               🌊 FLOOD DEPTH CLASSIFICATION
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px', textAlign: 'center', marginBottom: '8px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px', textAlign: 'center', marginBottom: '6px' }}>
               <div>
-                <div style={{ height: '8px', background: '#38bdf8', borderRadius: '2px' }} />
-                <div style={{ marginTop: '2px', fontSize: '9px', color: '#94a3b8' }}>&lt;0.15m</div>
+                <div style={{ height: '7px', background: '#38bdf8', borderRadius: '2px' }} />
+                <div style={{ marginTop: '2px', fontSize: '9px', color: '#64748b' }}>&lt;0.15m</div>
               </div>
               <div>
-                <div style={{ height: '8px', background: '#0284c7', borderRadius: '2px' }} />
-                <div style={{ marginTop: '2px', fontSize: '9px', color: '#94a3b8' }}>0.15-0.3m</div>
+                <div style={{ height: '7px', background: '#0284c7', borderRadius: '2px' }} />
+                <div style={{ marginTop: '2px', fontSize: '9px', color: '#64748b' }}>0.15-0.3m</div>
               </div>
               <div>
-                <div style={{ height: '8px', background: '#eab308', borderRadius: '2px' }} />
-                <div style={{ marginTop: '2px', fontSize: '9px', color: '#94a3b8' }}>0.3-0.5m</div>
+                <div style={{ height: '7px', background: '#eab308', borderRadius: '2px' }} />
+                <div style={{ marginTop: '2px', fontSize: '9px', color: '#64748b' }}>0.3-0.5m</div>
               </div>
               <div>
-                <div style={{ height: '8px', background: '#ea580c', borderRadius: '2px' }} />
-                <div style={{ marginTop: '2px', fontSize: '9px', color: '#94a3b8' }}>0.5-1.0m</div>
+                <div style={{ height: '7px', background: '#ea580c', borderRadius: '2px' }} />
+                <div style={{ marginTop: '2px', fontSize: '9px', color: '#64748b' }}>0.5-1.0m</div>
               </div>
               <div>
-                <div style={{ height: '8px', background: '#dc2626', borderRadius: '2px' }} />
-                <div style={{ marginTop: '2px', fontSize: '9px', color: '#94a3b8' }}>&gt;1.0m</div>
+                <div style={{ height: '7px', background: '#dc2626', borderRadius: '2px' }} />
+                <div style={{ marginTop: '2px', fontSize: '9px', color: '#64748b' }}>&gt;1.0m</div>
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '10px', fontSize: '10px', color: '#cbd5e1' }}>
+            <div style={{ display: 'flex', gap: '8px', fontSize: '9.5px', color: '#475569', flexWrap: 'wrap' }}>
               <span>🔴 Hotspot</span>
               <span>⚙️ Pump Station</span>
               <span>🏥 Shelter</span>
@@ -1014,110 +1249,115 @@ export function MumbaiFloodMap({ confusionGeoJSON }: MumbaiFloodMapProps = {}) {
               <span>🟠 Citizen Report</span>
             </div>
           </div>
-        </div>
 
-        {/* Feature Inspector Side-Drawer */}
-        {selectedFeature && (
-          <div className="card fade-in" style={{
-            padding: '18px', display: 'flex', flexDirection: 'column', gap: '12px',
-            background: 'var(--bg-secondary)', border: '1px solid var(--border-medium)',
-            overflowY: 'auto', maxHeight: '620px',
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-              <div>
-                <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--brand-blue)', textTransform: 'uppercase' }}>
-                  {selectedFeature.type}
-                </div>
-                <h4 style={{ margin: '4px 0 0', fontSize: '15px', fontWeight: 800, color: 'var(--text-primary)' }}>
-                  {selectedFeature.title}
-                </h4>
-              </div>
-              <button
-                onClick={() => setSelectedFeature(null)}
-                style={{
-                  background: 'none', border: 'none', fontSize: '16px', cursor: 'pointer',
-                  color: 'var(--text-muted)', padding: '2px 6px',
-                }}
-              >
-                ✕
-              </button>
-            </div>
-
+          {/* Floating Feature Inspector Side-Drawer */}
+          {selectedFeature && (
             <div style={{
-              padding: '6px 10px', borderRadius: '6px', fontSize: '10px', fontWeight: 700,
-              background: 'var(--bg-tertiary)', color: 'var(--text-secondary)', border: '1px solid var(--border-light)',
+              position: 'absolute', top: '56px', right: '14px', width: '340px',
+              maxHeight: 'calc(100% - 76px)', overflowY: 'auto', zIndex: 1000,
+              padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px',
+              background: '#ffffff',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.15)', border: '1px solid #cbd5e1',
+              borderRadius: '8px',
             }}>
-              DATA PROVENANCE: {selectedFeature.provenance}
-            </div>
-
-            {/* "Why is this area flooding?" Contributing Factors */}
-            {selectedFeature.explanation && (
-              <div style={{
-                background: 'rgba(14, 165, 233, 0.08)',
-                border: '1px solid rgba(14, 165, 233, 0.3)',
-                borderRadius: '8px',
-                padding: '12px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '6px',
-              }}>
-                <div style={{ fontSize: '11px', fontWeight: 800, color: 'var(--brand-blue)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
-                  🔍 Contributing Flood Drivers
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <div>
+                  <div style={{ fontSize: '10px', fontWeight: 800, color: '#1d4ed8', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                    {selectedFeature.type}
+                  </div>
+                  <h4 style={{ margin: '3px 0 0', fontSize: '14px', fontWeight: 800, color: '#0f172a' }}>
+                    {selectedFeature.title}
+                  </h4>
                 </div>
-                <div style={{ fontSize: '12px', color: 'var(--text-primary)', lineHeight: '1.5' }}>
-                  • <strong>{selectedFeature.explanation.forecast_rainfall_3h_mm} mm</strong> forecast rainfall / 3h<br/>
-                  • <strong>{selectedFeature.explanation.terrain_depression}</strong><br/>
-                  • <strong>{selectedFeature.explanation.drainage_stress}</strong><br/>
-                  {selectedFeature.explanation.chronic_hotspots_count > 0 && (
-                    <>• <strong>{selectedFeature.explanation.chronic_hotspots_count}</strong> chronic flood hotspots ({selectedFeature.explanation.chronic_hotspots.slice(0, 2).join(', ')})<br/></>
-                  )}
-                  • Current simulated depth: <strong>{selectedFeature.explanation.simulated_max_depth_m} m</strong>
-                </div>
+                <button
+                  onClick={() => setSelectedFeature(null)}
+                  style={{
+                    background: 'none', border: 'none', fontSize: '16px', cursor: 'pointer',
+                    color: '#64748b', padding: '2px 4px',
+                  }}
+                >
+                  ✕
+                </button>
               </div>
-            )}
 
-            {/* Recommended Municipal Actions */}
-            {selectedFeature.actions && selectedFeature.actions.length > 0 && (
               <div style={{
-                background: 'rgba(234, 88, 12, 0.08)',
-                border: '1px solid rgba(234, 88, 12, 0.3)',
-                borderRadius: '8px',
-                padding: '12px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '6px',
+                padding: '5px 8px', borderRadius: '6px', fontSize: '9.5px', fontWeight: 700,
+                background: '#f8fafc', color: '#475569', border: '1px solid #e2e8f0',
               }}>
-                <div style={{ fontSize: '11px', fontWeight: 800, color: '#ea580c', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
-                  🚨 Recommended Operator Actions
-                </div>
-                <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '11px', color: 'var(--text-primary)', lineHeight: '1.4' }}>
-                  {selectedFeature.actions.map((act: string, idx: number) => (
-                    <li key={idx} style={{ marginBottom: '4px' }}>{act}</li>
-                  ))}
-                </ul>
+                PROVENANCE: {selectedFeature.provenance}
               </div>
-            )}
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '12px' }}>
-              {Object.entries(selectedFeature.data).map(([k, v]) => (
-                <div key={k} style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '4px', borderBottom: '1px solid var(--border-light)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>{k}:</span>
-                  <strong style={{ color: 'var(--text-primary)', textAlign: 'right', maxWidth: '180px' }}>{String(v)}</strong>
+              {/* Contributing Flood Drivers */}
+              {selectedFeature.explanation && (
+                <div style={{
+                  background: '#f0f9ff',
+                  border: '1px solid #bae6fd',
+                  borderRadius: '8px',
+                  padding: '10px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '4px',
+                }}>
+                  <div style={{ fontSize: '10px', fontWeight: 800, color: '#0284c7', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                    🔍 Contributing Flood Drivers
+                  </div>
+                  <div style={{ fontSize: '11px', color: '#0f172a', lineHeight: '1.4' }}>
+                    • <strong>{selectedFeature.explanation.forecast_rainfall_3h_mm} mm</strong> forecast rain / 3h<br/>
+                    • <strong>{selectedFeature.explanation.terrain_depression}</strong><br/>
+                    • <strong>{selectedFeature.explanation.drainage_stress}</strong><br/>
+                    {selectedFeature.explanation.chronic_hotspots_count > 0 && (
+                      <>• <strong>{selectedFeature.explanation.chronic_hotspots_count}</strong> chronic hotspots ({selectedFeature.explanation.chronic_hotspots.slice(0, 2).join(', ')})<br/></>
+                    )}
+                    • Simulated depth: <strong>{selectedFeature.explanation.simulated_max_depth_m} m</strong>
+                  </div>
                 </div>
-              ))}
-            </div>
+              )}
 
-            <div style={{ marginTop: 'auto', paddingTop: '10px' }}>
-              <button
-                className="btn-secondary"
-                style={{ width: '100%', fontSize: '12px', padding: '8px' }}
-                onClick={() => setSelectedFeature(null)}
-              >
-                Close Inspector
-              </button>
+              {/* Recommended Municipal Actions */}
+              {selectedFeature.actions && selectedFeature.actions.length > 0 && (
+                <div style={{
+                  background: '#fff7ed',
+                  border: '1px solid #ffedd5',
+                  borderRadius: '8px',
+                  padding: '10px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '4px',
+                }}>
+                  <div style={{ fontSize: '10px', fontWeight: 800, color: '#c2410c', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                    🚨 Recommended Municipal Directives
+                  </div>
+                  <ul style={{ margin: 0, paddingLeft: '14px', fontSize: '10.5px', color: '#7c2d12', lineHeight: '1.4' }}>
+                    {selectedFeature.actions.map((act: string, idx: number) => (
+                      <li key={idx} style={{ marginBottom: '3px' }}>{act}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '11px' }}>
+                {Object.entries(selectedFeature.data).map(([k, v]) => (
+                  <div key={k} style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '3px', borderBottom: '1px solid #f1f5f9' }}>
+                    <span style={{ color: '#64748b' }}>{k}:</span>
+                    <strong style={{ color: '#0f172a', textAlign: 'right', maxWidth: '180px' }}>{String(v)}</strong>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ marginTop: 'auto', paddingTop: '8px' }}>
+                <button
+                  style={{
+                    width: '100%', fontSize: '11px', padding: '7px',
+                    background: '#f1f5f9', border: '1px solid #cbd5e1', borderRadius: '6px',
+                    color: '#0f172a', fontWeight: 600, cursor: 'pointer'
+                  }}
+                  onClick={() => setSelectedFeature(null)}
+                >
+                  Dismiss Inspector
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </div>
   );

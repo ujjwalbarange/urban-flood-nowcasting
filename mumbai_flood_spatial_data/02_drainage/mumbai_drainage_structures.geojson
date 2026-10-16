@@ -1,0 +1,832 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_drainage_structures",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "STR_0001",
+      "properties": {
+        "structure_id": "STR_0001",
+        "structure_type": "outfall",
+        "name": "Love Grove Outfall (Worli)",
+        "connected_drainage_id": "DRN_0035",
+        "ward_id": "G/S",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.812,
+          19.006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0002",
+      "properties": {
+        "structure_id": "STR_0002",
+        "structure_type": "outfall",
+        "name": "Cleave Land Bunder Outfall (Worli)",
+        "connected_drainage_id": "DRN_0036",
+        "ward_id": "G/S",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.816,
+          19.012
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0003",
+      "properties": {
+        "structure_id": "STR_0003",
+        "structure_type": "outfall",
+        "name": "Haji Ali Outfall (Haji Ali Bay)",
+        "connected_drainage_id": "DRN_0037",
+        "ward_id": "D",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.811,
+          18.978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0004",
+      "properties": {
+        "structure_id": "STR_0004",
+        "structure_type": "outfall",
+        "name": "Britannia Outfall (Reay Road)",
+        "connected_drainage_id": "DRN_0038",
+        "ward_id": "E",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.855,
+          18.975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0005",
+      "properties": {
+        "structure_id": "STR_0005",
+        "structure_type": "outfall",
+        "name": "Irla Outfall (Juhu Beach)",
+        "connected_drainage_id": "DRN_0017",
+        "ward_id": "K/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.828,
+          19.108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0006",
+      "properties": {
+        "structure_id": "STR_0006",
+        "structure_type": "outfall",
+        "name": "Gazdarbandh Outfall (Santacruz / Khar Danda)",
+        "connected_drainage_id": "DRN_0018",
+        "ward_id": "H/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.827,
+          19.082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0007",
+      "properties": {
+        "structure_id": "STR_0007",
+        "structure_type": "outfall",
+        "name": "Mogra Outfall (Malad Creek)",
+        "connected_drainage_id": "DRN_0019",
+        "ward_id": "K/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.834,
+          19.129
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0008",
+      "properties": {
+        "structure_id": "STR_0008",
+        "structure_type": "outfall",
+        "name": "Mahul Creek Outfall (Thane Creek)",
+        "connected_drainage_id": "DRN_0027",
+        "ward_id": "M/E",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.932,
+          19.015
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0009",
+      "properties": {
+        "structure_id": "STR_0009",
+        "structure_type": "outfall",
+        "name": "Mahim Causeway Tidal Outfall (Mithi Mouth)",
+        "connected_drainage_id": "DRN_0004",
+        "ward_id": null,
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.825,
+          19.038
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0010",
+      "properties": {
+        "structure_id": "STR_0010",
+        "structure_type": "outfall",
+        "name": "Poisar River Outfall (Marve Creek)",
+        "connected_drainage_id": "DRN_0013",
+        "ward_id": "P/N",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.815,
+          19.212
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0011",
+      "properties": {
+        "structure_id": "STR_0011",
+        "structure_type": "outfall",
+        "name": "Dahisar River Outfall (Gorai Creek)",
+        "connected_drainage_id": "DRN_0016",
+        "ward_id": null,
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.835,
+          19.265
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0012",
+      "properties": {
+        "structure_id": "STR_0012",
+        "structure_type": "outfall",
+        "name": "Oshiwara River Outfall (Malad Creek)",
+        "connected_drainage_id": "DRN_0009",
+        "ward_id": "K/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.815,
+          19.144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0013",
+      "properties": {
+        "structure_id": "STR_0013",
+        "structure_type": "outfall",
+        "name": "Versova Creek Outfall",
+        "connected_drainage_id": "DRN_0020",
+        "ward_id": "K/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.818,
+          19.134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0014",
+      "properties": {
+        "structure_id": "STR_0014",
+        "structure_type": "outfall",
+        "name": "Deonar Outfall (Thane Creek)",
+        "connected_drainage_id": "DRN_0028",
+        "ward_id": "M/E",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.942,
+          19.052
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0015",
+      "properties": {
+        "structure_id": "STR_0015",
+        "structure_type": "outfall",
+        "name": "Vashi Creek Outfall (Mankhurd)",
+        "connected_drainage_id": "DRN_0029",
+        "ward_id": null,
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.96,
+          19.056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0016",
+      "properties": {
+        "structure_id": "STR_0016",
+        "structure_type": "outfall",
+        "name": "Ghatkopar Outfall (Thane Creek)",
+        "connected_drainage_id": "DRN_0030",
+        "ward_id": null,
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.942,
+          19.092
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0017",
+      "properties": {
+        "structure_id": "STR_0017",
+        "structure_type": "outfall",
+        "name": "Bhandup Pumping Outfall (Thane Creek)",
+        "connected_drainage_id": "DRN_0032",
+        "ward_id": null,
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.962,
+          19.152
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0018",
+      "properties": {
+        "structure_id": "STR_0018",
+        "structure_type": "outfall",
+        "name": "Mulund Creek Outfall (Thane Creek)",
+        "connected_drainage_id": "DRN_0034",
+        "ward_id": "T",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.975,
+          19.182
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0019",
+      "properties": {
+        "structure_id": "STR_0019",
+        "structure_type": "pumping_station_inlet",
+        "name": "Love Grove Pumping Station Inlet",
+        "connected_drainage_id": "DRN_0035",
+        "ward_id": "G/S",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8145,
+          19.0065
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0020",
+      "properties": {
+        "structure_id": "STR_0020",
+        "structure_type": "pumping_station_inlet",
+        "name": "Cleave Land Bunder Pumping Station Inlet",
+        "connected_drainage_id": "DRN_0036",
+        "ward_id": "G/S",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8185,
+          19.0125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0021",
+      "properties": {
+        "structure_id": "STR_0021",
+        "structure_type": "pumping_station_inlet",
+        "name": "Haji Ali Pumping Station Inlet",
+        "connected_drainage_id": "DRN_0037",
+        "ward_id": "D",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8115,
+          18.9785
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0022",
+      "properties": {
+        "structure_id": "STR_0022",
+        "structure_type": "pumping_station_inlet",
+        "name": "Britannia Pumping Station Inlet",
+        "connected_drainage_id": "DRN_0038",
+        "ward_id": "E",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8475,
+          18.9745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0023",
+      "properties": {
+        "structure_id": "STR_0023",
+        "structure_type": "pumping_station_inlet",
+        "name": "Irla Pumping Station Inlet",
+        "connected_drainage_id": "DRN_0017",
+        "ward_id": "K/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8285,
+          19.1085
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0024",
+      "properties": {
+        "structure_id": "STR_0024",
+        "structure_type": "pumping_station_inlet",
+        "name": "Gazdarbandh Pumping Station Inlet",
+        "connected_drainage_id": "DRN_0018",
+        "ward_id": "H/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.827,
+          19.082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0025",
+      "properties": {
+        "structure_id": "STR_0025",
+        "structure_type": "pumping_station_inlet",
+        "name": "Mogra Pumping Station Inlet",
+        "connected_drainage_id": "DRN_0019",
+        "ward_id": "K/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.834,
+          19.129
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0026",
+      "properties": {
+        "structure_id": "STR_0026",
+        "structure_type": "pumping_station_inlet",
+        "name": "Mahul Pumping Station Site",
+        "connected_drainage_id": "DRN_0027",
+        "ward_id": "M/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8985,
+          19.015
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0027",
+      "properties": {
+        "structure_id": "STR_0027",
+        "structure_type": "pumping_station_inlet",
+        "name": "Dharavi SWD Sump & Pumping Station",
+        "connected_drainage_id": "DRN_0023",
+        "ward_id": "F/N",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.852,
+          19.0435
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0028",
+      "properties": {
+        "structure_id": "STR_0028",
+        "structure_type": "drainage_junction",
+        "name": "Mithi River - Vakola Nullah Confluence",
+        "connected_drainage_id": "DRN_0003",
+        "ward_id": "H/E",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.868,
+          19.064
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0029",
+      "properties": {
+        "structure_id": "STR_0029",
+        "structure_type": "drainage_junction",
+        "name": "Mithi River - Somaiya Nullah Confluence",
+        "connected_drainage_id": "DRN_0003",
+        "ward_id": "H/E",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.872,
+          19.068
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0030",
+      "properties": {
+        "structure_id": "STR_0030",
+        "structure_type": "drainage_junction",
+        "name": "Oshiwara River - Walbhat Nullah Confluence",
+        "connected_drainage_id": "DRN_0007",
+        "ward_id": "P/S",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.858,
+          19.15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0031",
+      "properties": {
+        "structure_id": "STR_0031",
+        "structure_type": "drainage_junction",
+        "name": "Mithi River - Dharavi Nullah Confluence",
+        "connected_drainage_id": "DRN_0004",
+        "ward_id": "G/N",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.842,
+          19.048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0032",
+      "properties": {
+        "structure_id": "STR_0032",
+        "structure_type": "drainage_junction",
+        "name": "Chembur Nullah - Mahul Creek Junction",
+        "connected_drainage_id": "DRN_0026",
+        "ward_id": "M/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.912,
+          19.028
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0033",
+      "properties": {
+        "structure_id": "STR_0033",
+        "structure_type": "drainage_junction",
+        "name": "Poisar River - Charkop Nullah Junction",
+        "connected_drainage_id": "DRN_0012",
+        "ward_id": "P/N",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.835,
+          19.208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0034",
+      "properties": {
+        "structure_id": "STR_0034",
+        "structure_type": "drainage_junction",
+        "name": "Dahisar River - Ketkipada Nullah Junction",
+        "connected_drainage_id": "DRN_0015",
+        "ward_id": "R/C",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.868,
+          19.255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0035",
+      "properties": {
+        "structure_id": "STR_0035",
+        "structure_type": "culvert",
+        "name": "Milan Subway Box Culvert Outlet",
+        "connected_drainage_id": null,
+        "ward_id": "H/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.845,
+          19.086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0036",
+      "properties": {
+        "structure_id": "STR_0036",
+        "structure_type": "culvert",
+        "name": "Andheri Subway Stormwater Culvert Outlet",
+        "connected_drainage_id": "DRN_0019",
+        "ward_id": "K/E",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.846,
+          19.119
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0037",
+      "properties": {
+        "structure_id": "STR_0037",
+        "structure_type": "culvert",
+        "name": "Malad Subway Drainage Sump Outlet",
+        "connected_drainage_id": null,
+        "ward_id": "P/N",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.85,
+          19.187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0038",
+      "properties": {
+        "structure_id": "STR_0038",
+        "structure_type": "culvert",
+        "name": "Khar Subway Stormwater Culvert",
+        "connected_drainage_id": "DRN_0018",
+        "ward_id": "H/W",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.841,
+          19.073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0039",
+      "properties": {
+        "structure_id": "STR_0039",
+        "structure_type": "stormwater_outlet",
+        "name": "Hindmata Underground Holding Tank Intake Outlet",
+        "connected_drainage_id": null,
+        "ward_id": "F/S",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.844,
+          19.012
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0040",
+      "properties": {
+        "structure_id": "STR_0040",
+        "structure_type": "discharge_point",
+        "name": "Gandhi Market King's Circle Stormwater Discharge Point",
+        "connected_drainage_id": null,
+        "ward_id": "F/N",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.855,
+          19.032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STR_0041",
+      "properties": {
+        "structure_id": "STR_0041",
+        "structure_type": "culvert",
+        "name": "Kurla Kamani Nullah Culvert Crossing",
+        "connected_drainage_id": "DRN_0002",
+        "ward_id": "L",
+        "source": "MCGM Storm Water Drainage (SWD) Dept / BRIMSTOWAD Master Plan",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.878,
+          19.07
+        ]
+      }
+    }
+  ]
+}

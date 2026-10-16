@@ -47,8 +47,10 @@ class SurfaceState:
     cell_size_m: float             # Grid cell size (m)
     time_s: float = 0.0           # Current simulation time (s)
     total_rainfall_m3: float = 0.0
+    total_tide_inflow_m3: float = 0.0
     total_infiltration_m3: float = 0.0
     total_outflow_m3: float = 0.0
+
 
     @property
     def water_surface(self) -> np.ndarray:
@@ -128,11 +130,23 @@ def apply_infiltration(
     )
 
 
-def route_flow_step(state: SurfaceState, dt_s: float) -> None:
+def route_flow_step(
+    state: SurfaceState,
+    dt_s: float,
+    tide_level_m: Optional[float] = None,
+    coastal_mask: Optional[np.ndarray] = None,
+) -> None:
     """Route surface water for one time step using diffusive wave.
 
     Water flows from higher water surface to lower water surface.
     The flow rate depends on depth, slope, and Manning's roughness.
+
+    Supports downstream tidal boundary conditions:
+    - If tide_level_m is provided and coastal_mask is active, coastal cells
+      with DEM < tide_level_m receive tidal inflow (ocean surge/inundation).
+    - Downstream boundary outflow is governed by the water surface head difference:
+      if WSE_land <= tide_level_m, outflow is blocked (tidal locking / backwater).
+      if WSE_land > tide_level_m, gravity drainage into the sea is throttled by tidal head.
 
     Fully vectorized using 2D NumPy array operations for high performance.
     Modifies state.depth in-place.
@@ -141,12 +155,24 @@ def route_flow_step(state: SurfaceState, dt_s: float) -> None:
     dx = state.cell_size_m
     cell_area = dx * dx
 
+    # 1. Tidal seawater intrusion in coastal cells below sea level
+    if tide_level_m is not None and coastal_mask is not None and np.any(coastal_mask):
+        submerged = coastal_mask & (state.dem < tide_level_m)
+        if np.any(submerged):
+            target_depth = tide_level_m - state.dem[submerged]
+            deficit = np.maximum(0.0, target_depth - state.depth[submerged])
+            # Tidal inflow advances stably into coastal cells
+            inflow_rate = np.minimum(deficit, 0.1 * deficit + 0.01 * (dt_s / 2.0))
+            actual_inflow = np.minimum(inflow_rate, deficit)
+            state.depth[submerged] += actual_inflow
+            state.total_tide_inflow_m3 += float(np.sum(actual_inflow)) * cell_area
+
     wse = state.water_surface
 
     flux_x = np.zeros((rows, cols + 1), dtype=np.float64)
     flux_y = np.zeros((rows + 1, cols), dtype=np.float64)
 
-    # 1. Vectorized X-direction fluxes (vertical cell interfaces)
+    # 2. Vectorized X-direction fluxes (vertical cell interfaces)
     slope_x = (wse[:, :-1] - wse[:, 1:]) / dx
     h_flow_pos_x = np.where(state.dem[:, 1:] > wse[:, :-1], np.maximum(wse[:, :-1] - state.dem[:, 1:], 0.0), state.depth[:, :-1])
     h_flow_neg_x = np.where(state.dem[:, :-1] > wse[:, 1:], np.maximum(wse[:, 1:] - state.dem[:, :-1], 0.0), state.depth[:, 1:])
@@ -161,7 +187,7 @@ def route_flow_step(state: SurfaceState, dt_s: float) -> None:
     vol_flux_x = np.where(vol_flux_x > 0, np.minimum(vol_flux_x, avail_left), np.maximum(vol_flux_x, -avail_right))
     flux_x[:, 1:-1] = vol_flux_x
 
-    # 2. Vectorized Y-direction fluxes (horizontal cell interfaces)
+    # 3. Vectorized Y-direction fluxes (horizontal cell interfaces)
     slope_y = (wse[:-1, :] - wse[1:, :]) / dx
     h_flow_pos_y = np.where(state.dem[1:, :] > wse[:-1, :], np.maximum(wse[:-1, :] - state.dem[1:, :], 0.0), state.depth[:-1, :])
     h_flow_neg_y = np.where(state.dem[:-1, :] > wse[1:, :], np.maximum(wse[1:, :] - state.dem[:-1, :], 0.0), state.depth[1:, :])
@@ -176,14 +202,26 @@ def route_flow_step(state: SurfaceState, dt_s: float) -> None:
     vol_flux_y = np.where(vol_flux_y > 0, np.minimum(vol_flux_y, avail_top), np.maximum(vol_flux_y, -avail_bot))
     flux_y[1:-1, :] = vol_flux_y
 
-    # 3. Apply net fluxes to update depth
+    # 4. Handle boundary outflow (incorporating tidal head / backwater)
+    if tide_level_m is not None:
+        # Southern boundary (row = rows - 1)
+        head_diff_y = wse[-1, :] - tide_level_m
+        allowed_flux_y = np.where(head_diff_y > 0.0, np.maximum(flux_y[rows, :], 0.0), 0.0)
+        # Eastern boundary (col = cols - 1)
+        head_diff_x = wse[:, -1] - tide_level_m
+        allowed_flux_x = np.where(head_diff_x > 0.0, np.maximum(flux_x[:, cols], 0.0), 0.0)
+        flux_y[rows, :] = allowed_flux_y
+        flux_x[:, cols] = allowed_flux_x
+        boundary_outflow = float(np.sum(allowed_flux_y) + np.sum(allowed_flux_x))
+    else:
+        boundary_outflow = float(np.sum(np.maximum(flux_y[rows, :], 0.0)) + np.sum(np.maximum(flux_x[:, cols], 0.0)))
+
+    # 5. Apply net fluxes to update depth
     net_flux = (flux_x[:, :-1] - flux_x[:, 1:]) + (flux_y[:-1, :] - flux_y[1:, :])
     state.depth += net_flux / cell_area
-
-    # 4. Handle boundary outflow
-    boundary_outflow = float(np.sum(np.maximum(flux_y[rows, :], 0.0)) + np.sum(np.maximum(flux_x[:, cols], 0.0)))
     state.total_outflow_m3 += boundary_outflow
 
     # Ensure non-negative depth
     state.depth = np.maximum(state.depth, 0.0)
     state.time_s += dt_s
+

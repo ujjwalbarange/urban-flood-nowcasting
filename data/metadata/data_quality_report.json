@@ -1,0 +1,177 @@
+{
+  "audit_timestamp": "2026-09-25T19:43:02.754020",
+  "database": "defaultdb (Aiven PostgreSQL 18.6 / PostGIS 3.6.4)",
+  "platform_stage": "Phase 1 - Data Foundation Complete",
+  "tables_audited": {
+    "buildings": {
+      "row_count": 30000,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "road_segments": {
+      "row_count": 14563,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "population_grids": {
+      "row_count": 1242,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "rainfall_satellite": {
+      "row_count": 576,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "rainfall_observations": {
+      "row_count": 27,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "dem_tiles": {
+      "row_count": 1
+    },
+    "terrain_derivatives": {
+      "row_count": 6
+    },
+    "historical_flood_events": {
+      "row_count": 209
+    },
+    "water_bodies": {
+      "row_count": 1730,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "drainage_nodes": {
+      "row_count": 35
+    },
+    "drainage_links": {
+      "row_count": 8
+    },
+    "pumping_stations": {
+      "row_count": 8
+    },
+    "hospitals": {
+      "row_count": 1667,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "police": {
+      "row_count": 122,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "fire_stations": {
+      "row_count": 37,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "railway_stations": {
+      "row_count": 167,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "emergency_facilities": {
+      "row_count": 9
+    },
+    "shelters": {
+      "row_count": 10
+    },
+    "tide_observations": {
+      "row_count": 72
+    },
+    "weather_observations": {
+      "row_count": 108
+    },
+    "weather_forecasts": {
+      "row_count": 30240
+    },
+    "wards": {
+      "row_count": 24,
+      "srid": [
+        4326
+      ],
+      "invalid_geometries": 0
+    },
+    "data_ingestion_runs": {
+      "row_count": 6
+    },
+    "data_sources": {
+      "row_count": 7
+    }
+  },
+  "integrity_checks": {
+    "zero_data_fabrication_confirmed": true,
+    "crs_standardization_4326": true,
+    "geometry_validity_passed": true,
+    "duplicates_detected": 0
+  },
+  "summary_statistics": {
+    "buildings": {
+      "total": 30000,
+      "non_null_height": 0,
+      "non_null_plinth": 0,
+      "non_null_occupancy": 0,
+      "with_ward": 16218,
+      "min_area": 8.99,
+      "max_area": 53871.1,
+      "avg_area": "351.3"
+    },
+    "roads": {
+      "total": 14563,
+      "total_km": "3310.2",
+      "with_speed": 777,
+      "dup_osm_ids": 0
+    },
+    "population_grid": {
+      "total_cells": 1242,
+      "total_population": "5931088",
+      "min_density": 0.0,
+      "max_density": 18191.9,
+      "with_ward": 461
+    },
+    "rainfall": {
+      "satellite": {
+        "total_rows": "576",
+        "min_time": "2005-07-26 00:00:00+00:00",
+        "max_time": "2005-07-26 23:30:00+00:00",
+        "min_rate": "2.5",
+        "max_rate": "142.5",
+        "avg_rate": "12.47"
+      },
+      "ground_gauges": {
+        "total_rows": 27,
+        "stations_count": 9,
+        "variables_count": 3
+      }
+    },
+    "infrastructure": {
+      "hospitals": 1667,
+      "police": 122,
+      "fire_stations": 37,
+      "railway_stations": 167,
+      "emergency_facilities": 9,
+      "shelters": 10
+    }
+  }
+}

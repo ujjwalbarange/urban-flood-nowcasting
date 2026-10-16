@@ -13,6 +13,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from services.api.routers import cities, rainfall, simulations, alerts, geodata, validation, ai, nowcast
+from services.api.routers import replay, scheduler, decision, tide, drainage, impact, ml, field_ops, auth
+from services.api.metrics import metrics_router, PrometheusMetricsMiddleware
+from services.api.middleware.rate_limit import RateLimitMiddleware
 from services.database.connection import engine, Base, verify_db_connectivity
 from services.data.store import get_data_store
 
@@ -88,7 +91,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.add_middleware(PrometheusMetricsMiddleware)
+app.add_middleware(RateLimitMiddleware, requests_per_minute=300)
+
 # ── Routers ──
+app.include_router(auth.router, prefix="/api/v1", tags=["Authentication"])
+app.include_router(metrics_router)
 app.include_router(geodata.router, prefix="/api/v1", tags=["Geodata"])
 app.include_router(cities.router, prefix="/api/v1", tags=["Cities"])
 app.include_router(rainfall.router, prefix="/api/v1", tags=["Rainfall"])
@@ -97,6 +105,15 @@ app.include_router(alerts.router, prefix="/api/v1", tags=["Alerts"])
 app.include_router(validation.router, prefix="/api/v1", tags=["Validation"])
 app.include_router(ai.router, prefix="/api/v1", tags=["AI Assistant"])
 app.include_router(nowcast.router, prefix="/api/v1", tags=["Nowcasting"])
+app.include_router(replay.router, tags=["Historical Replay"])
+app.include_router(scheduler.router, prefix="/api/v1", tags=["Scheduler"])
+app.include_router(decision.router, prefix="/api/v1", tags=["Decision Support"])
+app.include_router(tide.router, prefix="/api/v1", tags=["Tide & Coastal"])
+app.include_router(drainage.router, prefix="/api/v1", tags=["Drainage & SWMM"])
+app.include_router(impact.router, prefix="/api/v1", tags=["Impact & Exposure"])
+app.include_router(ml.router, prefix="/api/v1", tags=["ML Surrogate"])
+app.include_router(field_ops.router, prefix="/api/v1", tags=["Field Operations"])
+
 
 
 
@@ -126,5 +143,22 @@ async def health_check():
         "mode": "postgis-cluster" if db_ok else "standalone (local-storage)",
         "database": "connected (PostGIS)" if db_ok else "standalone (data/cities)",
         "postgis_version": postgis_version,
-        "version": "0.1.0",
+        "scheduler": _get_scheduler_status(),
+        "version": "0.2.0",
     }
+
+
+def _get_scheduler_status() -> dict:
+    """Get scheduler status summary for health check."""
+    try:
+        from services.nowcast.scheduler import get_scheduler_state
+        state = get_scheduler_state()
+        return {
+            "running": state.is_running,
+            "paused": state.paused,
+            "total_runs": state.total_runs,
+            "success_rate_pct": round(100 * state.successful_runs / max(1, state.total_runs), 1),
+        }
+    except Exception:
+        return {"running": False}
+

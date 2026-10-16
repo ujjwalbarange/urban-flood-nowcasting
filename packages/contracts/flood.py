@@ -37,6 +37,7 @@ class MassBalance(BaseModel):
     """
 
     total_rainfall_m3: float = 0.0
+    total_tide_inflow_m3: float = 0.0
     total_infiltration_m3: float = 0.0
     total_drainage_exchange_m3: float = 0.0
     total_boundary_outflow_m3: float = 0.0
@@ -48,7 +49,7 @@ class MassBalance(BaseModel):
 
     def compute_closure(self) -> float:
         """Compute and store the mass balance closure error percentage."""
-        total_in = self.total_rainfall_m3
+        total_in = self.total_rainfall_m3 + self.total_tide_inflow_m3
         total_out = (
             self.total_infiltration_m3
             + self.total_boundary_outflow_m3
@@ -61,6 +62,7 @@ class MassBalance(BaseModel):
         denominator = max(total_in, 1e-10)
         self.closure_error_pct = abs(residual) / denominator * 100.0
         return self.closure_error_pct
+
 
 
 class SimulationConfig(BaseModel):

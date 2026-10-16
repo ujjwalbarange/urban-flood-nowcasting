@@ -1,0 +1,40 @@
+[
+  {
+    "simulation_id": "dc0b50eb-5a47-4af3-87e7-6ae8c3633424",
+    "event_id": "july_2024_cloudburst",
+    "event_name": "July 8 2024 Mumbai Monsoon Deluge",
+    "status": "completed",
+    "error": null,
+    "fusion_mode": "hem_only",
+    "rainfall_source": "ISRO MOSDAC INSAT-3DR (HEM L2B)",
+    "rainfall_granules": 70,
+    "rainfall_cumulative_mm": 13.76,
+    "rainfall_peak_mmh": 73.26,
+    "max_depth_m": 0.19745152389976192,
+    "mean_depth_m": 0.084,
+    "flooded_cells": 64,
+    "flooded_area_km2": 2.8224,
+    "drainage_nodes_coupled": 4,
+    "total_rainfall_volume_m3": 1798602.6,
+    "total_surface_storage_m3": 842781.1077768928,
+    "mass_balance_error_pct": 0.04095886049308894,
+    "avg_imperviousness": 0.701,
+    "avg_manning_n": 0.025,
+    "runtime_seconds": 54.79,
+    "input_datasets": [
+      "ISRO MOSDAC INSAT-3DR (HEM L2B)",
+      "Copernicus GLO-30 DEM",
+      "LULC (69 classes, source=PostGIS:land_use_land_cover)",
+      "Impervious surface (0.7% coverage)",
+      "Drainage nodes (4 coupled)"
+    ],
+    "assumptions": [
+      "LULC-derived parameters from literature (quality: assumed)"
+    ],
+    "fusion_metadata": {
+      "method": "single_source",
+      "primary": "HEM",
+      "granules": 70
+    }
+  }
+]

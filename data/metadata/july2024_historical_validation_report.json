@@ -1,0 +1,635 @@
+{
+  "simulation_id": "c8d0f80c-1157-448f-b724-2434186d4d52",
+  "event_id": "july_2024_cloudburst",
+  "event_name": "July 8 2024 Mumbai Monsoon Deluge",
+  "evaluation_time": "2026-09-25T20:03:38.466195+00:00",
+  "domain_bounds": {
+    "west": 72.83,
+    "east": 72.93,
+    "south": 19.03,
+    "north": 19.14
+  },
+  "cell_size_m": 210.0,
+  "flood_threshold_m": 0.08,
+  "metrics": {
+    "hotspots_total_db": 35,
+    "hotspots_in_domain": 19,
+    "hotspots_hit": 1,
+    "hotspots_missed": 18,
+    "hotspot_hit_rate_pct": 5.3,
+    "precision": 0.333,
+    "recall": 0.053,
+    "f1_score": 0.091,
+    "events_observed_in_window": 19,
+    "events_in_domain": 13,
+    "events_hit": 1,
+    "events_missed": 12,
+    "event_hit_rate_pct": 7.7,
+    "mean_depth_mae_m": 1.212,
+    "mean_observed_depth_m": 1.242,
+    "mean_simulated_depth_m": 0.03,
+    "simulated_flooded_cells": 73,
+    "simulated_flooded_area_km2": 3.2193,
+    "simulated_peak_timing_hours": 35.5
+  },
+  "hotspot_details": [
+    {
+      "hotspot_id": "HOTSPOT_0012",
+      "name": "Andheri Subway",
+      "ward": "KW",
+      "lon": 72.846,
+      "lat": 19.119,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.025,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0024",
+      "name": "Bandra-Kurla Complex (BKC) G-Block Lowland",
+      "ward": "HE",
+      "lon": 72.865,
+      "lat": 19.062,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.016,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0032",
+      "name": "Bhandup Sonapur Junction (LBS Marg)",
+      "ward": "S",
+      "lon": 72.932,
+      "lat": 19.155,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0021",
+      "name": "Borivali SV Road Station Area",
+      "ward": "RS",
+      "lon": 72.854,
+      "lat": 19.232,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0010",
+      "name": "Breach Candy / Warden Road Low Point",
+      "ward": "D",
+      "lon": 72.805,
+      "lat": 18.972,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0005",
+      "name": "Byculla Fire Brigade Junction",
+      "ward": "E",
+      "lon": 72.833,
+      "lat": 18.975,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0025",
+      "name": "Chembur Postal Colony",
+      "ward": "MW",
+      "lon": 72.902,
+      "lat": 19.055,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.056,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0020",
+      "name": "Chincholi Bunder Malad Link Road",
+      "ward": "PN",
+      "lon": 72.836,
+      "lat": 19.182,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0007",
+      "name": "Chunabhatti Priyadarshini Circle",
+      "ward": "Mumbai",
+      "lon": 72.875,
+      "lat": 19.048,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.019,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0003",
+      "name": "Dadar TT Circle",
+      "ward": "FN",
+      "lon": 72.846,
+      "lat": 19.022,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0016",
+      "name": "Dahisar Check Naka (WEH)",
+      "ward": "RN",
+      "lon": 72.868,
+      "lat": 19.278,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0015",
+      "name": "Dahisar Subway",
+      "ward": "RC",
+      "lon": 72.858,
+      "lat": 19.257,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0034",
+      "name": "Deonar Abattoir & Highway Junction",
+      "ward": "ME",
+      "lon": 72.915,
+      "lat": 19.06,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.025,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0002",
+      "name": "Gandhi Market / King's Circle",
+      "ward": "FN",
+      "lon": 72.855,
+      "lat": 19.032,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.025,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0030",
+      "name": "Ghatkopar LBS Marg / Shreyas Cinema",
+      "ward": "N",
+      "lon": 72.905,
+      "lat": 19.102,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.017,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0019",
+      "name": "Goregaon Siddharth Nagar Low Point",
+      "ward": "PS",
+      "lon": 72.845,
+      "lat": 19.162,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0027",
+      "name": "Govandi Shivaji Nagar Lotus Colony",
+      "ward": "ME",
+      "lon": 72.925,
+      "lat": 19.058,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.018,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0001",
+      "name": "Hindmata Cinema Junction",
+      "ward": "FN",
+      "lon": 72.844,
+      "lat": 19.0125,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0023",
+      "name": "Kalina CST Road (Airport Perimeter)",
+      "ward": "HE",
+      "lon": 72.862,
+      "lat": 19.072,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.028,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0014",
+      "name": "Khar Subway",
+      "ward": "HW",
+      "lon": 72.841,
+      "lat": 19.073,
+      "in_domain": true,
+      "observed_typical_depth_m": 1.1,
+      "simulated_depth_m": 0.023,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0022",
+      "name": "Kurla West Bail Bazar & Kamani Junction",
+      "ward": "L",
+      "lon": 72.875,
+      "lat": 19.07,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.041,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0009",
+      "name": "Mahim Junction & Causeway Approach",
+      "ward": "GN",
+      "lon": 72.84,
+      "lat": 19.042,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 1.806,
+      "classification": "HIT"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0013",
+      "name": "Malad Subway",
+      "ward": "PN",
+      "lon": 72.85,
+      "lat": 19.187,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0028",
+      "name": "Mankhurd Railway Station Underpass",
+      "ward": "ME",
+      "lon": 72.935,
+      "lat": 19.048,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0011",
+      "name": "Milan Subway (Santacruz)",
+      "ward": "KW",
+      "lon": 72.845,
+      "lat": 19.086,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.044,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0033",
+      "name": "Mulund Check Naka (LBS Marg / EEH)",
+      "ward": "T",
+      "lon": 72.952,
+      "lat": 19.185,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0004",
+      "name": "Nana Chowk (Grant Road)",
+      "ward": "D",
+      "lon": 72.815,
+      "lat": 18.962,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0031",
+      "name": "Sakinaka Junction (Andheri-Kurla Road)",
+      "ward": "L",
+      "lon": 72.885,
+      "lat": 19.105,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.029,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0006",
+      "name": "Sion Railway Station & Matunga Road Tracks",
+      "ward": "FN",
+      "lon": 72.86,
+      "lat": 19.04,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.021,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0017",
+      "name": "SV Road Bandra Talkies Junction",
+      "ward": "HW",
+      "lon": 72.838,
+      "lat": 19.055,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.042,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0026",
+      "name": "Tilak Nagar Railway Colony Lowland",
+      "ward": "L",
+      "lon": 72.895,
+      "lat": 19.065,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.04,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0029",
+      "name": "Vidyavihar Station Underpass",
+      "ward": "L",
+      "lon": 72.898,
+      "lat": 19.08,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.027,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0018",
+      "name": "Vile Parle East Nehru Road",
+      "ward": "KE",
+      "lon": 72.852,
+      "lat": 19.098,
+      "in_domain": true,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.028,
+      "classification": "MISSED"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0035",
+      "name": "Wadala Antop Hill Lowland",
+      "ward": "FN",
+      "lon": 72.865,
+      "lat": 19.018,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0008",
+      "name": "Worli Naka Junction",
+      "ward": "GS",
+      "lon": 72.818,
+      "lat": 19.012,
+      "in_domain": false,
+      "observed_typical_depth_m": null,
+      "simulated_depth_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    }
+  ],
+  "event_details": [
+    {
+      "event_id": "EVT_MUM_20240708",
+      "locality": "King's Circle & Gandhi Market, Matunga / Sion",
+      "ward": "Ward F/North",
+      "date": "2024-07-07 18:30:00+00:00",
+      "observed_depth_m": 0.0,
+      "simulated_depth_m": 0.025,
+      "depth_error_m": 0.025,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.0305_72.857",
+      "locality": "King's Circle & Gandhi Market, Matunga / Sion",
+      "ward": "Ward F/North",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 1.25,
+      "simulated_depth_m": 0.025,
+      "depth_error_m": -1.225,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.0125_72.8425",
+      "locality": "Hindmata Cinema & Dadar TT, Parel",
+      "ward": "Ward F/South",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 1.11,
+      "simulated_depth_m": 0.0,
+      "depth_error_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.072_72.885",
+      "locality": "Kranti Nagar & Bail Bazar, Kurla West",
+      "ward": "Ward L",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 1.65,
+      "simulated_depth_m": 0.025,
+      "depth_error_m": -1.625,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.0655_72.879",
+      "locality": "Kurla Central & Harbour Railway Tracks",
+      "ward": "Ward L",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 1.45,
+      "simulated_depth_m": 0.019,
+      "depth_error_m": -1.431,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.088_72.8415",
+      "locality": "Milan Subway Railway Underpass, Santacruz",
+      "ward": "Ward K/East",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 1.95,
+      "simulated_depth_m": 0.044,
+      "depth_error_m": -1.906,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.119_72.8435",
+      "locality": "Andheri Subway Railway Underpass, Andheri West",
+      "ward": "Ward K/West",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 1.95,
+      "simulated_depth_m": 0.025,
+      "depth_error_m": -1.925,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.07_72.839",
+      "locality": "Khar Subway, Khar West",
+      "ward": "Ward H/West",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 1.95,
+      "simulated_depth_m": 0.011,
+      "depth_error_m": -1.939,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.1865_72.848",
+      "locality": "Malad Subway, Malad West",
+      "ward": "Ward P/North",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 1.95,
+      "simulated_depth_m": 0.0,
+      "depth_error_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.062_72.865",
+      "locality": "Bandra-Kurla Complex (BKC) Vakola Nala Confluence",
+      "ward": "Ward H/East",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 0.872,
+      "simulated_depth_m": 0.016,
+      "depth_error_m": -0.856,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.055_72.898",
+      "locality": "Postal Colony & Shell Colony, Chembur West",
+      "ward": "Ward M/West",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 0.868,
+      "simulated_depth_m": 0.015,
+      "depth_error_m": -0.853,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.043_72.891",
+      "locality": "Bharat Nagar Slopes, Chembur East",
+      "ward": "Ward M/East",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 0.35,
+      "simulated_depth_m": 0.083,
+      "depth_error_m": -0.267,
+      "classification": "HIT"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.058_72.925",
+      "locality": "Shivaji Nagar & Deonar Nala, Govandi",
+      "ward": "Ward M/East",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 0.882,
+      "simulated_depth_m": 0.018,
+      "depth_error_m": -0.864,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_18.932_72.828",
+      "locality": "Churchgate & Oval Maidan, South Mumbai",
+      "ward": "Ward A",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 0.45,
+      "simulated_depth_m": 0.0,
+      "depth_error_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.039_72.862",
+      "locality": "Sion Railway Station Low Circle, Sion East",
+      "ward": "Ward F/North",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 0.876,
+      "simulated_depth_m": 0.021,
+      "depth_error_m": -0.855,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.111_72.928",
+      "locality": "Vikhroli Station Road & LBS Marg, Vikhroli West",
+      "ward": "Ward S",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 0.851,
+      "simulated_depth_m": 0.058,
+      "depth_error_m": -0.793,
+      "classification": "MISSED"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.255_72.862",
+      "locality": "Dahisar Toll Naka & Subway, Dahisar East",
+      "ward": "Ward R/North",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 0.862,
+      "simulated_depth_m": 0.0,
+      "depth_error_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_18.955_72.802",
+      "locality": "Malabar Hill Ridge (Control Benchmark)",
+      "ward": "Ward D",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 0.0,
+      "simulated_depth_m": 0.0,
+      "depth_error_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    },
+    {
+      "event_id": "EVT_MUM_20240708_19.215_72.915",
+      "locality": "Sanjay Gandhi National Park Foothills (Control Benchmark)",
+      "ward": "Ward R/Central",
+      "date": "2024-07-08 00:00:00+00:00",
+      "observed_depth_m": 0.0,
+      "simulated_depth_m": 0.0,
+      "depth_error_m": 0.0,
+      "classification": "OUT_OF_DOMAIN"
+    }
+  ],
+  "scientific_provenance": {
+    "observed": [
+      "19 historical flood records verified in database for July 2024",
+      "Mean reported depth at flooded subways/suburbs: 1.24 m",
+      "35 ground flood hotspots cataloged by MCGM / BMC Disaster Management Cell",
+      "19 hotspots located within current simulation domain bounding box"
+    ],
+    "simulated": [
+      "Simulated flood extent: 3.219 km\u00b2 (73 cells)",
+      "Hotspot Hit Rate: 5.3% (1/19 detected)",
+      "Event Observation Hit Rate: 7.7% (1/13 detected)",
+      "Mean depth MAE: 1.212 m",
+      "Simulated peak timing: t = 35.50 hours from start"
+    ],
+    "assumed": [
+      "Flood threshold set to 8 cm water depth",
+      "Spatial neighborhood buffer: 1 cell radius (~315 m) for geocoding tolerance",
+      "Rainfall forcing from INSAT-3DR HEM satellite downscaled uniformly across catchment DEM",
+      "Catchment DEM resolution: 210m resampled from Copernicus GLO-30 30m dataset"
+    ]
+  }
+}

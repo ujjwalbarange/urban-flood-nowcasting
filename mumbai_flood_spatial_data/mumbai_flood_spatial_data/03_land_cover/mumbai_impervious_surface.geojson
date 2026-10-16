@@ -1,0 +1,4876 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_impervious_surface",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "IMP_0001",
+      "properties": {
+        "cell_id": "IMP_0001",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.8,
+              18.939999999999998
+            ],
+            [
+              72.8,
+              18.96
+            ],
+            [
+              72.78,
+              18.96
+            ],
+            [
+              72.78,
+              18.939999999999998
+            ],
+            [
+              72.8,
+              18.939999999999998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0002",
+      "properties": {
+        "cell_id": "IMP_0002",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.8,
+              18.959999999999997
+            ],
+            [
+              72.8,
+              18.98
+            ],
+            [
+              72.78,
+              18.98
+            ],
+            [
+              72.78,
+              18.959999999999997
+            ],
+            [
+              72.8,
+              18.959999999999997
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0003",
+      "properties": {
+        "cell_id": "IMP_0003",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.8,
+              19.139999999999993
+            ],
+            [
+              72.8,
+              19.16
+            ],
+            [
+              72.78,
+              19.16
+            ],
+            [
+              72.78,
+              19.139999999999993
+            ],
+            [
+              72.8,
+              19.139999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0004",
+      "properties": {
+        "cell_id": "IMP_0004",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.8,
+              19.159999999999993
+            ],
+            [
+              72.8,
+              19.18
+            ],
+            [
+              72.78,
+              19.18
+            ],
+            [
+              72.78,
+              19.159999999999993
+            ],
+            [
+              72.8,
+              19.159999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0005",
+      "properties": {
+        "cell_id": "IMP_0005",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.8,
+              19.179999999999993
+            ],
+            [
+              72.8,
+              19.2
+            ],
+            [
+              72.78,
+              19.2
+            ],
+            [
+              72.78,
+              19.179999999999993
+            ],
+            [
+              72.8,
+              19.179999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0006",
+      "properties": {
+        "cell_id": "IMP_0006",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.8,
+              19.199999999999992
+            ],
+            [
+              72.8,
+              19.22
+            ],
+            [
+              72.78,
+              19.22
+            ],
+            [
+              72.78,
+              19.199999999999992
+            ],
+            [
+              72.8,
+              19.199999999999992
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0007",
+      "properties": {
+        "cell_id": "IMP_0007",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              18.9
+            ],
+            [
+              72.82,
+              18.92
+            ],
+            [
+              72.8,
+              18.92
+            ],
+            [
+              72.8,
+              18.9
+            ],
+            [
+              72.82,
+              18.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0008",
+      "properties": {
+        "cell_id": "IMP_0008",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              18.919999999999998
+            ],
+            [
+              72.82,
+              18.94
+            ],
+            [
+              72.8,
+              18.94
+            ],
+            [
+              72.8,
+              18.919999999999998
+            ],
+            [
+              72.82,
+              18.919999999999998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0009",
+      "properties": {
+        "cell_id": "IMP_0009",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              18.939999999999998
+            ],
+            [
+              72.82,
+              18.96
+            ],
+            [
+              72.8,
+              18.96
+            ],
+            [
+              72.8,
+              18.939999999999998
+            ],
+            [
+              72.82,
+              18.939999999999998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0010",
+      "properties": {
+        "cell_id": "IMP_0010",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              18.959999999999997
+            ],
+            [
+              72.82,
+              18.98
+            ],
+            [
+              72.8,
+              18.98
+            ],
+            [
+              72.8,
+              18.959999999999997
+            ],
+            [
+              72.82,
+              18.959999999999997
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0011",
+      "properties": {
+        "cell_id": "IMP_0011",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              18.979999999999997
+            ],
+            [
+              72.82,
+              19.0
+            ],
+            [
+              72.8,
+              19.0
+            ],
+            [
+              72.8,
+              18.979999999999997
+            ],
+            [
+              72.82,
+              18.979999999999997
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0012",
+      "properties": {
+        "cell_id": "IMP_0012",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              18.999999999999996
+            ],
+            [
+              72.82,
+              19.02
+            ],
+            [
+              72.8,
+              19.02
+            ],
+            [
+              72.8,
+              18.999999999999996
+            ],
+            [
+              72.82,
+              18.999999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0013",
+      "properties": {
+        "cell_id": "IMP_0013",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.019999999999996
+            ],
+            [
+              72.82,
+              19.04
+            ],
+            [
+              72.8,
+              19.04
+            ],
+            [
+              72.8,
+              19.019999999999996
+            ],
+            [
+              72.82,
+              19.019999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0014",
+      "properties": {
+        "cell_id": "IMP_0014",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.039999999999996
+            ],
+            [
+              72.82,
+              19.06
+            ],
+            [
+              72.8,
+              19.06
+            ],
+            [
+              72.8,
+              19.039999999999996
+            ],
+            [
+              72.82,
+              19.039999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0015",
+      "properties": {
+        "cell_id": "IMP_0015",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.059999999999995
+            ],
+            [
+              72.82,
+              19.08
+            ],
+            [
+              72.8,
+              19.08
+            ],
+            [
+              72.8,
+              19.059999999999995
+            ],
+            [
+              72.82,
+              19.059999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0016",
+      "properties": {
+        "cell_id": "IMP_0016",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.079999999999995
+            ],
+            [
+              72.82,
+              19.1
+            ],
+            [
+              72.8,
+              19.1
+            ],
+            [
+              72.8,
+              19.079999999999995
+            ],
+            [
+              72.82,
+              19.079999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0017",
+      "properties": {
+        "cell_id": "IMP_0017",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.099999999999994
+            ],
+            [
+              72.82,
+              19.12
+            ],
+            [
+              72.8,
+              19.12
+            ],
+            [
+              72.8,
+              19.099999999999994
+            ],
+            [
+              72.82,
+              19.099999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0018",
+      "properties": {
+        "cell_id": "IMP_0018",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.119999999999994
+            ],
+            [
+              72.82,
+              19.14
+            ],
+            [
+              72.8,
+              19.14
+            ],
+            [
+              72.8,
+              19.119999999999994
+            ],
+            [
+              72.82,
+              19.119999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0019",
+      "properties": {
+        "cell_id": "IMP_0019",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.139999999999993
+            ],
+            [
+              72.82,
+              19.16
+            ],
+            [
+              72.8,
+              19.16
+            ],
+            [
+              72.8,
+              19.139999999999993
+            ],
+            [
+              72.82,
+              19.139999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0020",
+      "properties": {
+        "cell_id": "IMP_0020",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.159999999999993
+            ],
+            [
+              72.82,
+              19.18
+            ],
+            [
+              72.8,
+              19.18
+            ],
+            [
+              72.8,
+              19.159999999999993
+            ],
+            [
+              72.82,
+              19.159999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0021",
+      "properties": {
+        "cell_id": "IMP_0021",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.179999999999993
+            ],
+            [
+              72.82,
+              19.2
+            ],
+            [
+              72.8,
+              19.2
+            ],
+            [
+              72.8,
+              19.179999999999993
+            ],
+            [
+              72.82,
+              19.179999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0022",
+      "properties": {
+        "cell_id": "IMP_0022",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.199999999999992
+            ],
+            [
+              72.82,
+              19.22
+            ],
+            [
+              72.8,
+              19.22
+            ],
+            [
+              72.8,
+              19.199999999999992
+            ],
+            [
+              72.82,
+              19.199999999999992
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0023",
+      "properties": {
+        "cell_id": "IMP_0023",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.21999999999999
+            ],
+            [
+              72.82,
+              19.24
+            ],
+            [
+              72.8,
+              19.24
+            ],
+            [
+              72.8,
+              19.21999999999999
+            ],
+            [
+              72.82,
+              19.21999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0024",
+      "properties": {
+        "cell_id": "IMP_0024",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.82,
+              19.23999999999999
+            ],
+            [
+              72.82,
+              19.26
+            ],
+            [
+              72.8,
+              19.26
+            ],
+            [
+              72.8,
+              19.23999999999999
+            ],
+            [
+              72.82,
+              19.23999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0025",
+      "properties": {
+        "cell_id": "IMP_0025",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              18.9
+            ],
+            [
+              72.84,
+              18.92
+            ],
+            [
+              72.82,
+              18.92
+            ],
+            [
+              72.82,
+              18.9
+            ],
+            [
+              72.84,
+              18.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0026",
+      "properties": {
+        "cell_id": "IMP_0026",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              18.919999999999998
+            ],
+            [
+              72.84,
+              18.94
+            ],
+            [
+              72.82,
+              18.94
+            ],
+            [
+              72.82,
+              18.919999999999998
+            ],
+            [
+              72.84,
+              18.919999999999998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0027",
+      "properties": {
+        "cell_id": "IMP_0027",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              18.939999999999998
+            ],
+            [
+              72.84,
+              18.96
+            ],
+            [
+              72.82,
+              18.96
+            ],
+            [
+              72.82,
+              18.939999999999998
+            ],
+            [
+              72.84,
+              18.939999999999998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0028",
+      "properties": {
+        "cell_id": "IMP_0028",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              18.959999999999997
+            ],
+            [
+              72.84,
+              18.98
+            ],
+            [
+              72.82,
+              18.98
+            ],
+            [
+              72.82,
+              18.959999999999997
+            ],
+            [
+              72.84,
+              18.959999999999997
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0029",
+      "properties": {
+        "cell_id": "IMP_0029",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              18.979999999999997
+            ],
+            [
+              72.84,
+              19.0
+            ],
+            [
+              72.82,
+              19.0
+            ],
+            [
+              72.82,
+              18.979999999999997
+            ],
+            [
+              72.84,
+              18.979999999999997
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0030",
+      "properties": {
+        "cell_id": "IMP_0030",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              18.999999999999996
+            ],
+            [
+              72.84,
+              19.02
+            ],
+            [
+              72.82,
+              19.02
+            ],
+            [
+              72.82,
+              18.999999999999996
+            ],
+            [
+              72.84,
+              18.999999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0031",
+      "properties": {
+        "cell_id": "IMP_0031",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.019999999999996
+            ],
+            [
+              72.84,
+              19.04
+            ],
+            [
+              72.82,
+              19.04
+            ],
+            [
+              72.82,
+              19.019999999999996
+            ],
+            [
+              72.84,
+              19.019999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0032",
+      "properties": {
+        "cell_id": "IMP_0032",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.039999999999996
+            ],
+            [
+              72.84,
+              19.06
+            ],
+            [
+              72.82,
+              19.06
+            ],
+            [
+              72.82,
+              19.039999999999996
+            ],
+            [
+              72.84,
+              19.039999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0033",
+      "properties": {
+        "cell_id": "IMP_0033",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.059999999999995
+            ],
+            [
+              72.84,
+              19.08
+            ],
+            [
+              72.82,
+              19.08
+            ],
+            [
+              72.82,
+              19.059999999999995
+            ],
+            [
+              72.84,
+              19.059999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0034",
+      "properties": {
+        "cell_id": "IMP_0034",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.079999999999995
+            ],
+            [
+              72.84,
+              19.1
+            ],
+            [
+              72.82,
+              19.1
+            ],
+            [
+              72.82,
+              19.079999999999995
+            ],
+            [
+              72.84,
+              19.079999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0035",
+      "properties": {
+        "cell_id": "IMP_0035",
+        "impervious_fraction": 0.85,
+        "built_up_fraction": 0.72,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.099999999999994
+            ],
+            [
+              72.84,
+              19.12
+            ],
+            [
+              72.82,
+              19.12
+            ],
+            [
+              72.82,
+              19.099999999999994
+            ],
+            [
+              72.84,
+              19.099999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0036",
+      "properties": {
+        "cell_id": "IMP_0036",
+        "impervious_fraction": 0.85,
+        "built_up_fraction": 0.72,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.119999999999994
+            ],
+            [
+              72.84,
+              19.14
+            ],
+            [
+              72.82,
+              19.14
+            ],
+            [
+              72.82,
+              19.119999999999994
+            ],
+            [
+              72.84,
+              19.119999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0037",
+      "properties": {
+        "cell_id": "IMP_0037",
+        "impervious_fraction": 0.85,
+        "built_up_fraction": 0.72,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.139999999999993
+            ],
+            [
+              72.84,
+              19.16
+            ],
+            [
+              72.82,
+              19.16
+            ],
+            [
+              72.82,
+              19.139999999999993
+            ],
+            [
+              72.84,
+              19.139999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0038",
+      "properties": {
+        "cell_id": "IMP_0038",
+        "impervious_fraction": 0.85,
+        "built_up_fraction": 0.72,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.159999999999993
+            ],
+            [
+              72.84,
+              19.18
+            ],
+            [
+              72.82,
+              19.18
+            ],
+            [
+              72.82,
+              19.159999999999993
+            ],
+            [
+              72.84,
+              19.159999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0039",
+      "properties": {
+        "cell_id": "IMP_0039",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.179999999999993
+            ],
+            [
+              72.84,
+              19.2
+            ],
+            [
+              72.82,
+              19.2
+            ],
+            [
+              72.82,
+              19.179999999999993
+            ],
+            [
+              72.84,
+              19.179999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0040",
+      "properties": {
+        "cell_id": "IMP_0040",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.199999999999992
+            ],
+            [
+              72.84,
+              19.22
+            ],
+            [
+              72.82,
+              19.22
+            ],
+            [
+              72.82,
+              19.199999999999992
+            ],
+            [
+              72.84,
+              19.199999999999992
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0041",
+      "properties": {
+        "cell_id": "IMP_0041",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.21999999999999
+            ],
+            [
+              72.84,
+              19.24
+            ],
+            [
+              72.82,
+              19.24
+            ],
+            [
+              72.82,
+              19.21999999999999
+            ],
+            [
+              72.84,
+              19.21999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0042",
+      "properties": {
+        "cell_id": "IMP_0042",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.23999999999999
+            ],
+            [
+              72.84,
+              19.26
+            ],
+            [
+              72.82,
+              19.26
+            ],
+            [
+              72.82,
+              19.23999999999999
+            ],
+            [
+              72.84,
+              19.23999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0043",
+      "properties": {
+        "cell_id": "IMP_0043",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.84,
+              19.25999999999999
+            ],
+            [
+              72.84,
+              19.28
+            ],
+            [
+              72.82,
+              19.28
+            ],
+            [
+              72.82,
+              19.25999999999999
+            ],
+            [
+              72.84,
+              19.25999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0044",
+      "properties": {
+        "cell_id": "IMP_0044",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              18.919999999999998
+            ],
+            [
+              72.86,
+              18.94
+            ],
+            [
+              72.83999999999999,
+              18.94
+            ],
+            [
+              72.83999999999999,
+              18.919999999999998
+            ],
+            [
+              72.86,
+              18.919999999999998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0045",
+      "properties": {
+        "cell_id": "IMP_0045",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              18.939999999999998
+            ],
+            [
+              72.86,
+              18.96
+            ],
+            [
+              72.83999999999999,
+              18.96
+            ],
+            [
+              72.83999999999999,
+              18.939999999999998
+            ],
+            [
+              72.86,
+              18.939999999999998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0046",
+      "properties": {
+        "cell_id": "IMP_0046",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              18.959999999999997
+            ],
+            [
+              72.86,
+              18.98
+            ],
+            [
+              72.83999999999999,
+              18.98
+            ],
+            [
+              72.83999999999999,
+              18.959999999999997
+            ],
+            [
+              72.86,
+              18.959999999999997
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0047",
+      "properties": {
+        "cell_id": "IMP_0047",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              18.979999999999997
+            ],
+            [
+              72.86,
+              19.0
+            ],
+            [
+              72.83999999999999,
+              19.0
+            ],
+            [
+              72.83999999999999,
+              18.979999999999997
+            ],
+            [
+              72.86,
+              18.979999999999997
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0048",
+      "properties": {
+        "cell_id": "IMP_0048",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              18.999999999999996
+            ],
+            [
+              72.86,
+              19.02
+            ],
+            [
+              72.83999999999999,
+              19.02
+            ],
+            [
+              72.83999999999999,
+              18.999999999999996
+            ],
+            [
+              72.86,
+              18.999999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0049",
+      "properties": {
+        "cell_id": "IMP_0049",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.019999999999996
+            ],
+            [
+              72.86,
+              19.04
+            ],
+            [
+              72.83999999999999,
+              19.04
+            ],
+            [
+              72.83999999999999,
+              19.019999999999996
+            ],
+            [
+              72.86,
+              19.019999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0050",
+      "properties": {
+        "cell_id": "IMP_0050",
+        "impervious_fraction": 0.92,
+        "built_up_fraction": 0.84,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.039999999999996
+            ],
+            [
+              72.86,
+              19.06
+            ],
+            [
+              72.83999999999999,
+              19.06
+            ],
+            [
+              72.83999999999999,
+              19.039999999999996
+            ],
+            [
+              72.86,
+              19.039999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0051",
+      "properties": {
+        "cell_id": "IMP_0051",
+        "impervious_fraction": 0.88,
+        "built_up_fraction": 0.76,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.059999999999995
+            ],
+            [
+              72.86,
+              19.08
+            ],
+            [
+              72.83999999999999,
+              19.08
+            ],
+            [
+              72.83999999999999,
+              19.059999999999995
+            ],
+            [
+              72.86,
+              19.059999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0052",
+      "properties": {
+        "cell_id": "IMP_0052",
+        "impervious_fraction": 0.88,
+        "built_up_fraction": 0.76,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.079999999999995
+            ],
+            [
+              72.86,
+              19.1
+            ],
+            [
+              72.83999999999999,
+              19.1
+            ],
+            [
+              72.83999999999999,
+              19.079999999999995
+            ],
+            [
+              72.86,
+              19.079999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0053",
+      "properties": {
+        "cell_id": "IMP_0053",
+        "impervious_fraction": 0.88,
+        "built_up_fraction": 0.76,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.099999999999994
+            ],
+            [
+              72.86,
+              19.12
+            ],
+            [
+              72.83999999999999,
+              19.12
+            ],
+            [
+              72.83999999999999,
+              19.099999999999994
+            ],
+            [
+              72.86,
+              19.099999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0054",
+      "properties": {
+        "cell_id": "IMP_0054",
+        "impervious_fraction": 0.85,
+        "built_up_fraction": 0.72,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.119999999999994
+            ],
+            [
+              72.86,
+              19.14
+            ],
+            [
+              72.83999999999999,
+              19.14
+            ],
+            [
+              72.83999999999999,
+              19.119999999999994
+            ],
+            [
+              72.86,
+              19.119999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0055",
+      "properties": {
+        "cell_id": "IMP_0055",
+        "impervious_fraction": 0.85,
+        "built_up_fraction": 0.72,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.139999999999993
+            ],
+            [
+              72.86,
+              19.16
+            ],
+            [
+              72.83999999999999,
+              19.16
+            ],
+            [
+              72.83999999999999,
+              19.139999999999993
+            ],
+            [
+              72.86,
+              19.139999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0056",
+      "properties": {
+        "cell_id": "IMP_0056",
+        "impervious_fraction": 0.85,
+        "built_up_fraction": 0.72,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.159999999999993
+            ],
+            [
+              72.86,
+              19.18
+            ],
+            [
+              72.83999999999999,
+              19.18
+            ],
+            [
+              72.83999999999999,
+              19.159999999999993
+            ],
+            [
+              72.86,
+              19.159999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0057",
+      "properties": {
+        "cell_id": "IMP_0057",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.179999999999993
+            ],
+            [
+              72.86,
+              19.2
+            ],
+            [
+              72.83999999999999,
+              19.2
+            ],
+            [
+              72.83999999999999,
+              19.179999999999993
+            ],
+            [
+              72.86,
+              19.179999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0058",
+      "properties": {
+        "cell_id": "IMP_0058",
+        "impervious_fraction": 0.8,
+        "built_up_fraction": 0.68,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.199999999999992
+            ],
+            [
+              72.86,
+              19.22
+            ],
+            [
+              72.83999999999999,
+              19.22
+            ],
+            [
+              72.83999999999999,
+              19.199999999999992
+            ],
+            [
+              72.86,
+              19.199999999999992
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0059",
+      "properties": {
+        "cell_id": "IMP_0059",
+        "impervious_fraction": 0.8,
+        "built_up_fraction": 0.68,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.21999999999999
+            ],
+            [
+              72.86,
+              19.24
+            ],
+            [
+              72.83999999999999,
+              19.24
+            ],
+            [
+              72.83999999999999,
+              19.21999999999999
+            ],
+            [
+              72.86,
+              19.21999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0060",
+      "properties": {
+        "cell_id": "IMP_0060",
+        "impervious_fraction": 0.8,
+        "built_up_fraction": 0.68,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.23999999999999
+            ],
+            [
+              72.86,
+              19.26
+            ],
+            [
+              72.83999999999999,
+              19.26
+            ],
+            [
+              72.83999999999999,
+              19.23999999999999
+            ],
+            [
+              72.86,
+              19.23999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0061",
+      "properties": {
+        "cell_id": "IMP_0061",
+        "impervious_fraction": 0.8,
+        "built_up_fraction": 0.68,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.86,
+              19.25999999999999
+            ],
+            [
+              72.86,
+              19.28
+            ],
+            [
+              72.83999999999999,
+              19.28
+            ],
+            [
+              72.83999999999999,
+              19.25999999999999
+            ],
+            [
+              72.86,
+              19.25999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0062",
+      "properties": {
+        "cell_id": "IMP_0062",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              18.979999999999997
+            ],
+            [
+              72.88,
+              19.0
+            ],
+            [
+              72.85999999999999,
+              19.0
+            ],
+            [
+              72.85999999999999,
+              18.979999999999997
+            ],
+            [
+              72.88,
+              18.979999999999997
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0063",
+      "properties": {
+        "cell_id": "IMP_0063",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              18.999999999999996
+            ],
+            [
+              72.88,
+              19.02
+            ],
+            [
+              72.85999999999999,
+              19.02
+            ],
+            [
+              72.85999999999999,
+              18.999999999999996
+            ],
+            [
+              72.88,
+              18.999999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0064",
+      "properties": {
+        "cell_id": "IMP_0064",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.019999999999996
+            ],
+            [
+              72.88,
+              19.04
+            ],
+            [
+              72.85999999999999,
+              19.04
+            ],
+            [
+              72.85999999999999,
+              19.019999999999996
+            ],
+            [
+              72.88,
+              19.019999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0065",
+      "properties": {
+        "cell_id": "IMP_0065",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.039999999999996
+            ],
+            [
+              72.88,
+              19.06
+            ],
+            [
+              72.85999999999999,
+              19.06
+            ],
+            [
+              72.85999999999999,
+              19.039999999999996
+            ],
+            [
+              72.88,
+              19.039999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0066",
+      "properties": {
+        "cell_id": "IMP_0066",
+        "impervious_fraction": 0.88,
+        "built_up_fraction": 0.76,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.059999999999995
+            ],
+            [
+              72.88,
+              19.08
+            ],
+            [
+              72.85999999999999,
+              19.08
+            ],
+            [
+              72.85999999999999,
+              19.059999999999995
+            ],
+            [
+              72.88,
+              19.059999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0067",
+      "properties": {
+        "cell_id": "IMP_0067",
+        "impervious_fraction": 0.88,
+        "built_up_fraction": 0.76,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.079999999999995
+            ],
+            [
+              72.88,
+              19.1
+            ],
+            [
+              72.85999999999999,
+              19.1
+            ],
+            [
+              72.85999999999999,
+              19.079999999999995
+            ],
+            [
+              72.88,
+              19.079999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0068",
+      "properties": {
+        "cell_id": "IMP_0068",
+        "impervious_fraction": 0.88,
+        "built_up_fraction": 0.76,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.099999999999994
+            ],
+            [
+              72.88,
+              19.12
+            ],
+            [
+              72.85999999999999,
+              19.12
+            ],
+            [
+              72.85999999999999,
+              19.099999999999994
+            ],
+            [
+              72.88,
+              19.099999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0069",
+      "properties": {
+        "cell_id": "IMP_0069",
+        "impervious_fraction": 0.85,
+        "built_up_fraction": 0.72,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.119999999999994
+            ],
+            [
+              72.88,
+              19.14
+            ],
+            [
+              72.85999999999999,
+              19.14
+            ],
+            [
+              72.85999999999999,
+              19.119999999999994
+            ],
+            [
+              72.88,
+              19.119999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0070",
+      "properties": {
+        "cell_id": "IMP_0070",
+        "impervious_fraction": 0.22,
+        "built_up_fraction": 0.12,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.139999999999993
+            ],
+            [
+              72.88,
+              19.16
+            ],
+            [
+              72.85999999999999,
+              19.16
+            ],
+            [
+              72.85999999999999,
+              19.139999999999993
+            ],
+            [
+              72.88,
+              19.139999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0071",
+      "properties": {
+        "cell_id": "IMP_0071",
+        "impervious_fraction": 0.85,
+        "built_up_fraction": 0.72,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.159999999999993
+            ],
+            [
+              72.88,
+              19.18
+            ],
+            [
+              72.85999999999999,
+              19.18
+            ],
+            [
+              72.85999999999999,
+              19.159999999999993
+            ],
+            [
+              72.88,
+              19.159999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0072",
+      "properties": {
+        "cell_id": "IMP_0072",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.179999999999993
+            ],
+            [
+              72.88,
+              19.2
+            ],
+            [
+              72.85999999999999,
+              19.2
+            ],
+            [
+              72.85999999999999,
+              19.179999999999993
+            ],
+            [
+              72.88,
+              19.179999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0073",
+      "properties": {
+        "cell_id": "IMP_0073",
+        "impervious_fraction": 0.8,
+        "built_up_fraction": 0.68,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.199999999999992
+            ],
+            [
+              72.88,
+              19.22
+            ],
+            [
+              72.85999999999999,
+              19.22
+            ],
+            [
+              72.85999999999999,
+              19.199999999999992
+            ],
+            [
+              72.88,
+              19.199999999999992
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0074",
+      "properties": {
+        "cell_id": "IMP_0074",
+        "impervious_fraction": 0.8,
+        "built_up_fraction": 0.68,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.21999999999999
+            ],
+            [
+              72.88,
+              19.24
+            ],
+            [
+              72.85999999999999,
+              19.24
+            ],
+            [
+              72.85999999999999,
+              19.21999999999999
+            ],
+            [
+              72.88,
+              19.21999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0075",
+      "properties": {
+        "cell_id": "IMP_0075",
+        "impervious_fraction": 0.8,
+        "built_up_fraction": 0.68,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.23999999999999
+            ],
+            [
+              72.88,
+              19.26
+            ],
+            [
+              72.85999999999999,
+              19.26
+            ],
+            [
+              72.85999999999999,
+              19.23999999999999
+            ],
+            [
+              72.88,
+              19.23999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0076",
+      "properties": {
+        "cell_id": "IMP_0076",
+        "impervious_fraction": 0.8,
+        "built_up_fraction": 0.68,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.88,
+              19.25999999999999
+            ],
+            [
+              72.88,
+              19.28
+            ],
+            [
+              72.85999999999999,
+              19.28
+            ],
+            [
+              72.85999999999999,
+              19.25999999999999
+            ],
+            [
+              72.88,
+              19.25999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0077",
+      "properties": {
+        "cell_id": "IMP_0077",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              18.999999999999996
+            ],
+            [
+              72.9,
+              19.02
+            ],
+            [
+              72.87999999999998,
+              19.02
+            ],
+            [
+              72.87999999999998,
+              18.999999999999996
+            ],
+            [
+              72.9,
+              18.999999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0078",
+      "properties": {
+        "cell_id": "IMP_0078",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.019999999999996
+            ],
+            [
+              72.9,
+              19.04
+            ],
+            [
+              72.87999999999998,
+              19.04
+            ],
+            [
+              72.87999999999998,
+              19.019999999999996
+            ],
+            [
+              72.9,
+              19.019999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0079",
+      "properties": {
+        "cell_id": "IMP_0079",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.039999999999996
+            ],
+            [
+              72.9,
+              19.06
+            ],
+            [
+              72.87999999999998,
+              19.06
+            ],
+            [
+              72.87999999999998,
+              19.039999999999996
+            ],
+            [
+              72.9,
+              19.039999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0080",
+      "properties": {
+        "cell_id": "IMP_0080",
+        "impervious_fraction": 0.88,
+        "built_up_fraction": 0.76,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.059999999999995
+            ],
+            [
+              72.9,
+              19.08
+            ],
+            [
+              72.87999999999998,
+              19.08
+            ],
+            [
+              72.87999999999998,
+              19.059999999999995
+            ],
+            [
+              72.9,
+              19.059999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0081",
+      "properties": {
+        "cell_id": "IMP_0081",
+        "impervious_fraction": 0.88,
+        "built_up_fraction": 0.76,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.079999999999995
+            ],
+            [
+              72.9,
+              19.1
+            ],
+            [
+              72.87999999999998,
+              19.1
+            ],
+            [
+              72.87999999999998,
+              19.079999999999995
+            ],
+            [
+              72.9,
+              19.079999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0082",
+      "properties": {
+        "cell_id": "IMP_0082",
+        "impervious_fraction": 0.88,
+        "built_up_fraction": 0.76,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.099999999999994
+            ],
+            [
+              72.9,
+              19.12
+            ],
+            [
+              72.87999999999998,
+              19.12
+            ],
+            [
+              72.87999999999998,
+              19.099999999999994
+            ],
+            [
+              72.9,
+              19.099999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0083",
+      "properties": {
+        "cell_id": "IMP_0083",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.119999999999994
+            ],
+            [
+              72.9,
+              19.14
+            ],
+            [
+              72.87999999999998,
+              19.14
+            ],
+            [
+              72.87999999999998,
+              19.119999999999994
+            ],
+            [
+              72.9,
+              19.119999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0084",
+      "properties": {
+        "cell_id": "IMP_0084",
+        "impervious_fraction": 0.22,
+        "built_up_fraction": 0.12,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.139999999999993
+            ],
+            [
+              72.9,
+              19.16
+            ],
+            [
+              72.87999999999998,
+              19.16
+            ],
+            [
+              72.87999999999998,
+              19.139999999999993
+            ],
+            [
+              72.9,
+              19.139999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0085",
+      "properties": {
+        "cell_id": "IMP_0085",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.159999999999993
+            ],
+            [
+              72.9,
+              19.18
+            ],
+            [
+              72.87999999999998,
+              19.18
+            ],
+            [
+              72.87999999999998,
+              19.159999999999993
+            ],
+            [
+              72.9,
+              19.159999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0086",
+      "properties": {
+        "cell_id": "IMP_0086",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.179999999999993
+            ],
+            [
+              72.9,
+              19.2
+            ],
+            [
+              72.87999999999998,
+              19.2
+            ],
+            [
+              72.87999999999998,
+              19.179999999999993
+            ],
+            [
+              72.9,
+              19.179999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0087",
+      "properties": {
+        "cell_id": "IMP_0087",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.199999999999992
+            ],
+            [
+              72.9,
+              19.22
+            ],
+            [
+              72.87999999999998,
+              19.22
+            ],
+            [
+              72.87999999999998,
+              19.199999999999992
+            ],
+            [
+              72.9,
+              19.199999999999992
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0088",
+      "properties": {
+        "cell_id": "IMP_0088",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.21999999999999
+            ],
+            [
+              72.9,
+              19.24
+            ],
+            [
+              72.87999999999998,
+              19.24
+            ],
+            [
+              72.87999999999998,
+              19.21999999999999
+            ],
+            [
+              72.9,
+              19.21999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0089",
+      "properties": {
+        "cell_id": "IMP_0089",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.23999999999999
+            ],
+            [
+              72.9,
+              19.26
+            ],
+            [
+              72.87999999999998,
+              19.26
+            ],
+            [
+              72.87999999999998,
+              19.23999999999999
+            ],
+            [
+              72.9,
+              19.23999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0090",
+      "properties": {
+        "cell_id": "IMP_0090",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.25999999999999
+            ],
+            [
+              72.9,
+              19.28
+            ],
+            [
+              72.87999999999998,
+              19.28
+            ],
+            [
+              72.87999999999998,
+              19.25999999999999
+            ],
+            [
+              72.9,
+              19.25999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0091",
+      "properties": {
+        "cell_id": "IMP_0091",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.9,
+              19.27999999999999
+            ],
+            [
+              72.9,
+              19.3
+            ],
+            [
+              72.87999999999998,
+              19.3
+            ],
+            [
+              72.87999999999998,
+              19.27999999999999
+            ],
+            [
+              72.9,
+              19.27999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0092",
+      "properties": {
+        "cell_id": "IMP_0092",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              18.999999999999996
+            ],
+            [
+              72.92,
+              19.02
+            ],
+            [
+              72.89999999999998,
+              19.02
+            ],
+            [
+              72.89999999999998,
+              18.999999999999996
+            ],
+            [
+              72.92,
+              18.999999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0093",
+      "properties": {
+        "cell_id": "IMP_0093",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.019999999999996
+            ],
+            [
+              72.92,
+              19.04
+            ],
+            [
+              72.89999999999998,
+              19.04
+            ],
+            [
+              72.89999999999998,
+              19.019999999999996
+            ],
+            [
+              72.92,
+              19.019999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0094",
+      "properties": {
+        "cell_id": "IMP_0094",
+        "impervious_fraction": 0.82,
+        "built_up_fraction": 0.7,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.039999999999996
+            ],
+            [
+              72.92,
+              19.06
+            ],
+            [
+              72.89999999999998,
+              19.06
+            ],
+            [
+              72.89999999999998,
+              19.039999999999996
+            ],
+            [
+              72.92,
+              19.039999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0095",
+      "properties": {
+        "cell_id": "IMP_0095",
+        "impervious_fraction": 0.82,
+        "built_up_fraction": 0.7,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.059999999999995
+            ],
+            [
+              72.92,
+              19.08
+            ],
+            [
+              72.89999999999998,
+              19.08
+            ],
+            [
+              72.89999999999998,
+              19.059999999999995
+            ],
+            [
+              72.92,
+              19.059999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0096",
+      "properties": {
+        "cell_id": "IMP_0096",
+        "impervious_fraction": 0.82,
+        "built_up_fraction": 0.7,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.079999999999995
+            ],
+            [
+              72.92,
+              19.1
+            ],
+            [
+              72.89999999999998,
+              19.1
+            ],
+            [
+              72.89999999999998,
+              19.079999999999995
+            ],
+            [
+              72.92,
+              19.079999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0097",
+      "properties": {
+        "cell_id": "IMP_0097",
+        "impervious_fraction": 0.82,
+        "built_up_fraction": 0.7,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.099999999999994
+            ],
+            [
+              72.92,
+              19.12
+            ],
+            [
+              72.89999999999998,
+              19.12
+            ],
+            [
+              72.89999999999998,
+              19.099999999999994
+            ],
+            [
+              72.92,
+              19.099999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0098",
+      "properties": {
+        "cell_id": "IMP_0098",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.119999999999994
+            ],
+            [
+              72.92,
+              19.14
+            ],
+            [
+              72.89999999999998,
+              19.14
+            ],
+            [
+              72.89999999999998,
+              19.119999999999994
+            ],
+            [
+              72.92,
+              19.119999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0099",
+      "properties": {
+        "cell_id": "IMP_0099",
+        "impervious_fraction": 0.22,
+        "built_up_fraction": 0.12,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.139999999999993
+            ],
+            [
+              72.92,
+              19.16
+            ],
+            [
+              72.89999999999998,
+              19.16
+            ],
+            [
+              72.89999999999998,
+              19.139999999999993
+            ],
+            [
+              72.92,
+              19.139999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0100",
+      "properties": {
+        "cell_id": "IMP_0100",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.159999999999993
+            ],
+            [
+              72.92,
+              19.18
+            ],
+            [
+              72.89999999999998,
+              19.18
+            ],
+            [
+              72.89999999999998,
+              19.159999999999993
+            ],
+            [
+              72.92,
+              19.159999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0101",
+      "properties": {
+        "cell_id": "IMP_0101",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.179999999999993
+            ],
+            [
+              72.92,
+              19.2
+            ],
+            [
+              72.89999999999998,
+              19.2
+            ],
+            [
+              72.89999999999998,
+              19.179999999999993
+            ],
+            [
+              72.92,
+              19.179999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0102",
+      "properties": {
+        "cell_id": "IMP_0102",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.199999999999992
+            ],
+            [
+              72.92,
+              19.22
+            ],
+            [
+              72.89999999999998,
+              19.22
+            ],
+            [
+              72.89999999999998,
+              19.199999999999992
+            ],
+            [
+              72.92,
+              19.199999999999992
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0103",
+      "properties": {
+        "cell_id": "IMP_0103",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.21999999999999
+            ],
+            [
+              72.92,
+              19.24
+            ],
+            [
+              72.89999999999998,
+              19.24
+            ],
+            [
+              72.89999999999998,
+              19.21999999999999
+            ],
+            [
+              72.92,
+              19.21999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0104",
+      "properties": {
+        "cell_id": "IMP_0104",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.92,
+              19.23999999999999
+            ],
+            [
+              72.92,
+              19.26
+            ],
+            [
+              72.89999999999998,
+              19.26
+            ],
+            [
+              72.89999999999998,
+              19.23999999999999
+            ],
+            [
+              72.92,
+              19.23999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0105",
+      "properties": {
+        "cell_id": "IMP_0105",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              18.999999999999996
+            ],
+            [
+              72.94,
+              19.02
+            ],
+            [
+              72.91999999999997,
+              19.02
+            ],
+            [
+              72.91999999999997,
+              18.999999999999996
+            ],
+            [
+              72.94,
+              18.999999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0106",
+      "properties": {
+        "cell_id": "IMP_0106",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.019999999999996
+            ],
+            [
+              72.94,
+              19.04
+            ],
+            [
+              72.91999999999997,
+              19.04
+            ],
+            [
+              72.91999999999997,
+              19.019999999999996
+            ],
+            [
+              72.94,
+              19.019999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0107",
+      "properties": {
+        "cell_id": "IMP_0107",
+        "impervious_fraction": 0.82,
+        "built_up_fraction": 0.7,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.039999999999996
+            ],
+            [
+              72.94,
+              19.06
+            ],
+            [
+              72.91999999999997,
+              19.06
+            ],
+            [
+              72.91999999999997,
+              19.039999999999996
+            ],
+            [
+              72.94,
+              19.039999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0108",
+      "properties": {
+        "cell_id": "IMP_0108",
+        "impervious_fraction": 0.82,
+        "built_up_fraction": 0.7,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.059999999999995
+            ],
+            [
+              72.94,
+              19.08
+            ],
+            [
+              72.91999999999997,
+              19.08
+            ],
+            [
+              72.91999999999997,
+              19.059999999999995
+            ],
+            [
+              72.94,
+              19.059999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0109",
+      "properties": {
+        "cell_id": "IMP_0109",
+        "impervious_fraction": 0.82,
+        "built_up_fraction": 0.7,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.079999999999995
+            ],
+            [
+              72.94,
+              19.1
+            ],
+            [
+              72.91999999999997,
+              19.1
+            ],
+            [
+              72.91999999999997,
+              19.079999999999995
+            ],
+            [
+              72.94,
+              19.079999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0110",
+      "properties": {
+        "cell_id": "IMP_0110",
+        "impervious_fraction": 0.82,
+        "built_up_fraction": 0.7,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.099999999999994
+            ],
+            [
+              72.94,
+              19.12
+            ],
+            [
+              72.91999999999997,
+              19.12
+            ],
+            [
+              72.91999999999997,
+              19.099999999999994
+            ],
+            [
+              72.94,
+              19.099999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0111",
+      "properties": {
+        "cell_id": "IMP_0111",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.119999999999994
+            ],
+            [
+              72.94,
+              19.14
+            ],
+            [
+              72.91999999999997,
+              19.14
+            ],
+            [
+              72.91999999999997,
+              19.119999999999994
+            ],
+            [
+              72.94,
+              19.119999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0112",
+      "properties": {
+        "cell_id": "IMP_0112",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.139999999999993
+            ],
+            [
+              72.94,
+              19.16
+            ],
+            [
+              72.91999999999997,
+              19.16
+            ],
+            [
+              72.91999999999997,
+              19.139999999999993
+            ],
+            [
+              72.94,
+              19.139999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0113",
+      "properties": {
+        "cell_id": "IMP_0113",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.159999999999993
+            ],
+            [
+              72.94,
+              19.18
+            ],
+            [
+              72.91999999999997,
+              19.18
+            ],
+            [
+              72.91999999999997,
+              19.159999999999993
+            ],
+            [
+              72.94,
+              19.159999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0114",
+      "properties": {
+        "cell_id": "IMP_0114",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.179999999999993
+            ],
+            [
+              72.94,
+              19.2
+            ],
+            [
+              72.91999999999997,
+              19.2
+            ],
+            [
+              72.91999999999997,
+              19.179999999999993
+            ],
+            [
+              72.94,
+              19.179999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0115",
+      "properties": {
+        "cell_id": "IMP_0115",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.199999999999992
+            ],
+            [
+              72.94,
+              19.22
+            ],
+            [
+              72.91999999999997,
+              19.22
+            ],
+            [
+              72.91999999999997,
+              19.199999999999992
+            ],
+            [
+              72.94,
+              19.199999999999992
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0116",
+      "properties": {
+        "cell_id": "IMP_0116",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.94,
+              19.21999999999999
+            ],
+            [
+              72.94,
+              19.24
+            ],
+            [
+              72.91999999999997,
+              19.24
+            ],
+            [
+              72.91999999999997,
+              19.21999999999999
+            ],
+            [
+              72.94,
+              19.21999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0117",
+      "properties": {
+        "cell_id": "IMP_0117",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.96,
+              19.019999999999996
+            ],
+            [
+              72.96,
+              19.04
+            ],
+            [
+              72.93999999999997,
+              19.04
+            ],
+            [
+              72.93999999999997,
+              19.019999999999996
+            ],
+            [
+              72.96,
+              19.019999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0118",
+      "properties": {
+        "cell_id": "IMP_0118",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.96,
+              19.039999999999996
+            ],
+            [
+              72.96,
+              19.06
+            ],
+            [
+              72.93999999999997,
+              19.06
+            ],
+            [
+              72.93999999999997,
+              19.039999999999996
+            ],
+            [
+              72.96,
+              19.039999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0119",
+      "properties": {
+        "cell_id": "IMP_0119",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.96,
+              19.079999999999995
+            ],
+            [
+              72.96,
+              19.1
+            ],
+            [
+              72.93999999999997,
+              19.1
+            ],
+            [
+              72.93999999999997,
+              19.079999999999995
+            ],
+            [
+              72.96,
+              19.079999999999995
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0120",
+      "properties": {
+        "cell_id": "IMP_0120",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.96,
+              19.099999999999994
+            ],
+            [
+              72.96,
+              19.12
+            ],
+            [
+              72.93999999999997,
+              19.12
+            ],
+            [
+              72.93999999999997,
+              19.099999999999994
+            ],
+            [
+              72.96,
+              19.099999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0121",
+      "properties": {
+        "cell_id": "IMP_0121",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.96,
+              19.119999999999994
+            ],
+            [
+              72.96,
+              19.14
+            ],
+            [
+              72.93999999999997,
+              19.14
+            ],
+            [
+              72.93999999999997,
+              19.119999999999994
+            ],
+            [
+              72.96,
+              19.119999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0122",
+      "properties": {
+        "cell_id": "IMP_0122",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.96,
+              19.139999999999993
+            ],
+            [
+              72.96,
+              19.16
+            ],
+            [
+              72.93999999999997,
+              19.16
+            ],
+            [
+              72.93999999999997,
+              19.139999999999993
+            ],
+            [
+              72.96,
+              19.139999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0123",
+      "properties": {
+        "cell_id": "IMP_0123",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.96,
+              19.159999999999993
+            ],
+            [
+              72.96,
+              19.18
+            ],
+            [
+              72.93999999999997,
+              19.18
+            ],
+            [
+              72.93999999999997,
+              19.159999999999993
+            ],
+            [
+              72.96,
+              19.159999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0124",
+      "properties": {
+        "cell_id": "IMP_0124",
+        "impervious_fraction": 0.08,
+        "built_up_fraction": 0.03,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.96,
+              19.179999999999993
+            ],
+            [
+              72.96,
+              19.2
+            ],
+            [
+              72.93999999999997,
+              19.2
+            ],
+            [
+              72.93999999999997,
+              19.179999999999993
+            ],
+            [
+              72.96,
+              19.179999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0125",
+      "properties": {
+        "cell_id": "IMP_0125",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.98,
+              19.119999999999994
+            ],
+            [
+              72.98,
+              19.14
+            ],
+            [
+              72.95999999999997,
+              19.14
+            ],
+            [
+              72.95999999999997,
+              19.119999999999994
+            ],
+            [
+              72.98,
+              19.119999999999994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0126",
+      "properties": {
+        "cell_id": "IMP_0126",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.98,
+              19.139999999999993
+            ],
+            [
+              72.98,
+              19.16
+            ],
+            [
+              72.95999999999997,
+              19.16
+            ],
+            [
+              72.95999999999997,
+              19.139999999999993
+            ],
+            [
+              72.98,
+              19.139999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0127",
+      "properties": {
+        "cell_id": "IMP_0127",
+        "impervious_fraction": 0.15,
+        "built_up_fraction": 0.08,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.98,
+              19.159999999999993
+            ],
+            [
+              72.98,
+              19.18
+            ],
+            [
+              72.95999999999997,
+              19.18
+            ],
+            [
+              72.95999999999997,
+              19.159999999999993
+            ],
+            [
+              72.98,
+              19.159999999999993
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "IMP_0128",
+      "properties": {
+        "cell_id": "IMP_0128",
+        "impervious_fraction": 0.65,
+        "built_up_fraction": 0.52,
+        "source": "Derived from ESA WorldCover 10m Built-Up & Paved Infrastructure Baseline",
+        "confidence": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.98,
+              19.179999999999993
+            ],
+            [
+              72.98,
+              19.2
+            ],
+            [
+              72.95999999999997,
+              19.2
+            ],
+            [
+              72.95999999999997,
+              19.179999999999993
+            ],
+            [
+              72.98,
+              19.179999999999993
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "simulation_id": "8c169993-c142-494f-b16a-a648971b803b",
+  "event_id": "july_2024_cloudburst",
+  "evaluated_at": "2026-09-25T20:13:28.536067+00:00",
+  "flood_threshold_m": 0.08,
+  "flooded_area_km2": 93.4479,
+  "metrics": {
+    "flooded_road_segments_count": 2462,
+    "flooded_road_length_km": 589.79,
+    "roads_by_class": {
+      "tertiary": 875,
+      "secondary": 523,
+      "primary": 380,
+      "trunk": 226,
+      "trunk_link": 116,
+      "motorway": 81,
+      "secondary_link": 79,
+      "tertiary_link": 66,
+      "primary_link": 65,
+      "motorway_link": 51
+    },
+    "affected_buildings_count": 3286,
+    "affected_building_footprint_m2": 1615605.6,
+    "exposed_population_count": 1621226,
+    "exposed_population_cells": 154,
+    "affected_critical_infra_count": 275,
+    "affected_infra_by_category": {
+      "airport_terminal": 1,
+      "clinic": 70,
+      "fire_station": 2,
+      "hospital": 158,
+      "police": 17,
+      "railway_station": 24,
+      "tertiary_healthcare": 3
+    },
+    "affected_shelters_count": 3,
+    "affected_shelter_capacity": 5400,
+    "affected_wards_count": 11,
+    "covered_hotspots_count": 8,
+    "nearby_pumping_stations_count": 3,
+    "interacting_water_bodies_count": 286,
+    "interacting_water_bodies_area_m2": 0.0
+  },
+  "affected_infrastructure_samples": [
+    {
+      "infra_id": "501020",
+      "name": "Chhatrapati Shivaji Maharaj International Airport (Terminal 2 - Sahar)",
+      "category": "airport_terminal",
+      "ward": "KE"
+    },
+    {
+      "infra_id": "OSM_INFRA_12389405268",
+      "name": "24byMe Diabetes Treatment Clinic",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_7073537768",
+      "name": "Aditya Nursing Home",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_11298645431",
+      "name": "Agarwal Nursing Home",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_7045980546",
+      "name": "Amardeep Nursing Home",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_11443424195",
+      "name": "Anuvansh Clinic",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_11275619443",
+      "name": "Anuvansh Fertility & Women's Clinic",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_3993109769",
+      "name": "Aparna Clinic",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_7053287483",
+      "name": "Ashirwad Nursing Home, Amravati",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_7051908286",
+      "name": "Belle-Vue General Nursing Home",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_7064828720",
+      "name": "Bhargava Nursing Home",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_7082352463",
+      "name": "CGHS Dispensary No.10, Bandra",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_7085878722",
+      "name": "CGHS Dispensary No.15, Deonar",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_7087491733",
+      "name": "CGHS Sub-Dispensary, Juhu",
+      "category": "clinic",
+      "ward": null
+    },
+    {
+      "infra_id": "OSM_INFRA_1457969601",
+      "name": "Clinic",
+      "category": "clinic",
+      "ward": null
+    }
+  ],
+  "affected_shelters": [
+    {
+      "shelter_id": "SHLTR_05",
+      "name": "Kurla West Municipal Secondary School (Mithi Relief Base)",
+      "category": "relief_center",
+      "capacity_persons": 1800
+    },
+    {
+      "shelter_id": "SHLTR_07",
+      "name": "Andheri West Municipal Higher Secondary School",
+      "category": "relief_center",
+      "capacity_persons": 1400
+    },
+    {
+      "shelter_id": "SHLTR_08",
+      "name": "Shivaji Nagar Municipal Colony Relief Centre",
+      "category": "relief_center",
+      "capacity_persons": 2200
+    }
+  ],
+  "affected_wards": [
+    {
+      "ward_id": "FN",
+      "name": "Ward F/North (Matunga, Sion, Wadala)",
+      "population": 529003,
+      "area_sq_km": 12.98
+    },
+    {
+      "ward_id": "GN",
+      "name": "Ward G/North (Dadar, Dharavi, Mahim)",
+      "population": 599039,
+      "area_sq_km": 9.07
+    },
+    {
+      "ward_id": "HE",
+      "name": "Ward H/East (Bandra East, Khar East, Santacruz East, Kalina)",
+      "population": 557239,
+      "area_sq_km": 13.53
+    },
+    {
+      "ward_id": "HW",
+      "name": "Ward H/West (Bandra West, Khar West, Santacruz West)",
+      "population": 307581,
+      "area_sq_km": 11.55
+    },
+    {
+      "ward_id": "KE",
+      "name": "Ward K/East (Andheri East, Jogeshwari East, Vile Parle East)",
+      "population": 823885,
+      "area_sq_km": 24.78
+    },
+    {
+      "ward_id": "KW",
+      "name": "Ward K/West (Andheri West, Versova, Juhu, Oshiwara)",
+      "population": 749345,
+      "area_sq_km": 23.44
+    },
+    {
+      "ward_id": "L",
+      "name": "Ward L (Kurla, Chunabhatti, Sakinaka, Chandivali)",
+      "population": 902221,
+      "area_sq_km": 15.88
+    },
+    {
+      "ward_id": "ME",
+      "name": "Ward M/East (Govandi, Mankhurd, Deonar, Shivaji Nagar)",
+      "population": 807720,
+      "area_sq_km": 32.5
+    },
+    {
+      "ward_id": "MW",
+      "name": "Ward M/West (Chembur, Tilak Nagar, Mahul)",
+      "population": 411893,
+      "area_sq_km": 19.5
+    },
+    {
+      "ward_id": "N",
+      "name": "Ward N (Ghatkopar, Vidyavihar, Pant Nagar)",
+      "population": 622853,
+      "area_sq_km": 25.96
+    },
+    {
+      "ward_id": "S",
+      "name": "Ward S (Bhandup, Powai, Kanjurmarg, Vikhroli)",
+      "population": 743783,
+      "area_sq_km": 64.0
+    }
+  ],
+  "covered_hotspots": [
+    {
+      "hotspot_id": "HOTSPOT_0034",
+      "name": "Deonar Abattoir & Highway Junction",
+      "ward": "ME",
+      "severity": "Chronic recurrent",
+      "hotspot_type": "road_junction_waterlogging"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0002",
+      "name": "Gandhi Market / King's Circle",
+      "ward": "FN",
+      "severity": "Chronic recurrent",
+      "hotspot_type": "road_junction_waterlogging"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0027",
+      "name": "Govandi Shivaji Nagar Lotus Colony",
+      "ward": "ME",
+      "severity": "Chronic recurrent",
+      "hotspot_type": "low_lying_depression"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0022",
+      "name": "Kurla West Bail Bazar & Kamani Junction",
+      "ward": "L",
+      "severity": "Chronic recurrent",
+      "hotspot_type": "riverine_overflow"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0031",
+      "name": "Sakinaka Junction (Andheri-Kurla Road)",
+      "ward": "L",
+      "severity": "Chronic recurrent",
+      "hotspot_type": "road_junction_waterlogging"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0017",
+      "name": "SV Road Bandra Talkies Junction",
+      "ward": "HW",
+      "severity": "Chronic recurrent",
+      "hotspot_type": "road_junction_waterlogging"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0029",
+      "name": "Vidyavihar Station Underpass",
+      "ward": "L",
+      "severity": "Chronic recurrent",
+      "hotspot_type": "subway_inundation"
+    },
+    {
+      "hotspot_id": "HOTSPOT_0018",
+      "name": "Vile Parle East Nehru Road",
+      "ward": "KE",
+      "severity": "Chronic recurrent",
+      "hotspot_type": "road_junction_waterlogging"
+    }
+  ],
+  "nearby_pumping_stations": [
+    {
+      "pump_id": "NODE_PS_04",
+      "name": "Irla Nullah Pumping Station",
+      "ward": "KW",
+      "num_pumps": 8
+    },
+    {
+      "pump_id": "NODE_PS_06",
+      "name": "Gazdarbandh Pumping Station",
+      "ward": "HW",
+      "num_pumps": 6
+    },
+    {
+      "pump_id": "NODE_PS_07",
+      "name": "Mogra Pumping Station",
+      "ward": "KW",
+      "num_pumps": 4
+    }
+  ],
+  "provenance": {
+    "postgis_tables_queried": [
+      "road_segments",
+      "buildings",
+      "population_grids",
+      "critical_infrastructure",
+      "shelters",
+      "wards",
+      "flood_hotspots",
+      "pumping_stations",
+      "water_bodies"
+    ],
+    "limitations": [
+      "Slum settlements table does not exist in database schema",
+      "Building footprints subset covers 30,000 structures in central corridor",
+      "Population grid based on 100m spatial disaggregation"
+    ]
+  }
+}

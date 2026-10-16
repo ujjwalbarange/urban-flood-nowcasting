@@ -284,3 +284,8 @@ class ConvGRUDecoder(nn.Module):
             x = h_new
 
         return new_states
+
+
+# Aliases for architecture naming
+SkipConvGRUEncoder = ConvGRUEncoder
+SkipConvGRUDecoder = ConvGRUDecoder

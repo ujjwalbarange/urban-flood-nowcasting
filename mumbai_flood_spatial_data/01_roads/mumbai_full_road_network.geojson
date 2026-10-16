@@ -1,0 +1,2824 @@
+{
+  "type": "FeatureCollection",
+  "name": "mumbai_full_road_network",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "ROAD_0001",
+      "properties": {
+        "road_id": "ROAD_0001",
+        "name": "Western Express Highway (Bandra to Santacruz Airport)",
+        "highway": "motorway",
+        "length_m": 4016.03,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "H/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.842,
+            19.055
+          ],
+          [
+            72.848,
+            19.075
+          ],
+          [
+            72.852,
+            19.09
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0002",
+      "properties": {
+        "road_id": "ROAD_0002",
+        "name": "Western Express Highway (Santacruz to Andheri Flyover)",
+        "highway": "motorway",
+        "length_m": 3348.14,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "K/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.852,
+            19.09
+          ],
+          [
+            72.854,
+            19.105
+          ],
+          [
+            72.856,
+            19.12
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0003",
+      "properties": {
+        "road_id": "ROAD_0003",
+        "name": "Western Express Highway (Andheri to Goregaon Hub)",
+        "highway": "motorway",
+        "length_m": 5000.32,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "K/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.856,
+            19.12
+          ],
+          [
+            72.858,
+            19.145
+          ],
+          [
+            72.86,
+            19.165
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0004",
+      "properties": {
+        "road_id": "ROAD_0004",
+        "name": "Western Express Highway (Goregaon to Malad / Kandivali)",
+        "highway": "motorway",
+        "length_m": 5551.93,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "P/N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.86,
+            19.165
+          ],
+          [
+            72.862,
+            19.19
+          ],
+          [
+            72.864,
+            19.215
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0005",
+      "properties": {
+        "road_id": "ROAD_0005",
+        "name": "Western Express Highway (Kandivali to Dahisar Check Naka)",
+        "highway": "motorway",
+        "length_m": 6988.04,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "R/C",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.864,
+            19.215
+          ],
+          [
+            72.866,
+            19.245
+          ],
+          [
+            72.868,
+            19.278
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0006",
+      "properties": {
+        "road_id": "ROAD_0006",
+        "name": "Eastern Express Highway (Sion to Chembur Amar Mahal)",
+        "highway": "trunk",
+        "length_m": 4818.45,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "M/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.865,
+            19.04
+          ],
+          [
+            72.885,
+            19.055
+          ],
+          [
+            72.9,
+            19.068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0007",
+      "properties": {
+        "road_id": "ROAD_0007",
+        "name": "Eastern Express Highway (Amar Mahal to Ghatkopar Pant Nagar)",
+        "highway": "trunk",
+        "length_m": 4422.93,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.9,
+            19.068
+          ],
+          [
+            72.915,
+            19.085
+          ],
+          [
+            72.925,
+            19.1
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0008",
+      "properties": {
+        "road_id": "ROAD_0008",
+        "name": "Eastern Express Highway (Ghatkopar to Vikhroli Godrej)",
+        "highway": "trunk",
+        "length_m": 3782.86,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.925,
+            19.1
+          ],
+          [
+            72.935,
+            19.115
+          ],
+          [
+            72.942,
+            19.13
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0009",
+      "properties": {
+        "road_id": "ROAD_0009",
+        "name": "Eastern Express Highway (Vikhroli to Bhandup Pumping)",
+        "highway": "trunk",
+        "length_m": 4427.08,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.942,
+            19.13
+          ],
+          [
+            72.948,
+            19.15
+          ],
+          [
+            72.955,
+            19.168
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0010",
+      "properties": {
+        "road_id": "ROAD_0010",
+        "name": "Eastern Express Highway (Bhandup to Mulund Check Naka)",
+        "highway": "trunk",
+        "length_m": 5401.86,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "T",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.955,
+            19.168
+          ],
+          [
+            72.962,
+            19.185
+          ],
+          [
+            72.968,
+            19.215
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0011",
+      "properties": {
+        "road_id": "ROAD_0011",
+        "name": "Eastern Freeway (Orange Gate to Wadala Anik)",
+        "highway": "motorway",
+        "length_m": 9181.68,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 70,
+        "access": "public",
+        "ward_id": "E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.844,
+            18.948
+          ],
+          [
+            72.852,
+            18.98
+          ],
+          [
+            72.875,
+            19.025
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0012",
+      "properties": {
+        "road_id": "ROAD_0012",
+        "name": "Eastern Freeway (Anik to Shivaji Nagar Tunnel)",
+        "highway": "motorway",
+        "length_m": 4355.65,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "yes",
+        "tunnel": "yes",
+        "one_way": "yes",
+        "maxspeed": 70,
+        "access": "public",
+        "ward_id": "M/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.875,
+            19.025
+          ],
+          [
+            72.89,
+            19.04
+          ],
+          [
+            72.905,
+            19.052
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0013",
+      "properties": {
+        "road_id": "ROAD_0013",
+        "name": "Eastern Freeway (Panjarpol to Deonar)",
+        "highway": "motorway",
+        "length_m": 2104.59,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 70,
+        "access": "public",
+        "ward_id": "M/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.905,
+            19.052
+          ],
+          [
+            72.915,
+            19.058
+          ],
+          [
+            72.922,
+            19.062
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0014",
+      "properties": {
+        "road_id": "ROAD_0014",
+        "name": "Eastern Freeway (Deonar to Mankhurd Link Road)",
+        "highway": "motorway",
+        "length_m": 1810.59,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 70,
+        "access": "public",
+        "ward_id": "M/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.922,
+            19.062
+          ],
+          [
+            72.93,
+            19.065
+          ],
+          [
+            72.938,
+            19.068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0015",
+      "properties": {
+        "road_id": "ROAD_0015",
+        "name": "Mumbai Coastal Road (Marine Drive to Breach Candy Undersea Tunnel)",
+        "highway": "motorway",
+        "length_m": 3500.24,
+        "surface": "concrete",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "yes",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "D",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.822,
+            18.945
+          ],
+          [
+            72.812,
+            18.958
+          ],
+          [
+            72.805,
+            18.972
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0016",
+      "properties": {
+        "road_id": "ROAD_0016",
+        "name": "Mumbai Coastal Road (Breach Candy to Haji Ali Promenade)",
+        "highway": "motorway",
+        "length_m": 1636.14,
+        "surface": "concrete",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "D",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.805,
+            18.972
+          ],
+          [
+            72.808,
+            18.98
+          ],
+          [
+            72.812,
+            18.985
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0017",
+      "properties": {
+        "road_id": "ROAD_0017",
+        "name": "Mumbai Coastal Road (Haji Ali to Worli Sea Face Landing)",
+        "highway": "motorway",
+        "length_m": 3348.69,
+        "surface": "concrete",
+        "lanes": 6,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": "G/S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.812,
+            18.985
+          ],
+          [
+            72.814,
+            18.998
+          ],
+          [
+            72.816,
+            19.015
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0018",
+      "properties": {
+        "road_id": "ROAD_0018",
+        "name": "Bandra-Worli Sea Link (Rajiv Gandhi Sea Link)",
+        "highway": "motorway",
+        "length_m": 4438.45,
+        "surface": "concrete",
+        "lanes": 8,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": null,
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.816,
+            19.015
+          ],
+          [
+            72.818,
+            19.03
+          ],
+          [
+            72.825,
+            19.042
+          ],
+          [
+            72.835,
+            19.048
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0019",
+      "properties": {
+        "road_id": "ROAD_0019",
+        "name": "Sion-Panvel Highway (BARC Mankhurd to Vashi Creek Bridge)",
+        "highway": "trunk",
+        "length_m": 4866.08,
+        "surface": "asphalt",
+        "lanes": 8,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 80,
+        "access": "public",
+        "ward_id": null,
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.925,
+            19.048
+          ],
+          [
+            72.945,
+            19.052
+          ],
+          [
+            72.97,
+            19.058
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0020",
+      "properties": {
+        "road_id": "ROAD_0020",
+        "name": "Swami Vivekanand (SV) Road (Bandra to Khar Telephone Exchange)",
+        "highway": "primary",
+        "length_m": 2776.31,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "H/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.838,
+            19.055
+          ],
+          [
+            72.839,
+            19.07
+          ],
+          [
+            72.84,
+            19.08
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0021",
+      "properties": {
+        "road_id": "ROAD_0021",
+        "name": "Swami Vivekanand (SV) Road (Khar to Santacruz & Vile Parle)",
+        "highway": "primary",
+        "length_m": 3348.16,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "K/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.84,
+            19.08
+          ],
+          [
+            72.842,
+            19.095
+          ],
+          [
+            72.844,
+            19.11
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0022",
+      "properties": {
+        "road_id": "ROAD_0022",
+        "name": "Swami Vivekanand (SV) Road (Andheri to Jogeshwari Bus Depot)",
+        "highway": "primary",
+        "length_m": 3898.0,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "K/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.844,
+            19.11
+          ],
+          [
+            72.846,
+            19.128
+          ],
+          [
+            72.848,
+            19.145
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0023",
+      "properties": {
+        "road_id": "ROAD_0023",
+        "name": "Swami Vivekanand (SV) Road (Jogeshwari to Goregaon & Malad)",
+        "highway": "primary",
+        "length_m": 4765.62,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "P/S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.848,
+            19.145
+          ],
+          [
+            72.849,
+            19.168
+          ],
+          [
+            72.85,
+            19.188
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0024",
+      "properties": {
+        "road_id": "ROAD_0024",
+        "name": "Swami Vivekanand (SV) Road (Malad to Kandivali & Borivali West)",
+        "highway": "primary",
+        "length_m": 4890.8,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "P/N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.85,
+            19.188
+          ],
+          [
+            72.852,
+            19.215
+          ],
+          [
+            72.854,
+            19.232
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0025",
+      "properties": {
+        "road_id": "ROAD_0025",
+        "name": "Swami Vivekanand (SV) Road (Borivali to Dahisar West)",
+        "highway": "primary",
+        "length_m": 4229.3,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "R/C",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.854,
+            19.232
+          ],
+          [
+            72.856,
+            19.255
+          ],
+          [
+            72.858,
+            19.27
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0026",
+      "properties": {
+        "road_id": "ROAD_0026",
+        "name": "Linking Road (Bandra Talkies to Khar Corner)",
+        "highway": "primary",
+        "length_m": 2665.84,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "H/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.833,
+            19.058
+          ],
+          [
+            72.834,
+            19.072
+          ],
+          [
+            72.835,
+            19.082
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0027",
+      "properties": {
+        "road_id": "ROAD_0027",
+        "name": "Linking Road (Khar to Santacruz West)",
+        "highway": "primary",
+        "length_m": 2225.36,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "K/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.835,
+            19.082
+          ],
+          [
+            72.836,
+            19.095
+          ],
+          [
+            72.837,
+            19.102
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0028",
+      "properties": {
+        "road_id": "ROAD_0028",
+        "name": "Linking Road (Santacruz to Juhu Tara Extension)",
+        "highway": "primary",
+        "length_m": 1802.42,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "K/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.837,
+            19.102
+          ],
+          [
+            72.836,
+            19.11
+          ],
+          [
+            72.834,
+            19.118
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0029",
+      "properties": {
+        "road_id": "ROAD_0029",
+        "name": "Lal Bahadur Shastri (LBS) Marg (Sion Circle to Kurla Depot)",
+        "highway": "primary",
+        "length_m": 3724.24,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "H/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.862,
+            19.04
+          ],
+          [
+            72.87,
+            19.055
+          ],
+          [
+            72.878,
+            19.07
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0030",
+      "properties": {
+        "road_id": "ROAD_0030",
+        "name": "Lal Bahadur Shastri (LBS) Marg (Kurla to Phoenix Marketcity)",
+        "highway": "primary",
+        "length_m": 3600.0,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "L",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.878,
+            19.07
+          ],
+          [
+            72.885,
+            19.085
+          ],
+          [
+            72.895,
+            19.098
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0031",
+      "properties": {
+        "road_id": "ROAD_0031",
+        "name": "Lal Bahadur Shastri (LBS) Marg (Ghatkopar West to Shreyas Cinema)",
+        "highway": "primary",
+        "length_m": 3661.05,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "L",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.895,
+            19.098
+          ],
+          [
+            72.905,
+            19.11
+          ],
+          [
+            72.915,
+            19.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0032",
+      "properties": {
+        "road_id": "ROAD_0032",
+        "name": "Lal Bahadur Shastri (LBS) Marg (Vikhroli West to Kanjurmarg Station)",
+        "highway": "primary",
+        "length_m": 3380.66,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.915,
+            19.125
+          ],
+          [
+            72.922,
+            19.138
+          ],
+          [
+            72.93,
+            19.152
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0033",
+      "properties": {
+        "road_id": "ROAD_0033",
+        "name": "Lal Bahadur Shastri (LBS) Marg (Bhandup Sonapur to Mulund West)",
+        "highway": "primary",
+        "length_m": 3677.26,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "T",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.93,
+            19.152
+          ],
+          [
+            72.938,
+            19.168
+          ],
+          [
+            72.945,
+            19.182
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0034",
+      "properties": {
+        "road_id": "ROAD_0034",
+        "name": "Lal Bahadur Shastri (LBS) Marg (Mulund to Check Naka / Thane Border)",
+        "highway": "primary",
+        "length_m": 3803.07,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": null,
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.945,
+            19.182
+          ],
+          [
+            72.95,
+            19.2
+          ],
+          [
+            72.955,
+            19.215
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0035",
+      "properties": {
+        "road_id": "ROAD_0035",
+        "name": "Dr. Babasaheb Ambedkar Road (CSMT to Byculla Bridge)",
+        "highway": "primary",
+        "length_m": 3668.59,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "B",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.835,
+            18.942
+          ],
+          [
+            72.836,
+            18.958
+          ],
+          [
+            72.838,
+            18.975
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0036",
+      "properties": {
+        "road_id": "ROAD_0036",
+        "name": "Dr. Babasaheb Ambedkar Road (Byculla to Lalbaug Flyover)",
+        "highway": "primary",
+        "length_m": 3019.3,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.838,
+            18.975
+          ],
+          [
+            72.84,
+            18.99
+          ],
+          [
+            72.842,
+            19.002
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0037",
+      "properties": {
+        "road_id": "ROAD_0037",
+        "name": "Dr. Babasaheb Ambedkar Road (Lalbaug to Hindmata & Dadar TT)",
+        "highway": "primary",
+        "length_m": 2254.08,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "F/S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.842,
+            19.002
+          ],
+          [
+            72.844,
+            19.012
+          ],
+          [
+            72.846,
+            19.022
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0038",
+      "properties": {
+        "road_id": "ROAD_0038",
+        "name": "Dr. Babasaheb Ambedkar Road (Dadar TT to King's Circle & Sion)",
+        "highway": "primary",
+        "length_m": 2479.18,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "F/N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.846,
+            19.022
+          ],
+          [
+            72.852,
+            19.03
+          ],
+          [
+            72.86,
+            19.04
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0039",
+      "properties": {
+        "road_id": "ROAD_0039",
+        "name": "Senapati Bapat Marg (Mahalaxmi Station to Lower Parel)",
+        "highway": "primary",
+        "length_m": 2658.25,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "G/S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.825,
+            18.982
+          ],
+          [
+            72.828,
+            18.995
+          ],
+          [
+            72.832,
+            19.005
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0040",
+      "properties": {
+        "road_id": "ROAD_0040",
+        "name": "Senapati Bapat Marg (Lower Parel to Elphinstone / Dadar)",
+        "highway": "primary",
+        "length_m": 2302.76,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "F/S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.832,
+            19.005
+          ],
+          [
+            72.835,
+            19.015
+          ],
+          [
+            72.838,
+            19.025
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0041",
+      "properties": {
+        "road_id": "ROAD_0041",
+        "name": "Senapati Bapat Marg (Dadar West to Matunga Road)",
+        "highway": "primary",
+        "length_m": 1930.17,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "G/N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.838,
+            19.025
+          ],
+          [
+            72.84,
+            19.035
+          ],
+          [
+            72.842,
+            19.042
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0042",
+      "properties": {
+        "road_id": "ROAD_0042",
+        "name": "Jogeshwari-Vikhroli Link Road (JVLR - WEH to SEEPZ)",
+        "highway": "primary",
+        "length_m": 2948.14,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "K/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.858,
+            19.135
+          ],
+          [
+            72.872,
+            19.132
+          ],
+          [
+            72.885,
+            19.128
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0043",
+      "properties": {
+        "road_id": "ROAD_0043",
+        "name": "Jogeshwari-Vikhroli Link Road (JVLR - Powai Lake to Kanjurmarg EEH)",
+        "highway": "primary",
+        "length_m": 5619.24,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.885,
+            19.128
+          ],
+          [
+            72.905,
+            19.125
+          ],
+          [
+            72.938,
+            19.128
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0044",
+      "properties": {
+        "road_id": "ROAD_0044",
+        "name": "Santacruz-Chembur Link Road (SCLR - Kalina to Kurla Double Decker)",
+        "highway": "primary",
+        "length_m": 3253.58,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "H/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.86,
+            19.075
+          ],
+          [
+            72.875,
+            19.072
+          ],
+          [
+            72.89,
+            19.068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0045",
+      "properties": {
+        "road_id": "ROAD_0045",
+        "name": "Santacruz-Chembur Link Road (SCLR - Kurla to Amar Mahal EEH)",
+        "highway": "primary",
+        "length_m": 1346.55,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "L",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.89,
+            19.068
+          ],
+          [
+            72.898,
+            19.066
+          ],
+          [
+            72.902,
+            19.068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0046",
+      "properties": {
+        "road_id": "ROAD_0046",
+        "name": "Andheri-Ghatkopar Link Road (AGLR - Andheri Kurla Road to Sakinaka)",
+        "highway": "primary",
+        "length_m": 3160.6,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "K/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.86,
+            19.112
+          ],
+          [
+            72.875,
+            19.108
+          ],
+          [
+            72.888,
+            19.102
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0047",
+      "properties": {
+        "road_id": "ROAD_0047",
+        "name": "Andheri-Ghatkopar Link Road (AGLR - Sakinaka to Ghatkopar Station)",
+        "highway": "primary",
+        "length_m": 2963.72,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "L",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.888,
+            19.102
+          ],
+          [
+            72.9,
+            19.095
+          ],
+          [
+            72.912,
+            19.088
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0048",
+      "properties": {
+        "road_id": "ROAD_0048",
+        "name": "Goregaon-Mulund Link Road (GMLR - Goregaon East Section)",
+        "highway": "primary",
+        "length_m": 3187.27,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": null,
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.862,
+            19.172
+          ],
+          [
+            72.878,
+            19.17
+          ],
+          [
+            72.892,
+            19.168
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0049",
+      "properties": {
+        "road_id": "ROAD_0049",
+        "name": "Goregaon-Mulund Link Road (GMLR - Mulund West to EEH Section)",
+        "highway": "primary",
+        "length_m": 1844.06,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "T",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.945,
+            19.172
+          ],
+          [
+            72.955,
+            19.17
+          ],
+          [
+            72.962,
+            19.168
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0050",
+      "properties": {
+        "road_id": "ROAD_0050",
+        "name": "Bandra-Kurla Complex (BKC) Main Avenue (Kalanagar to MTNL Junction)",
+        "highway": "primary",
+        "length_m": 2982.7,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "H/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.848,
+            19.06
+          ],
+          [
+            72.862,
+            19.065
+          ],
+          [
+            72.875,
+            19.068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0051",
+      "properties": {
+        "road_id": "ROAD_0051",
+        "name": "BKC Connector (BKC G-Block to Chunabhatti EEH)",
+        "highway": "primary",
+        "length_m": 2399.48,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "H/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.868,
+            19.065
+          ],
+          [
+            72.875,
+            19.055
+          ],
+          [
+            72.882,
+            19.048
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0052",
+      "properties": {
+        "road_id": "ROAD_0052",
+        "name": "New Link Road (Andheri West to Oshiwara)",
+        "highway": "primary",
+        "length_m": 3348.65,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "K/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.83,
+            19.125
+          ],
+          [
+            72.832,
+            19.142
+          ],
+          [
+            72.834,
+            19.155
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0053",
+      "properties": {
+        "road_id": "ROAD_0053",
+        "name": "New Link Road (Oshiwara to Goregaon & Malad Mindspace)",
+        "highway": "primary",
+        "length_m": 4102.11,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "P/S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.834,
+            19.155
+          ],
+          [
+            72.835,
+            19.175
+          ],
+          [
+            72.836,
+            19.192
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0054",
+      "properties": {
+        "road_id": "ROAD_0054",
+        "name": "New Link Road (Malad to Kandivali Charkop)",
+        "highway": "primary",
+        "length_m": 3678.14,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "P/N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.836,
+            19.192
+          ],
+          [
+            72.838,
+            19.21
+          ],
+          [
+            72.84,
+            19.225
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0055",
+      "properties": {
+        "road_id": "ROAD_0055",
+        "name": "New Link Road (Kandivali to Borivali & Dahisar Link Road)",
+        "highway": "primary",
+        "length_m": 4876.29,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "R/C",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.84,
+            19.225
+          ],
+          [
+            72.845,
+            19.245
+          ],
+          [
+            72.85,
+            19.268
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0056",
+      "properties": {
+        "road_id": "ROAD_0056",
+        "name": "Marine Drive (Netaji Subhash Chandra Bose Road)",
+        "highway": "primary",
+        "length_m": 3122.25,
+        "surface": "concrete",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "A",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.822,
+            18.928
+          ],
+          [
+            72.824,
+            18.94
+          ],
+          [
+            72.818,
+            18.955
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0057",
+      "properties": {
+        "road_id": "ROAD_0057",
+        "name": "Worli Sea Face Road (Worli Dairy to Sea Link Landing)",
+        "highway": "primary",
+        "length_m": 2257.69,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "G/S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.812,
+            18.998
+          ],
+          [
+            72.815,
+            19.01
+          ],
+          [
+            72.816,
+            19.018
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0058",
+      "properties": {
+        "road_id": "ROAD_0058",
+        "name": "Juhu Tara Road (Juhu Hotel to Juhu Circle)",
+        "highway": "primary",
+        "length_m": 2996.86,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "K/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.828,
+            19.088
+          ],
+          [
+            72.829,
+            19.102
+          ],
+          [
+            72.83,
+            19.115
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0059",
+      "properties": {
+        "road_id": "ROAD_0059",
+        "name": "Bandra Bandstand & Carter Road Promenade",
+        "highway": "secondary",
+        "length_m": 3190.28,
+        "surface": "asphalt",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 40,
+        "access": "public",
+        "ward_id": "H/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.818,
+            19.042
+          ],
+          [
+            72.822,
+            19.055
+          ],
+          [
+            72.825,
+            19.07
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0060",
+      "properties": {
+        "road_id": "ROAD_0060",
+        "name": "Madh-Marve Road (Malad Mith Chowki to Marve Beach)",
+        "highway": "secondary",
+        "length_m": 4623.96,
+        "surface": "asphalt",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 40,
+        "access": "public",
+        "ward_id": "P/N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.836,
+            19.185
+          ],
+          [
+            72.815,
+            19.192
+          ],
+          [
+            72.795,
+            19.2
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0061",
+      "properties": {
+        "road_id": "ROAD_0061",
+        "name": "Milan Subway (Santacruz West to East Railway Underpass)",
+        "highway": "secondary",
+        "length_m": 669.27,
+        "surface": "concrete",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "yes",
+        "one_way": "no",
+        "maxspeed": 30,
+        "access": "public",
+        "ward_id": "H/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.842,
+            19.085
+          ],
+          [
+            72.845,
+            19.086
+          ],
+          [
+            72.848,
+            19.087
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0062",
+      "properties": {
+        "road_id": "ROAD_0062",
+        "name": "Andheri Subway (Andheri West to East Railway Underpass)",
+        "highway": "secondary",
+        "length_m": 669.15,
+        "surface": "concrete",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "yes",
+        "one_way": "no",
+        "maxspeed": 30,
+        "access": "public",
+        "ward_id": "K/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.843,
+            19.118
+          ],
+          [
+            72.846,
+            19.119
+          ],
+          [
+            72.849,
+            19.12
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0063",
+      "properties": {
+        "road_id": "ROAD_0063",
+        "name": "Malad Subway (Malad West to East Railway Underpass)",
+        "highway": "secondary",
+        "length_m": 668.91,
+        "surface": "concrete",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "yes",
+        "one_way": "no",
+        "maxspeed": 30,
+        "access": "public",
+        "ward_id": "P/N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.847,
+            19.186
+          ],
+          [
+            72.85,
+            19.187
+          ],
+          [
+            72.853,
+            19.188
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0064",
+      "properties": {
+        "road_id": "ROAD_0064",
+        "name": "Khar Subway (Khar West to East Railway Underpass)",
+        "highway": "secondary",
+        "length_m": 669.32,
+        "surface": "concrete",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "yes",
+        "one_way": "no",
+        "maxspeed": 30,
+        "access": "public",
+        "ward_id": "H/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.838,
+            19.072
+          ],
+          [
+            72.841,
+            19.073
+          ],
+          [
+            72.844,
+            19.074
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0065",
+      "properties": {
+        "road_id": "ROAD_0065",
+        "name": "Dahisar Subway (Dahisar West to East Railway Underpass)",
+        "highway": "secondary",
+        "length_m": 668.65,
+        "surface": "concrete",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "yes",
+        "one_way": "no",
+        "maxspeed": 30,
+        "access": "public",
+        "ward_id": "R/N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.855,
+            19.256
+          ],
+          [
+            72.858,
+            19.257
+          ],
+          [
+            72.861,
+            19.258
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0066",
+      "properties": {
+        "road_id": "ROAD_0066",
+        "name": "Shahid Bhagat Singh Road / Colaba Causeway",
+        "highway": "primary",
+        "length_m": 2224.78,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "A",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.831,
+            18.91
+          ],
+          [
+            72.832,
+            18.922
+          ],
+          [
+            72.833,
+            18.93
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0067",
+      "properties": {
+        "road_id": "ROAD_0067",
+        "name": "Veer Nariman Road (Churchgate to Flora Fountain)",
+        "highway": "secondary",
+        "length_m": 770.65,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 40,
+        "access": "public",
+        "ward_id": "A",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.825,
+            18.932
+          ],
+          [
+            72.828,
+            18.933
+          ],
+          [
+            72.832,
+            18.934
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0068",
+      "properties": {
+        "road_id": "ROAD_0068",
+        "name": "Mahatma Gandhi Road (Kala Ghoda to Metro Cinema)",
+        "highway": "primary",
+        "length_m": 1784.8,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "yes",
+        "maxspeed": 40,
+        "access": "public",
+        "ward_id": "A",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.832,
+            18.928
+          ],
+          [
+            72.831,
+            18.938
+          ],
+          [
+            72.83,
+            18.944
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0069",
+      "properties": {
+        "road_id": "ROAD_0069",
+        "name": "Pedder Road (Dr. G. Deshmukh Marg - Kemps Corner to Haji Ali)",
+        "highway": "primary",
+        "length_m": 1930.23,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "D",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.808,
+            18.965
+          ],
+          [
+            72.81,
+            18.975
+          ],
+          [
+            72.812,
+            18.982
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0070",
+      "properties": {
+        "road_id": "ROAD_0070",
+        "name": "Walkeshwar Road / B.G. Kher Marg (Malabar Hill)",
+        "highway": "secondary",
+        "length_m": 1764.39,
+        "surface": "asphalt",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 40,
+        "access": "public",
+        "ward_id": "D",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.798,
+            18.948
+          ],
+          [
+            72.802,
+            18.955
+          ],
+          [
+            72.806,
+            18.962
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0071",
+      "properties": {
+        "road_id": "ROAD_0071",
+        "name": "Sion-Trombay Road (Diamond Garden to BARC Junction)",
+        "highway": "primary",
+        "length_m": 3663.64,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": "M/W",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.898,
+            19.055
+          ],
+          [
+            72.915,
+            19.048
+          ],
+          [
+            72.93,
+            19.042
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0072",
+      "properties": {
+        "road_id": "ROAD_0072",
+        "name": "Mathuradas Vasanji Road (Kurla-Andheri Road)",
+        "highway": "primary",
+        "length_m": 3345.87,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "K/E",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.855,
+            19.115
+          ],
+          [
+            72.87,
+            19.11
+          ],
+          [
+            72.885,
+            19.105
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0073",
+      "properties": {
+        "road_id": "ROAD_0073",
+        "name": "Rafi Ahmed Kidwai Marg (Sewri to Wadala)",
+        "highway": "secondary",
+        "length_m": 3035.75,
+        "surface": "asphalt",
+        "lanes": 4,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 50,
+        "access": "public",
+        "ward_id": "F/S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.855,
+            18.995
+          ],
+          [
+            72.858,
+            19.01
+          ],
+          [
+            72.86,
+            19.022
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0074",
+      "properties": {
+        "road_id": "ROAD_0074",
+        "name": "Ghatkopar-Mankhurd Link Road (GMLR-South)",
+        "highway": "primary",
+        "length_m": 2948.43,
+        "surface": "asphalt",
+        "lanes": 6,
+        "bridge": "yes",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 60,
+        "access": "public",
+        "ward_id": null,
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.915,
+            19.075
+          ],
+          [
+            72.928,
+            19.068
+          ],
+          [
+            72.938,
+            19.06
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0075",
+      "properties": {
+        "road_id": "ROAD_0075",
+        "name": "Aarey Colony Main Road (Goregaon East to Marol Powai)",
+        "highway": "secondary",
+        "length_m": 3160.87,
+        "surface": "asphalt",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 40,
+        "access": "public",
+        "ward_id": "S",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.868,
+            19.155
+          ],
+          [
+            72.88,
+            19.148
+          ],
+          [
+            72.892,
+            19.138
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0076",
+      "properties": {
+        "road_id": "ROAD_0076",
+        "name": "Gorai-Borivali Link Road (Borivali West to Gorai Creek)",
+        "highway": "secondary",
+        "length_m": 2509.86,
+        "surface": "asphalt",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 40,
+        "access": "public",
+        "ward_id": "R/C",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.848,
+            19.232
+          ],
+          [
+            72.835,
+            19.235
+          ],
+          [
+            72.825,
+            19.238
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0077",
+      "properties": {
+        "road_id": "ROAD_0077",
+        "name": "Chincholi Bunder Road (Malad SV Road to Link Road)",
+        "highway": "secondary",
+        "length_m": 1262.42,
+        "surface": "asphalt",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 40,
+        "access": "public",
+        "ward_id": "P/N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.848,
+            19.182
+          ],
+          [
+            72.842,
+            19.182
+          ],
+          [
+            72.836,
+            19.182
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD_0078",
+      "properties": {
+        "road_id": "ROAD_0078",
+        "name": "Tilak Road (Dadar East to Wadala)",
+        "highway": "secondary",
+        "length_m": 1263.66,
+        "surface": "asphalt",
+        "lanes": 2,
+        "bridge": "no",
+        "tunnel": "no",
+        "one_way": "no",
+        "maxspeed": 40,
+        "access": "public",
+        "ward_id": "F/N",
+        "source": "OpenStreetMap contributors / MCGM Comprehensive Mobility Plan / MMRDA"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            72.846,
+            19.018
+          ],
+          [
+            72.852,
+            19.018
+          ],
+          [
+            72.858,
+            19.018
+          ]
+        ]
+      }
+    }
+  ]
+}

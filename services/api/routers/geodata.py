@@ -1161,3 +1161,29 @@ async def get_system_health(db: Optional[AsyncSession] = Depends(get_db)):
     }
 
 
+@router.get("/wards/risk")
+async def get_ward_risk_assessment():
+    """Get real-time flood risk assessment for all 24 Mumbai wards.
+
+    Computes multi-factor risk scores using:
+    - Current/predicted flood depths
+    - Population and infrastructure exposure
+    - Historical flood frequency
+    - Shelter availability
+    """
+    from services.risk.ward_risk import compute_all_ward_risks
+
+    try:
+        risks = await compute_all_ward_risks()
+        return {
+            "computed_at": datetime.now(timezone.utc).isoformat(),
+            "total_wards": len(risks),
+            "critical_wards": sum(1 for r in risks if r.risk_level == "CRITICAL"),
+            "high_risk_wards": sum(1 for r in risks if r.risk_level == "HIGH"),
+            "moderate_risk_wards": sum(1 for r in risks if r.risk_level == "MODERATE"),
+            "low_risk_wards": sum(1 for r in risks if r.risk_level == "LOW"),
+            "wards": [r.to_dict() for r in risks],
+        }
+    except Exception as e:
+        logger.error("Ward risk computation failed", error=str(e))
+        raise HTTPException(status_code=500, detail=f"Risk computation failed: {str(e)}")

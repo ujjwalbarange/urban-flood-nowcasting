@@ -1,0 +1,111 @@
+{
+  "roads": {
+    "staging_count": 78,
+    "staging_km": 248.7,
+    "production_count": 14563,
+    "production_km": 3310.2,
+    "spatial_overlap_count": 75,
+    "spatial_overlap_pct": 96.2,
+    "assessment": "PARTIAL SUBSET / CURATED ARTERIAL CORRIDORS",
+    "action": "DO NOT REPLACE road_segments. Ingest into dedicated critical_arterial_corridors table."
+  },
+  "drainage": {
+    "staging_network_lines": 39,
+    "staging_network_km": 87.8,
+    "production_water_bodies": 1730,
+    "production_drainage_links": 8,
+    "production_drainage_nodes": 35,
+    "production_pumping_stations": 8,
+    "staging_overlap_with_water_bodies": 29,
+    "staging_overlap_pct": 74.4,
+    "structures_count": 41,
+    "structures_breakdown": {
+      "outfall": 18,
+      "pumping_station_inlet": 9,
+      "drainage_junction": 7,
+      "culvert": 5,
+      "stormwater_outlet": 1,
+      "discharge_point": 1
+    },
+    "assessment": "NEW COMPREHENSIVE MACRO-DRAINAGE NAMED REPORTERS & STRUCTURES",
+    "action": "Promote to primary_drainage_network and drainage_structures."
+  },
+  "flood_hotspots": {
+    "staging_hotspots": 35,
+    "production_hotspots": 10,
+    "production_historical_events": 209,
+    "hotspots_linked_to_historical_events": 12,
+    "hotspots_linked_pct": 34.3,
+    "assessment": "UPGRADE / EXPANSION OF MUNICIPAL RECURRENT FLOOD HOTSPOTS",
+    "action": "Promote to replace legacy 10-row flood_hotspots with 35 verified municipal spots, cross-referenced to historical events."
+  },
+  "low_lying_areas": {
+    "count": 15,
+    "total_sq_km": 76.1,
+    "min_elev_m": 3.2,
+    "max_mean_elev_m": 177.4,
+    "assessment": "COMPLETELY NEW REGIONAL SEMANTIC HAZARD ZONES",
+    "action": "Promote to production table low_lying_areas for municipal warning zones."
+  },
+  "land_cover": {
+    "lulc_polygons": 69,
+    "lulc_classes": {
+      "forest": 78.0,
+      "rivers/drainage": 60.0,
+      "mangroves": 59.3,
+      "medium built-up": 29.4,
+      "roads/transport": 26.9,
+      "industrial": 18.9,
+      "vegetation": 17.0,
+      "dense built-up": 16.6,
+      "agricultural/open land": 15.4,
+      "wetlands": 14.3,
+      "low-density built-up": 12.5,
+      "residential": 11.3,
+      "commercial": 11.2,
+      "beaches/coastal": 10.1,
+      "railway land": 7.2,
+      "lakes/water bodies": 7.0,
+      "barren/open ground": 4.7
+    },
+    "impervious_cells": 128,
+    "impervious_range": [
+      0.08,
+      0.92
+    ],
+    "impervious_avg": 0.59,
+    "assessment": "COMPLETELY NEW HIGH-VALUE HYDROLOGIC MODELLING LAYERS",
+    "action": "Promote to production tables land_use_land_cover and impervious_surface_grid."
+  },
+  "bridges_culverts": {
+    "count": 33,
+    "types": {
+      "flyover_drainage_crossing": 1,
+      "road_nullah_bridge": 2,
+      "railway_nullah_culvert": 1,
+      "road_river_bridge": 19,
+      "box_culvert_crossing": 4,
+      "railway_river_bridge": 6
+    },
+    "assessment": "COMPLETELY NEW TRANSPORT-WATERWAY CHOKEPOINTS",
+    "action": "Promote to production table bridges_and_culverts."
+  },
+  "green_open_spaces": {
+    "count": 25,
+    "total_sq_km": 152.0,
+    "assessment": "COMPLETELY NEW NATURAL INFILTRATION & DETENTION LAYER",
+    "action": "Promote to production table green_open_spaces."
+  },
+  "coastal_exposure": {
+    "count": 15,
+    "breakdown": [
+      "open_coastline (ST_LineString): 3",
+      "lowland_coastal_exposure_zone (ST_Polygon): 2",
+      "tidal_bay (ST_Polygon): 2",
+      "tidal_creek_estuary (ST_Polygon): 7",
+      "intertidal_mudflat_mangrove (ST_Polygon): 1"
+    ],
+    "assessment": "COMPLETELY NEW TIDAL / MARINE BACKWATER HAZARD INTERFACE",
+    "action": "Promote to production table coastal_exposure_zones."
+  }
+}

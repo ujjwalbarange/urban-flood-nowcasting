@@ -1,0 +1,660 @@
+{
+  "dem_cop30": {
+    "path": "data\\raw\\terrain\\opentopography_cop30_mumbai_bbox.tif",
+    "size_bytes": 7114444,
+    "sha256": "d44b0ee4e110ccc745083e28b9edc36472e64ece7e2e66095640e89a44407ba8",
+    "shape": [
+      1800,
+      1620
+    ],
+    "dtype": "float32",
+    "min_val": -17.27194595336914,
+    "max_val": 488.6098327636719,
+    "mean_val": 17.437061309814453,
+    "nan_count": 0
+  },
+  "derivatives": {
+    "slope": {
+      "path": "data/derived/slope/slope_degrees.npy",
+      "size_bytes": 11664128,
+      "sha256": "0d98f74f9197d1857243894bea8af4eea3f8af32794eb891d90f25585e36d986",
+      "shape": [
+        1800,
+        1620
+      ],
+      "dtype": "float32",
+      "min": 0.0,
+      "max": 62.080806732177734,
+      "mean": 2.834730386734009
+    },
+    "aspect": {
+      "path": "data/derived/slope/aspect_degrees.npy",
+      "size_bytes": 11664128,
+      "sha256": "1ccd70539993dc79a1e3301eb13a79be181a9e744f136b715f5acf88a36794d2",
+      "shape": [
+        1800,
+        1620
+      ],
+      "dtype": "float32",
+      "min": -1.0,
+      "max": 359.99993896484375,
+      "mean": 95.67211151123047
+    },
+    "depression_sinks": {
+      "path": "data/derived/catchments/depression_sinks_m.npy",
+      "size_bytes": 11664128,
+      "sha256": "89deaee9c279d180a860fbd78d06dd629f27d384897ecea74b537e5a8b75b6b5",
+      "shape": [
+        1800,
+        1620
+      ],
+      "dtype": "float32",
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+    },
+    "d8_flow_dir": {
+      "path": "data/derived/flow_direction/d8_flow_direction.npy",
+      "size_bytes": 2916128,
+      "sha256": "4647bc6ab5003368876bd33df4596441d8e07706defe0e891b24fd18859f0d10",
+      "shape": [
+        1800,
+        1620
+      ],
+      "dtype": "uint8",
+      "min": 0.0,
+      "max": 128.0,
+      "mean": 13.824930384087791,
+      "unique_values": [
+        0,
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ]
+    }
+  },
+  "geojsons": {
+    "wards_raw": {
+      "path": "data/raw/administrative_boundaries/wards.geojson",
+      "size_bytes": 28371,
+      "sha256": "ca794be831793c9c638be1c2fa4734edc01fec9a698944c4c9b62503e5225ec1",
+      "feature_count": 24,
+      "geom_types": {
+        "Polygon": 24
+      },
+      "properties_sample": [
+        "ward_id",
+        "ward_name",
+        "zone",
+        "headquarters",
+        "area_sq_km",
+        "population_2011",
+        "population_density_per_sq_km",
+        "source",
+        "license",
+        "download_url"
+      ]
+    },
+    "mumbai_boundary": {
+      "path": "data/raw/administrative_boundaries/mumbai_boundary.geojson",
+      "size_bytes": 2505,
+      "sha256": "941d70094d4f283bdcb38b2345409902371bd076e92090a9b84bb8a2e44933d7",
+      "feature_count": 1,
+      "geom_types": {
+        "Polygon": 1
+      },
+      "properties_sample": [
+        "city_name",
+        "admin_body",
+        "state",
+        "country",
+        "total_area_sq_km",
+        "total_population_2011",
+        "projected_population_2024",
+        "num_wards",
+        "source",
+        "license",
+        "download_url"
+      ]
+    },
+    "buildings_raw": {
+      "path": "data/raw/buildings/buildings.geojson",
+      "size_bytes": 18775,
+      "sha256": "bdad9f79738b91b435219fc3f28ee8a381c840158a335bf566f7b10f2fe8cb3e",
+      "feature_count": 20,
+      "geom_types": {
+        "Polygon": 20
+      },
+      "properties_sample": [
+        "osm_id",
+        "name",
+        "building_type",
+        "category",
+        "ward",
+        "building_levels",
+        "source",
+        "license"
+      ]
+    },
+    "historical_events_raw": {
+      "path": "data/raw/historical_floods/mumbai_urban_flood_2016_2025.geojson",
+      "size_bytes": 422164,
+      "sha256": "4e5d4e9727f1b89479017a2230dab9e343af139152592e40ba27549a343b6397",
+      "feature_count": 202,
+      "geom_types": {
+        "Point": 198,
+        "Polygon": 4
+      },
+      "properties_sample": [
+        "event_id",
+        "date",
+        "year",
+        "ward",
+        "locality",
+        "latitude",
+        "longitude",
+        "elevation_m",
+        "slope_degree",
+        "distance_to_drain_m",
+        "distance_to_waterbody_m",
+        "rainfall_1h_mm",
+        "rainfall_3h_mm",
+        "rainfall_6h_mm",
+        "rainfall_12h_mm",
+        "rainfall_24h_mm",
+        "rainfall_48h_mm",
+        "rainfall_72h_mm",
+        "rainfall_intensity_mm_h",
+        "rainfall_anomaly",
+        "soil_moisture",
+        "soil_type",
+        "infiltration_rate",
+        "groundwater_level_m",
+        "drain_water_level_m",
+        "built_up_percentage",
+        "impervious_surface_percentage",
+        "vegetation_percentage",
+        "population_density",
+        "drainage_capacity",
+        "NDVI",
+        "NDWI",
+        "NDBI",
+        "flooded_area_km2",
+        "flood_occurred",
+        "flood_depth_cm",
+        "flood_duration_hours",
+        "waterlogging_duration_hours",
+        "flood_severity",
+        "people_affected",
+        "houses_affected",
+        "roads_affected",
+        "economic_loss",
+        "antecedent_rainfall_3day_mm",
+        "antecedent_rainfall_7day_mm",
+        "rainfall_intensity_index",
+        "drainage_stress_index",
+        "imperviousness_index",
+        "data_source",
+        "source_url",
+        "data_type"
+      ]
+    },
+    "flood_points_raw": {
+      "path": "data/raw/historical_floods/flood_points.geojson",
+      "size_bytes": 7830,
+      "sha256": "22d8bb485f084a6e3516cab949b31b61a77d3bd8c4bbec2f826d6e450697ea22",
+      "feature_count": 10,
+      "geom_types": {
+        "Point": 10
+      },
+      "properties_sample": [
+        "spot_id",
+        "location_name",
+        "ward",
+        "zone",
+        "latitude",
+        "longitude",
+        "typical_water_depth_m",
+        "maximum_recorded_depth_m",
+        "drainage_basin",
+        "mitigation_status",
+        "traffic_impact",
+        "railway_impact"
+      ]
+    },
+    "flood_polygons_raw": {
+      "path": "data/raw/historical_floods/flood_polygons.geojson",
+      "size_bytes": 4171,
+      "sha256": "a12cd3800cb94785b9ab55b868e7985873407c6cacfec08d4ed766571168d895",
+      "feature_count": 4,
+      "geom_types": {
+        "Polygon": 4
+      },
+      "properties_sample": [
+        "event_id",
+        "event_name",
+        "inundation_area_name",
+        "date",
+        "peak_depth_range_m",
+        "source"
+      ]
+    },
+    "population_raw": {
+      "path": "data/raw/population/population.geojson",
+      "size_bytes": 30203,
+      "sha256": "abae3edea9388a4d9402797bb02b9e22a0a489b91dc4a741dbc904d820c2fb19",
+      "feature_count": 24,
+      "geom_types": {
+        "Polygon": 24
+      },
+      "properties_sample": [
+        "ward_id",
+        "ward_name",
+        "zone",
+        "area_sq_km",
+        "population_census_2011",
+        "population_density_2011_per_sq_km",
+        "projected_population_2024",
+        "projected_density_2024_per_sq_km",
+        "slum_population_percentage",
+        "elderly_population_percentage",
+        "social_flood_vulnerability_index",
+        "source",
+        "license"
+      ]
+    },
+    "roads_raw": {
+      "path": "data/raw/roads/roads.geojson",
+      "size_bytes": 13625,
+      "sha256": "b1d3e8e746d78d7260fc5a936d501a44fe3104294d4bcaa251041ca91d9f77bb",
+      "feature_count": 15,
+      "geom_types": {
+        "LineString": 15
+      },
+      "properties_sample": [
+        "osm_id",
+        "name",
+        "highway",
+        "oneway",
+        "bridge",
+        "tunnel",
+        "maxspeed",
+        "lanes",
+        "surface",
+        "flood_vulnerability",
+        "source",
+        "license"
+      ]
+    },
+    "shelters_raw": {
+      "path": "data/raw/shelters/shelters.geojson",
+      "size_bytes": 8064,
+      "sha256": "c1cc08e9721ccc3c4737ece1d41b3befed89adc55f45b06ab8b048d832e9feb0",
+      "feature_count": 10,
+      "geom_types": {
+        "Point": 10
+      },
+      "properties_sample": [
+        "shelter_id",
+        "name",
+        "address",
+        "ward",
+        "zone",
+        "type",
+        "capacity_persons",
+        "backup_power_generator",
+        "drinking_water_storage_liters",
+        "medical_first_aid_post",
+        "source",
+        "license"
+      ]
+    },
+    "coastline_raw": {
+      "path": "data/raw/tides/coastline.geojson",
+      "size_bytes": 2707,
+      "sha256": "4b50169cc3bfce2d899a023e6bdfd6fdc39ffc25825e653d362eec17741e9859",
+      "feature_count": 1,
+      "geom_types": {
+        "LineString": 1
+      },
+      "properties_sample": [
+        "name",
+        "water_body",
+        "tidal_environment",
+        "mean_spring_range_m",
+        "source",
+        "license"
+      ]
+    },
+    "drainage_nodes_raw": {
+      "path": "data/raw/drainage/nodes.geojson",
+      "size_bytes": 7114,
+      "sha256": "8a9f3e7ebef643e8bed5ee57449558740215544d870b51cfc57782aabe7719dd",
+      "feature_count": 14,
+      "geom_types": {
+        "Point": 14
+      },
+      "properties_sample": [
+        "node_id",
+        "name",
+        "type",
+        "ward",
+        "invert_elevation_m_msl",
+        "ground_elevation_m_msl",
+        "pump_capacity_m3_per_sec",
+        "num_pumps",
+        "status"
+      ]
+    },
+    "drainage_links_raw": {
+      "path": "data/raw/drainage/links.geojson",
+      "size_bytes": 6184,
+      "sha256": "716a3fd52f811d5c6f5e2cd3af19c79e2beef7a20b09386b348ddd50d2b58f16",
+      "feature_count": 8,
+      "geom_types": {
+        "LineString": 8
+      },
+      "properties_sample": [
+        "link_id",
+        "name",
+        "channel_type",
+        "from_node",
+        "to_node",
+        "length_m",
+        "width_m",
+        "depth_m",
+        "manning_n",
+        "slope"
+      ]
+    },
+    "drainage_outfalls_raw": {
+      "path": "data/raw/drainage/outfalls.geojson",
+      "size_bytes": 6114,
+      "sha256": "432aa173cd024ec5c98716d0b7b728d7b967d7077487f754a14115fcbe888e12",
+      "feature_count": 11,
+      "geom_types": {
+        "Point": 11
+      },
+      "properties_sample": [
+        "outfall_id",
+        "name",
+        "water_body",
+        "invert_elevation_m_msl",
+        "discharge_type",
+        "flap_gate_installed",
+        "backflow_prevention",
+        "critical_tide_level_m_cd"
+      ]
+    },
+    "waterways_processed": {
+      "path": "data/processed/rivers/mumbai_waterways.geojson",
+      "size_bytes": 3146361,
+      "sha256": "6971171e63f67fae9f3688dfef0b162e70d70efbec353e4771a990fcb17aa134",
+      "feature_count": 1730,
+      "geom_types": {
+        "Polygon": 680,
+        "LineString": 1050
+      },
+      "properties_sample": [
+        "osm_id",
+        "osm_type",
+        "natural",
+        "water"
+      ]
+    },
+    "railways_processed": {
+      "path": "data/processed/roads/mumbai_railways.geojson",
+      "size_bytes": 122657,
+      "sha256": "f86cff9396fadc9afcc5c0924155eb57f0bfb1d25563fd2a2eb95af355b3b351",
+      "feature_count": 165,
+      "geom_types": {
+        "Point": 165
+      },
+      "properties_sample": [
+        "osm_id",
+        "type",
+        "internet_access",
+        "name",
+        "network",
+        "operator",
+        "public_transport",
+        "railway",
+        "ref",
+        "train",
+        "wikidata",
+        "wikipedia"
+      ]
+    },
+    "emergency_infra_processed": {
+      "path": "data/processed/critical_infrastructure/mumbai_emergency_facilities.geojson",
+      "size_bytes": 1221345,
+      "sha256": "0fdb67eb13284033944adf60c0949d62998c0aaeed9fffd20e6103675575b5fa",
+      "feature_count": 1817,
+      "geom_types": {
+        "Point": 1587,
+        "Polygon": 230
+      },
+      "properties_sample": [
+        "osm_id",
+        "osm_type",
+        "addr:district",
+        "addr:full",
+        "addr:postcode",
+        "addr:state",
+        "amenity",
+        "healthcare",
+        "name",
+        "source"
+      ]
+    }
+  },
+  "csvs": {
+    "weather_observations": {
+      "path": "data/processed/weather/observations.csv",
+      "size_bytes": 17638,
+      "sha256": "517d4a6faaf19033c96dcb2585d4c1de2df3a1b148ac01116b14c7ad53e45d04",
+      "row_count": 108,
+      "columns": [
+        "station_id",
+        "station_name",
+        "latitude",
+        "longitude",
+        "ward",
+        "observation_time",
+        "ingested_at",
+        "variable",
+        "value",
+        "unit",
+        "source",
+        "model",
+        "quality_flag"
+      ]
+    },
+    "weather_forecasts": {
+      "path": "data/processed/weather/forecasts.csv",
+      "size_bytes": 4459123,
+      "sha256": "238d771eb8c0cd37f86d0bfa5202a13f9ffa5299e902b4afacff17031ec96afc",
+      "row_count": 30240,
+      "columns": [
+        "station_id",
+        "station_name",
+        "latitude",
+        "longitude",
+        "ward",
+        "forecast_generated_at",
+        "forecast_valid_time",
+        "lead_minutes",
+        "variable",
+        "value",
+        "unit",
+        "source",
+        "model",
+        "quality_flag"
+      ]
+    },
+    "rainfall_observations": {
+      "path": "data/processed/rainfall/rainfall_observations.csv",
+      "size_bytes": 4309,
+      "sha256": "08c3fa539bd22a70242b7bd589d70da49a02b606334203c545c12ee991285aeb",
+      "row_count": 27,
+      "columns": [
+        "station_id",
+        "station_name",
+        "latitude",
+        "longitude",
+        "ward",
+        "observation_time",
+        "ingested_at",
+        "variable",
+        "value",
+        "unit",
+        "source",
+        "model",
+        "quality_flag"
+      ]
+    },
+    "rainfall_forecasts": {
+      "path": "data/processed/rainfall/rainfall_forecasts.csv",
+      "size_bytes": 855971,
+      "sha256": "ebdae4b83a67a453adcbb50fa0997c0f05c7a971fe2cf7503ee312385c6b5801",
+      "row_count": 6048,
+      "columns": [
+        "station_id",
+        "station_name",
+        "latitude",
+        "longitude",
+        "ward",
+        "forecast_generated_at",
+        "forecast_valid_time",
+        "lead_minutes",
+        "variable",
+        "value",
+        "unit",
+        "source",
+        "model",
+        "quality_flag"
+      ]
+    },
+    "gauge_hourly_2015_2025": {
+      "path": "data/raw/rainfall/hourly_gauge_data_2015_2025.csv",
+      "size_bytes": 1463120,
+      "sha256": "eba28628492010047c624dafa6a11876c6fc645e738d2f2b55a9cbca1bfbbe0c",
+      "row_count": 25000,
+      "columns": [
+        "timestamp_utc",
+        "station_id",
+        "station_name",
+        "rainfall_amount",
+        "unit",
+        "temporal_interval",
+        "quality_flag"
+      ]
+    },
+    "event_2005_deluge": {
+      "path": "data/raw/rainfall/event_2005_07_26_santacruz_colaba_15min.csv",
+      "size_bytes": 10654,
+      "sha256": "28a182c33cfaacee82239067ff3ed0f2163f4850a17f10e25d342f216a4d4d0e",
+      "row_count": 192,
+      "columns": [
+        "timestamp_utc",
+        "station_id",
+        "station_name",
+        "rainfall_15min_mm",
+        "rainfall_intensity_mm_per_hr",
+        "cumulative_rainfall_mm"
+      ]
+    },
+    "tide_apollo_bunder": {
+      "path": "data/raw/tides/apollo_bunder_hourly_tide_20050725_20050727.csv",
+      "size_bytes": 7395,
+      "sha256": "cf79952fcb2782e9af61b9472956321daa889d257c52aecc205a6cac3417ec6c",
+      "row_count": 72,
+      "columns": [
+        "timestamp_utc",
+        "timestamp_ist",
+        "station_name",
+        "tide_height_m_cd",
+        "tide_height_m_msl",
+        "surge_residual_m",
+        "tidal_phase",
+        "drainage_outfall_gate_status"
+      ]
+    },
+    "bmc_chronic_spots": {
+      "path": "data/raw/historical_floods/bmc_chronic_spots_inventory.csv",
+      "size_bytes": 2668,
+      "sha256": "1d60b7f2a8ab1e68450d5921cd11627dd7f74c85f3ace085828cf9577c8763af",
+      "row_count": 10,
+      "columns": [
+        "spot_id",
+        "location_name",
+        "ward",
+        "zone",
+        "latitude",
+        "longitude",
+        "typical_water_depth_m",
+        "maximum_recorded_depth_m",
+        "drainage_basin",
+        "mitigation_status",
+        "traffic_impact",
+        "railway_impact"
+      ]
+    },
+    "imerg_20050726_grid": {
+      "path": "data/raw/satellite/imerg_20050726_halfhourly_mumbai_grid.csv",
+      "size_bytes": 27686,
+      "sha256": "7b5214c2b896d643c4007d64353832dd3dd0cd7c465ee0633ffd54b27dee9f80",
+      "row_count": 576,
+      "columns": [
+        "timestamp_utc",
+        "latitude",
+        "longitude",
+        "precipitation_cal_mm_per_hr",
+        "precipitation_quality_index",
+        "satellite_ir_fraction"
+      ]
+    }
+  },
+  "scripts": {
+    "data/scripts/ingestion/migrate_raw_package.py": {
+      "exists": true,
+      "size_bytes": 6094,
+      "last_modified": "2026-09-25 16:39:23.872647"
+    },
+    "data/scripts/ingestion/ingest_openmeteo.py": {
+      "exists": true,
+      "size_bytes": 9184,
+      "last_modified": "2026-09-25 16:38:01.509478"
+    },
+    "data/scripts/ingestion/ingest_osm_water_and_infrastructure.py": {
+      "exists": true,
+      "size_bytes": 6978,
+      "last_modified": "2026-09-25 16:42:13.322154"
+    },
+    "data/scripts/ingestion/fetch_railways.py": {
+      "exists": true,
+      "size_bytes": 2467,
+      "last_modified": "2026-09-25 16:49:20.436785"
+    },
+    "data/scripts/ingestion/load_postgis.py": {
+      "exists": true,
+      "size_bytes": 26615,
+      "last_modified": "2026-09-25 17:00:51.642030"
+    },
+    "data/scripts/transformation/derive_terrain.py": {
+      "exists": true,
+      "size_bytes": 5821,
+      "last_modified": "2026-09-25 16:37:11.108034"
+    },
+    "data/scripts/validation/run_data_quality_checks.py": {
+      "exists": true,
+      "size_bytes": 17198,
+      "last_modified": "2026-09-25 16:53:58.483918"
+    }
+  }
+}

@@ -1,0 +1,383 @@
+{
+  "mumbai_full_road_network.geojson": {
+    "dataset_name": "mumbai_full_road_network.geojson",
+    "folder": "01_roads",
+    "feature_count": 78,
+    "geometry_types": {
+      "LineString": 78
+    },
+    "crs": "EPSG:4326 (WGS 84 Geographic 2D)",
+    "bounding_box": {
+      "min_lon": 72.795,
+      "min_lat": 18.91,
+      "max_lon": 72.97,
+      "max_lat": 19.278
+    },
+    "metrics": {
+      "total_length_km": 248.67,
+      "total_area_sq_km": null
+    },
+    "null_percentages": {
+      "access": "0.0% (0/78)",
+      "bridge": "0.0% (0/78)",
+      "highway": "0.0% (0/78)",
+      "lanes": "0.0% (0/78)",
+      "length_m": "0.0% (0/78)",
+      "maxspeed": "0.0% (0/78)",
+      "name": "0.0% (0/78)",
+      "one_way": "0.0% (0/78)",
+      "road_id": "0.0% (0/78)",
+      "source": "0.0% (0/78)",
+      "surface": "0.0% (0/78)",
+      "tunnel": "0.0% (0/78)",
+      "ward_id": "6.4% (5/78)"
+    },
+    "sample_properties": [
+      "road_id",
+      "name",
+      "highway",
+      "length_m",
+      "surface",
+      "lanes",
+      "bridge",
+      "tunnel",
+      "one_way",
+      "maxspeed",
+      "access",
+      "ward_id",
+      "source"
+    ]
+  },
+  "mumbai_public_drainage_network.geojson": {
+    "dataset_name": "mumbai_public_drainage_network.geojson",
+    "folder": "02_drainage",
+    "feature_count": 39,
+    "geometry_types": {
+      "LineString": 39
+    },
+    "crs": "EPSG:4326 (WGS 84 Geographic 2D)",
+    "bounding_box": {
+      "min_lon": 72.792,
+      "min_lat": 18.946,
+      "max_lon": 72.975,
+      "max_lat": 19.265
+    },
+    "metrics": {
+      "total_length_km": 87.8,
+      "total_area_sq_km": null
+    },
+    "null_percentages": {
+      "confidence": "0.0% (0/39)",
+      "drainage_id": "0.0% (0/39)",
+      "drainage_type": "0.0% (0/39)",
+      "length_m": "0.0% (0/39)",
+      "name": "0.0% (0/39)",
+      "source": "0.0% (0/39)",
+      "source_date": "0.0% (0/39)",
+      "ward_id": "2.6% (1/39)"
+    },
+    "sample_properties": [
+      "drainage_id",
+      "name",
+      "drainage_type",
+      "length_m",
+      "ward_id",
+      "source",
+      "source_date",
+      "confidence"
+    ]
+  },
+  "mumbai_drainage_structures.geojson": {
+    "dataset_name": "mumbai_drainage_structures.geojson",
+    "folder": "02_drainage",
+    "feature_count": 41,
+    "geometry_types": {
+      "Point": 41
+    },
+    "crs": "EPSG:4326 (WGS 84 Geographic 2D)",
+    "bounding_box": {
+      "min_lon": 72.811,
+      "min_lat": 18.9745,
+      "max_lon": 72.975,
+      "max_lat": 19.265
+    },
+    "metrics": {
+      "total_length_km": null,
+      "total_area_sq_km": null
+    },
+    "null_percentages": {
+      "confidence": "0.0% (0/41)",
+      "connected_drainage_id": "9.8% (4/41)",
+      "name": "0.0% (0/41)",
+      "source": "0.0% (0/41)",
+      "structure_id": "0.0% (0/41)",
+      "structure_type": "0.0% (0/41)",
+      "ward_id": "12.2% (5/41)"
+    },
+    "sample_properties": [
+      "structure_id",
+      "structure_type",
+      "name",
+      "connected_drainage_id",
+      "ward_id",
+      "source",
+      "confidence"
+    ]
+  },
+  "mumbai_land_use_land_cover.geojson": {
+    "dataset_name": "mumbai_land_use_land_cover.geojson",
+    "folder": "03_land_cover",
+    "feature_count": 69,
+    "geometry_types": {
+      "Polygon": 69
+    },
+    "crs": "EPSG:4326 (WGS 84 Geographic 2D)",
+    "bounding_box": {
+      "min_lon": 72.785,
+      "min_lat": 18.922,
+      "max_lon": 72.975,
+      "max_lat": 19.28
+    },
+    "metrics": {
+      "total_length_km": null,
+      "total_area_sq_km": 399.75
+    },
+    "null_percentages": {
+      "area_m2": "0.0% (0/69)",
+      "class": "0.0% (0/69)",
+      "class_code": "0.0% (0/69)",
+      "confidence": "0.0% (0/69)",
+      "lulc_id": "0.0% (0/69)",
+      "name": "0.0% (0/69)",
+      "source": "0.0% (0/69)",
+      "source_date": "0.0% (0/69)"
+    },
+    "sample_properties": [
+      "lulc_id",
+      "name",
+      "class",
+      "class_code",
+      "area_m2",
+      "source",
+      "source_date",
+      "confidence"
+    ]
+  },
+  "mumbai_impervious_surface.geojson": {
+    "dataset_name": "mumbai_impervious_surface.geojson",
+    "folder": "03_land_cover",
+    "feature_count": 128,
+    "geometry_types": {
+      "Polygon": 128
+    },
+    "crs": "EPSG:4326 (WGS 84 Geographic 2D)",
+    "bounding_box": {
+      "min_lon": 72.78,
+      "min_lat": 18.9,
+      "max_lon": 72.98,
+      "max_lat": 19.3
+    },
+    "metrics": {
+      "total_length_km": null,
+      "total_area_sq_km": 596.6
+    },
+    "null_percentages": {
+      "built_up_fraction": "0.0% (0/128)",
+      "cell_id": "0.0% (0/128)",
+      "confidence": "0.0% (0/128)",
+      "impervious_fraction": "0.0% (0/128)",
+      "source": "0.0% (0/128)"
+    },
+    "sample_properties": [
+      "cell_id",
+      "impervious_fraction",
+      "built_up_fraction",
+      "source",
+      "confidence"
+    ]
+  },
+  "mumbai_flood_hotspots.geojson": {
+    "dataset_name": "mumbai_flood_hotspots.geojson",
+    "folder": "04_flood_risk",
+    "feature_count": 35,
+    "geometry_types": {
+      "Point": 35
+    },
+    "crs": "EPSG:4326 (WGS 84 Geographic 2D)",
+    "bounding_box": {
+      "min_lon": 72.805,
+      "min_lat": 18.962,
+      "max_lon": 72.952,
+      "max_lat": 19.278
+    },
+    "metrics": {
+      "total_length_km": null,
+      "total_area_sq_km": null
+    },
+    "null_percentages": {
+      "confidence": "0.0% (0/35)",
+      "evidence": "0.0% (0/35)",
+      "hotspot_id": "0.0% (0/35)",
+      "hotspot_type": "0.0% (0/35)",
+      "name": "0.0% (0/35)",
+      "recurrence": "0.0% (0/35)",
+      "source": "0.0% (0/35)",
+      "source_url": "0.0% (0/35)"
+    },
+    "sample_properties": [
+      "hotspot_id",
+      "name",
+      "hotspot_type",
+      "evidence",
+      "source",
+      "source_url",
+      "confidence",
+      "recurrence"
+    ]
+  },
+  "mumbai_low_lying_areas.geojson": {
+    "dataset_name": "mumbai_low_lying_areas.geojson",
+    "folder": "04_flood_risk",
+    "feature_count": 15,
+    "geometry_types": {
+      "Polygon": 15
+    },
+    "crs": "EPSG:4326 (WGS 84 Geographic 2D)",
+    "bounding_box": {
+      "min_lon": 72.805,
+      "min_lat": 18.965,
+      "max_lon": 72.975,
+      "max_lat": 19.265
+    },
+    "metrics": {
+      "total_length_km": null,
+      "total_area_sq_km": 76.15
+    },
+    "null_percentages": {
+      "area_id": "0.0% (0/15)",
+      "area_m2": "0.0% (0/15)",
+      "confidence": "0.0% (0/15)",
+      "elevation_mean": "0.0% (0/15)",
+      "elevation_min": "0.0% (0/15)",
+      "name": "0.0% (0/15)",
+      "source": "0.0% (0/15)",
+      "type": "0.0% (0/15)"
+    },
+    "sample_properties": [
+      "area_id",
+      "name",
+      "type",
+      "elevation_min",
+      "elevation_mean",
+      "area_m2",
+      "source",
+      "confidence"
+    ]
+  },
+  "mumbai_coastal_exposure.geojson": {
+    "dataset_name": "mumbai_coastal_exposure.geojson",
+    "folder": "04_flood_risk",
+    "feature_count": 15,
+    "geometry_types": {
+      "LineString": 3,
+      "Polygon": 12
+    },
+    "crs": "EPSG:4326 (WGS 84 Geographic 2D)",
+    "bounding_box": {
+      "min_lon": 72.785,
+      "min_lat": 18.895,
+      "max_lon": 72.975,
+      "max_lat": 19.285
+    },
+    "metrics": {
+      "total_length_km": 66.33,
+      "total_area_sq_km": 142.73
+    },
+    "null_percentages": {
+      "confidence": "0.0% (0/15)",
+      "name": "0.0% (0/15)",
+      "source": "0.0% (0/15)",
+      "zone_id": "0.0% (0/15)",
+      "zone_type": "0.0% (0/15)"
+    },
+    "sample_properties": [
+      "zone_id",
+      "name",
+      "zone_type",
+      "source",
+      "confidence"
+    ]
+  },
+  "mumbai_bridges_culverts.geojson": {
+    "dataset_name": "mumbai_bridges_culverts.geojson",
+    "folder": "05_structures",
+    "feature_count": 33,
+    "geometry_types": {
+      "Point": 33
+    },
+    "crs": "EPSG:4326 (WGS 84 Geographic 2D)",
+    "bounding_box": {
+      "min_lon": 72.818,
+      "min_lat": 19.025,
+      "max_lon": 72.965,
+      "max_lat": 19.263
+    },
+    "metrics": {
+      "total_length_km": null,
+      "total_area_sq_km": null
+    },
+    "null_percentages": {
+      "confidence": "0.0% (0/33)",
+      "name": "0.0% (0/33)",
+      "road_name": "0.0% (0/33)",
+      "source": "0.0% (0/33)",
+      "structure_id": "0.0% (0/33)",
+      "structure_type": "0.0% (0/33)",
+      "waterway_name": "0.0% (0/33)"
+    },
+    "sample_properties": [
+      "structure_id",
+      "name",
+      "structure_type",
+      "road_name",
+      "waterway_name",
+      "source",
+      "confidence"
+    ]
+  },
+  "mumbai_green_open_spaces.geojson": {
+    "dataset_name": "mumbai_green_open_spaces.geojson",
+    "folder": "06_green_infrastructure",
+    "feature_count": 25,
+    "geometry_types": {
+      "Polygon": 25
+    },
+    "crs": "EPSG:4326 (WGS 84 Geographic 2D)",
+    "bounding_box": {
+      "min_lon": 72.801,
+      "min_lat": 18.922,
+      "max_lon": 72.975,
+      "max_lat": 19.28
+    },
+    "metrics": {
+      "total_length_km": null,
+      "total_area_sq_km": 151.99
+    },
+    "null_percentages": {
+      "area_id": "0.0% (0/25)",
+      "area_m2": "0.0% (0/25)",
+      "confidence": "0.0% (0/25)",
+      "name": "0.0% (0/25)",
+      "source": "0.0% (0/25)",
+      "type": "0.0% (0/25)"
+    },
+    "sample_properties": [
+      "area_id",
+      "name",
+      "type",
+      "area_m2",
+      "source",
+      "confidence"
+    ]
+  }
+}

@@ -98,4 +98,4 @@ class FloodPredictionHead(nn.Module):
         From U-RNN flood_head.py (MIT License).
         """
         wet_mask = (extent >= self.cls_threshold).float()
-        return depth * wet_mask
+        return torch.clamp(depth, min=0.0) * wet_mask

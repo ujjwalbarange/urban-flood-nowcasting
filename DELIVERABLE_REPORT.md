@@ -275,3 +275,38 @@ Every subsystem exposes complete provenance in the System Health tab:
 1. **Sentinel-1 SAR Real-Time Feed**: Sentinel-1 SAR is not a real-time sensor; satellite passes over Mumbai occur on multi-day repeat cycles. Real-time validation is therefore restricted to nowcast physics vs. rain gauge networks and citizen field reports. SAR validation remains a hindcast benchmark tool.
 2. **Pumping Station Telemetry**: SCADA sensor links for live pump discharge are not published via public municipal APIs. Rated capacity curves are used until BMC telemetry APIs become accessible.
 3. **Building Footprint Blockage**: While 80% urban imperviousness is applied, individual micro-scale building wall reflections are parameterized through Manning roughness ($n = 0.035$) rather than full 3D building mesh extrusion.
+
+---
+
+## T. Product Architecture Restoration & Two-Product Separation
+
+Following user audit and requirements, the system has been strictly restored and divided into two independent, purpose-built products:
+
+### 1. Municipal Command Center (`apps/city-dashboard` on `http://localhost:3000`)
+- **Design Standard**: Clean, professional **WHITE municipal theme** with subtle borders (`#e2e8f0`), restrained typography, high-contrast indicators, and zero dark/neon glassmorphism.
+- **Basemap**: Eliminated the CARTO watermark ("API KEY REQUIRED") and replaced it with **Esri World Light Gray Canvas** (`server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`).
+- **Map-First Layout**: Mumbai geographic area is the visual centerpiece, complemented by a collapsible right-side operational panel.
+- **5-Step Simulation-to-Impact Workflow**:
+  1. **Catchment & Forcing Selection**: Choose between live Open-Meteo spatial mesh or scenario rainfall rates (10–180 mm/hr).
+  2. **2D Hydrodynamic Execution**: Solves diffusive-wave overland equations over 30m Copernicus DEM (5,400 steps).
+  3. **Continuous Raster Inundation**: Renders smooth, bilinear-interpolated flood depth raster overlays without boxy grid cells.
+  4. **Comprehensive Municipal Impact Analysis**: Automatically computes exposed population (Census 2011), ground buildings at risk, affected wards (with severity ratings and peak depths), critical infrastructure assets (KEM Hospital, Tata Memorial, Dadar Terminus, Parel Substation), pumping station inundation risks, and available emergency shelters.
+  5. **Actionable Municipal Directives & OASIS CAP v1.2 Dispatch**: Directives auto-populate the Emergency Alert Dispatch console for broadcast to field teams and citizen channels.
+- **Incident Review Queue**: Operators review and verify field reports submitted by citizens (`✓ Verify`, `✗ Reject`) without mixing citizen reporting forms into the municipal console.
+- **Drainage Telemetry**: Displays honest static rated pumping capacities alongside live 1D-2D coupled orifice exchange metrics ($Q_{ex} = C_d A_o \sqrt{2g|\Delta H|}\operatorname{sgn}(\Delta H)$).
+- **Data Provenance & Scientific Honesty**: Replaced all misleading "SAR" labels with documented archival survey records, and marked static vs. live telemetry clearly.
+
+### 2. Citizen Safety Dashboard (`apps/citizen-web` on `http://localhost:3001`)
+- **Public-Facing Portal**: Dedicated strictly to citizens, commuters, and residents.
+- **Core Capabilities**:
+  - Current flood advisory status and weather warnings.
+  - Interactive high-level flood risk map centered on Mumbai.
+  - Designated emergency shelter locator with contact info and capacity.
+  - Citizen incident reporting form (allows residents to report localized waterlogging with photos and water depth).
+  - JalDrishti AI safety assistant for emergency queries and evacuation guidance.
+- **No Operator Intrusion**: Municipal operational levers (simulation parameters, hydraulic solvers, raw PostGIS tables, CAP broadcast tools) are strictly excluded from the citizen experience.
+
+### 3. Verification & Connectivity Matrix
+- `apps/city-dashboard`: **Running on `http://localhost:3000`** (HTTP 200, 0 TypeScript errors).
+- `apps/citizen-web`: **Running on `http://localhost:3001`** (HTTP 200, 0 TypeScript errors).
+- `services/api/main.py`: **Running on `http://127.0.0.1:8000`** (FastAPI backend daemon with PostGIS tables, live Open-Meteo, authenticated MOSDAC, and NASA IMERG).

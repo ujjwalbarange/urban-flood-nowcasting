@@ -1,0 +1,3396 @@
+{
+  "database_name": "defaultdb",
+  "postgres_version": "PostgreSQL 18.6 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 15.3.1 20260722 (Red Hat 15.3.1-1), 64-bit",
+  "postgis_version": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/pgsql/.local/share/proj DATABASE_PATH=/usr/proj98/share/proj/proj.db\" (compiled against PROJ 9.8.1) LIBXML=\"2.12.10\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.2\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+  "total_tables_count": 25,
+  "table_names": [
+    "alerts",
+    "cities",
+    "citizen_reports",
+    "critical_infrastructure",
+    "data_ingestion_runs",
+    "data_sources",
+    "dem_tiles",
+    "drainage_links",
+    "drainage_nodes",
+    "flood_hotspots",
+    "flood_snapshots",
+    "historical_flood_events",
+    "pumping_stations",
+    "rainfall_observations",
+    "rainfall_satellite",
+    "road_segments",
+    "shelters",
+    "simulation_runs",
+    "spatial_ref_sys",
+    "terrain_derivatives",
+    "tide_observations",
+    "wards",
+    "water_bodies",
+    "weather_forecasts",
+    "weather_observations"
+  ],
+  "tables": {
+    "alerts": {
+      "row_count": 0,
+      "columns_count": 10,
+      "columns": [
+        {
+          "column_name": "alert_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "run_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "severity",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "cap_xml",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "issued_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "now()"
+        },
+        {
+          "column_name": "expires_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "affected_area",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "affected_wards",
+          "data_type": "ARRAY",
+          "udt_name": "_text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "metadata",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "alerts_pkey",
+          "type": "PRIMARY KEY",
+          "column": "alert_id"
+        },
+        {
+          "name": "alerts_run_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "run_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "alerts_pkey",
+          "def": "CREATE UNIQUE INDEX alerts_pkey ON public.alerts USING btree (alert_id)"
+        },
+        {
+          "name": "idx_alerts_affected_area",
+          "def": "CREATE INDEX idx_alerts_affected_area ON public.alerts USING gist (affected_area)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "affected_area",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POLYGON"
+        }
+      ]
+    },
+    "cities": {
+      "row_count": 1,
+      "columns_count": 10,
+      "columns": [
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "state",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "country",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "crs_epsg",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "cell_size_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "bbox",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "timezone",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "config",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "now()"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "cities_pkey",
+          "type": "PRIMARY KEY",
+          "column": "city_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "cities_pkey",
+          "def": "CREATE UNIQUE INDEX cities_pkey ON public.cities USING btree (city_id)"
+        },
+        {
+          "name": "idx_cities_bbox",
+          "def": "CREATE INDEX idx_cities_bbox ON public.cities USING gist (bbox)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "bbox",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POLYGON"
+        }
+      ]
+    },
+    "citizen_reports": {
+      "row_count": 2,
+      "columns_count": 12,
+      "columns": [
+        {
+          "column_name": "report_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "reporter_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "location",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "ward_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "reported_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "now()"
+        },
+        {
+          "column_name": "water_depth_cm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "description",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "photo_url",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "report_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "verification_status",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "metadata",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "citizen_reports_pkey",
+          "type": "PRIMARY KEY",
+          "column": "report_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "citizen_reports_pkey",
+          "def": "CREATE UNIQUE INDEX citizen_reports_pkey ON public.citizen_reports USING btree (report_id)"
+        },
+        {
+          "name": "idx_reports_geom",
+          "def": "CREATE INDEX idx_reports_geom ON public.citizen_reports USING gist (location)"
+        },
+        {
+          "name": "idx_citizen_reports_location",
+          "def": "CREATE INDEX idx_citizen_reports_location ON public.citizen_reports USING gist (location)"
+        },
+        {
+          "name": "idx_reports_time",
+          "def": "CREATE INDEX idx_reports_time ON public.citizen_reports USING btree (reported_at)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "location",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POINT"
+        }
+      ]
+    },
+    "critical_infrastructure": {
+      "row_count": 2002,
+      "columns_count": 11,
+      "columns": [
+        {
+          "column_name": "infra_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "category",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "ward",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "location",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "capacity",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "elevation_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "flood_vulnerable",
+          "data_type": "boolean",
+          "udt_name": "bool",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "data_source",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "attributes",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "critical_infrastructure_pkey",
+          "type": "PRIMARY KEY",
+          "column": "infra_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "critical_infrastructure_pkey",
+          "def": "CREATE UNIQUE INDEX critical_infrastructure_pkey ON public.critical_infrastructure USING btree (infra_id)"
+        },
+        {
+          "name": "idx_critical_infrastructure_location",
+          "def": "CREATE INDEX idx_critical_infrastructure_location ON public.critical_infrastructure USING gist (location)"
+        },
+        {
+          "name": "idx_infra_geom",
+          "def": "CREATE INDEX idx_infra_geom ON public.critical_infrastructure USING gist (location)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "location",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POINT"
+        }
+      ]
+    },
+    "data_ingestion_runs": {
+      "row_count": 1,
+      "columns_count": 9,
+      "columns": [
+        {
+          "column_name": "run_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "pipeline_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "source_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "records_ingested",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": "0"
+        },
+        {
+          "column_name": "records_failed",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": "0"
+        },
+        {
+          "column_name": "status",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "started_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "completed_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "log_summary",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": "'{}'::jsonb"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "data_ingestion_runs_pkey",
+          "type": "PRIMARY KEY",
+          "column": "run_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "data_ingestion_runs_pkey",
+          "def": "CREATE UNIQUE INDEX data_ingestion_runs_pkey ON public.data_ingestion_runs USING btree (run_id)"
+        }
+      ],
+      "geometries": []
+    },
+    "data_sources": {
+      "row_count": 7,
+      "columns_count": 13,
+      "columns": [
+        {
+          "column_name": "source_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "provider_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "provider_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "description",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "url",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "license",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "spatial_resolution",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "temporal_resolution",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "crs",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "status",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "last_successful_fetch",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "error_message",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "config",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "data_sources_pkey",
+          "type": "PRIMARY KEY",
+          "column": "source_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "data_sources_pkey",
+          "def": "CREATE UNIQUE INDEX data_sources_pkey ON public.data_sources USING btree (source_id)"
+        }
+      ],
+      "geometries": []
+    },
+    "dem_tiles": {
+      "row_count": 1,
+      "columns_count": 20,
+      "columns": [
+        {
+          "column_name": "tile_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "source",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "crs_epsg",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "resolution_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "width",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "height",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "bounds",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "storage_uri",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "sha256",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "ingested_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "now()"
+        },
+        {
+          "column_name": "provenance",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "product_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "min_elevation_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "max_elevation_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "mean_elevation_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "source_url",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "storage_path",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "width_pixels",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "height_pixels",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "dem_tiles_city_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "city_id"
+        },
+        {
+          "name": "dem_tiles_pkey",
+          "type": "PRIMARY KEY",
+          "column": "tile_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "dem_tiles_pkey",
+          "def": "CREATE UNIQUE INDEX dem_tiles_pkey ON public.dem_tiles USING btree (tile_id)"
+        },
+        {
+          "name": "idx_dem_tiles_bounds",
+          "def": "CREATE INDEX idx_dem_tiles_bounds ON public.dem_tiles USING gist (bounds)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "bounds",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POLYGON"
+        }
+      ]
+    },
+    "drainage_links": {
+      "row_count": 8,
+      "columns_count": 11,
+      "columns": [
+        {
+          "column_name": "link_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "from_node",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "to_node",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "link_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "geometry",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "diameter_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "length_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "manning_n",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "data_quality",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "attributes",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "drainage_links_city_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "city_id"
+        },
+        {
+          "name": "drainage_links_from_node_fkey",
+          "type": "FOREIGN KEY",
+          "column": "from_node"
+        },
+        {
+          "name": "drainage_links_pkey",
+          "type": "PRIMARY KEY",
+          "column": "link_id"
+        },
+        {
+          "name": "drainage_links_to_node_fkey",
+          "type": "FOREIGN KEY",
+          "column": "to_node"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "drainage_links_pkey",
+          "def": "CREATE UNIQUE INDEX drainage_links_pkey ON public.drainage_links USING btree (link_id)"
+        },
+        {
+          "name": "idx_drainage_links_geometry",
+          "def": "CREATE INDEX idx_drainage_links_geometry ON public.drainage_links USING gist (geometry)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "geometry",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "LINESTRING"
+        }
+      ]
+    },
+    "drainage_nodes": {
+      "row_count": 35,
+      "columns_count": 8,
+      "columns": [
+        {
+          "column_name": "node_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "node_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "geometry",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "invert_elevation_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "ground_elevation_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "data_quality",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "attributes",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "drainage_nodes_city_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "city_id"
+        },
+        {
+          "name": "drainage_nodes_pkey",
+          "type": "PRIMARY KEY",
+          "column": "node_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "drainage_nodes_pkey",
+          "def": "CREATE UNIQUE INDEX drainage_nodes_pkey ON public.drainage_nodes USING btree (node_id)"
+        },
+        {
+          "name": "idx_drain_nodes_geom",
+          "def": "CREATE INDEX idx_drain_nodes_geom ON public.drainage_nodes USING gist (geometry)"
+        },
+        {
+          "name": "idx_drainage_nodes_geometry",
+          "def": "CREATE INDEX idx_drainage_nodes_geometry ON public.drainage_nodes USING gist (geometry)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "geometry",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POINT"
+        }
+      ]
+    },
+    "flood_hotspots": {
+      "row_count": 10,
+      "columns_count": 10,
+      "columns": [
+        {
+          "column_name": "hotspot_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "ward",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "location",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "severity",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "historical_max_depth_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "recurrence",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "data_source",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "attributes",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "flood_hotspots_pkey",
+          "type": "PRIMARY KEY",
+          "column": "hotspot_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "flood_hotspots_pkey",
+          "def": "CREATE UNIQUE INDEX flood_hotspots_pkey ON public.flood_hotspots USING btree (hotspot_id)"
+        },
+        {
+          "name": "idx_flood_hotspots_location",
+          "def": "CREATE INDEX idx_flood_hotspots_location ON public.flood_hotspots USING gist (location)"
+        },
+        {
+          "name": "idx_hotspot_geom",
+          "def": "CREATE INDEX idx_hotspot_geom ON public.flood_hotspots USING gist (location)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "location",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POINT"
+        }
+      ]
+    },
+    "flood_snapshots": {
+      "row_count": 0,
+      "columns_count": 11,
+      "columns": [
+        {
+          "column_name": "snapshot_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "run_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "valid_time",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "lead_minutes",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "max_depth_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "mean_depth_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "flooded_cells",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "flooded_area_m2",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "extent_threshold_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "depth_grid_uri",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "statistics",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "flood_snapshots_pkey",
+          "type": "PRIMARY KEY",
+          "column": "snapshot_id"
+        },
+        {
+          "name": "flood_snapshots_run_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "run_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "flood_snapshots_pkey",
+          "def": "CREATE UNIQUE INDEX flood_snapshots_pkey ON public.flood_snapshots USING btree (snapshot_id)"
+        }
+      ],
+      "geometries": []
+    },
+    "historical_flood_events": {
+      "row_count": 209,
+      "columns_count": 52,
+      "columns": [
+        {
+          "column_name": "event_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "date",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "year",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "ward",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "locality",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "location",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "elevation_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "slope_degree",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "distance_to_drain_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "distance_to_waterbody_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rainfall_1h_mm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rainfall_3h_mm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rainfall_6h_mm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rainfall_12h_mm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rainfall_24h_mm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rainfall_48h_mm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rainfall_72h_mm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rainfall_intensity_mm_h",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rainfall_anomaly",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "antecedent_rainfall_3day_mm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "antecedent_rainfall_7day_mm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "soil_moisture",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "soil_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "infiltration_rate",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "groundwater_level_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "drain_water_level_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "built_up_percentage",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "impervious_surface_percentage",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "vegetation_percentage",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "population_density",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "drainage_capacity",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "ndvi",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "ndwi",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "ndbi",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "flooded_area_km2",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "flood_occurred",
+          "data_type": "boolean",
+          "udt_name": "bool",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "flood_depth_cm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "flood_duration_hours",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "waterlogging_duration_hours",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "flood_severity",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "people_affected",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "houses_affected",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "roads_affected",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "economic_loss",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rainfall_intensity_index",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "drainage_stress_index",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "imperviousness_index",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "data_source",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "source_url",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "data_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "ingested_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "now()"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "historical_flood_events_pkey",
+          "type": "PRIMARY KEY",
+          "column": "event_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "historical_flood_events_pkey",
+          "def": "CREATE UNIQUE INDEX historical_flood_events_pkey ON public.historical_flood_events USING btree (event_id)"
+        },
+        {
+          "name": "idx_hist_flood_ward",
+          "def": "CREATE INDEX idx_hist_flood_ward ON public.historical_flood_events USING btree (ward)"
+        },
+        {
+          "name": "idx_historical_flood_events_location",
+          "def": "CREATE INDEX idx_historical_flood_events_location ON public.historical_flood_events USING gist (location)"
+        },
+        {
+          "name": "idx_hist_flood_geom",
+          "def": "CREATE INDEX idx_hist_flood_geom ON public.historical_flood_events USING gist (location)"
+        },
+        {
+          "name": "idx_hist_flood_date",
+          "def": "CREATE INDEX idx_hist_flood_date ON public.historical_flood_events USING btree (date)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "location",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POINT"
+        }
+      ]
+    },
+    "pumping_stations": {
+      "row_count": 8,
+      "columns_count": 12,
+      "columns": [
+        {
+          "column_name": "pump_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "ward",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "location",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "num_pumps",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rated_capacity_mld",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "current_status",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "operational_capacity_pct",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "data_source",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "last_updated",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "now()"
+        },
+        {
+          "column_name": "attributes",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "pumping_stations_city_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "city_id"
+        },
+        {
+          "name": "pumping_stations_pkey",
+          "type": "PRIMARY KEY",
+          "column": "pump_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "pumping_stations_pkey",
+          "def": "CREATE UNIQUE INDEX pumping_stations_pkey ON public.pumping_stations USING btree (pump_id)"
+        },
+        {
+          "name": "idx_pumping_stations_location",
+          "def": "CREATE INDEX idx_pumping_stations_location ON public.pumping_stations USING gist (location)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "location",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POINT"
+        }
+      ]
+    },
+    "rainfall_observations": {
+      "row_count": 0,
+      "columns_count": 20,
+      "columns": [
+        {
+          "column_name": "obs_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "source",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "observed_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "valid_from",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "valid_to",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "rate_mmh",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "spatial_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "location",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "grid_storage_uri",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "quality_flags",
+          "data_type": "ARRAY",
+          "udt_name": "_text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "provenance",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "station_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "station_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "variable",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "value",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "unit",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "data_source",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "observation_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "quality_flag",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "rainfall_observations_pkey",
+          "type": "PRIMARY KEY",
+          "column": "obs_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "rainfall_observations_pkey",
+          "def": "CREATE UNIQUE INDEX rainfall_observations_pkey ON public.rainfall_observations USING btree (obs_id)"
+        },
+        {
+          "name": "idx_rainfall_time",
+          "def": "CREATE INDEX idx_rainfall_time ON public.rainfall_observations USING btree (observed_at)"
+        },
+        {
+          "name": "idx_rainfall_observations_location",
+          "def": "CREATE INDEX idx_rainfall_observations_location ON public.rainfall_observations USING gist (location)"
+        },
+        {
+          "name": "idx_rainfall_city",
+          "def": "CREATE INDEX idx_rainfall_city ON public.rainfall_observations USING btree (city_id, observed_at)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "location",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POINT"
+        }
+      ]
+    },
+    "rainfall_satellite": {
+      "row_count": 0,
+      "columns_count": 13,
+      "columns": [
+        {
+          "column_name": "satellite_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "product",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "run_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "version",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "timestamp",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "latitude",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "longitude",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "location",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "precipitation_mm_hr",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "accumulation_mm",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "quality_metric",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "raw_source_file",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "ingested_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "rainfall_satellite_pkey",
+          "type": "PRIMARY KEY",
+          "column": "satellite_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "rainfall_satellite_pkey",
+          "def": "CREATE UNIQUE INDEX rainfall_satellite_pkey ON public.rainfall_satellite USING btree (satellite_id)"
+        },
+        {
+          "name": "idx_sat_rain_loc",
+          "def": "CREATE INDEX idx_sat_rain_loc ON public.rainfall_satellite USING gist (location)"
+        },
+        {
+          "name": "idx_sat_rain_prod_time",
+          "def": "CREATE INDEX idx_sat_rain_prod_time ON public.rainfall_satellite USING btree (product, \"timestamp\")"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "location",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POINT"
+        }
+      ]
+    },
+    "road_segments": {
+      "row_count": 15,
+      "columns_count": 9,
+      "columns": [
+        {
+          "column_name": "segment_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "road_class",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "geometry",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "length_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "speed_limit_kmh",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "osm_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "attributes",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "road_segments_city_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "city_id"
+        },
+        {
+          "name": "road_segments_pkey",
+          "type": "PRIMARY KEY",
+          "column": "segment_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "road_segments_pkey",
+          "def": "CREATE UNIQUE INDEX road_segments_pkey ON public.road_segments USING btree (segment_id)"
+        },
+        {
+          "name": "idx_roads_geom",
+          "def": "CREATE INDEX idx_roads_geom ON public.road_segments USING gist (geometry)"
+        },
+        {
+          "name": "idx_road_segments_geometry",
+          "def": "CREATE INDEX idx_road_segments_geometry ON public.road_segments USING gist (geometry)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "geometry",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "LINESTRING"
+        }
+      ]
+    },
+    "shelters": {
+      "row_count": 10,
+      "columns_count": 9,
+      "columns": [
+        {
+          "column_name": "shelter_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "category",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "capacity_persons",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "location",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "elevation_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "status",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "attributes",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "shelters_city_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "city_id"
+        },
+        {
+          "name": "shelters_pkey",
+          "type": "PRIMARY KEY",
+          "column": "shelter_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "shelters_pkey",
+          "def": "CREATE UNIQUE INDEX shelters_pkey ON public.shelters USING btree (shelter_id)"
+        },
+        {
+          "name": "idx_shelters_location",
+          "def": "CREATE INDEX idx_shelters_location ON public.shelters USING gist (location)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "location",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POINT"
+        }
+      ]
+    },
+    "simulation_runs": {
+      "row_count": 19,
+      "columns_count": 11,
+      "columns": [
+        {
+          "column_name": "run_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "mode",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "status",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "now()"
+        },
+        {
+          "column_name": "started_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "completed_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "scenario_config",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "mass_balance",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "output_manifest",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "error",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "simulation_runs_city_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "city_id"
+        },
+        {
+          "name": "simulation_runs_pkey",
+          "type": "PRIMARY KEY",
+          "column": "run_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "simulation_runs_pkey",
+          "def": "CREATE UNIQUE INDEX simulation_runs_pkey ON public.simulation_runs USING btree (run_id)"
+        }
+      ],
+      "geometries": []
+    },
+    "spatial_ref_sys": {
+      "row_count": 8500,
+      "columns_count": 5,
+      "columns": [
+        {
+          "column_name": "srid",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "auth_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "auth_srid",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "srtext",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "proj4text",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "spatial_ref_sys_pkey",
+          "type": "PRIMARY KEY",
+          "column": "srid"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "spatial_ref_sys_pkey",
+          "def": "CREATE UNIQUE INDEX spatial_ref_sys_pkey ON public.spatial_ref_sys USING btree (srid)"
+        }
+      ],
+      "geometries": []
+    },
+    "terrain_derivatives": {
+      "row_count": 4,
+      "columns_count": 9,
+      "columns": [
+        {
+          "column_name": "derivative_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "dem_tile_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "derivative_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "storage_path",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "min_value",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "max_value",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "mean_value",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "parameters",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": "'{}'::jsonb"
+        },
+        {
+          "column_name": "derived_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "terrain_derivatives_dem_tile_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "dem_tile_id"
+        },
+        {
+          "name": "terrain_derivatives_pkey",
+          "type": "PRIMARY KEY",
+          "column": "derivative_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "terrain_derivatives_pkey",
+          "def": "CREATE UNIQUE INDEX terrain_derivatives_pkey ON public.terrain_derivatives USING btree (derivative_id)"
+        }
+      ],
+      "geometries": []
+    },
+    "tide_observations": {
+      "row_count": 72,
+      "columns_count": 12,
+      "columns": [
+        {
+          "column_name": "tide_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "station_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "latitude",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "longitude",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "location",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "timestamp",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "tide_height_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "datum",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": "'Chart Datum'::character varying"
+        },
+        {
+          "column_name": "data_source",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "source_url",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "quality_flag",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": "'verified'::character varying"
+        },
+        {
+          "column_name": "ingested_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "tide_observations_pkey",
+          "type": "PRIMARY KEY",
+          "column": "tide_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "tide_observations_pkey",
+          "def": "CREATE UNIQUE INDEX tide_observations_pkey ON public.tide_observations USING btree (tide_id)"
+        },
+        {
+          "name": "idx_tide_station_time",
+          "def": "CREATE INDEX idx_tide_station_time ON public.tide_observations USING btree (station_name, \"timestamp\")"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "location",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "POINT"
+        }
+      ]
+    },
+    "wards": {
+      "row_count": 24,
+      "columns_count": 7,
+      "columns": [
+        {
+          "column_name": "ward_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "city_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "geometry",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "area_sq_km",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "population",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "metadata",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "wards_city_id_fkey",
+          "type": "FOREIGN KEY",
+          "column": "city_id"
+        },
+        {
+          "name": "wards_pkey",
+          "type": "PRIMARY KEY",
+          "column": "ward_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "wards_pkey",
+          "def": "CREATE UNIQUE INDEX wards_pkey ON public.wards USING btree (ward_id)"
+        },
+        {
+          "name": "idx_wards_geometry",
+          "def": "CREATE INDEX idx_wards_geometry ON public.wards USING gist (geometry)"
+        },
+        {
+          "name": "idx_wards_geom",
+          "def": "CREATE INDEX idx_wards_geom ON public.wards USING gist (geometry)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "geometry",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "MULTIPOLYGON"
+        }
+      ]
+    },
+    "water_bodies": {
+      "row_count": 1730,
+      "columns_count": 9,
+      "columns": [
+        {
+          "column_name": "water_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "osm_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "feature_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "geometry",
+          "data_type": "USER-DEFINED",
+          "udt_name": "geometry",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "area_sq_m",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "source",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": "'OpenStreetMap'::character varying"
+        },
+        {
+          "column_name": "attributes",
+          "data_type": "jsonb",
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "column_default": "'{}'::jsonb"
+        },
+        {
+          "column_name": "ingested_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "water_bodies_pkey",
+          "type": "PRIMARY KEY",
+          "column": "water_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "water_bodies_pkey",
+          "def": "CREATE UNIQUE INDEX water_bodies_pkey ON public.water_bodies USING btree (water_id)"
+        },
+        {
+          "name": "idx_water_bodies_geom",
+          "def": "CREATE INDEX idx_water_bodies_geom ON public.water_bodies USING gist (geometry)"
+        }
+      ],
+      "geometries": [
+        {
+          "column": "geometry",
+          "dimension": 2,
+          "srid": 4326,
+          "type": "GEOMETRY"
+        }
+      ]
+    },
+    "weather_forecasts": {
+      "row_count": 30240,
+      "columns_count": 15,
+      "columns": [
+        {
+          "column_name": "forecast_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "station_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "station_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "latitude",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "longitude",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "forecast_generated_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "forecast_valid_time",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "lead_minutes",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "lead_hours",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "variable",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "value",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "unit",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "model",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "quality_flag",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": "'forecast'::character varying"
+        },
+        {
+          "column_name": "ingested_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "weather_forecasts_pkey",
+          "type": "PRIMARY KEY",
+          "column": "forecast_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "weather_forecasts_pkey",
+          "def": "CREATE UNIQUE INDEX weather_forecasts_pkey ON public.weather_forecasts USING btree (forecast_id)"
+        },
+        {
+          "name": "idx_weather_fc_station_valid",
+          "def": "CREATE INDEX idx_weather_fc_station_valid ON public.weather_forecasts USING btree (station_id, forecast_valid_time)"
+        },
+        {
+          "name": "idx_weather_fc_lead",
+          "def": "CREATE INDEX idx_weather_fc_lead ON public.weather_forecasts USING btree (lead_minutes)"
+        },
+        {
+          "name": "idx_weather_fc_var",
+          "def": "CREATE INDEX idx_weather_fc_var ON public.weather_forecasts USING btree (variable)"
+        }
+      ],
+      "geometries": []
+    },
+    "weather_observations": {
+      "row_count": 108,
+      "columns_count": 13,
+      "columns": [
+        {
+          "column_name": "obs_id",
+          "data_type": "uuid",
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "station_id",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "station_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "latitude",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "longitude",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "timestamp",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "variable",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "value",
+          "data_type": "double precision",
+          "udt_name": "float8",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "unit",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null
+        },
+        {
+          "column_name": "data_source",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null
+        },
+        {
+          "column_name": "observation_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": "'surface_station'::character varying"
+        },
+        {
+          "column_name": "quality_flag",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": "'provisional'::character varying"
+        },
+        {
+          "column_name": "ingested_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "weather_observations_pkey",
+          "type": "PRIMARY KEY",
+          "column": "obs_id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "weather_observations_pkey",
+          "def": "CREATE UNIQUE INDEX weather_observations_pkey ON public.weather_observations USING btree (obs_id)"
+        },
+        {
+          "name": "idx_weather_obs_station_time",
+          "def": "CREATE INDEX idx_weather_obs_station_time ON public.weather_observations USING btree (station_id, \"timestamp\")"
+        },
+        {
+          "name": "idx_weather_obs_var",
+          "def": "CREATE INDEX idx_weather_obs_var ON public.weather_observations USING btree (variable)"
+        }
+      ],
+      "geometries": []
+    }
+  },
+  "wards_audit": {
+    "count": 24,
+    "distinct_ward_ids": 24,
+    "names": [
+      "Ward A (Colaba, Fort, Nariman Point)",
+      "Ward B (Sandhurst Road, Dongri, Masjid Bunder)",
+      "Ward C (Marine Lines, Kalbadevi, Bhuleshwar)",
+      "Ward D (Malabar Hill, Grant Road, Tardeo)",
+      "Ward E (Byculla, Mazgaon, Mumbai Central)",
+      "Ward F/North (Matunga, Sion, Wadala)",
+      "Ward F/South (Parel, Sewri, Lalbaug)",
+      "Ward G/North (Dadar, Dharavi, Mahim)",
+      "Ward G/South (Worli, Lower Parel, Prabhadevi)",
+      "Ward H/East (Bandra East, Khar East, Santacruz East, Kalina)",
+      "Ward H/West (Bandra West, Khar West, Santacruz West)",
+      "Ward K/East (Andheri East, Jogeshwari East, Vile Parle East)",
+      "Ward K/West (Andheri West, Versova, Juhu, Oshiwara)",
+      "Ward L (Kurla, Chunabhatti, Sakinaka, Chandivali)",
+      "Ward M/East (Govandi, Mankhurd, Deonar, Shivaji Nagar)",
+      "Ward M/West (Chembur, Tilak Nagar, Mahul)",
+      "Ward N (Ghatkopar, Vidyavihar, Pant Nagar)",
+      "Ward P/North (Malad, Marve, Manori)",
+      "Ward P/South (Goregaon West & East)",
+      "Ward R/Central (Borivali, Gorai)",
+      "Ward R/North (Dahisar)",
+      "Ward R/South (Kandivali, Charkop)",
+      "Ward S (Bhandup, Powai, Kanjurmarg, Vikhroli)",
+      "Ward T (Mulund, Nahur)"
+    ],
+    "total_pop": 12445443,
+    "extent": "POLYGON((72.775 18.892,72.775 19.288,72.965 19.288,72.965 18.892,72.775 18.892))",
+    "invalid_geoms": 0
+  },
+  "historical_events_audit": {
+    "count": 209,
+    "distinct_event_ids": 209,
+    "min_year": 2016,
+    "max_year": 2025,
+    "min_date": "2016-08-04 18:30:00+00:00",
+    "max_date": "2025-07-08 00:00:00+00:00",
+    "measured_depth_count": 209,
+    "min_depth": 0.0,
+    "max_depth": 243.0,
+    "avg_depth": 94.81483253588515,
+    "extent": "POLYGON((72.802 18.932,72.802 19.255,72.928 19.255,72.928 18.932,72.802 18.932))",
+    "null_locations": 0,
+    "invalid_geoms": 0
+  },
+  "weather_forecasts_audit": {
+    "count": 30240,
+    "stations": [
+      "STN_ANDHERI",
+      "STN_BANDRA",
+      "STN_BORIVALI",
+      "STN_COLABA",
+      "STN_DADAR",
+      "STN_KURLA",
+      "STN_SANTACRUZ",
+      "STN_THANE",
+      "STN_VIKHROLI"
+    ],
+    "variables": [
+      "apparent_temperature",
+      "cloud_cover",
+      "dew_point_2m",
+      "et0_fao_evapotranspiration",
+      "evapotranspiration",
+      "precipitation",
+      "precipitation_probability",
+      "rain",
+      "relative_humidity_2m",
+      "showers",
+      "soil_moisture_0_to_1cm",
+      "soil_temperature_0cm",
+      "surface_pressure",
+      "temperature_2m",
+      "vapour_pressure_deficit",
+      "visibility",
+      "weather_code",
+      "wind_direction_10m",
+      "wind_gusts_10m",
+      "wind_speed_10m"
+    ],
+    "min_lead_m": 0,
+    "max_lead_m": 10020,
+    "min_lead_h": 0.0,
+    "max_lead_h": 167.0,
+    "min_valid": "2026-09-24 18:30:00+00:00",
+    "max_valid": "2026-10-01 17:30:00+00:00",
+    "min_generated": "2026-09-25 11:00:00+00:00",
+    "null_values": 0
+  },
+  "weather_observations_audit": {
+    "count": 108,
+    "stations": [
+      "STN_ANDHERI",
+      "STN_BANDRA",
+      "STN_BORIVALI",
+      "STN_COLABA",
+      "STN_DADAR",
+      "STN_KURLA",
+      "STN_SANTACRUZ",
+      "STN_THANE",
+      "STN_VIKHROLI"
+    ],
+    "variables": [
+      "apparent_temperature",
+      "cloud_cover",
+      "precipitation",
+      "rain",
+      "relative_humidity_2m",
+      "showers",
+      "surface_pressure",
+      "temperature_2m",
+      "weather_code",
+      "wind_direction_10m",
+      "wind_gusts_10m",
+      "wind_speed_10m"
+    ],
+    "min_time": "2026-09-25 11:00:00+00:00",
+    "max_time": "2026-09-25 11:00:00+00:00",
+    "null_values": 0
+  },
+  "water_bodies_audit": {
+    "count": 1730,
+    "types": [
+      {
+        "type": "drain",
+        "count": 724
+      },
+      {
+        "type": "water",
+        "count": 680
+      },
+      {
+        "type": "stream",
+        "count": 236
+      },
+      {
+        "type": "river",
+        "count": 81
+      },
+      {
+        "type": "canal",
+        "count": 9
+      }
+    ],
+    "extent": "POLYGON((72.7736306 18.7627191,72.7736306 19.3262728,73.4086125 19.3262728,73.4086125 18.7627191,72.7736306 18.7627191))",
+    "null_geoms": 0,
+    "invalid_geoms": 0
+  },
+  "critical_infrastructure_audit": {
+    "count": 2002,
+    "categories": [
+      {
+        "cat": "hospital",
+        "count": 1151
+      },
+      {
+        "cat": "clinic",
+        "count": 507
+      },
+      {
+        "cat": "railway_station",
+        "count": 165
+      },
+      {
+        "cat": "police",
+        "count": 122
+      },
+      {
+        "cat": "fire_station",
+        "count": 37
+      },
+      {
+        "cat": "stormwater_pumping_station",
+        "count": 6
+      },
+      {
+        "cat": "tertiary_healthcare",
+        "count": 6
+      },
+      {
+        "cat": "private_tertiary_healthcare",
+        "count": 2
+      },
+      {
+        "cat": "railway_terminal",
+        "count": 2
+      },
+      {
+        "cat": "disaster_control_hub",
+        "count": 1
+      },
+      {
+        "cat": "specialty_healthcare",
+        "count": 1
+      },
+      {
+        "cat": "airport_terminal",
+        "count": 1
+      },
+      {
+        "cat": "emergency_administration",
+        "count": 1
+      }
+    ],
+    "extent": "POLYGON((72.7814922 18.898061,72.7814922 19.2999274,72.9999474 19.2999274,72.9999474 18.898061,72.7814922 18.898061))",
+    "null_locations": 0,
+    "invalid_geoms": 0
+  },
+  "tide_observations_audit": {
+    "count": 72,
+    "stations": [
+      "Apollo Bunder (Mumbai Port)"
+    ],
+    "min_height": 0.36,
+    "max_height": 4.54,
+    "avg_height": 2.6116666666666664,
+    "min_time": "2005-07-25 00:00:00+00:00",
+    "max_time": "2005-07-27 23:00:00+00:00"
+  },
+  "dem_tiles_audit": {
+    "count": 1,
+    "rows": [
+      {
+        "product_name": "Copernicus GLO-30 DSM",
+        "resolution_m": 30.0,
+        "width": 1620,
+        "height": 1800,
+        "storage_path": "data/raw/terrain/opentopography_cop30_mumbai_bbox.tif",
+        "min_elevation_m": -17.27,
+        "max_elevation_m": 488.61,
+        "mean_elevation_m": 24.32,
+        "source_url": "https://portal.opentopography.org/API/globaldem?demtype=COP30"
+      }
+    ]
+  },
+  "terrain_derivatives_audit": {
+    "count": 4,
+    "rows": [
+      {
+        "derivative_type": "slope_degrees",
+        "storage_path": "data/derived/slope/slope_degrees.npy",
+        "min_value": 0.0,
+        "max_value": 89.28,
+        "mean_value": 2.83,
+        "parameters": "{\"unit\": \"degrees\", \"method\": \"Horn 8-neighbor gradient\"}"
+      },
+      {
+        "derivative_type": "aspect_degrees",
+        "storage_path": "data/derived/slope/aspect_degrees.npy",
+        "min_value": 0.0,
+        "max_value": 360.0,
+        "mean_value": 175.4,
+        "parameters": "{\"unit\": \"degrees\", \"method\": \"azimuth 0-360\"}"
+      },
+      {
+        "derivative_type": "depression_sinks_m",
+        "storage_path": "data/derived/catchments/depression_sinks_m.npy",
+        "min_value": 0.0,
+        "max_value": 18.5,
+        "mean_value": 0.04,
+        "parameters": "{\"unit\": \"meters\", \"method\": \"morphological reconstruction sinks\"}"
+      },
+      {
+        "derivative_type": "d8_flow_dir",
+        "storage_path": "data/derived/flow_direction/d8_flow_direction.npy",
+        "min_value": 1.0,
+        "max_value": 128.0,
+        "mean_value": null,
+        "parameters": "{\"unit\": \"esri_d8\", \"method\": \"steepest descent D8\"}"
+      }
+    ]
+  },
+  "data_ingestion_runs_audit": {
+    "count": 1,
+    "runs": [
+      {
+        "run_id": "35661e72-3135-49aa-bd32-cf9568a40a4e",
+        "pipeline_name": "load_postgis_canonical",
+        "source_id": "canonical_data_foundation",
+        "records_ingested": 35000,
+        "status": "completed",
+        "started_at": "2026-09-25 11:31:44.906633+00:00",
+        "completed_at": "2026-09-25 11:35:41.295584+00:00",
+        "log_summary": "{\"tide_obs\": 72, \"dem_tiles\": 1, \"timestamp\": \"2026-09-25T17:01:44.906633\", \"waterways\": 1730, \"weather_obs\": 108, \"infrastructure\": 1982, \"historical_events\": 202, \"weather_forecasts\": 30240, \"terrain_derivatives\": 4}"
+      }
+    ]
+  }
+}
