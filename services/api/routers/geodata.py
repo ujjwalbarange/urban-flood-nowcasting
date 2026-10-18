@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 import httpx
 import structlog
 from shapely.geometry import shape, Point
-from fastapi import APIRouter, HTTPException, Query, Depends, Body
+from fastapi import APIRouter, HTTPException, Query, Depends, Body, Response
 from sqlalchemy import select, func, text, desc
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -29,9 +29,15 @@ from services.database.models import (
     DrainageNodeDB, DrainageLinkDB, Shelter, RoadSegment,
     DataSource, CriticalInfrastructure, PumpingStation, CitizenReport,
 )
+from services.terrain.elevation_service import (
+    get_elevation_metadata,
+    lookup_elevation,
+    render_elevation_raster,
+)
 
 logger = structlog.get_logger()
 router = APIRouter(prefix="/geodata", tags=["Geodata"])
+
 
 
 @router.get("/audit-status")
@@ -72,6 +78,50 @@ async def get_geospatial_provider_status():
         "providers": {name: status.model_dump(mode="json") for name, status in catalog.items() if name in included},
         "evidence_rule": "Sentinel-1-derived products may validate event flood extent after review; they are not water-depth observations.",
     }
+
+
+@router.get("/elevation/metadata")
+async def get_elevation_metadata_endpoint():
+    """Return verified metadata and summary statistics for Copernicus GLO-30 DEM.
+
+    Provides exact coverage bounds, CRS (EPSG:4326), vertical datum (EGM96),
+    nominal 30m resolution, and elevation range for Greater Mumbai.
+    """
+    try:
+        return get_elevation_metadata()
+    except Exception as e:
+        logger.error("Failed to load elevation metadata", error=str(e))
+        raise HTTPException(status_code=500, detail=f"Elevation metadata error: {str(e)}")
+
+
+@router.get("/elevation/point")
+async def get_elevation_at_point(
+    lat: float = Query(..., description="Latitude (e.g. 19.076)"),
+    lon: float = Query(..., description="Longitude (e.g. 72.877)"),
+):
+    """Return ground elevation in metres MSL (EGM96) for a given point from Copernicus GLO-30."""
+    result = lookup_elevation(lat=lat, lon=lon)
+    if result is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Coordinate ({lat}, {lon}) is outside Copernicus DEM Mumbai extent (72.65 - 73.10 E, 18.85 - 19.35 N)"
+        )
+    return result
+
+
+@router.get("/elevation/raster.png")
+async def get_elevation_raster_endpoint():
+    """Return a 2D color-mapped topography raster PNG of Greater Mumbai for Leaflet ImageOverlay.
+
+    Preserves nodata and water/sea cells as transparent RGBA.
+    Headers include X-Georef-* spatial extent for exact map alignment.
+    """
+    try:
+        png_bytes, headers = render_elevation_raster()
+        return Response(content=png_bytes, media_type="image/png", headers=headers)
+    except Exception as e:
+        logger.error("Failed to render elevation raster", error=str(e))
+        raise HTTPException(status_code=500, detail=f"Elevation rendering error: {str(e)}")
 
 
 @router.get("/wards")
@@ -334,10 +384,14 @@ async def lookup_location(
     except Exception as e:
         logger.warning("Point-specific weather intelligence fetch failed", lat=lat, lon=lon, error=str(e))
 
+    # Look up terrain elevation from Copernicus GLO-30 DEM
+    elevation_data = lookup_elevation(lat=lat, lon=lon)
+
     return {
         "status": "FOUND_IN_COVERAGE",
         "in_coverage": True,
         "coordinates": {"lat": lat, "lon": lon},
+        "elevation": elevation_data,
         "ward": {
             "ward_id": containing_ward.get("ward_id"),
             "ward_name": containing_ward.get("ward_name"),
@@ -356,11 +410,12 @@ async def lookup_location(
         "nearby_facilities": nearby_facilities[:10],
         "weather_intelligence": weather_intel,
         "extension_points": {
+            "elevation_topography": {"status": "Operational (Phase 3)", "available": True},
             "weather_nowcast": {"status": "Operational (Phase 2)", "available": True},
             "7day_forecast": {"status": "Operational (Phase 2)", "available": True},
             "historical_flood_intelligence": {"status": "Operational (Phase 2)", "available": True},
-            "flood_simulation_depth": {"status": "Phase 3 Extension Point (Hydrodynamic Coupling)", "available": False},
-            "evacuation_routes": {"status": "Phase 3 Extension Point (Evacuation Routing)", "available": False},
+            "flood_simulation_depth": {"status": "Operational (Phase 3)", "available": True},
+            "synthetic_drainage": {"status": "Operational (Phase 3 MSDI)", "available": True},
         }
     }
 
@@ -467,6 +522,23 @@ async def get_drainage_outfalls():
         "feature_count": len(data.get("features", [])),
         "features": data.get("features", []),
     }
+
+
+@router.get("/drainage/verified")
+async def get_geodata_verified_drainage():
+    """Return verified municipal drainage infrastructure (BRIMSTOWAD)."""
+    from services.api.routers.drainage import get_verified_drainage
+    return await get_verified_drainage()
+
+
+@router.get("/drainage/synthetic")
+async def get_geodata_synthetic_drainage(
+    scenario: str = Query("normal_capacity"),
+):
+    """Return MSDI candidate synthetic drainage network with explicit synthetic provenance."""
+    from services.api.routers.drainage import get_synthetic_drainage
+    return await get_synthetic_drainage(scenario=scenario)
+
 
 
 @router.get("/flood-hotspots")

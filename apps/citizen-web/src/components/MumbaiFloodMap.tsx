@@ -53,6 +53,10 @@ const CircleMarker = dynamic<any>(
   () => import('react-leaflet').then(mod => mod.CircleMarker),
   { ssr: false }
 );
+const ImageOverlay = dynamic<any>(
+  () => import('react-leaflet').then(mod => mod.ImageOverlay),
+  { ssr: false }
+);
 const MapClickHandler = dynamic<any>(
   () => import('./MapClickHandler').then(mod => mod.MapClickHandler),
   { ssr: false }
@@ -213,8 +217,25 @@ export function MumbaiFloodMap() {
   const [showHotspots, setShowHotspots] = useState(true);
   const [showShelters, setShowShelters] = useState(false);
   const [showDrainage, setShowDrainage] = useState(false);
+  const [showVerifiedDrainage, setShowVerifiedDrainage] = useState(false);
+  const [showSyntheticDrainage, setShowSyntheticDrainage] = useState(false);
+  const [syntheticDrainage, setSyntheticDrainage] = useState<GeoJSONCollection | null>(null);
+  const [syntheticWarningDismissed, setSyntheticWarningDismissed] = useState(false);
   const [showRoads, setShowRoads] = useState(false);
   const [showSimulationFloods, setShowSimulationFloods] = useState(true);
+
+  // Phase 3: Real Elevation Topography (Copernicus GLO-30 DEM)
+  const [showElevation, setShowElevation] = useState(false);
+  const [elevationRasterUrl, setElevationRasterUrl] = useState<string | null>(null);
+  const [elevationBounds, setElevationBounds] = useState<[[number, number], [number, number]] | null>(null);
+  const [elevationOpacity, setElevationOpacity] = useState(0.65);
+
+  // Phase 3: Real Flood-Depth Heatmap Raster Overlay
+  const [showNowcastRaster, setShowNowcastRaster] = useState(true);
+  const [nowcastRasterUrl, setNowcastRasterUrl] = useState<string | null>(null);
+  const [nowcastBounds, setNowcastBounds] = useState<[[number, number], [number, number]] | null>(null);
+  const [nowcastStatus, setNowcastStatus] = useState<any | null>(null);
+  const [rasterOpacity, setRasterOpacity] = useState(0.75);
 
   useEffect(() => {
     setMounted(true);
@@ -259,6 +280,50 @@ export function MumbaiFloodMap() {
           }
         }
       } catch { /* simulation may not have run yet */ }
+
+      // Phase 3: Fetch real Copernicus GLO-30 elevation raster
+      try {
+        const elevResp = await fetch(`${API_BASE}/geodata/elevation/raster.png`);
+        if (elevResp.ok) {
+          const minLat = parseFloat(elevResp.headers.get('X-Georef-MinLat') || '18.85');
+          const maxLat = parseFloat(elevResp.headers.get('X-Georef-MaxLat') || '19.35');
+          const minLon = parseFloat(elevResp.headers.get('X-Georef-MinLon') || '72.65');
+          const maxLon = parseFloat(elevResp.headers.get('X-Georef-MaxLon') || '73.10');
+          const blob = await elevResp.blob();
+          setElevationRasterUrl(URL.createObjectURL(blob));
+          setElevationBounds([[minLat, minLon], [maxLat, maxLon]]);
+        }
+      } catch { /* elevation raster */ }
+
+      // Phase 3: Fetch nowcast flood raster overlay
+      try {
+        const rasterResp = await fetch(`${API_BASE}/nowcast/latest/raster.png?t=${Date.now()}`);
+        if (rasterResp.ok && rasterResp.status !== 204) {
+          const minLat = parseFloat(rasterResp.headers.get('X-Georef-MinLat') || '0');
+          const maxLat = parseFloat(rasterResp.headers.get('X-Georef-MaxLat') || '0');
+          const minLon = parseFloat(rasterResp.headers.get('X-Georef-MinLon') || '0');
+          const maxLon = parseFloat(rasterResp.headers.get('X-Georef-MaxLon') || '0');
+          if (minLat && maxLat && minLon && maxLon) {
+            const blob = await rasterResp.blob();
+            setNowcastRasterUrl(URL.createObjectURL(blob));
+            setNowcastBounds([[minLat, minLon], [maxLat, maxLon]]);
+          }
+        }
+      } catch { /* raster fetch */ }
+
+      // Phase 3: Fetch simulation status (zero-mock check)
+      try {
+        const statusRes = await fetch(`${API_BASE}/nowcast/latest/status`).then(r => r.json());
+        setNowcastStatus(statusRes);
+      } catch { /* status fetch */ }
+
+      // Phase 3: Fetch candidate synthetic drainage network
+      try {
+        const synthRes = await fetch(`${API_BASE}/drainage/synthetic`).then(r => r.json());
+        if (synthRes && synthRes.features && synthRes.features.length > 0) {
+          setSyntheticDrainage(synthRes);
+        }
+      } catch { /* synthetic drainage */ }
 
       // Fetch live rainfall
       try {
@@ -423,6 +488,35 @@ export function MumbaiFloodMap() {
     }
   };
 
+  // ── Synthetic Drainage (MSDI v1.0) style ──
+  const syntheticDrainageStyle = (feature: any) => ({
+    color: '#8b5cf6',
+    weight: 2,
+    opacity: 0.85,
+    dashArray: '5, 5',
+  });
+
+  const syntheticDrainagePopup = (feature: any, layer: any) => {
+    if (feature.properties) {
+      const p = feature.properties;
+      layer.bindPopup(`
+        <div style="padding: 10px; min-width: 220px;">
+          <div style="font-size: 10px; font-weight: 800; color: #7c3aed; text-transform: uppercase;">SYNTHETIC DRAINAGE (MSDI v1.0)</div>
+          <h4 style="margin: 3px 0 6px; font-size: 13px; font-weight: 700;">${p.name || p.link_id || 'Inferred Conduit'}</h4>
+          <div style="padding: 4px 6px; background: #fffbeb; border: 1px solid #f59e0b; border-radius: 4px; font-size: 10px; color: #92400e; margin-bottom: 6px;">
+            ⚠️ UNVERIFIED INFERENCE — Engineering Assumption
+          </div>
+          <div style="font-size: 11px; color: #475569; line-height: 1.6;">
+            <div>Type: <strong>${p.feature_type || 'Candidate Conduit'}</strong></div>
+            <div>Assumed Dia: <strong>${p.assumed_parameters?.pipe_diameter_mm ? p.assumed_parameters.pipe_diameter_mm + ' mm' : '—'}</strong></div>
+            <div>Effective Cap: <strong>${p.assumed_parameters?.effective_capacity_cumecs ? p.assumed_parameters.effective_capacity_cumecs + ' m³/s' : '—'}</strong></div>
+            <div>Slope: <strong>${p.calculated_ground_slope ? (p.calculated_ground_slope * 100).toFixed(2) + '%' : '—'}</strong></div>
+          </div>
+        </div>
+      `);
+    }
+  };
+
   // ── Road style ──
   const roadStyle = (feature: any) => {
     const hw = feature?.properties?.highway;
@@ -492,12 +586,16 @@ export function MumbaiFloodMap() {
           Layers:
         </span>
         <LayerToggle label="Ward Boundaries" color="#2563eb" enabled={showWards} onToggle={() => setShowWards(!showWards)} count={wards?.feature_count} />
-        <LayerToggle label="Subarea Sectors" color="#3b82f6" enabled={showSubareas} onToggle={() => setShowSubareas(!showSubareas)} count={subareas?.features?.length} />
+        <LayerToggle label="Subareas" color="#3b82f6" enabled={showSubareas} onToggle={() => setShowSubareas(!showSubareas)} count={subareas?.features?.length} />
+        <LayerToggle label="Copernicus DEM (Elevation)" color="#10b981" enabled={showElevation} onToggle={() => setShowElevation(!showElevation)} />
+        <LayerToggle label="2D Flood Depth Raster" color="#0284c7" enabled={showNowcastRaster} onToggle={() => setShowNowcastRaster(!showNowcastRaster)} />
+        <LayerToggle label="Simulated Inundation Polygons" color="#0ea5e9" enabled={showSimulationFloods} onToggle={() => setShowSimulationFloods(!showSimulationFloods)} count={simulationFloods?.features?.length} />
+        <LayerToggle label="BRIMSTOWAD Master Drains" color="#0284c7" enabled={showVerifiedDrainage} onToggle={() => setShowVerifiedDrainage(!showVerifiedDrainage)} count={drainageLinks?.features?.length} />
+        <LayerToggle label="Synthetic Drainage (MSDI)" color="#8b5cf6" enabled={showSyntheticDrainage} onToggle={() => setShowSyntheticDrainage(!showSyntheticDrainage)} count={syntheticDrainage?.features?.length} />
         <LayerToggle label="Emergency Facilities" color="#dc2626" enabled={showFacilities} onToggle={() => setShowFacilities(!showFacilities)} count={facilities?.features?.length} />
-        <LayerToggle label="Simulated Inundation" color="#0284c7" enabled={showSimulationFloods} onToggle={() => setShowSimulationFloods(!showSimulationFloods)} count={simulationFloods?.features?.length} />
         <LayerToggle label="Flood Hotspots" color="#dc2626" enabled={showHotspots} onToggle={() => setShowHotspots(!showHotspots)} count={floodHotspots?.feature_count} />
         <LayerToggle label="Shelters" color="#059669" enabled={showShelters} onToggle={() => setShowShelters(!showShelters)} count={shelters?.feature_count} />
-        <LayerToggle label="Drainage" color="#0284c7" enabled={showDrainage} onToggle={() => setShowDrainage(!showDrainage)} count={drainageNodes?.feature_count} />
+        <LayerToggle label="Drainage Pumps" color="#0284c7" enabled={showDrainage} onToggle={() => setShowDrainage(!showDrainage)} count={drainageNodes?.feature_count} />
         <LayerToggle label="Roads" color="#f59e0b" enabled={showRoads} onToggle={() => setShowRoads(!showRoads)} count={roads?.feature_count} />
 
 
@@ -568,6 +666,28 @@ export function MumbaiFloodMap() {
               />
             )}
 
+            {/* Real 2D Copernicus GLO-30 Elevation / Topography Raster Overlay */}
+            {showElevation && elevationRasterUrl && elevationBounds && (
+              <ImageOverlay
+                key={`elevation-raster-${elevationRasterUrl}`}
+                url={elevationRasterUrl}
+                bounds={elevationBounds}
+                opacity={elevationOpacity}
+                zIndex={350}
+              />
+            )}
+
+            {/* Nowcast Flood Raster Overlay (real solver depth heatmap) */}
+            {showNowcastRaster && nowcastRasterUrl && nowcastBounds && (
+              <ImageOverlay
+                key={`nowcast-raster-${nowcastRasterUrl}`}
+                url={nowcastRasterUrl}
+                bounds={nowcastBounds}
+                opacity={rasterOpacity}
+                zIndex={400}
+              />
+            )}
+
             {/* Real 2D Simulated Inundation Extent (Copernicus GLO-30 DEM) */}
             {showSimulationFloods && simulationFloods?.features && (
               <GeoJSON
@@ -578,14 +698,23 @@ export function MumbaiFloodMap() {
               />
             )}
 
-
-            {/* Drainage links */}
-            {showDrainage && drainageLinks?.features && (
+            {/* Verified Drainage Trunk Links (BRIMSTOWAD) */}
+            {(showVerifiedDrainage || showDrainage) && drainageLinks?.features && (
               <GeoJSON
                 key="drainage-links"
                 data={drainageLinks as any}
                 style={drainageLinkStyle}
                 onEachFeature={drainageLinkPopup}
+              />
+            )}
+
+            {/* Synthetic Drainage Network (MSDI v1.0) */}
+            {showSyntheticDrainage && syntheticDrainage?.features && (
+              <GeoJSON
+                key={`synthetic-drainage-${syntheticDrainage.features.length}`}
+                data={syntheticDrainage as any}
+                style={syntheticDrainageStyle}
+                onEachFeature={syntheticDrainagePopup}
               />
             )}
 
@@ -800,6 +929,176 @@ export function MumbaiFloodMap() {
               </>
             )}
           </MapContainer>
+
+          {/* Synthetic Drainage Safety Warning Banner (Section 8.7) */}
+          {showSyntheticDrainage && !syntheticWarningDismissed && (
+            <div style={{
+              position: 'absolute', top: '14px', left: '50%', transform: 'translateX(-50%)',
+              zIndex: 1000, maxWidth: '640px', width: '92%',
+              background: '#fffbeb', border: '2px solid #f59e0b', borderRadius: '8px',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.18)', padding: '10px 14px',
+              display: 'flex', alignItems: 'center', gap: '12px', fontSize: '11.5px', color: '#92400e',
+            }}>
+              <span style={{ fontSize: '20px', flexShrink: 0 }}>⚠️</span>
+              <div style={{ flex: 1, lineHeight: '1.4' }}>
+                <strong style={{ color: '#78350f' }}>Synthetic / Inferred Drainage Data Notice:</strong><br />
+                Synthetic/inferred drainage data — not a verified map of municipal infrastructure. Do not use this layer alone for real-world safety or evacuation decisions.
+              </div>
+              <button
+                onClick={() => setSyntheticWarningDismissed(true)}
+                style={{
+                  background: '#fef3c7', border: '1px solid #f59e0b', borderRadius: '4px',
+                  padding: '4px 10px', fontSize: '11px', fontWeight: 700, color: '#b45309',
+                  cursor: 'pointer', whiteSpace: 'nowrap',
+                }}
+              >
+                Acknowledge
+              </button>
+            </div>
+          )}
+
+          {/* Missing Simulation Raster Status Alert (Section 7.2) */}
+          {showNowcastRaster && nowcastStatus && !nowcastStatus.available && (
+            <div style={{
+              position: 'absolute', top: '70px', left: '50%', transform: 'translateX(-50%)',
+              zIndex: 1000, maxWidth: '580px', width: '88%',
+              background: '#fef2f2', border: '2px solid #ef4444', borderRadius: '8px',
+              boxShadow: '0 4px 14px rgba(0,0,0,0.14)', padding: '10px 14px',
+              display: 'flex', alignItems: 'center', gap: '10px', fontSize: '11.5px', color: '#991b1b',
+            }}>
+              <span style={{ fontSize: '18px', flexShrink: 0 }}>🚫</span>
+              <div style={{ flex: 1, lineHeight: '1.4' }}>
+                <strong>Flood-depth output unavailable:</strong><br />
+                {nowcastStatus.error_detail || 'No valid simulation raster is currently available.'} Zero-mock policy active: no placeholder depths are shown.
+              </div>
+            </div>
+          )}
+
+          {/* Dynamic Multi-Layer GIS Legend (Section 5) — Adapts strictly to visible layers */}
+          <div style={{
+            position: 'absolute', bottom: '16px', left: '16px', zIndex: 1000,
+            background: 'rgba(255, 255, 255, 0.96)',
+            padding: '10px 14px', borderRadius: '8px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+            border: '1px solid #cbd5e1', fontSize: '11px', color: '#0f172a',
+            maxWidth: '360px', maxHeight: '400px', overflowY: 'auto',
+          }}>
+            <div style={{ fontWeight: 800, marginBottom: '8px', color: '#0f172a', letterSpacing: '0.4px', fontSize: '11px', borderBottom: '1px solid #e2e8f0', paddingBottom: '4px' }}>
+              🗺️ DYNAMIC GIS MAP LEGEND
+            </div>
+
+            {/* Flood Depth Inundation Scale */}
+            {(showNowcastRaster || showSimulationFloods) && (
+              <div style={{ marginBottom: '10px' }}>
+                <div style={{ fontWeight: 700, color: '#1d4ed8', fontSize: '10px', marginBottom: '4px', textTransform: 'uppercase' }}>
+                  🌊 2D Flood Depth (metres)
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px', textAlign: 'center', marginBottom: '3px' }}>
+                  <div>
+                    <div style={{ height: '7px', background: '#38bdf8', borderRadius: '2px' }} />
+                    <div style={{ marginTop: '2px', fontSize: '8.5px', color: '#64748b' }}>&lt;0.15m</div>
+                  </div>
+                  <div>
+                    <div style={{ height: '7px', background: '#0284c7', borderRadius: '2px' }} />
+                    <div style={{ marginTop: '2px', fontSize: '8.5px', color: '#64748b' }}>0.15–0.3m</div>
+                  </div>
+                  <div>
+                    <div style={{ height: '7px', background: '#eab308', borderRadius: '2px' }} />
+                    <div style={{ marginTop: '2px', fontSize: '8.5px', color: '#64748b' }}>0.3–0.5m</div>
+                  </div>
+                  <div>
+                    <div style={{ height: '7px', background: '#ea580c', borderRadius: '2px' }} />
+                    <div style={{ marginTop: '2px', fontSize: '8.5px', color: '#64748b' }}>0.5–1.0m</div>
+                  </div>
+                  <div>
+                    <div style={{ height: '7px', background: '#dc2626', borderRadius: '2px' }} />
+                    <div style={{ marginTop: '2px', fontSize: '8.5px', color: '#64748b' }}>&gt;1.0m</div>
+                  </div>
+                </div>
+                <div style={{ fontSize: '8.5px', color: '#64748b', fontStyle: 'italic' }}>
+                  Dry cells (&lt;0.01m) transparent · 2D Diffusive Wave Solver
+                </div>
+              </div>
+            )}
+
+            {/* Real Copernicus DEM Elevation Hypsometric Scale */}
+            {showElevation && (
+              <div style={{ marginBottom: '10px', borderTop: '1px dashed #e2e8f0', paddingTop: '6px' }}>
+                <div style={{ fontWeight: 700, color: '#047857', fontSize: '10px', marginBottom: '4px', textTransform: 'uppercase' }}>
+                  ⛰️ Elevation (m MSL — Copernicus GLO-30)
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px', textAlign: 'center', marginBottom: '3px' }}>
+                  <div>
+                    <div style={{ height: '7px', background: '#1a9850', borderRadius: '2px' }} />
+                    <div style={{ marginTop: '2px', fontSize: '8.5px', color: '#64748b' }}>0–5m</div>
+                  </div>
+                  <div>
+                    <div style={{ height: '7px', background: '#91cf60', borderRadius: '2px' }} />
+                    <div style={{ marginTop: '2px', fontSize: '8.5px', color: '#64748b' }}>5–15m</div>
+                  </div>
+                  <div>
+                    <div style={{ height: '7px', background: '#fee08b', borderRadius: '2px' }} />
+                    <div style={{ marginTop: '2px', fontSize: '8.5px', color: '#64748b' }}>15–30m</div>
+                  </div>
+                  <div>
+                    <div style={{ height: '7px', background: '#fc8d59', borderRadius: '2px' }} />
+                    <div style={{ marginTop: '2px', fontSize: '8.5px', color: '#64748b' }}>30–60m</div>
+                  </div>
+                  <div>
+                    <div style={{ height: '7px', background: '#d73027', borderRadius: '2px' }} />
+                    <div style={{ marginTop: '2px', fontSize: '8.5px', color: '#64748b' }}>&gt;60m</div>
+                  </div>
+                </div>
+                <div style={{ fontSize: '8.5px', color: '#64748b', fontStyle: 'italic' }}>
+                  Vertical datum: EGM96 Geoid · 1 arc-sec (~30.8m)
+                </div>
+              </div>
+            )}
+
+            {/* Linear Networks (Verified vs Synthetic Drainage, Roads) */}
+            {(showVerifiedDrainage || showSyntheticDrainage || showRoads) && (
+              <div style={{ marginBottom: '8px', borderTop: '1px dashed #e2e8f0', paddingTop: '6px' }}>
+                <div style={{ fontWeight: 700, color: '#475569', fontSize: '9.5px', marginBottom: '4px', textTransform: 'uppercase' }}>
+                  Network Layers
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', fontSize: '9.5px' }}>
+                  {showVerifiedDrainage && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ display: 'inline-block', width: '18px', height: '3.5px', background: '#0284c7', borderRadius: '2px' }} />
+                      <span><strong>BRIMSTOWAD Master Drains</strong> (Verified)</span>
+                    </div>
+                  )}
+                  {showSyntheticDrainage && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ display: 'inline-block', width: '18px', height: '2.5px', borderTop: '2px dashed #8b5cf6' }} />
+                      <span style={{ color: '#7c3aed' }}><strong>MSDI v1.0 Drainage</strong> (Synthetic Inference)</span>
+                    </div>
+                  )}
+                  {showRoads && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ display: 'inline-block', width: '18px', height: '2px', background: '#64748b' }} />
+                      <span><strong>Road Network</strong> (OSM Arterials)</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Active Point Layers */}
+            <div style={{ borderTop: '1px dashed #e2e8f0', paddingTop: '6px' }}>
+              <div style={{ fontWeight: 700, color: '#475569', fontSize: '9.5px', marginBottom: '4px', textTransform: 'uppercase' }}>
+                Active Municipal & Incident Points
+              </div>
+              <div style={{ display: 'flex', gap: '8px', fontSize: '9px', color: '#475569', flexWrap: 'wrap' }}>
+                {showHotspots && <span>🔴 Chronic Hotspot</span>}
+                {showDrainage && <span>⚙️ Pumping Station</span>}
+                {showShelters && <span>🏥 Relief Shelter</span>}
+                {showFacilities && <span>✚ Emergency Facility</span>}
+                {!showHotspots && !showDrainage && !showShelters && !showFacilities && (
+                  <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>No point layers enabled</span>
+                )}
+              </div>
+            </div>
+          </div>
 
           {/* Location Information Card (opens on clicking any point on the map) */}
           {showLocationCard && (

@@ -1132,7 +1132,7 @@ export function LocationInfoCard({
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '180px', overflowY: 'auto' }}>
                       {floodEvidence.nearby_records.map((ev, idx) => (
                         <div
-                          key={ev.event_id || idx}
+                          key={`${ev.event_id || 'evt'}-${idx}`}
                           style={{
                             padding: '8px',
                             background: '#ffffff',

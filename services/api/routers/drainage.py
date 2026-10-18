@@ -279,3 +279,90 @@ async def get_pumping_stations():
         "total_capacity_cumecs": sum(s["capacity_cumecs"] for s in MUMBAI_SWPS_FACILITIES),
         "stations": MUMBAI_SWPS_FACILITIES,
     }
+
+
+@router.get("/verified")
+async def get_verified_drainage():
+    """Return official source-provided municipal drainage infrastructure.
+
+    Source: BRIMSTOWAD Master Plan / BMC Disaster Management
+    Provenance: VERIFIED MUNICIPAL RECORDS
+    """
+    store = get_data_store()
+    links = store.drainage_links()
+    nodes = store.drainage_nodes()
+    outfalls = store.drainage_outfalls()
+
+    features = []
+    for f in links.get("features", []):
+        feat = dict(f)
+        feat["properties"] = {**feat.get("properties", {}), "provenance": "verified_brimstowad", "data_origin": "BRIMSTOWAD Master Plan"}
+        features.append(feat)
+
+    for f in nodes.get("features", []):
+        feat = dict(f)
+        feat["properties"] = {**feat.get("properties", {}), "provenance": "verified_brimstowad", "data_origin": "BRIMSTOWAD Master Plan"}
+        features.append(feat)
+
+    for f in outfalls.get("features", []):
+        feat = dict(f)
+        feat["properties"] = {**feat.get("properties", {}), "provenance": "verified_brimstowad", "data_origin": "BRIMSTOWAD Master Plan"}
+        features.append(feat)
+
+    return {
+        "type": "FeatureCollection",
+        "provenance": "verified_brimstowad",
+        "source": "Brihanmumbai Municipal Corporation (BMC) / BRIMSTOWAD Project",
+        "feature_count": len(features),
+        "metrics": {
+            "trunk_rivers_and_channels": len(links.get("features", [])),
+            "critical_junctions_and_intakes": len(nodes.get("features", [])),
+            "tidal_outfalls": len(outfalls.get("features", [])),
+        },
+        "features": features,
+    }
+
+
+@router.get("/synthetic")
+async def get_synthetic_drainage(
+    scenario: str = Query("normal_capacity", description="Drainage scenario ('normal_capacity', 'reduced_capacity_silted', 'blocked')"),
+):
+    """Return MSDI candidate synthetic urban drainage network.
+
+    PERMANENT DATA-INTEGRITY NOTICE:
+    Every feature in this dataset is explicitly labeled synthetic.
+    Not a verified municipal infrastructure map.
+    """
+    from pathlib import Path
+    import json
+    from services.drainage.synthetic_generator import MSDIGenerator
+
+    synth_file = Path(__file__).resolve().parent.parent.parent.parent / "data" / "cities" / "mumbai" / "synthetic_drainage.geojson"
+    if not synth_file.exists() or scenario != "normal_capacity":
+        gen = MSDIGenerator(max_roads=500, scenario=scenario)
+        data = gen.generate()
+        return data
+
+    with open(synth_file, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+@router.get("/validation-report")
+async def get_drainage_validation_report():
+    """Return topological and hydraulic validation metrics for the synthetic drainage network."""
+    from pathlib import Path
+    import json
+    from services.drainage.validator import DrainageNetworkValidator
+
+    synth_file = Path(__file__).resolve().parent.parent.parent.parent / "data" / "cities" / "mumbai" / "synthetic_drainage.geojson"
+    if not synth_file.exists():
+        from services.drainage.synthetic_generator import MSDIGenerator
+        gen = MSDIGenerator(max_roads=500)
+        gen.generate()
+
+    with open(synth_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    validator = DrainageNetworkValidator(data)
+    return validator.validate_all()
+

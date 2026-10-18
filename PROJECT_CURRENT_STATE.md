@@ -184,7 +184,6 @@ To transition MUFNS from a competitive hackathon prototype to an enterprise muni
 
 ### 6.2 Manual Launch Commands
 All services run locally without Docker:
-
 ```powershell
 # 1. Start FastAPI Backend (Port 8000)
 python -m uvicorn services.api.main:app --host 127.0.0.1 --port 8000 --reload

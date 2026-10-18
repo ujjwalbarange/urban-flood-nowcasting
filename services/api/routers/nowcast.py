@@ -180,9 +180,61 @@ async def get_latest_flood_raster(
         "X-Georef-MaxLon": str(georef["max_lon"]),
         "X-Max-Depth": str(round(current_max, 4)),
         "X-Timeline-Minute": str(minute if minute is not None else -1),
+        "X-Run-Id": str(result.run_id),
+        "X-Model-Version": "MUFNS-DiffusiveWave-2.1",
+        "X-CRS": "EPSG:4326",
+        "X-Depth-Units": "metres",
+        "X-Grid-Rows": str(georef.get("rows", 0)),
+        "X-Grid-Cols": str(georef.get("cols", 0)),
+        "X-Cell-Size-M": str(georef.get("cell_size_m", 30.0)),
+        "X-Solver-Provenance": "2D Diffusive Wave on Copernicus GLO-30 DEM",
+        "X-Freshness": result.completed_at.isoformat() if result.completed_at else "N/A",
         "Cache-Control": "public, max-age=60",
     }
     return Response(content=png_bytes, media_type="image/png", headers=headers)
+
+
+@router.get("/latest/status")
+async def get_latest_nowcast_status():
+    """Return explicit data-contract metadata for the latest flood simulation run.
+
+    Allows frontend to distinguish between:
+    - Operational real solver output (with run ID, physical bounds, depth in metres)
+    - Unavailable simulation state (when solver has not run or has failed)
+    Never provides mock or fake depth grids.
+    """
+    from services.nowcast.pipeline import _latest_nowcast as result
+    if result is None:
+        return {
+            "available": False,
+            "status": "unavailable",
+            "message": "Flood-depth output unavailable — no valid simulation raster is currently available.",
+            "run_id": None,
+            "timestamp": None,
+        }
+
+    return {
+        "available": result.status == "completed",
+        "status": result.status,
+        "run_id": result.run_id,
+        "timestamp": result.completed_at.isoformat() if result.completed_at else result.started_at.isoformat(),
+        "solver": result.solver,
+        "catchment": result.catchment,
+        "dem_source": result.dem_source,
+        "crs": "EPSG:4326",
+        "units": "metres",
+        "georef": result.georef,
+        "max_depth_m": round(result.max_depth_m, 4),
+        "mean_depth_m": round(result.mean_depth_m, 6),
+        "flooded_cells": result.flooded_cells,
+        "flooded_area_km2": round(result.flooded_area_km2, 4),
+        "confidence_score": round(result.confidence_score, 1),
+        "confidence_level": result.confidence_level,
+        "dry_cell_semantics": "Depth < 0.05 m rendered as transparent RGBA",
+        "nodata_semantics": "Outside DEM extent or unflooded terrain preserved transparent, never zero depth",
+        "provenance": "GENUINE 2D DIFFUSIVE WAVE SOLVER OUTPUT — Copernicus GLO-30 DEM (ESA)",
+    }
+
 
 
 @router.get("/latest/weather")
