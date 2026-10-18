@@ -80,6 +80,13 @@ class MumbaiDataStore:
         self._cache["city_config"] = _load_json(root / "01_city" / "config.json")
         self._cache["city_boundary"] = _load_geojson(root / "01_city" / "mumbai_boundary.geojson")
         self._cache["wards"] = _load_geojson(root / "01_city" / "wards.geojson")
+        self._cache["subareas"] = _load_geojson(root / "01_city" / "subareas.geojson")
+        if not self._cache["subareas"].get("features"):
+            self._cache["subareas"] = _load_geojson(_PROJECT_ROOT / "data" / "cities" / "mumbai" / "subareas.geojson")
+
+        # ── Critical / Emergency Facilities ──
+        emerg_fac_path = _PROJECT_ROOT / "data" / "processed" / "critical_infrastructure" / "mumbai_emergency_facilities.geojson"
+        self._cache["emergency_facilities"] = _load_geojson(emerg_fac_path)
 
         # ── 04: Roads ──
         self._cache["roads"] = _load_geojson(root / "04_roads" / "roads.geojson")
@@ -185,6 +192,14 @@ class MumbaiDataStore:
     def wards(self) -> dict[str, Any]:
         self._ensure_loaded()
         return self._cache.get("wards", {"type": "FeatureCollection", "features": []})
+
+    def subareas(self) -> dict[str, Any]:
+        self._ensure_loaded()
+        return self._cache.get("subareas", {"type": "FeatureCollection", "features": []})
+
+    def emergency_facilities(self) -> dict[str, Any]:
+        self._ensure_loaded()
+        return self._cache.get("emergency_facilities", {"type": "FeatureCollection", "features": []})
 
     def roads(self) -> dict[str, Any]:
         self._ensure_loaded()

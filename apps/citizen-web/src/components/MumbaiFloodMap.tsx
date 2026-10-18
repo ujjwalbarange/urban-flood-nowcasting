@@ -53,6 +53,12 @@ const CircleMarker = dynamic<any>(
   () => import('react-leaflet').then(mod => mod.CircleMarker),
   { ssr: false }
 );
+const MapClickHandler = dynamic<any>(
+  () => import('./MapClickHandler').then(mod => mod.MapClickHandler),
+  { ssr: false }
+);
+
+import { LocationInfoCard } from './LocationInfoCard';
 
 const API_BASE = 'http://127.0.0.1:8000/api/v1';
 
@@ -181,6 +187,8 @@ export function MumbaiFloodMap() {
   const [mounted, setMounted] = useState(false);
   const [wards, setWards] = useState<GeoJSONCollection | null>(null);
   const [floodHotspots, setFloodHotspots] = useState<GeoJSONCollection | null>(null);
+  const [subareas, setSubareas] = useState<GeoJSONCollection | null>(null);
+  const [facilities, setFacilities] = useState<GeoJSONCollection | null>(null);
   const [shelters, setShelters] = useState<GeoJSONCollection | null>(null);
   const [drainageNodes, setDrainageNodes] = useState<GeoJSONCollection | null>(null);
   const [drainageLinks, setDrainageLinks] = useState<GeoJSONCollection | null>(null);
@@ -190,10 +198,18 @@ export function MumbaiFloodMap() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Selected Location & Inspector State
+  const [selectedLocation, setSelectedLocation] = useState<{ lat: number; lon: number } | null>(null);
+  const [locationInfo, setLocationInfo] = useState<any | null>(null);
+  const [isLocationLoading, setIsLocationLoading] = useState(false);
+  const [showLocationCard, setShowLocationCard] = useState(false);
+
   // Layer visibility
   const [showWards, setShowWards] = useState(true);
+  const [showSubareas, setShowSubareas] = useState(false);
+  const [showFacilities, setShowFacilities] = useState(false); // DEFAULT FALSE per explicit user requirement
   const [showHotspots, setShowHotspots] = useState(true);
-  const [showShelters, setShowShelters] = useState(true);
+  const [showShelters, setShowShelters] = useState(false);
   const [showDrainage, setShowDrainage] = useState(false);
   const [showRoads, setShowRoads] = useState(false);
   const [showSimulationFloods, setShowSimulationFloods] = useState(true);
@@ -209,8 +225,10 @@ export function MumbaiFloodMap() {
     setLoading(true);
     setError(null);
     try {
-      const [wardsRes, hotspotsRes, sheltersRes, nodesRes, linksRes, roadsRes] = await Promise.all([
+      const [wardsRes, subareasRes, facsRes, hotspotsRes, sheltersRes, nodesRes, linksRes, roadsRes] = await Promise.all([
         fetch(`${API_BASE}/geodata/wards`).then(r => r.json()).catch(() => null),
+        fetch(`${API_BASE}/geodata/subareas`).then(r => r.json()).catch(() => null),
+        fetch(`${API_BASE}/geodata/facilities?limit=2000`).then(r => r.json()).catch(() => null),
         fetch(`${API_BASE}/geodata/flood-hotspots`).then(r => r.json()).catch(() => null),
         fetch(`${API_BASE}/geodata/shelters`).then(r => r.json()).catch(() => null),
         fetch(`${API_BASE}/geodata/drainage/nodes`).then(r => r.json()).catch(() => null),
@@ -219,6 +237,8 @@ export function MumbaiFloodMap() {
       ]);
 
       if (wardsRes) setWards(wardsRes);
+      if (subareasRes) setSubareas(subareasRes);
+      if (facsRes) setFacilities(facsRes);
       if (hotspotsRes) setFloodHotspots(hotspotsRes);
       if (sheltersRes) setShelters(sheltersRes);
       if (nodesRes) setDrainageNodes(nodesRes);
@@ -266,6 +286,52 @@ export function MumbaiFloodMap() {
     );
   }
 
+  // ── Location Click & Spatial Selection Handler ──
+  const handleMapClick = async (lat: number, lon: number) => {
+    setSelectedLocation({ lat, lon });
+    setShowLocationCard(true);
+    setIsLocationLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/geodata/lookup?lat=${lat}&lon=${lon}`);
+      const data = await res.json();
+      setLocationInfo(data);
+    } catch (e) {
+      setLocationInfo({
+        status: 'OUTSIDE_COVERAGE',
+        in_coverage: false,
+        coordinates: { lat, lon },
+        message: 'Network error or service unavailable while resolving location.',
+      });
+    } finally {
+      setIsLocationLoading(false);
+    }
+  };
+
+  // ── Subarea Partition Style & Handlers ──
+  const subareaStyle = () => ({
+    fillColor: '#3b82f6',
+    weight: 1.2,
+    color: '#1d4ed8',
+    dashArray: '4 3',
+    opacity: 0.85,
+    fillOpacity: 0.12,
+  });
+
+  const subareaOnEachFeature = (feature: any, layer: any) => {
+    if (feature.properties) {
+      const p = feature.properties;
+      layer.on('click', (e: any) => {
+        if (e.latlng) {
+          handleMapClick(e.latlng.lat, e.latlng.lng);
+        }
+      });
+      layer.bindTooltip(`
+        <div style="font-size: 11px; font-weight: 700; color: #1e3a8a;">${p.subarea_name || p.subarea_id}</div>
+        <div style="font-size: 10px; color: #475569;">Sector Area: ${p.subarea_area_sq_km || p.area_sq_km || '—'} km²</div>
+      `, { sticky: true, opacity: 0.95 });
+    }
+  };
+
   // ── Ward style (color by population density) ──
   const wardStyle = (feature: any) => {
     const density = feature?.properties?.population_density_per_sq_km || 0;
@@ -287,6 +353,11 @@ export function MumbaiFloodMap() {
   const wardOnEachFeature = (feature: any, layer: any) => {
     if (feature.properties) {
       const p = feature.properties;
+      layer.on('click', (e: any) => {
+        if (e.latlng) {
+          handleMapClick(e.latlng.lat, e.latlng.lng);
+        }
+      });
       layer.bindPopup(`
         <div style="padding: 12px; min-width: 220px;">
           <h4 style="margin: 0 0 8px; font-size: 15px; font-weight: 700; color: #0f172a;">${p.ward_name || p.ward_id}</h4>
@@ -402,6 +473,8 @@ export function MumbaiFloodMap() {
           Layers:
         </span>
         <LayerToggle label="Ward Boundaries" color="#2563eb" enabled={showWards} onToggle={() => setShowWards(!showWards)} count={wards?.feature_count} />
+        <LayerToggle label="Subarea Sectors" color="#3b82f6" enabled={showSubareas} onToggle={() => setShowSubareas(!showSubareas)} count={subareas?.features?.length} />
+        <LayerToggle label="Emergency Facilities" color="#dc2626" enabled={showFacilities} onToggle={() => setShowFacilities(!showFacilities)} count={facilities?.features?.length} />
         <LayerToggle label="Simulated Inundation" color="#0284c7" enabled={showSimulationFloods} onToggle={() => setShowSimulationFloods(!showSimulationFloods)} count={simulationFloods?.features?.length} />
         <LayerToggle label="Flood Hotspots" color="#dc2626" enabled={showHotspots} onToggle={() => setShowHotspots(!showHotspots)} count={floodHotspots?.feature_count} />
         <LayerToggle label="Shelters" color="#059669" enabled={showShelters} onToggle={() => setShowShelters(!showShelters)} count={shelters?.feature_count} />
@@ -454,6 +527,8 @@ export function MumbaiFloodMap() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
+            <MapClickHandler onMapClick={handleMapClick} />
+
             {/* Ward boundaries */}
             {showWards && wards?.features && (
               <GeoJSON
@@ -461,6 +536,16 @@ export function MumbaiFloodMap() {
                 data={wards as any}
                 style={wardStyle}
                 onEachFeature={wardOnEachFeature}
+              />
+            )}
+
+            {/* Derived Subarea boundaries */}
+            {showSubareas && subareas?.features && (
+              <GeoJSON
+                key={`subareas-${subareas.features.length}`}
+                data={subareas as any}
+                style={subareaStyle}
+                onEachFeature={subareaOnEachFeature}
               />
             )}
 
@@ -619,7 +704,97 @@ export function MumbaiFloodMap() {
                 </CircleMarker>
               );
             })}
+
+            {/* Real Emergency Facilities (Hospitals, Clinics, Police, Fire, Shelters) */}
+            {showFacilities && facilities?.features?.map((f: any, i: number) => {
+              const center = getFeatureCenter(f.geometry);
+              if (!center) return null;
+              const p = f.properties;
+              const cat = p.category || 'facility';
+              let markerColor = '#dc2626';
+              let radius = 5;
+              if (cat === 'hospital') { markerColor = '#dc2626'; radius = 6; }
+              else if (cat === 'clinic') { markerColor = '#0284c7'; radius = 4.5; }
+              else if (cat === 'police') { markerColor = '#1d4ed8'; radius = 5; }
+              else if (cat === 'fire_station') { markerColor = '#ea580c'; radius = 5.5; }
+              else if (cat === 'shelter') { markerColor = '#16a34a'; radius = 6; }
+
+              return (
+                <CircleMarker
+                  key={`facility-${f.id || i}`}
+                  center={center}
+                  radius={radius}
+                  pathOptions={{
+                    fillColor: markerColor,
+                    color: '#ffffff',
+                    weight: 1.5,
+                    opacity: 0.95,
+                    fillOpacity: 0.9,
+                  }}
+                >
+                  <Popup>
+                    <div style={{ padding: '4px 6px', minWidth: '160px' }}>
+                      <div style={{ fontSize: '12px', fontWeight: 800, color: '#0f172a' }}>{p.name}</div>
+                      <div style={{ fontSize: '10px', color: '#64748b', margin: '2px 0 4px' }}>{p.address}</div>
+                      <span style={{
+                        fontSize: '9px', fontWeight: 700, textTransform: 'uppercase',
+                        padding: '2px 6px', borderRadius: '4px',
+                        background: '#f1f5f9', color: '#334155'
+                      }}>
+                        {cat.replace('_', ' ')}
+                      </span>
+                    </div>
+                  </Popup>
+                </CircleMarker>
+              );
+            })}
+
+            {/* Selected Location Point Marker with Pulsing Ring */}
+            {selectedLocation && (
+              <>
+                <CircleMarker
+                  center={[selectedLocation.lat, selectedLocation.lon]}
+                  radius={16}
+                  pathOptions={{
+                    color: '#ef4444',
+                    weight: 2,
+                    fillColor: '#ef4444',
+                    fillOpacity: 0.25,
+                  }}
+                />
+                <CircleMarker
+                  center={[selectedLocation.lat, selectedLocation.lon]}
+                  radius={8}
+                  pathOptions={{
+                    color: '#ffffff',
+                    weight: 3,
+                    fillColor: '#dc2626',
+                    fillOpacity: 1,
+                  }}
+                >
+                  <Popup>
+                    <div style={{ padding: '4px', fontSize: '11px', fontWeight: 700 }}>
+                      Selected: {selectedLocation.lat.toFixed(5)}° N, {selectedLocation.lon.toFixed(5)}° E
+                    </div>
+                  </Popup>
+                </CircleMarker>
+              </>
+            )}
           </MapContainer>
+
+          {/* Location Information Card (opens on clicking any point on the map) */}
+          {showLocationCard && (
+            <LocationInfoCard
+              locationData={locationInfo}
+              isLoading={isLocationLoading}
+              onClose={() => {
+                setShowLocationCard(false);
+                setSelectedLocation(null);
+              }}
+              showFacilitiesOnMap={showFacilities}
+              onToggleFacilities={() => setShowFacilities(!showFacilities)}
+            />
+          )}
         </div>
       )}
     </div>

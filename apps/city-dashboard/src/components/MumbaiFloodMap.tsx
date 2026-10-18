@@ -55,6 +55,12 @@ const ImageOverlay = dynamic<any>(
   () => import('react-leaflet').then(mod => mod.ImageOverlay),
   { ssr: false }
 );
+const MapClickHandler = dynamic<any>(
+  () => import('./MapClickHandler').then(mod => mod.MapClickHandler),
+  { ssr: false }
+);
+
+import { LocationInfoCard } from './LocationInfoCard';
 
 const API_BASE = 'http://127.0.0.1:8000/api/v1';
 
@@ -235,6 +241,8 @@ export function MumbaiFloodMap({
 }: MumbaiFloodMapProps = {}) {
   const [mounted, setMounted] = useState(false);
   const [wards, setWards] = useState<GeoJSONCollection | null>(null);
+  const [subareas, setSubareas] = useState<GeoJSONCollection | null>(null);
+  const [facilities, setFacilities] = useState<GeoJSONCollection | null>(null);
   const [floodHotspots, setFloodHotspots] = useState<GeoJSONCollection | null>(null);
   const [shelters, setShelters] = useState<GeoJSONCollection | null>(null);
   const [drainageNodes, setDrainageNodes] = useState<GeoJSONCollection | null>(null);
@@ -250,6 +258,12 @@ export function MumbaiFloodMap({
   const [currentRainfall, setCurrentRainfall] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Selected Location & Inspector State
+  const [selectedLocation, setSelectedLocation] = useState<{ lat: number; lon: number } | null>(null);
+  const [locationInfo, setLocationInfo] = useState<any | null>(null);
+  const [isLocationLoading, setIsLocationLoading] = useState(false);
+  const [showLocationCard, setShowLocationCard] = useState(false);
 
   // Basemap & Visual Options (Defaulting to Esri Light Gray Canvas for 100% watermark-free GIS)
   const [basemap, setBasemap] = useState<'esriGray' | 'osm' | 'esriDark'>('esriGray');
@@ -269,6 +283,8 @@ export function MumbaiFloodMap({
 
   // Layer visibility toggles (Clean GIS defaults — prevents visual overload)
   const [showWards, setShowWards] = useState(true);
+  const [showSubareas, setShowSubareas] = useState(false);
+  const [showFacilities, setShowFacilities] = useState(false); // DEFAULT FALSE per explicit user requirement
   const [showSimulationFloods, setShowSimulationFloods] = useState(false); // DEFAULT FALSE to eliminate ugly boxes!
   const [showObservedEvents, setShowObservedEvents] = useState(false);     // DEFAULT FALSE to eliminate 150 overlapping circles!
   const [showHotspots, setShowHotspots] = useState(true);
@@ -319,10 +335,12 @@ export function MumbaiFloodMap({
     setError(null);
     try {
       const [
-        wardsRes, hotspotsRes, sheltersRes, nodesRes, linksRes, roadsRes,
+        wardsRes, subareasRes, facsRes, hotspotsRes, sheltersRes, nodesRes, linksRes, roadsRes,
         obsEventsRes, pumpsRes, infraRes, riskRes, reportsRes
       ] = await Promise.all([
         fetch(`${API_BASE}/geodata/wards`).then(r => r.json()).catch(() => null),
+        fetch(`${API_BASE}/geodata/subareas`).then(r => r.json()).catch(() => null),
+        fetch(`${API_BASE}/geodata/facilities?limit=2000`).then(r => r.json()).catch(() => null),
         fetch(`${API_BASE}/geodata/flood-hotspots`).then(r => r.json()).catch(() => null),
         fetch(`${API_BASE}/geodata/shelters`).then(r => r.json()).catch(() => null),
         fetch(`${API_BASE}/geodata/drainage/nodes`).then(r => r.json()).catch(() => null),
@@ -336,6 +354,8 @@ export function MumbaiFloodMap({
       ]);
 
       if (wardsRes) setWards(wardsRes);
+      if (subareasRes) setSubareas(subareasRes);
+      if (facsRes) setFacilities(facsRes);
       if (hotspotsRes) setFloodHotspots(hotspotsRes);
       if (sheltersRes) setShelters(sheltersRes);
       if (nodesRes) setDrainageNodes(nodesRes);
@@ -453,6 +473,53 @@ export function MumbaiFloodMap({
     );
   }
 
+  // ── Location Click & Spatial Selection Handler ──
+  const handleMapClick = async (lat: number, lon: number) => {
+    setSelectedLocation({ lat, lon });
+    setShowLocationCard(true);
+    setIsLocationLoading(true);
+    setSelectedFeature(null);
+    try {
+      const res = await fetch(`${API_BASE}/geodata/lookup?lat=${lat}&lon=${lon}`);
+      const data = await res.json();
+      setLocationInfo(data);
+    } catch (e) {
+      setLocationInfo({
+        status: 'OUTSIDE_COVERAGE',
+        in_coverage: false,
+        coordinates: { lat, lon },
+        message: 'Network error or service unavailable while resolving location.',
+      });
+    } finally {
+      setIsLocationLoading(false);
+    }
+  };
+
+  // ── Subarea Partition Style & Handlers ──
+  const subareaStyle = () => ({
+    fillColor: '#3b82f6',
+    weight: 1.2,
+    color: '#1d4ed8',
+    dashArray: '4 3',
+    opacity: 0.85,
+    fillOpacity: 0.12,
+  });
+
+  const subareaOnEachFeature = (feature: any, layer: any) => {
+    if (feature.properties) {
+      const p = feature.properties;
+      layer.on('click', (e: any) => {
+        if (e.latlng) {
+          handleMapClick(e.latlng.lat, e.latlng.lng);
+        }
+      });
+      layer.bindTooltip(`
+        <div style="font-size: 11px; font-weight: 700; color: #1e3a8a;">${p.subarea_name || p.subarea_id}</div>
+        <div style="font-size: 10px; color: #475569;">Sector Area: ${p.subarea_area_sq_km || p.area_sq_km || '—'} km²</div>
+      `, { sticky: true, opacity: 0.95 });
+    }
+  };
+
   // ── Ward Boundary Style (Soft, Translucent GIS Boundaries) ──
   const wardStyle = (feature: any) => {
     const wid = feature?.properties?.ward_id;
@@ -476,10 +543,10 @@ export function MumbaiFloodMap({
 
     return {
       fillColor,
-      weight: 1.2,
-      color: basemap === 'esriDark' ? '#94a3b8' : '#475569',
-      dashArray: '4 3',
-      opacity: 0.65,
+      weight: 1.4,
+      color: basemap === 'esriDark' ? '#64748b' : '#475569',
+      dashArray: '',
+      opacity: 0.8,
       fillOpacity,
     };
   };
@@ -490,7 +557,10 @@ export function MumbaiFloodMap({
       const wr = wardRisks[p.ward_id];
       const explanation = nowcastData?.ward_explanations?.[p.ward_id];
 
-      layer.on('click', () => {
+      layer.on('click', (e: any) => {
+        if (e.latlng) {
+          handleMapClick(e.latlng.lat, e.latlng.lng);
+        }
         setSelectedFeature({
           title: `Ward ${p.ward_id} — ${p.ward_name}`,
           type: 'Ward Administrative Boundary',
@@ -822,11 +892,12 @@ export function MumbaiFloodMap({
                   <div style={{ fontSize: '10px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginTop: '2px' }}>
                     Municipal Infrastructure
                   </div>
-                  <LayerToggle label="Wards" color="#2563eb" enabled={showWards} onToggle={() => setShowWards(!showWards)} count={wards?.feature_count} />
+                  <LayerToggle label="Wards (24 BMC)" color="#2563eb" enabled={showWards} onToggle={() => setShowWards(!showWards)} count={wards?.feature_count} />
+                  <LayerToggle label="Subarea Partitions (80)" color="#3b82f6" enabled={showSubareas} onToggle={() => setShowSubareas(!showSubareas)} count={subareas?.features?.length} />
+                  <LayerToggle label="Emergency Facilities" color="#dc2626" enabled={showFacilities} onToggle={() => setShowFacilities(!showFacilities)} count={facilities?.features?.length} />
                   <LayerToggle label="Drainage Trunk" color="#0284c7" enabled={showDrainage} onToggle={() => setShowDrainage(!showDrainage)} count={drainageNodes?.feature_count} />
                   <LayerToggle label="Pumping Stations (Rated)" color="#0891b2" enabled={showPumps} onToggle={() => setShowPumps(!showPumps)} count={pumpingStations?.features?.length} />
                   <LayerToggle label="Emergency Shelters" color="#059669" enabled={showShelters} onToggle={() => setShowShelters(!showShelters)} count={shelters?.feature_count} />
-                  <LayerToggle label="Critical Infrastructure" color="#f59e0b" enabled={showCriticalInfra} onToggle={() => setShowCriticalInfra(!showCriticalInfra)} count={criticalInfra?.features?.length} />
                 </div>
 
                 {/* Observations & Citizen Data */}
@@ -855,6 +926,8 @@ export function MumbaiFloodMap({
             url={BASEMAP_TILES[basemap].url}
           />
 
+          <MapClickHandler onMapClick={handleMapClick} />
+
             {/* Ward boundaries — soft & translucent */}
             {showWards && wards?.features && (
               <GeoJSON
@@ -862,6 +935,16 @@ export function MumbaiFloodMap({
                 data={wards as any}
                 style={wardStyle}
                 onEachFeature={wardOnEachFeature}
+              />
+            )}
+
+            {/* Derived Subarea boundaries */}
+            {showSubareas && subareas?.features && (
+              <GeoJSON
+                key={`subareas-${subareas.features.length}`}
+                data={subareas as any}
+                style={subareaStyle}
+                onEachFeature={subareaOnEachFeature}
               />
             )}
 
@@ -1206,7 +1289,97 @@ export function MumbaiFloodMap({
                 }}
               />
             )}
+
+            {/* Real Emergency Facilities (Hospitals, Clinics, Police, Fire, Shelters) */}
+            {showFacilities && facilities?.features?.map((f: any, i: number) => {
+              const center = getFeatureCenter(f.geometry);
+              if (!center) return null;
+              const p = f.properties;
+              const cat = p.category || 'facility';
+              let markerColor = '#dc2626';
+              let radius = 5;
+              if (cat === 'hospital') { markerColor = '#dc2626'; radius = 6; }
+              else if (cat === 'clinic') { markerColor = '#0284c7'; radius = 4.5; }
+              else if (cat === 'police') { markerColor = '#1d4ed8'; radius = 5; }
+              else if (cat === 'fire_station') { markerColor = '#ea580c'; radius = 5.5; }
+              else if (cat === 'shelter') { markerColor = '#16a34a'; radius = 6; }
+
+              return (
+                <CircleMarker
+                  key={`facility-${f.id || i}`}
+                  center={center}
+                  radius={radius}
+                  pathOptions={{
+                    fillColor: markerColor,
+                    color: '#ffffff',
+                    weight: 1.5,
+                    opacity: 0.95,
+                    fillOpacity: 0.9,
+                  }}
+                >
+                  <Popup>
+                    <div style={{ padding: '4px 6px', minWidth: '160px' }}>
+                      <div style={{ fontSize: '12px', fontWeight: 800, color: '#0f172a' }}>{p.name}</div>
+                      <div style={{ fontSize: '10px', color: '#64748b', margin: '2px 0 4px' }}>{p.address}</div>
+                      <span style={{
+                        fontSize: '9px', fontWeight: 700, textTransform: 'uppercase',
+                        padding: '2px 6px', borderRadius: '4px',
+                        background: '#f1f5f9', color: '#334155'
+                      }}>
+                        {cat.replace('_', ' ')}
+                      </span>
+                    </div>
+                  </Popup>
+                </CircleMarker>
+              );
+            })}
+
+            {/* Selected Location Point Marker with Pulsing Ring */}
+            {selectedLocation && (
+              <>
+                <CircleMarker
+                  center={[selectedLocation.lat, selectedLocation.lon]}
+                  radius={16}
+                  pathOptions={{
+                    color: '#ef4444',
+                    weight: 2,
+                    fillColor: '#ef4444',
+                    fillOpacity: 0.25,
+                  }}
+                />
+                <CircleMarker
+                  center={[selectedLocation.lat, selectedLocation.lon]}
+                  radius={8}
+                  pathOptions={{
+                    color: '#ffffff',
+                    weight: 3,
+                    fillColor: '#dc2626',
+                    fillOpacity: 1,
+                  }}
+                >
+                  <Popup>
+                    <div style={{ padding: '4px', fontSize: '11px', fontWeight: 700 }}>
+                      Selected Point: {selectedLocation.lat.toFixed(5)}° N, {selectedLocation.lon.toFixed(5)}° E
+                    </div>
+                  </Popup>
+                </CircleMarker>
+              </>
+            )}
           </MapContainer>
+
+          {/* Location Information Card (opens on clicking any point on the map) */}
+          {showLocationCard && (
+            <LocationInfoCard
+              locationData={locationInfo}
+              isLoading={isLocationLoading}
+              onClose={() => {
+                setShowLocationCard(false);
+                setSelectedLocation(null);
+              }}
+              showFacilitiesOnMap={showFacilities}
+              onToggleFacilities={() => setShowFacilities(!showFacilities)}
+            />
+          )}
 
           {/* Floating Continuous Depth & Risk Legend */}
           <div style={{

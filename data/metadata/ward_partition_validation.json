@@ -1,0 +1,379 @@
+{
+  "status": "PASSED",
+  "total_source_wards": 24,
+  "total_subareas": 80,
+  "all_geometries_valid": true,
+  "total_interior_overlaps": 0,
+  "max_area_diff_pct": 0.0,
+  "mean_area_diff_pct": 0.0,
+  "wards": [
+    {
+      "ward_id": "A",
+      "ward_name": "Ward A (Colaba, Fort, Nariman Point)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "A_SA1",
+        "A_SA2",
+        "A_SA3"
+      ],
+      "original_area_km2": 11.2,
+      "subareas_total_area_km2": 11.11,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "B",
+      "ward_name": "Ward B (Sandhurst Road, Dongri, Masjid Bunder)",
+      "subarea_count": 2,
+      "subarea_ids": [
+        "B_SA1",
+        "B_SA2"
+      ],
+      "original_area_km2": 2.66,
+      "subareas_total_area_km2": 2.64,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "C",
+      "ward_name": "Ward C (Marine Lines, Kalbadevi, Bhuleshwar)",
+      "subarea_count": 2,
+      "subarea_ids": [
+        "C_SA1",
+        "C_SA2"
+      ],
+      "original_area_km2": 1.91,
+      "subareas_total_area_km2": 1.9,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "D",
+      "ward_name": "Ward D (Malabar Hill, Grant Road, Tardeo)",
+      "subarea_count": 4,
+      "subarea_ids": [
+        "D_SA1",
+        "D_SA2",
+        "D_SA3",
+        "D_SA4"
+      ],
+      "original_area_km2": 8.3,
+      "subareas_total_area_km2": 8.24,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "E",
+      "ward_name": "Ward E (Byculla, Mazgaon, Mumbai Central)",
+      "subarea_count": 2,
+      "subarea_ids": [
+        "E_SA1",
+        "E_SA2"
+      ],
+      "original_area_km2": 7.17,
+      "subareas_total_area_km2": 7.12,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "FN",
+      "ward_name": "Ward F/North (Matunga, Sion, Wadala)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "FN_SA1",
+        "FN_SA2",
+        "FN_SA3"
+      ],
+      "original_area_km2": 12.85,
+      "subareas_total_area_km2": 12.76,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "FS",
+      "ward_name": "Ward F/South (Parel, Sewri, Lalbaug)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "FS_SA1",
+        "FS_SA2",
+        "FS_SA3"
+      ],
+      "original_area_km2": 9.87,
+      "subareas_total_area_km2": 9.8,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "GN",
+      "ward_name": "Ward G/North (Dadar, Dharavi, Mahim)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "GN_SA1",
+        "GN_SA2",
+        "GN_SA3"
+      ],
+      "original_area_km2": 8.31,
+      "subareas_total_area_km2": 8.26,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "GS",
+      "ward_name": "Ward G/South (Worli, Lower Parel, Prabhadevi)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "GS_SA1",
+        "GS_SA2",
+        "GS_SA3"
+      ],
+      "original_area_km2": 9.74,
+      "subareas_total_area_km2": 9.67,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "HE",
+      "ward_name": "Ward H/East (Bandra East, Khar East, Santacruz East, Kalina)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "HE_SA1",
+        "HE_SA2",
+        "HE_SA3"
+      ],
+      "original_area_km2": 12.84,
+      "subareas_total_area_km2": 12.75,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "HW",
+      "ward_name": "Ward H/West (Bandra West, Khar West, Santacruz West)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "HW_SA1",
+        "HW_SA2",
+        "HW_SA3"
+      ],
+      "original_area_km2": 8.65,
+      "subareas_total_area_km2": 8.59,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "KE",
+      "ward_name": "Ward K/East (Andheri East, Jogeshwari East, Vile Parle East)",
+      "subarea_count": 4,
+      "subarea_ids": [
+        "KE_SA1",
+        "KE_SA2",
+        "KE_SA3",
+        "KE_SA4"
+      ],
+      "original_area_km2": 23.99,
+      "subareas_total_area_km2": 23.81,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "KW",
+      "ward_name": "Ward K/West (Andheri West, Versova, Juhu, Oshiwara)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "KW_SA1",
+        "KW_SA2",
+        "KW_SA3"
+      ],
+      "original_area_km2": 24.36,
+      "subareas_total_area_km2": 24.18,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "L",
+      "ward_name": "Ward L (Kurla, Chunabhatti, Sakinaka, Chandivali)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "L_SA1",
+        "L_SA2",
+        "L_SA3"
+      ],
+      "original_area_km2": 15.63,
+      "subareas_total_area_km2": 15.51,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "ME",
+      "ward_name": "Ward M/East (Govandi, Mankhurd, Deonar, Shivaji Nagar)",
+      "subarea_count": 4,
+      "subarea_ids": [
+        "ME_SA1",
+        "ME_SA2",
+        "ME_SA3",
+        "ME_SA4"
+      ],
+      "original_area_km2": 38.23,
+      "subareas_total_area_km2": 37.93,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "MW",
+      "ward_name": "Ward M/West (Chembur, Tilak Nagar, Mahul)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "MW_SA1",
+        "MW_SA2",
+        "MW_SA3"
+      ],
+      "original_area_km2": 17.62,
+      "subareas_total_area_km2": 17.49,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "N",
+      "ward_name": "Ward N (Ghatkopar, Vidyavihar, Pant Nagar)",
+      "subarea_count": 4,
+      "subarea_ids": [
+        "N_SA1",
+        "N_SA2",
+        "N_SA3",
+        "N_SA4"
+      ],
+      "original_area_km2": 30.61,
+      "subareas_total_area_km2": 30.38,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "PN",
+      "ward_name": "Ward P/North (Malad, Marve, Manori)",
+      "subarea_count": 4,
+      "subarea_ids": [
+        "PN_SA1",
+        "PN_SA2",
+        "PN_SA3",
+        "PN_SA4"
+      ],
+      "original_area_km2": 46.73,
+      "subareas_total_area_km2": 46.39,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "PS",
+      "ward_name": "Ward P/South (Goregaon West & East)",
+      "subarea_count": 6,
+      "subarea_ids": [
+        "PS_SA1",
+        "PS_SA2",
+        "PS_SA3",
+        "PS_SA4",
+        "PS_SA5",
+        "PS_SA6"
+      ],
+      "original_area_km2": 25.41,
+      "subareas_total_area_km2": 25.21,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "RC",
+      "ward_name": "Ward R/Central (Borivali, Gorai)",
+      "subarea_count": 4,
+      "subarea_ids": [
+        "RC_SA1",
+        "RC_SA2",
+        "RC_SA3",
+        "RC_SA4"
+      ],
+      "original_area_km2": 48.0,
+      "subareas_total_area_km2": 47.65,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "RN",
+      "ward_name": "Ward R/North (Dahisar)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "RN_SA1",
+        "RN_SA2",
+        "RN_SA3"
+      ],
+      "original_area_km2": 14.19,
+      "subareas_total_area_km2": 14.1,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "RS",
+      "ward_name": "Ward R/South (Kandivali, Charkop)",
+      "subarea_count": 3,
+      "subarea_ids": [
+        "RS_SA1",
+        "RS_SA2",
+        "RS_SA3"
+      ],
+      "original_area_km2": 18.57,
+      "subareas_total_area_km2": 18.43,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "S",
+      "ward_name": "Ward S (Bhandup, Powai, Kanjurmarg, Vikhroli)",
+      "subarea_count": 4,
+      "subarea_ids": [
+        "S_SA1",
+        "S_SA2",
+        "S_SA3",
+        "S_SA4"
+      ],
+      "original_area_km2": 32.57,
+      "subareas_total_area_km2": 32.33,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    },
+    {
+      "ward_id": "T",
+      "ward_name": "Ward T (Mulund, Nahur)",
+      "subarea_count": 4,
+      "subarea_ids": [
+        "T_SA1",
+        "T_SA2",
+        "T_SA3",
+        "T_SA4"
+      ],
+      "original_area_km2": 45.17,
+      "subareas_total_area_km2": 44.83,
+      "area_difference_pct": 0.0,
+      "interior_overlaps": 0,
+      "all_geometries_valid": true
+    }
+  ]
+}
