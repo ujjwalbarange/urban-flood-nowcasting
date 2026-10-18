@@ -326,6 +326,7 @@ async def get_verified_drainage():
 @router.get("/synthetic")
 async def get_synthetic_drainage(
     scenario: str = Query("normal_capacity", description="Drainage scenario ('normal_capacity', 'reduced_capacity_silted', 'blocked')"),
+    lines_only: bool = Query(True, description="Return only linear conduit lines (filter out thousands of inlet/junction point pins) for high performance"),
 ):
     """Return MSDI candidate synthetic urban drainage network.
 
@@ -341,10 +342,19 @@ async def get_synthetic_drainage(
     if not synth_file.exists() or scenario != "normal_capacity":
         gen = MSDIGenerator(max_roads=500, scenario=scenario)
         data = gen.generate()
-        return data
+    else:
+        with open(synth_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
 
-    with open(synth_file, "r", encoding="utf-8") as f:
-        return json.load(f)
+    if lines_only:
+        filtered = [f for f in data.get("features", []) if f.get("geometry", {}).get("type") in ("LineString", "MultiLineString")]
+        return {
+            **data,
+            "features": filtered,
+            "feature_count": len(filtered),
+        }
+
+    return data
 
 
 @router.get("/validation-report")

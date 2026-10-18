@@ -5,7 +5,7 @@ import {
   MapPin, X, Building2, Hospital, Shield, Flame, Home,
   Compass, AlertCircle, CheckCircle2, ChevronRight, Eye, EyeOff,
   Cloud, CloudRain, CloudDrizzle, CloudLightning, Sun, Thermometer,
-  Droplets, Wind, Gauge, History, Calendar, AlertTriangle, Layers, Info, Clock
+  Droplets, Wind, Gauge, History, Calendar, AlertTriangle, Layers, Info, Clock, Navigation
 } from 'lucide-react';
 
 interface FacilityItem {

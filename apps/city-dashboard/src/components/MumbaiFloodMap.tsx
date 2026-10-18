@@ -1172,11 +1172,12 @@ export function MumbaiFloodMap({
               />
             )}
 
-            {/* Synthetic Drainage Network (MSDI v1) - strictly labeled */}
+            {/* Synthetic Drainage Network (MSDI v1) - strictly labeled, lines only */}
             {showSyntheticDrainage && syntheticDrainage?.features && (
               <GeoJSON
                 key={`synthetic-drainage-${syntheticDrainage.features.length}-${syntheticScenario}`}
                 data={syntheticDrainage as any}
+                filter={(f: any) => f?.geometry?.type === 'LineString' || f?.geometry?.type === 'MultiLineString'}
                 style={syntheticDrainageStyle}
                 onEachFeature={(f: any, layer: any) => {
                   layer.on('click', () => {

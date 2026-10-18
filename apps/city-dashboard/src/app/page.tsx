@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { MumbaiFloodMap } from '../components/MumbaiFloodMap';
+import { Subarea3DViewer } from '../components/Subarea3DViewer';
 import { AlertDispatchConsole } from '../components/AlertDispatchConsole';
 import { CapAlertPayload } from '../types/dashboard';
 import {
@@ -10,13 +11,14 @@ import {
   AlertOctagon, CheckCircle2, XCircle, Search, Filter, Droplets,
   ExternalLink, Play, Building2, Hospital, ShieldAlert, Check, X,
   Clock, MapPin, Gauge, Database, Wind, Thermometer, CloudRain,
-  Compass, Eye, RefreshCw, Layers, Zap, Info, FileText, ArrowRight
+  Compass, Eye, RefreshCw, Layers, Zap, Info, FileText, ArrowRight, Mountain
 } from 'lucide-react';
 
 const API_BASE = 'http://127.0.0.1:8000/api/v1';
 
 export type MunicipalModule =
   | 'overview'
+  | 'subarea_3d'
   | 'risk'
   | 'simulation'
   | 'incidents'
@@ -394,6 +396,7 @@ export default function MunicipalCommandCenterPage() {
       }}>
         {[
           { key: 'overview', label: 'Nowcast / Overview', icon: Target },
+          { key: 'subarea_3d', label: 'Adaptive 3D & Routing', icon: Mountain },
           { key: 'risk', label: 'Risk Assessment', icon: ShieldAlert },
           { key: 'simulation', label: 'Simulation & Impact', icon: Gauge },
           { key: 'incidents', label: 'Citizen Incidents', icon: MessageSquarePlus, count: pendingReportsCount },
@@ -437,15 +440,41 @@ export default function MunicipalCommandCenterPage() {
       {/* ── MAIN WORKSPACE: MAP CENTERPIECE + DOCKED MUNICIPAL CONSOLE ── */}
       <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
 
-        {/* ── MAP (PRIMARY VISUAL CENTERPIECE) ── */}
+        {/* ── VISUAL CENTERPIECE (3D SUBAREA VIEWER OR 2D MAP) ── */}
         <div style={{ flex: 1, position: 'relative', height: '100%', width: '100%', overflow: 'hidden' }}>
-          <MumbaiFloodMap
-            confusionGeoJSON={confusionGeoJSON}
-            nowcastResult={nowcastResult}
-            focusedLocation={focusedLocation}
-            selectedWardId={selectedWardId}
-            layerToggles={layerToggles}
-          />
+          {activeModule === 'subarea_3d' ? (
+            <Subarea3DViewer
+              initialSubareaId={selectedWardId ? `${selectedWardId}_SA1` : 'A_SA1'}
+              onClose={() => setActiveModule('overview')}
+            />
+          ) : (
+            <>
+              <MumbaiFloodMap
+                confusionGeoJSON={confusionGeoJSON}
+                nowcastResult={nowcastResult}
+                focusedLocation={focusedLocation}
+                selectedWardId={selectedWardId}
+                layerToggles={layerToggles}
+              />
+              {/* Quick 3D Subarea Switcher Overlay Button */}
+              <button
+                onClick={() => setActiveModule('subarea_3d')}
+                style={{
+                  position: 'absolute', top: 12, right: 12, zIndex: 1000,
+                  display: 'flex', alignItems: 'center', gap: '6px',
+                  padding: '8px 14px', borderRadius: '8px',
+                  background: 'linear-gradient(135deg, #0f172a, #1e293b)',
+                  border: '1.5px solid #38bdf8', color: '#38bdf8',
+                  fontSize: '11.5px', fontWeight: 700, cursor: 'pointer',
+                  boxShadow: '0 4px 14px rgba(0,0,0,0.3)', backdropFilter: 'blur(6px)'
+                }}
+                title="Open Adaptive 3D Subarea & Evacuation Routing View"
+              >
+                <Mountain size={15} color="#38bdf8" />
+                <span>3D Subarea View</span>
+              </button>
+            </>
+          )}
         </div>
 
         {/* ── CONTEXT-SENSITIVE MUNICIPAL OPERATOR CONSOLE ── */}

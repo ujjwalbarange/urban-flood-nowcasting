@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { MumbaiFloodMap } from '../components/MumbaiFloodMap';
+import { Subarea3DViewer } from '../components/Subarea3DViewer';
 import { NowcastTicker } from '../components/NowcastTicker';
 import { NowcastForecastItem } from '../types/citizen';
 import {
@@ -9,7 +10,7 @@ import {
   CheckCircle, AlertTriangle, Droplets, Cloud, Clock,
   Phone, Users, Building, Activity, ChevronDown, Mic, MicOff,
   Send, Bot, Sparkles, Compass, CheckCircle2, ShieldAlert,
-  Search, Info, HelpCircle
+  Search, Info, HelpCircle, Mountain
 } from 'lucide-react';
 
 const API_BASE = 'http://127.0.0.1:8000/api/v1';
@@ -52,7 +53,7 @@ interface ChatMessage {
 }
 
 export default function CitizenPortalPage() {
-  const [activeTab, setActiveTab] = useState<'map' | 'assistant' | 'shelters' | 'report' | 'history'>('map');
+  const [activeTab, setActiveTab] = useState<'map' | 'assistant' | 'subarea3d' | 'shelters' | 'report' | 'history'>('map');
   const [shelters, setShelters] = useState<Shelter[]>([]);
   const [hotspots, setHotspots] = useState<FloodHotspot[]>([]);
   const [historicalEvents, setHistoricalEvents] = useState<HistoricalEvent[]>([]);
@@ -435,6 +436,9 @@ export default function CitizenPortalPage() {
           <button className={`tab-btn ${activeTab === 'map' ? 'active' : ''}`} onClick={() => setActiveTab('map')}>
             <Map size={16} /> Interactive Flood & Safety Map
           </button>
+          <button className={`tab-btn ${activeTab === 'subarea3d' ? 'active' : ''}`} onClick={() => setActiveTab('subarea3d')}>
+            <Mountain size={16} /> 3D Subarea Evacuation Navigator
+          </button>
           <button className={`tab-btn ${activeTab === 'assistant' ? 'active' : ''}`} onClick={() => setActiveTab('assistant')}>
             <Sparkles size={16} /> JalDrishti AI Safety Assistant
           </button>
@@ -497,6 +501,13 @@ export default function CitizenPortalPage() {
                 </div>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* ── TAB: 3D Subarea Evacuation Navigator ── */}
+        {activeTab === 'subarea3d' && (
+          <div className="fade-in" style={{ height: '720px', width: '100%', marginBottom: '20px' }}>
+            <Subarea3DViewer />
           </div>
         )}
 
