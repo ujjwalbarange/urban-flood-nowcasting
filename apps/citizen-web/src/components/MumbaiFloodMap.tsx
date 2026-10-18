@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
 
 // ── Types for real data ──
@@ -203,6 +203,8 @@ export function MumbaiFloodMap() {
   const [locationInfo, setLocationInfo] = useState<any | null>(null);
   const [isLocationLoading, setIsLocationLoading] = useState(false);
   const [showLocationCard, setShowLocationCard] = useState(false);
+  const clickAbortControllerRef = useRef<AbortController | null>(null);
+  const clickSequenceIdRef = useRef<number>(0);
 
   // Layer visibility
   const [showWards, setShowWards] = useState(true);
@@ -288,22 +290,39 @@ export function MumbaiFloodMap() {
 
   // ── Location Click & Spatial Selection Handler ──
   const handleMapClick = async (lat: number, lon: number) => {
+    // Cancel any in-flight request from previous click
+    if (clickAbortControllerRef.current) {
+      clickAbortControllerRef.current.abort();
+    }
+    const controller = new AbortController();
+    clickAbortControllerRef.current = controller;
+    const currentSeq = ++clickSequenceIdRef.current;
+
     setSelectedLocation({ lat, lon });
     setShowLocationCard(true);
     setIsLocationLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/geodata/lookup?lat=${lat}&lon=${lon}`);
-      const data = await res.json();
-      setLocationInfo(data);
-    } catch (e) {
-      setLocationInfo({
-        status: 'OUTSIDE_COVERAGE',
-        in_coverage: false,
-        coordinates: { lat, lon },
-        message: 'Network error or service unavailable while resolving location.',
+      const res = await fetch(`${API_BASE}/geodata/lookup?lat=${lat}&lon=${lon}`, {
+        signal: controller.signal,
       });
+      const data = await res.json();
+      if (currentSeq === clickSequenceIdRef.current) {
+        setLocationInfo(data);
+      }
+    } catch (e: any) {
+      if (e.name === 'AbortError') return;
+      if (currentSeq === clickSequenceIdRef.current) {
+        setLocationInfo({
+          status: 'OUTSIDE_COVERAGE',
+          in_coverage: false,
+          coordinates: { lat, lon },
+          message: 'Network error or service unavailable while resolving location.',
+        });
+      }
     } finally {
-      setIsLocationLoading(false);
+      if (currentSeq === clickSequenceIdRef.current) {
+        setIsLocationLoading(false);
+      }
     }
   };
 

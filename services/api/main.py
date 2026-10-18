@@ -13,7 +13,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from services.api.routers import cities, rainfall, simulations, alerts, geodata, validation, ai, nowcast
-from services.api.routers import replay, scheduler, decision, tide, drainage, impact, ml, field_ops, auth
+from services.api.routers import replay, scheduler, decision, tide, drainage, impact, ml, field_ops, auth, weather
 from services.api.metrics import metrics_router, PrometheusMetricsMiddleware
 from services.api.middleware.rate_limit import RateLimitMiddleware
 from services.database.connection import engine, Base, verify_db_connectivity
@@ -113,6 +113,7 @@ app.include_router(drainage.router, prefix="/api/v1", tags=["Drainage & SWMM"])
 app.include_router(impact.router, prefix="/api/v1", tags=["Impact & Exposure"])
 app.include_router(ml.router, prefix="/api/v1", tags=["ML Surrogate"])
 app.include_router(field_ops.router, prefix="/api/v1", tags=["Field Operations"])
+app.include_router(weather.router, prefix="/api/v1", tags=["Weather Intelligence"])
 
 
 

@@ -88,6 +88,12 @@ class MumbaiDataStore:
         emerg_fac_path = _PROJECT_ROOT / "data" / "processed" / "critical_infrastructure" / "mumbai_emergency_facilities.geojson"
         self._cache["emergency_facilities"] = _load_geojson(emerg_fac_path)
 
+        # ── 2016-2025 Observed Flood Events ──
+        flood_events_path = _PROJECT_ROOT / "data" / "cities" / "mumbai" / "historical_flood_events.geojson"
+        if not flood_events_path.exists():
+            flood_events_path = _PROJECT_ROOT / "mumbai_urban_flood_2016_2025 (1).geojson"
+        self._cache["historical_flood_events"] = _load_geojson(flood_events_path)
+
         # ── 04: Roads ──
         self._cache["roads"] = _load_geojson(root / "04_roads" / "roads.geojson")
 
@@ -200,6 +206,10 @@ class MumbaiDataStore:
     def emergency_facilities(self) -> dict[str, Any]:
         self._ensure_loaded()
         return self._cache.get("emergency_facilities", {"type": "FeatureCollection", "features": []})
+
+    def historical_flood_events(self) -> dict[str, Any]:
+        self._ensure_loaded()
+        return self._cache.get("historical_flood_events", {"type": "FeatureCollection", "features": []})
 
     def roads(self) -> dict[str, Any]:
         self._ensure_loaded()

@@ -22,6 +22,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from services.data.store import get_data_store
 from services.config.providers import ProviderSettings
+from services.weather.weather_service import get_weather_service
 from services.database.connection import get_db, engine, verify_db_connectivity
 from services.database.models import (
     City, Ward, HistoricalFloodEvent, FloodHotspot,
@@ -252,7 +253,18 @@ async def lookup_location(
             containing_ward = f["properties"]
             break
 
+    weather_svc = get_weather_service()
+
     if not containing_ward:
+        # Check if coordinates are in Mumbai metropolitan region for weather intelligence
+        weather_intel = None
+        is_metro, _ = weather_svc.validate_coordinates(lat, lon)
+        if is_metro:
+            try:
+                weather_intel = await weather_svc.get_full_weather_intelligence(lat, lon, ward_id=None)
+            except Exception as e:
+                logger.warning("Weather fetch for outside-coverage point failed", error=str(e))
+
         return {
             "status": "OUTSIDE_COVERAGE",
             "in_coverage": False,
@@ -261,11 +273,13 @@ async def lookup_location(
             "ward": None,
             "subarea": None,
             "nearby_facilities": [],
+            "weather_intelligence": weather_intel,
             "extension_points": {
-                "weather_nowcast": {"status": "Phase 2 Extension Point (Unavailable in Phase 1)", "available": False},
-                "7day_forecast": {"status": "Phase 2 Extension Point (Unavailable in Phase 1)", "available": False},
-                "flood_simulation_depth": {"status": "Phase 2 Extension Point (Unavailable in Phase 1)", "available": False},
-                "evacuation_routes": {"status": "Phase 2 Extension Point (Unavailable in Phase 1)", "available": False},
+                "weather_nowcast": {"status": "Operational (Phase 2)", "available": True},
+                "7day_forecast": {"status": "Operational (Phase 2)", "available": True},
+                "historical_flood_intelligence": {"status": "Operational (Phase 2)", "available": True},
+                "flood_simulation_depth": {"status": "Phase 3 Extension Point (Hydrodynamic Coupling)", "available": False},
+                "evacuation_routes": {"status": "Phase 3 Extension Point (Evacuation Routing)", "available": False},
             }
         }
 
@@ -311,6 +325,15 @@ async def lookup_location(
 
     nearby_facilities.sort(key=lambda x: x["distance_km"])
 
+    # Fetch point-specific weather intelligence
+    weather_intel = None
+    try:
+        weather_intel = await weather_svc.get_full_weather_intelligence(
+            lat=lat, lon=lon, ward_id=ward_id, radius_km=5.0
+        )
+    except Exception as e:
+        logger.warning("Point-specific weather intelligence fetch failed", lat=lat, lon=lon, error=str(e))
+
     return {
         "status": "FOUND_IN_COVERAGE",
         "in_coverage": True,
@@ -331,11 +354,13 @@ async def lookup_location(
         } if containing_subarea else None,
         "nearby_facilities_count": len(nearby_facilities),
         "nearby_facilities": nearby_facilities[:10],
+        "weather_intelligence": weather_intel,
         "extension_points": {
-            "weather_nowcast": {"status": "Phase 2 Extension Point (Unavailable in Phase 1)", "available": False},
-            "7day_forecast": {"status": "Phase 2 Extension Point (Unavailable in Phase 1)", "available": False},
-            "flood_simulation_depth": {"status": "Phase 2 Extension Point (Unavailable in Phase 1)", "available": False},
-            "evacuation_routes": {"status": "Phase 2 Extension Point (Unavailable in Phase 1)", "available": False},
+            "weather_nowcast": {"status": "Operational (Phase 2)", "available": True},
+            "7day_forecast": {"status": "Operational (Phase 2)", "available": True},
+            "historical_flood_intelligence": {"status": "Operational (Phase 2)", "available": True},
+            "flood_simulation_depth": {"status": "Phase 3 Extension Point (Hydrodynamic Coupling)", "available": False},
+            "evacuation_routes": {"status": "Phase 3 Extension Point (Evacuation Routing)", "available": False},
         }
     }
 
