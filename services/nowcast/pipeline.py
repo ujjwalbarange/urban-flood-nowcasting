@@ -1141,6 +1141,43 @@ async def run_nowcast_pipeline(
         result.completed_at = datetime.now(timezone.utc)
         result.status = "completed"
 
+        # ── Stage 6E: Provenance and Output Validation (Phase 5) ──
+        try:
+            from services.provenance.engine import (
+                get_provenance_registry, SimulationProvenance, DataClassification, DataFeedStatus
+            )
+            reg = get_provenance_registry()
+            prov = SimulationProvenance(
+                run_id=run_id,
+                run_type="nowcast",
+                created_at=result.started_at,
+                started_at=result.started_at,
+                rainfall_source=f"Open-Meteo {weather.source_model if weather else 'NWP'} Multi-Station Weather",
+                rainfall_classification=DataClassification.FORECAST if weather and weather.forecast_hourly else DataClassification.OBSERVED,
+                rainfall_retrieval_time=weather.retrieved_at if weather else None,
+                rainfall_peak_mmh=result.rainfall_forcing_mmh,
+                rainfall_accum_mm=weather.accum_3h_mm if weather else 0.0,
+                dem_source="Copernicus GLO-30 DSM (ESA)",
+                dem_resolution_m=dx,
+                catchment=catchment,
+                cell_size_m=dx,
+                duration_hours=duration_hours,
+                manning_n=0.035,
+            )
+            prov.validate_and_complete(
+                max_depth_m=result.max_depth_m,
+                mean_depth_m=result.mean_depth_m,
+                flooded_area_km2=result.flooded_area_km2,
+                flooded_cells=result.flooded_cells,
+                mass_balance_error_pct=result.mass_balance_error_pct,
+                depth_grid_valid=result.depth_grid is not None,
+            )
+            reg.record_simulation_run(prov)
+            reg.update_feed_timestamp("open_meteo_live_weather", datetime.now(timezone.utc), DataFeedStatus.AVAILABLE)
+            reg.update_feed_timestamp("hydrodynamic_solver", datetime.now(timezone.utc), DataFeedStatus.AVAILABLE)
+        except Exception as prov_err:
+            logger.warning("Failed recording simulation provenance", error=str(prov_err))
+
         # ── Stage 7: Persist run to PostGIS ──
         await persist_nowcast_run(result)
 
@@ -1165,5 +1202,19 @@ async def run_nowcast_pipeline(
         result.completed_at = datetime.now(timezone.utc)
         result.runtime_seconds = time.time() - t_start
         logger.error("Nowcast pipeline failed", run_id=run_id, error=str(e))
+        try:
+            from services.provenance.engine import get_provenance_registry, SimulationProvenance
+            reg = get_provenance_registry()
+            prov = SimulationProvenance(
+                run_id=run_id,
+                run_type="nowcast",
+                created_at=result.started_at,
+                started_at=result.started_at,
+                catchment=catchment,
+            )
+            prov.mark_failed(str(e))
+            reg.record_simulation_run(prov)
+        except Exception:
+            pass
 
     return result

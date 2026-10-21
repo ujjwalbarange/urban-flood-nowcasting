@@ -439,3 +439,81 @@ async def list_calibrated_parameters():
         "total": len(sets),
         "calibrated_parameters": [s.to_dict() for s in sets],
     }
+
+
+@router.get("/validation/historical-benchmark")
+async def get_historical_benchmark(
+    event_id: str = Query("july_2024_cloudburst", description="Historical storm event identifier"),
+    catchment: str = Query("hindmata_dadar", description="Catchment: hindmata_dadar, mithi_basin, mumbai_city, western_suburbs"),
+    grid_size: int = Query(60, ge=30, le=100, description="Mesh dimension"),
+):
+    """Evaluate hydrodynamic validation against documented IMD/MCGM historical observations and hotspots.
+
+    Guarantees:
+    - MAE/RMSE/Bias computed ONLY where observed depth measurements exist (no proxy constants).
+    - Categorical detection metrics (POD/Recall, Precision, CSI) clearly state reference data sample size N.
+    - Preserves distinction between observed facts, simulated outputs, and scientific assumptions.
+    """
+    from services.validation.historical_validation import get_historical_validator
+    from services.terrain.dem_loader import get_catchment_dem
+    from services.terrain.conditioning import fill_sinks
+    from services.flood.engine import SimulationConfig, run_simulation
+
+    validator = get_historical_validator()
+
+    # Event date window mapping
+    event_dates = {
+        "july_2024_cloudburst": ("2024-07-07", "2024-07-09", "July 8 2024 Monsoon Deluge (315mm)"),
+        "aug_2017_cloudburst": ("2017-08-28", "2017-08-30", "August 29 2017 Monsoon Cloudburst (331mm)"),
+        "july_2019_deluge": ("2019-07-01", "2019-07-03", "July 2 2019 Suburban Deluge (375mm)"),
+        "july_2005_deluge": ("2005-07-25", "2005-07-27", "July 26 2005 Extreme Deluge (944mm)"),
+    }
+
+    start_d, end_d, ev_name = event_dates.get(event_id, ("2024-07-07", "2024-07-09", event_id))
+
+    hotspots = await validator.fetch_hotspots()
+    events = await validator.fetch_historical_events(start_d, end_d)
+
+    # Load DEM
+    dem_raw, georef = get_catchment_dem(catchment, max_dim=grid_size)
+    dem = fill_sinks(dem_raw.astype(np.float64))
+    dx = georef["cell_size_m"]
+
+    # Historical rainfall forcing
+    rain_rate = 45.0 if "2024" in event_id else (65.0 if "2005" in event_id else 40.0)
+    schedule = [(0.0, rain_rate), (2.0 * 3600.0, 0.0)]
+    imperviousness = np.full(dem.shape, 0.75, dtype=np.float64)
+    imperviousness[dem > 35.0] = 0.35
+
+    cfg = SimulationConfig(
+        city_id="mumbai",
+        duration_hours=2.0,
+        cell_size_m=dx,
+        manning_n=0.035,
+        routing_dt_s=2.0,
+        snapshot_interval_s=600.0,
+    )
+
+    sim_res = run_simulation(
+        dem=dem,
+        rainfall_schedule=schedule,
+        imperviousness=imperviousness,
+        config=cfg,
+    )
+
+    max_grid = sim_res.max_depth_grid if sim_res.max_depth_grid is not None else np.zeros_like(dem)
+
+    report = validator.validate_simulation(
+        simulation_id=f"val_{event_id}_{grid_size}",
+        event_id=event_id,
+        event_name=ev_name,
+        depth_grid=max_grid,
+        georef=georef,
+        hotspots=hotspots,
+        historical_events=events,
+        flood_threshold_m=0.08,
+        simulated_peak_timing_hours=sim_res.peak_timing_hours,
+    )
+
+    return report.to_dict()
+

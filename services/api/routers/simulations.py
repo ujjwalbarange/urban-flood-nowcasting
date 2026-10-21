@@ -466,51 +466,6 @@ async def trigger_simulation(
     }
 
 
-@router.get("/simulations/{sim_id}/geojson")
-async def get_simulation_geojson(sim_id: str):
-    """Get georeferenced flood extent GeoJSON polygons for a completed simulation."""
-    if sim_id not in _simulations:
-        raise HTTPException(status_code=404, detail=f"Simulation {sim_id} not found")
-    sim = _simulations[sim_id]
-    if sim["status"] != "completed":
-        return {
-            "status": sim["status"],
-            "type": "FeatureCollection",
-            "features": [],
-            "message": f"Simulation status is '{sim['status']}'. GeoJSON will be ready upon completion.",
-        }
-    geojson = sim.get("flood_extent_geojson")
-    if not geojson:
-        return {
-            "status": "completed",
-            "type": "FeatureCollection",
-            "features": [],
-            "message": "No georeferenced flood extent (simulation was run on synthetic non-geographic surface)",
-        }
-    return geojson
-
-
-@router.get("/simulations/{sim_id}")
-async def get_simulation_status(sim_id: str):
-    """Get the status and results of a simulation."""
-    if sim_id not in _simulations:
-        raise HTTPException(status_code=404, detail=f"Simulation {sim_id} not found")
-    return _simulations[sim_id]
-
-
-
-@router.get("/simulations")
-async def list_simulations(
-    city_id: Optional[str] = Query(None, description="Filter by city"),
-    limit: int = Query(20, ge=1, le=100),
-):
-    """List recent simulations."""
-    sims = list(_simulations.values())
-    if city_id:
-        sims = [s for s in sims if s["city_id"] == city_id]
-    return {"simulations": sims[-limit:], "total": len(sims)}
-
-
 @router.get("/simulations/physics/capabilities")
 async def get_physics_capabilities():
     """List prototype numerical components and current data limitations."""
@@ -555,3 +510,79 @@ async def get_physics_capabilities():
         "simulation_api_status": "synthetic_non_georeferenced_experiment_only",
         "validated_for_municipal_decisions": False,
     }
+
+
+@router.get("/simulations/sensitivity")
+async def get_latest_sensitivity_report():
+    """Retrieve latest hydrodynamic model uncertainty and sensitivity analysis."""
+    from services.flood.uncertainty import get_uncertainty_engine
+    engine = get_uncertainty_engine()
+    report = engine.get_latest_analysis()
+    if not report:
+        # Run baseline sensitivity suite on demand
+        report = engine.run_sensitivity_suite(catchment="hindmata_dadar", base_rainfall_mmh=35.0, grid_size=45)
+    return report.to_dict()
+
+
+@router.post("/simulations/sensitivity/run")
+async def trigger_sensitivity_analysis(
+    catchment: str = Query("hindmata_dadar", description="Catchment basin"),
+    base_rainfall_mmh: float = Query(35.0, ge=10.0, le=150.0, description="Baseline rainfall rate (mm/h)"),
+    grid_size: int = Query(45, ge=25, le=80, description="Grid resolution for 5-scenario suite"),
+    duration_hours: float = Query(1.5, ge=0.5, le=4.0, description="Duration in hours"),
+):
+    """Execute a 5-scenario parameter sensitivity suite (rainfall +/-20%, Manning's n 0.020-0.050)."""
+    from services.flood.uncertainty import get_uncertainty_engine
+    engine = get_uncertainty_engine()
+    report = engine.run_sensitivity_suite(
+        catchment=catchment,
+        base_rainfall_mmh=base_rainfall_mmh,
+        grid_size=grid_size,
+        duration_hours=duration_hours,
+    )
+    return report.to_dict()
+
+
+@router.get("/simulations/{sim_id}/geojson")
+async def get_simulation_geojson(sim_id: str):
+    """Get georeferenced flood extent GeoJSON polygons for a completed simulation."""
+    if sim_id not in _simulations:
+        raise HTTPException(status_code=404, detail=f"Simulation {sim_id} not found")
+    sim = _simulations[sim_id]
+    if sim["status"] != "completed":
+        return {
+            "status": sim["status"],
+            "type": "FeatureCollection",
+            "features": [],
+            "message": f"Simulation status is '{sim['status']}'. GeoJSON will be ready upon completion.",
+        }
+    geojson = sim.get("flood_extent_geojson")
+    if not geojson:
+        return {
+            "status": "completed",
+            "type": "FeatureCollection",
+            "features": [],
+            "message": "No georeferenced flood extent (simulation was run on synthetic non-geographic surface)",
+        }
+    return geojson
+
+
+@router.get("/simulations/{sim_id}")
+async def get_simulation_status(sim_id: str):
+    """Get the status and results of a simulation."""
+    if sim_id not in _simulations:
+        raise HTTPException(status_code=404, detail=f"Simulation {sim_id} not found")
+    return _simulations[sim_id]
+
+
+@router.get("/simulations")
+async def list_simulations(
+    city_id: Optional[str] = Query(None, description="Filter by city"),
+    limit: int = Query(20, ge=1, le=100),
+):
+    """List recent simulations."""
+    sims = list(_simulations.values())
+    if city_id:
+        sims = [s for s in sims if s["city_id"] == city_id]
+    return {"simulations": sims[-limit:], "total": len(sims)}
+

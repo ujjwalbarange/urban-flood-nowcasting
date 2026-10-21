@@ -5,7 +5,7 @@ import {
   MapPin, X, Building2, Hospital, Shield, Flame, Home,
   Compass, AlertCircle, CheckCircle2, ChevronRight, Eye, EyeOff,
   Cloud, CloudRain, CloudDrizzle, CloudLightning, Sun, Thermometer,
-  Droplets, Wind, Gauge, History, Calendar, AlertTriangle, Layers, Info, Clock
+  Droplets, Wind, Gauge, History, Calendar, AlertTriangle, Layers, Info, Clock, Navigation
 } from 'lucide-react';
 
 interface FacilityItem {
@@ -192,6 +192,10 @@ interface LocationInfoCardProps {
   onClose: () => void;
   onToggleFacilities?: () => void;
   showFacilitiesOnMap?: boolean;
+  activeEvacuationRoute?: any | null;
+  onComputeEvacuationRoute?: (vehicleType: string) => void;
+  isComputingRoute?: boolean;
+  onClearEvacuationRoute?: () => void;
 }
 
 type TabType = 'overview' | 'weather' | 'forecast' | 'historical' | 'risk';
@@ -202,8 +206,13 @@ export function LocationInfoCard({
   onClose,
   onToggleFacilities,
   showFacilitiesOnMap = false,
+  activeEvacuationRoute,
+  onComputeEvacuationRoute,
+  isComputingRoute = false,
+  onClearEvacuationRoute,
 }: LocationInfoCardProps) {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
+  const [evacVehicleType, setEvacVehicleType] = useState<string>('standard_car');
 
   if (!locationData && !isLoading) return null;
 
@@ -539,6 +548,105 @@ export function LocationInfoCard({
                     Subarea ID: <span style={{ fontWeight: 700 }}>{locationData.subarea?.subarea_id || '—'}</span> • Subarea Area:{' '}
                     {locationData.subarea?.subarea_area_sq_km || '—'} km²
                   </div>
+                </div>
+
+                {/* Flood-Aware Evacuation Routing Section */}
+                <div
+                  style={{
+                    padding: '10px 12px',
+                    background: activeEvacuationRoute ? '#f0fdf4' : '#f8fafc',
+                    borderRadius: '8px',
+                    border: `1px solid ${activeEvacuationRoute ? '#86efac' : '#cbd5e1'}`,
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <Navigation size={13} color={activeEvacuationRoute ? '#16a34a' : '#2563eb'} />
+                      <span style={{ fontSize: '10px', fontWeight: 800, color: activeEvacuationRoute ? '#15803d' : '#1d4ed8', letterSpacing: '0.4px', textTransform: 'uppercase' }}>
+                        {activeEvacuationRoute ? 'Active Evacuation Corridor' : 'Flood-Aware Evacuation'}
+                      </span>
+                    </div>
+                    {activeEvacuationRoute && onClearEvacuationRoute && (
+                      <button
+                        onClick={onClearEvacuationRoute}
+                        style={{
+                          background: 'none', border: 'none', color: '#64748b', fontSize: '10px',
+                          cursor: 'pointer', padding: '0 2px', textDecoration: 'underline',
+                        }}
+                      >
+                        Clear Route
+                      </button>
+                    )}
+                  </div>
+
+                  {activeEvacuationRoute ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                      <div style={{ fontSize: '11.5px', fontWeight: 800, color: '#0f172a' }}>
+                        🏁 {activeEvacuationRoute.destination_name}
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4px', fontSize: '9.5px' }}>
+                        <div style={{ background: '#ffffff', padding: '4px 6px', borderRadius: '4px', border: '1px solid #bbf7d0' }}>
+                          <span style={{ color: '#64748b', display: 'block' }}>Distance</span>
+                          <strong style={{ color: '#0f172a' }}>{activeEvacuationRoute.total_distance_km} km</strong>
+                        </div>
+                        <div style={{ background: '#ffffff', padding: '4px 6px', borderRadius: '4px', border: '1px solid #bbf7d0' }}>
+                          <span style={{ color: '#64748b', display: 'block' }}>Est. Time</span>
+                          <strong style={{ color: '#0f172a' }}>{activeEvacuationRoute.estimated_travel_time_min} min</strong>
+                        </div>
+                        <div style={{ background: '#ffffff', padding: '4px 6px', borderRadius: '4px', border: '1px solid #bbf7d0' }}>
+                          <span style={{ color: '#64748b', display: 'block' }}>Max Depth</span>
+                          <strong style={{ color: activeEvacuationRoute.max_flood_depth_along_route_m >= 0.15 ? '#b45309' : '#15803d' }}>
+                            {activeEvacuationRoute.max_flood_depth_along_route_m.toFixed(2)} m
+                          </strong>
+                        </div>
+                      </div>
+                      <div style={{
+                        padding: '4px 8px', borderRadius: '4px', fontSize: '9px', fontWeight: 700,
+                        background: activeEvacuationRoute.passability_verdict?.includes('CLEAR') ? '#dcfce7' : '#fef3c7',
+                        color: activeEvacuationRoute.passability_verdict?.includes('CLEAR') ? '#166534' : '#92400e',
+                      }}>
+                        {activeEvacuationRoute.passability_verdict}
+                      </div>
+                      <div style={{ fontSize: '8px', color: '#64748b', lineHeight: '1.3' }}>
+                        ⚠️ {activeEvacuationRoute.disclaimer}
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                      <div style={{ display: 'flex', gap: '4px' }}>
+                        {(['standard_car', 'emergency_high_clearance', 'pedestrian'] as const).map(v => (
+                          <button
+                            key={v}
+                            onClick={() => setEvacVehicleType(v)}
+                            style={{
+                              flex: 1, padding: '4px 2px', borderRadius: '4px', fontSize: '9.5px', fontWeight: evacVehicleType === v ? 800 : 600,
+                              background: evacVehicleType === v ? '#2563eb' : '#ffffff',
+                              color: evacVehicleType === v ? '#ffffff' : '#475569',
+                              border: `1px solid ${evacVehicleType === v ? '#2563eb' : '#cbd5e1'}`,
+                              cursor: 'pointer', transition: 'all 0.15s ease',
+                            }}
+                          >
+                            {v === 'standard_car' ? '🚗 Car' : v === 'emergency_high_clearance' ? '🚙 High Clr' : '🚶 Pedestrian'}
+                          </button>
+                        ))}
+                      </div>
+                      {onComputeEvacuationRoute && (
+                        <button
+                          onClick={() => onComputeEvacuationRoute(evacVehicleType)}
+                          disabled={isComputingRoute}
+                          style={{
+                            width: '100%', padding: '6px', borderRadius: '6px', border: 'none',
+                            background: isComputingRoute ? '#94a3b8' : '#059669', color: '#ffffff',
+                            fontWeight: 700, fontSize: '11px', cursor: isComputingRoute ? 'wait' : 'pointer',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+                          }}
+                        >
+                          <Navigation size={12} />
+                          {isComputingRoute ? 'Finding Safest Evacuation Corridor...' : 'Find Safest Evacuation Route'}
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 {/* Quick Weather Snapshot inside Overview */}

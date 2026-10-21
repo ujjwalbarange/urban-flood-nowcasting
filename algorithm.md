@@ -469,7 +469,7 @@ Dynamically discover, index, and validate Mumbai municipal subareas directly fro
 
 ### 9. Outputs & Downstream Consumers
 - Endpoints: `GET /api/v1/subareas`, `GET /api/v1/subareas/{id}`, `GET /api/v1/subareas/hierarchy-validation`.
-- Consumed by `Subarea3DViewer.tsx`, terrain extraction, and evacuation routing.
+- Consumed by `MumbaiFloodMap.tsx`, `Unified3DTerrainCanvas.tsx`, terrain extraction, and evacuation routing.
 
 ### 10. Implementation File References
 - Implementation: `services/spatial/hierarchy.py`
@@ -545,7 +545,7 @@ Provide a lightweight, GPU-performant (<50 KB payload, <5 ms render) 3D elevatio
 
 ### 9. Outputs & Downstream Consumers
 - Endpoints: `GET /api/v1/subareas/{id}/terrain3d`, `GET /api/v1/subareas/{id}/flood3d`.
-- Consumed by `Subarea3DViewer.tsx` (city dashboard and citizen web portal).
+- Consumed by `Unified3DTerrainCanvas.tsx` (city dashboard and citizen web portal).
 
 ### 10. Implementation File References
 - Implementation: `services/terrain/subarea_3d.py`, `services/flood/subarea_flood3d.py`
@@ -638,7 +638,7 @@ Calculate the lowest-flood-exposure evacuation route from any origin within a su
 
 ### 9. Outputs & Downstream Consumers
 - Endpoints: `GET /api/v1/subareas/{id}/destinations`, `POST /api/v1/subareas/{id}/evacuation-route`.
-- Consumed by `Subarea3DViewer.tsx` in both municipal command center and citizen portal.
+- Consumed by `MumbaiFloodMap.tsx` and `LocationInfoCard.tsx` in both municipal command center and citizen portal.
 
 ### 10. Missing-Data & Error Behaviour
 - If destination is disconnected or completely surrounded by water exceeding vehicle clearance, the engine catches `NetworkXNoPath` and emits `route_found: False` with immediate vertical sheltering directive.
@@ -655,4 +655,126 @@ Calculate the lowest-flood-exposure evacuation route from any origin within a su
 - Implementation: `services/routing/evacuation_engine.py`
 - Endpoints: `services/api/routers/subareas.py`
 - Tests: `tests/unit/test_phase4_adaptive_3d_routing.py::TestRoadGraphAndEvacuationRouting`
+
+---
+
+## ALG-TERR3D-02: Citywide Physically Scaled 3D Topography & Dynamic Hydrodynamic Water Drape
+
+### 1. Algorithm ID & Name
+- **ID**: `ALG-TERR3D-02`
+- **Name**: Citywide Physically Scaled 3D Topography Mesh, Directional Hillshading, Hypsometric Tinting, and Dynamic Hydrodynamic Water Drape
+
+### 2. Implementation Status
+- **Status**: Production / Fully Implemented and Verified
+- **Version**: 2.0.0
+
+### 3. Algorithm Type
+- **Type**: Unified 2D/3D Geospatial Visualization & Hydraulic Surfacing Component
+
+### 4. Objective
+Provide a photorealistic, physically scaled 3D elevation heightfield and dynamic floodwater surface for Greater Mumbai ($72.75^\circ - 73.05^\circ\text{ E}$, $18.88^\circ - 19.32^\circ\text{ N}$) without artificial alpine spikes or vertical distortions, switching in-place within the existing `MumbaiFloodMap` component.
+
+### 5. Mathematical Formulations & Coordinate Transformations
+
+1. **Metric Domain Dimensions**:
+   $$W_m = (\lambda_{\max} - \lambda_{\min}) \cdot 111,320 \cdot \cos\left(\frac{\phi_{\min} + \phi_{\max}}{2} \cdot \frac{\pi}{180}\right) \approx 31,557.5\text{ m}$$
+   $$H_m = (\phi_{\max} - \phi_{\min}) \cdot 110,700 \approx 48,708.0\text{ m}$$
+
+2. **Isotropic Physical Screen Scaling**:
+   $$\text{scale} = \frac{\min(W_{\text{canvas}}, H_{\text{canvas}}) \cdot 0.72 \cdot \text{zoom}}{\max(W_m, H_m)}$$
+   This guarantees identical horizontal and vertical scale ($\text{pixels}/\text{meter}$) so Mumbai's coastal topography retains its natural, gentle slope:
+   $$x_{\text{world}} = (\lambda - \lambda_{\text{center}}) \cdot \text{meters\_per\_deg\_lon} \cdot \text{scale}$$
+   $$y_{\text{world}} = (\phi_{\text{center}} - \phi) \cdot \text{meters\_per\_deg\_lat} \cdot \text{scale}$$
+   $$z_{\text{world}} = z_{\text{elev}} \cdot \text{vertExaggeration} \cdot \text{scale}$$
+   where default $\text{vertExaggeration} = 1.0\times$ (natural scale) and can be adjusted up to $2.5\times$ (avoiding the previous $>400\times$ vertical spikes).
+
+3. **Isometric Camera Projection**:
+   $$\begin{bmatrix} x_{\text{rot}} \\ y_{\text{rot}} \end{bmatrix} = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix} \begin{bmatrix} x_{\text{world}} \\ y_{\text{world}} \end{bmatrix}$$
+   $$x_{\text{screen}} = x_{\text{center}} + x_{\text{rot}} + \text{pan}_x$$
+   $$y_{\text{screen}} = y_{\text{center}} + y_{\text{rot}} \cdot \cos\psi - z_{\text{world}} \cdot \sin\psi + \text{pan}_y$$
+   where $\theta$ is azimuthal yaw and $\psi$ is camera pitch.
+
+4. **Directional NW Hillshading & Hypsometric Tinting**:
+   Surface normal $\mathbf{n} = \frac{\nabla_x \times \nabla_y}{\|\nabla_x \times \nabla_y\|}$, NW sun vector $\mathbf{l} = \frac{[-0.5, -0.7, 0.5]^T}{\|[-0.5, -0.7, 0.5]\|}$.
+   $$\text{Hillshade Intensity } I = \max(0, \mathbf{n} \cdot \mathbf{l})$$
+   Terrain color $C_{\text{terrain}}(z) = \text{HypsometricRamp}(z) \cdot (0.35 + 0.65 \cdot I)$.
+
+5. **Dynamic 3D Hydrodynamic Water Drape**:
+   For each cell $(r, c)$ in the $96 \times 96$ simulation raster:
+   $$z_{\text{water}}(r, c) = \begin{cases} z_{\text{bed}}(r, c) + h(r, c) & \text{if } h(r, c) \ge 0.01\text{ m} \\ \text{Transparent} & \text{if } h(r, c) < 0.01\text{ m (dry cells)} \end{cases}$$
+   Water surfaces are color-coded using the Phase 3 hydrodynamic depth scale ($<0.15\text{m}$ light blue, $0.15-0.30\text{m}$ cyan, $0.30-0.60\text{m}$ deep azure, $>0.60\text{m}$ indigo) and update dynamically across 60-minute timeline playback.
+
+### 6. Engineering Constants & Constraints
+- Default extent: Greater Mumbai ($72.75^\circ - 73.05^\circ\text{ E}$, $18.88^\circ - 19.32^\circ\text{ N}$).
+- Grid resolution: $96 \times 96$ bilinear-interpolated heightfield matrix.
+- Vertical exaggeration bounds: $0.8\times \le \text{vertExaggeration} \le 2.5\times$ (default $1.0\times$).
+- Dry cell cutoff: $h < 0.01\text{ m}$ strictly suppressed.
+
+### 7. Implementation File References
+- Backend: `services/terrain/subarea_3d.py::extract_city_terrain_3d`, `services/flood/subarea_flood3d.py::extract_city_flood_3d`
+- Router: `services/api/routers/subareas.py::get_city_terrain_3d_endpoint`, `services/api/routers/subareas.py::get_city_flood_3d_endpoint`
+- Frontend: `apps/city-dashboard/src/components/Unified3DTerrainCanvas.tsx`, `apps/citizen-web/src/components/Unified3DTerrainCanvas.tsx`, `MumbaiFloodMap.tsx`
+- Tests: `tests/unit/test_phase4_adaptive_3d_routing.py::TestCitywide3DTerrainAndFlood`
+
+---
+
+## ALG-ROUT-02: Click-to-Evacuate Point-Based FIGER v1.1 Routing Engine
+
+### 1. Algorithm ID & Name
+- **ID**: `ALG-ROUT-02`
+- **Name**: Click-to-Evacuate Point-Based FIGER v1.1 Routing Engine on OpenStreetMap Road Network
+
+### 2. Implementation Status
+- **Status**: Production / Fully Implemented and Verified
+- **Version**: 1.1.0
+
+### 3. Algorithm Type
+- **Type**: Interactive Graph Pathfinding & Real-Time Emergency Evacuation Component
+
+### 4. Objective
+Allow citizens and municipal operators to click *any* geographic point $(\text{lat}, \text{lon})$ directly on the 2D Leaflet map or 3D terrain canvas, discover ranked flood-safe destinations (BMC shelters, public hospitals), and compute the lowest-flood-exposure evacuation corridor across 14,563 OSM road segments based on vehicle clearance constraints.
+
+### 5. Workflow & Formulations
+
+1. **3D Click Screen-to-World Unprojection**:
+   When user clicks $(x_{\text{click}}, y_{\text{click}})$ on the 3D canvas, invert the isometric camera matrix:
+   $$\begin{bmatrix} x_{\text{rot}} \\ y_{\text{rot}} \end{bmatrix} = \begin{bmatrix} x_{\text{click}} - x_{\text{center}} - \text{pan}_x \\ (y_{\text{click}} - y_{\text{center}} - \text{pan}_y) / \cos\psi \end{bmatrix}$$
+   $$\begin{bmatrix} x_{\text{world}} \\ y_{\text{world}} \end{bmatrix} = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} \begin{bmatrix} x_{\text{rot}} \\ y_{\text{rot}} \end{bmatrix}$$
+   $$\lambda_{\text{click}} = \lambda_{\text{center}} + \frac{x_{\text{world}}}{\text{scale} \cdot \text{meters\_per\_deg\_lon}}, \quad \phi_{\text{click}} = \phi_{\text{center}} - \frac{y_{\text{world}}}{\text{scale} \cdot \text{meters\_per\_deg\_lat}}$$
+
+2. **k-d Tree Snapping**:
+   Snap $(\lambda_{\text{click}}, \phi_{\text{click}})$ to the nearest road network junction $u_{\text{snap}} \in V$ in $O(\log N)$ time using `scipy.spatial.cKDTree`.
+
+3. **Candidate Shelter Ranking & Flood Safety Pruning**:
+   For candidate shelters $D_k$:
+   $$d_k = \text{Haversine}(\text{origin}, D_k)$$
+   Prune shelters whose localized depth $h(D_k) \ge 0.10\text{ m}$. Rank remaining destinations in ascending order of $d_k$.
+
+4. **Vehicle Clearance Cutoff & Flood Impedance ($W(e)$)**:
+   For vehicle clearance $h_{\text{clear}}$:
+   - Pedestrian: $h_{\text{clear}} = 0.15\text{ m}$
+   - Standard Passenger Car: $h_{\text{clear}} = 0.30\text{ m}$
+   - Emergency / High-Clearance: $h_{\text{clear}} = 0.50\text{ m}$
+   $$W(e) = \begin{cases}
+   \infty & \text{if } h(e) \ge h_{\text{clear}} \\
+   \frac{L_e}{0.15 \cdot V_{\text{base}}} & \text{if } 0.30\text{ m} \le h(e) < h_{\text{clear}} \\
+   \frac{L_e}{0.50 \cdot V_{\text{base}}} & \text{if } 0.15\text{ m} \le h(e) < 0.30\text{ m} \\
+   \frac{L_e}{V_{\text{base}}} & \text{if } h(e) < 0.15\text{ m}
+   \end{cases}$$
+
+5. **Dijkstra Shortest Path & Dual Map Draping**:
+   $$\text{Route}^* = \arg\min_{\text{Path } P} \sum_{e \in P} W(e)$$
+   - In 2D: Rendered as a styled GeoJSON line on Leaflet map (cyan `#0284c7` for CLEAR, amber `#f59e0b` for CAUTION).
+   - In 3D: Draped directly over terrain topography with vertical offset $z_{\text{route}} = z_{\text{bed}} + 1.5\text{ m}$ to prevent mesh z-fighting.
+
+6. **Non-Guaranteed Safety Disclaimer (Mandatory)**:
+   Every generated route and destination response includes the prominent, uncompromised disclaimer:
+   *"Candidate Evacuation Corridor — Lowest Modeled Flood Exposure. Not guaranteed safe under all real-world conditions. Always follow official emergency service directions."*
+
+### 6. Implementation File References
+- Backend: `services/routing/evacuation_engine.py::find_safest_evacuation_from_point`, `services/routing/evacuation_engine.py::get_destinations_near_point`
+- Router: `services/api/routers/subareas.py::compute_point_evacuation_route`, `services/api/routers/subareas.py::get_destinations_near_point_endpoint`
+- Frontend: `LocationInfoCard.tsx`, `Unified3DTerrainCanvas.tsx`, `MumbaiFloodMap.tsx`
+- Tests: `tests/unit/test_phase4_adaptive_3d_routing.py::TestClickToEvacuatePointRouting`
+
 

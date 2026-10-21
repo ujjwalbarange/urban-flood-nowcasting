@@ -63,6 +63,7 @@ const MapClickHandler = dynamic<any>(
 );
 
 import { LocationInfoCard } from './LocationInfoCard';
+import { Unified3DTerrainCanvas } from './Unified3DTerrainCanvas';
 
 const API_BASE = 'http://127.0.0.1:8000/api/v1';
 
@@ -236,6 +237,12 @@ export function MumbaiFloodMap() {
   const [nowcastBounds, setNowcastBounds] = useState<[[number, number], [number, number]] | null>(null);
   const [nowcastStatus, setNowcastStatus] = useState<any | null>(null);
   const [rasterOpacity, setRasterOpacity] = useState(0.75);
+
+  // ── Unified 2D / 3D Mode & Evacuation Routing State ──
+  const [viewMode, setViewMode] = useState<'2d' | '3d'>('2d');
+  const [activeEvacuationRoute, setActiveEvacuationRoute] = useState<any | null>(null);
+  const [isComputingEvacRoute, setIsComputingEvacRoute] = useState<boolean>(false);
+  const [evacRouteError, setEvacRouteError] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -416,6 +423,35 @@ export function MumbaiFloodMap() {
     }
   };
 
+  // ── Click-to-Evacuate Handler (Direct from Map) ──
+  const handleComputeEvacuationRoute = async (vehicleType: string) => {
+    if (!selectedLocation) return;
+    setIsComputingEvacRoute(true);
+    setEvacRouteError(null);
+    try {
+      const res = await fetch(`${API_BASE}/subareas/point-evacuation-route`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          origin_lon: selectedLocation.lon,
+          origin_lat: selectedLocation.lat,
+          vehicle_type: vehicleType,
+        }),
+      }).then(r => r.json());
+
+      if (res.route_found) {
+        setActiveEvacuationRoute(res);
+      } else {
+        setActiveEvacuationRoute(res);
+        setEvacRouteError(res.message || 'Evacuation corridor blocked by excessive flood depths.');
+      }
+    } catch (err: any) {
+      setEvacRouteError(err.message || 'Failed to compute evacuation corridor');
+    } finally {
+      setIsComputingEvacRoute(false);
+    }
+  };
+
   // ── Ward style (color by population density) ──
   const wardStyle = (feature: any) => {
     const density = feature?.properties?.population_density_per_sq_km || 0;
@@ -578,11 +614,59 @@ export function MumbaiFloodMap() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-      {/* Layer Controls */}
+      {/* Layer Controls & 2D/3D Mode Selector */}
       <div className="card" style={{
-        padding: '12px 16px', display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center',
+        padding: '10px 16px', display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center',
       }}>
-        <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' as const, letterSpacing: '0.5px', marginRight: '4px' }}>
+        {/* Mode Switch: 2D Flat Map vs 3D Realistic Terrain (In-Place Toggle) */}
+        <div style={{
+          display: 'flex',
+          borderRadius: '8px',
+          border: '1px solid #cbd5e1',
+          overflow: 'hidden',
+          background: '#ffffff',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.06)',
+          marginRight: '6px',
+        }}>
+          <button
+            onClick={() => setViewMode('2d')}
+            style={{
+              padding: '5px 12px',
+              fontSize: '11px',
+              fontWeight: viewMode === '2d' ? 800 : 600,
+              background: viewMode === '2d' ? '#1d4ed8' : '#ffffff',
+              color: viewMode === '2d' ? '#ffffff' : '#334155',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              transition: 'all 0.15s ease',
+            }}
+          >
+            🗺️ 2D Map
+          </button>
+          <button
+            onClick={() => setViewMode('3d')}
+            style={{
+              padding: '5px 12px',
+              fontSize: '11px',
+              fontWeight: viewMode === '3d' ? 800 : 600,
+              background: viewMode === '3d' ? '#1d4ed8' : '#ffffff',
+              color: viewMode === '3d' ? '#ffffff' : '#334155',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              transition: 'all 0.15s ease',
+            }}
+          >
+            🏔️ 3D Terrain
+          </button>
+        </div>
+
+        <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
           Layers:
         </span>
         <LayerToggle label="Ward Boundaries" color="#2563eb" enabled={showWards} onToggle={() => setShowWards(!showWards)} count={wards?.feature_count} />
@@ -622,23 +706,25 @@ export function MumbaiFloodMap() {
         </div>
       ) : (
         <div className="map-container" style={{ position: 'relative' }}>
-          {loading && (
-            <div style={{
-              position: 'absolute', inset: 0, zIndex: 10,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(4px)',
-              fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 600,
-            }}>
-              Loading Mumbai GIS & Flood Layers...
-            </div>
-          )}
-          <MapContainer
-            center={MUMBAI_CENTER}
-            zoom={11}
-            style={{ height: '100%', width: '100%' }}
-            scrollWheelZoom={true}
-            zoomControl={true}
-          >
+          {/* 2D Flat Map Viewport */}
+          <div style={{ display: viewMode === '2d' ? 'block' : 'none', height: '100%', width: '100%' }}>
+            {loading && (
+              <div style={{
+                position: 'absolute', inset: 0, zIndex: 10,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(4px)',
+                fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 600,
+              }}>
+                Loading Mumbai GIS & Flood Layers...
+              </div>
+            )}
+            <MapContainer
+              center={MUMBAI_CENTER}
+              zoom={11}
+              style={{ height: '100%', width: '100%' }}
+              scrollWheelZoom={true}
+              zoomControl={true}
+            >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -898,6 +984,21 @@ export function MumbaiFloodMap() {
               );
             })}
 
+            {/* Active Flood Evacuation Corridor (Drawn directly on Map in 2D) */}
+            {activeEvacuationRoute?.geometry && (
+              <GeoJSON
+                key={`evac-route-2d-${activeEvacuationRoute.total_distance_km}-${activeEvacuationRoute.passability_verdict}`}
+                data={activeEvacuationRoute.geometry as any}
+                style={() => ({
+                  color: activeEvacuationRoute.passability_verdict?.includes('CLEAR') ? '#0284c7' : '#f59e0b',
+                  weight: 5,
+                  opacity: 0.9,
+                  lineJoin: 'round',
+                  lineCap: 'round',
+                })}
+              />
+            )}
+
             {/* Selected Location Point Marker with Pulsing Ring */}
             {selectedLocation && (
               <>
@@ -930,6 +1031,21 @@ export function MumbaiFloodMap() {
               </>
             )}
           </MapContainer>
+        </div>
+
+        {/* 3D Realistic Topography & Floodwater Simulation Viewport */}
+        {viewMode === '3d' && (
+          <div style={{ position: 'absolute', inset: 0, zIndex: 10 }}>
+            <Unified3DTerrainCanvas
+              selectedLocation={selectedLocation}
+              onSelectLocation={(lat, lon) => handleMapClick(lat, lon)}
+              activeRoute={activeEvacuationRoute}
+              timelineMinute={0}
+              showWaterOverlay={showNowcastRaster}
+              onClose3D={() => setViewMode('2d')}
+            />
+          </div>
+        )}
 
           {/* Synthetic Drainage Safety Warning Banner (Section 8.7) */}
           {showSyntheticDrainage && !syntheticWarningDismissed && (
@@ -1112,6 +1228,10 @@ export function MumbaiFloodMap() {
               }}
               showFacilitiesOnMap={showFacilities}
               onToggleFacilities={() => setShowFacilities(!showFacilities)}
+              activeEvacuationRoute={activeEvacuationRoute}
+              onComputeEvacuationRoute={handleComputeEvacuationRoute}
+              isComputingRoute={isComputingEvacRoute}
+              onClearEvacuationRoute={() => setActiveEvacuationRoute(null)}
             />
           )}
         </div>

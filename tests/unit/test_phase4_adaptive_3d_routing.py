@@ -13,8 +13,8 @@ from fastapi.testclient import TestClient
 
 from services.api.main import app
 from services.spatial.hierarchy import SubareaHierarchyEngine, get_hierarchy_engine
-from services.terrain.subarea_3d import extract_subarea_terrain_3d
-from services.flood.subarea_flood3d import extract_subarea_flood_3d
+from services.terrain.subarea_3d import extract_subarea_terrain_3d, extract_city_terrain_3d
+from services.flood.subarea_flood3d import extract_subarea_flood_3d, extract_city_flood_3d
 from services.routing.evacuation_engine import MumbaiEvacuationRoutingEngine, get_routing_engine
 
 client = TestClient(app)
@@ -236,3 +236,113 @@ class TestSubareaFastAPIEndpoints:
         for f in features:
             geom_type = f.get("geometry", {}).get("type")
             assert geom_type in ("LineString", "MultiLineString"), f"Unexpected geometry {geom_type} in lines_only mode"
+
+
+class TestCitywide3DTerrainAndFlood:
+    """Verify citywide Copernicus DEM heightfield extraction and dynamic water drape."""
+
+    def test_city_terrain_3d_extraction(self):
+        terrain = extract_city_terrain_3d(target_grid_dim=96)
+        assert terrain is not None
+        assert terrain["is_citywide"] is True
+        assert "Greater Mumbai" in terrain["area_name"]
+        assert terrain["dimensions"]["rows"] == 96
+        assert terrain["dimensions"]["cols"] == 96
+        assert terrain["dimensions"]["width_m"] > 30000.0
+        assert terrain["dimensions"]["height_m"] > 45000.0
+
+        elevs = terrain["elevations"]
+        assert len(elevs) == 96
+        assert len(elevs[0]) == 96
+        assert terrain["min_elevation_m"] <= terrain["mean_elevation_m"] <= terrain["max_elevation_m"]
+        assert terrain["bounds"]["min_lon"] < 72.80 < terrain["bounds"]["max_lon"]
+        assert terrain["bounds"]["min_lat"] < 19.00 < terrain["bounds"]["max_lat"]
+
+    def test_city_flood_3d_extraction(self):
+        flood = extract_city_flood_3d(target_grid_dim=96)
+        assert isinstance(flood, dict)
+        assert "available" in flood
+        assert flood["is_citywide"] is True
+        if flood["available"]:
+            assert "water_surface_elevations" in flood
+            assert len(flood["water_surface_elevations"]) == 96
+            assert len(flood["depths"]) == 96
+            # Dry cells should be transparent (0.0m)
+            for row in flood["depths"]:
+                for d in row:
+                    assert d == 0.0 or d >= 0.01
+
+    def test_city_terrain_endpoint(self):
+        res = client.get("/api/v1/subareas/city-terrain-3d?target_dim=96")
+        assert res.status_code == 200
+        data = res.json()
+        assert data["is_citywide"] is True
+        assert "Greater Mumbai" in data["area_name"]
+        assert len(data["elevations"]) == 96
+
+    def test_city_flood_endpoint(self):
+        res = client.get("/api/v1/subareas/city-flood-3d?target_dim=96")
+        assert res.status_code == 200
+        data = res.json()
+        assert "available" in data
+
+
+class TestClickToEvacuatePointRouting:
+    """Verify point-based evacuation routing across 14,563 OSM road segments."""
+
+    def test_destinations_near_point(self):
+        engine = get_routing_engine()
+        # Test near Dadar (72.842, 19.018)
+        dests = engine.get_destinations_near_point(lon=72.842, lat=19.018, max_search_radius_km=10.0, limit=5)
+        assert len(dests) > 0
+        first = dests[0]
+        assert "destination_id" in first
+        assert "name" in first
+        assert "distance_km" in first
+        assert first["distance_km"] > 0.0
+        # Sorted ascending
+        for i in range(len(dests) - 1):
+            assert dests[i]["distance_km"] <= dests[i + 1]["distance_km"]
+
+    def test_find_safest_evacuation_from_point(self):
+        engine = get_routing_engine()
+        route = engine.find_safest_evacuation_from_point(
+            origin_lon=72.842,
+            origin_lat=19.018,
+            vehicle_type="standard_car",
+            max_search_radius_km=10.0,
+        )
+        assert route["route_found"] is True
+        assert route["total_distance_km"] > 0.0
+        assert route["estimated_travel_time_min"] > 0.0
+        assert len(route["geometry"]["coordinates"]) > 5
+        # MANDATORY NON-GUARANTEED SAFETY DISCLAIMER
+        disclaimer = route.get("disclaimer", "")
+        assert "Not guaranteed safe" in disclaimer
+        assert "emergency service" in disclaimer
+
+    def test_destinations_near_endpoint(self):
+        res = client.get("/api/v1/subareas/destinations-near?lon=72.842&lat=19.018&limit=5")
+        assert res.status_code == 200
+        data = res.json()
+        assert data["count"] > 0
+        assert "destinations" in data
+        assert "disclaimer" in data
+
+    def test_point_evacuation_route_endpoint(self):
+        res = client.post(
+            "/api/v1/subareas/point-evacuation-route",
+            json={
+                "origin_lon": 72.842,
+                "origin_lat": 19.018,
+                "vehicle_type": "standard_car",
+                "max_search_radius_km": 10.0,
+            },
+        )
+        assert res.status_code == 200
+        data = res.json()
+        assert data["route_found"] is True
+        assert data["total_distance_km"] > 0.0
+        assert "disclaimer" in data
+        assert "Not guaranteed safe" in data["disclaimer"]
+

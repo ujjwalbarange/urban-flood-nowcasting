@@ -385,3 +385,21 @@ async def get_dashboard_live_state():
         },
     }
 
+
+@router.post("/run-forecast")
+async def trigger_forecast_run(
+    catchment: str = Query("hindmata_dadar", description="Catchment basin"),
+    horizon_hours: float = Query(3.0, ge=1.0, le=6.0, description="Forecast horizon in hours (1h to 6h)"),
+    grid_size: int = Query(60, ge=30, le=100, description="Mesh dimension"),
+):
+    """Execute forward-looking hydrodynamic forecast driven by Open-Meteo NWP rainfall."""
+    from services.nowcast.forecast_runner import get_forecast_runner
+    runner = get_forecast_runner()
+    result = await runner.execute_forecast_run(
+        catchment=catchment,
+        horizon_hours=horizon_hours,
+        grid_size=grid_size,
+    )
+    return result.to_dict()
+
+

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import math
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 import networkx as nx
@@ -312,9 +313,12 @@ class MumbaiEvacuationRoutingEngine:
         total_time_s = 0.0
         max_flood_depth_m = 0.0
         hazard_segments_count = 0
+        caution_segments_count = 0
+        severe_segments_count = 0
         road_names_encountered: Set[str] = set()
+        total_segs = len(path_nodes) - 1
 
-        for i in range(len(path_nodes) - 1):
+        for i in range(total_segs):
             u = path_nodes[i]
             v = path_nodes[i + 1]
             edge_data = self.graph.get_edge_data(u, v) or {}
@@ -333,7 +337,11 @@ class MumbaiEvacuationRoutingEngine:
             d_m = self._sample_flood_depth_at(mid[0], mid[1])
             if d_m > max_flood_depth_m:
                 max_flood_depth_m = d_m
-            if d_m >= 0.15:
+            if d_m >= 0.30:
+                severe_segments_count += 1
+                hazard_segments_count += 1
+            elif d_m >= 0.15:
+                caution_segments_count += 1
                 hazard_segments_count += 1
 
             cost_s = weight_func(u, v, edge_data)
@@ -349,6 +357,27 @@ class MumbaiEvacuationRoutingEngine:
         else:
             passability_verdict = "CLEAR (Modeled Water <0.15m on Corridor)"
 
+        # Provenance of current simulation
+        sim = get_latest_nowcast()
+        sim_run_id = sim.run_id if sim else "baseline_topography"
+        sim_timestamp = sim.completed_at.isoformat() if sim and sim.completed_at else None
+
+        clear_segs = max(0, total_segs - hazard_segments_count)
+        exposed_pct = round((hazard_segments_count / max(1, total_segs)) * 100.0, 1)
+
+        explanation = {
+            "destination_eligibility_reason": f"Designated emergency destination '{destination_name}' meets capacity and flood safety criteria.",
+            "simulation_run_id_used": sim_run_id,
+            "simulation_timestamp_used": sim_timestamp,
+            "road_segments_evaluated": total_segs,
+            "segments_clear": clear_segs,
+            "segments_caution": caution_segments_count,
+            "segments_hazardous": severe_segments_count,
+            "proportion_exposed_pct": exposed_pct,
+            "speed_model_assumptions": "Speeds based on OSM road hierarchy (Trunk: 50 km/h, Secondary: 35 km/h, Residential: 20 km/h) reduced dynamically by 50% for 15-30cm water and 85% for >30cm water.",
+            "spatial_resolution_caveat": "Hydrodynamic simulation resolution is 30m–120m. Local street micro-topography (curbs, underpasses, speed breakers) may cause localized variations from modeled depth.",
+        }
+
         return {
             "route_found": True,
             "origin": [origin_lon, origin_lat],
@@ -361,12 +390,15 @@ class MumbaiEvacuationRoutingEngine:
             "passability_verdict": passability_verdict,
             "inundated_segments_count": hazard_segments_count,
             "primary_roads": list(road_names_encountered)[:6],
+            "route_explanation": explanation,
+            "route_calculated_at": datetime.now(timezone.utc).isoformat(),
+            "is_stale": False,
             "geometry": {
                 "type": "LineString",
                 "coordinates": route_coords,
             },
             "disclaimer": "Candidate Evacuation Corridor — Lowest Modeled Flood Exposure. Not guaranteed safe under all real-world conditions. Always follow emergency service instructions.",
-            "provenance": "Flood-Impeded Dijkstra Routing (FIGER v1.0) on OpenStreetMap Road Network + 2D Diffusive Wave Inundation",
+            "provenance": f"Flood-Impeded Dijkstra Routing (FIGER v1.1) on 14,563 OSM segments + 2D Diffusive Wave [{sim_run_id}]",
         }
 
     def get_destinations_near_point(
@@ -480,8 +512,8 @@ class MumbaiEvacuationRoutingEngine:
                 route["destination_metadata"] = target_dest
                 return route
 
-        # Otherwise evaluate top eligible destinations and return best passable route
-        best_compromised = None
+        # Otherwise evaluate top eligible destinations and return best passable route with alternative
+        candidates_evaluated: List[Dict[str, Any]] = []
         for cand in dests[:6]:
             res = self.compute_evacuation_route(
                 origin_lon=origin_lon,
@@ -493,20 +525,88 @@ class MumbaiEvacuationRoutingEngine:
             )
             if res.get("route_found"):
                 res["destination_metadata"] = cand
-                if "CLEAR" in res.get("passability_verdict", ""):
-                    return res
-                if best_compromised is None or res.get("max_flood_depth_along_route_m", 999) < best_compromised.get("max_flood_depth_along_route_m", 999):
-                    best_compromised = res
+                candidates_evaluated.append(res)
+                if len(candidates_evaluated) >= 2 and "CLEAR" in res.get("passability_verdict", ""):
+                    break
 
-        if best_compromised:
-            return best_compromised
+        if not candidates_evaluated:
+            return {
+                "route_found": False,
+                "origin": [origin_lon, origin_lat],
+                "message": "All ground evacuation routes blocked by floodwaters exceeding vehicle clearance.",
+                "disclaimer": "All candidate paths exceed safe flood-depth thresholds. Seek vertical shelter immediately in a sturdy, multi-story structure.",
+            }
 
-        return {
-            "route_found": False,
-            "origin": [origin_lon, origin_lat],
-            "message": "All ground evacuation routes blocked by floodwaters exceeding vehicle clearance.",
-            "disclaimer": "All candidate paths exceed safe flood-depth thresholds. Seek vertical shelter immediately in a sturdy, multi-story structure.",
-        }
+        # Sort by passability (CLEAR first) then by total distance
+        candidates_evaluated.sort(
+            key=lambda r: (
+                0 if "CLEAR" in r.get("passability_verdict", "") else 1,
+                r.get("max_flood_depth_along_route_m", 999),
+                r.get("total_distance_km", 999),
+            )
+        )
+
+        primary = candidates_evaluated[0]
+
+        # Attach alternative route if another distinct destination is available
+        if len(candidates_evaluated) > 1:
+            alt = candidates_evaluated[1]
+            dist_diff = round(alt["total_distance_km"] - primary["total_distance_km"], 2)
+            time_diff = round(alt["estimated_travel_time_min"] - primary["estimated_travel_time_min"], 1)
+            depth_diff = round(alt["max_flood_depth_along_route_m"] - primary["max_flood_depth_along_route_m"], 3)
+
+            if dist_diff > 0 and depth_diff <= 0:
+                tradeoff = f"Alternative route to {alt['destination_name']} is {dist_diff} km longer, but has {abs(depth_diff):.2f}m lower peak water exposure."
+            elif dist_diff > 0 and depth_diff > 0:
+                tradeoff = f"Alternative route to {alt['destination_name']} is {dist_diff} km longer and has higher water depth ({alt['max_flood_depth_along_route_m']:.2f}m)."
+            else:
+                tradeoff = f"Alternative route provides secondary access via {', '.join(alt.get('primary_roads', [])[:2])}."
+
+            primary["alternative_route"] = {
+                "destination_name": alt["destination_name"],
+                "total_distance_km": alt["total_distance_km"],
+                "estimated_travel_time_min": alt["estimated_travel_time_min"],
+                "max_flood_depth_along_route_m": alt["max_flood_depth_along_route_m"],
+                "passability_verdict": alt["passability_verdict"],
+                "geometry": alt["geometry"],
+                "distance_diff_km": dist_diff,
+                "time_diff_min": time_diff,
+                "max_depth_diff_m": depth_diff,
+                "tradeoff_summary": tradeoff,
+            }
+
+        return primary
+
+    def check_route_staleness(self, route_payload: Dict[str, Any]) -> Dict[str, Any]:
+        """Check whether a route calculated under an earlier simulation run is now stale."""
+        sim = get_latest_nowcast()
+        if not sim or not route_payload.get("route_found"):
+            return {"is_stale": False, "reason": None}
+
+        route_run_id = route_payload.get("route_explanation", {}).get("simulation_run_id_used")
+        current_run_id = sim.run_id
+
+        if route_run_id and route_run_id != "baseline_topography" and route_run_id != current_run_id:
+            coords = route_payload.get("geometry", {}).get("coordinates", [])
+            max_current_d = 0.0
+            for pt in coords[::4]:
+                d = self._sample_flood_depth_at(pt[0], pt[1])
+                if d > max_current_d:
+                    max_current_d = d
+
+            old_max_d = route_payload.get("max_flood_depth_along_route_m", 0.0)
+            if max_current_d > old_max_d + 0.05:
+                return {
+                    "is_stale": True,
+                    "reason": f"Newer simulation run {current_run_id} predicts increased flood depth ({max_current_d:.2f}m vs previous {old_max_d:.2f}m) along corridor. Recalculation required.",
+                    "current_run_id": current_run_id,
+                }
+            return {
+                "is_stale": True,
+                "reason": f"Route was calculated under previous simulation run {route_run_id}. Newer simulation {current_run_id} is available.",
+                "current_run_id": current_run_id,
+            }
+        return {"is_stale": False, "reason": None}
 
 
 # Singleton router instance

@@ -95,6 +95,13 @@ async def compute_point_evacuation_route(req: PointRouteRequest):
     return route_res
 
 
+@router.post("/check-route-staleness")
+async def check_evacuation_route_staleness(route_payload: Dict[str, Any]):
+    """Evaluate whether an active evacuation route is stale due to updated simulation flood outputs."""
+    router_eng = get_evacuation_routing_engine()
+    return router_eng.check_route_staleness(route_payload)
+
+
 @router.get("")
 async def list_all_subareas(
     ward: Optional[str] = Query(None, description="Filter subareas by parent ward ID (e.g. 'A', 'KE', 'GN')"),
