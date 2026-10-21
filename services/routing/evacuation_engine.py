@@ -364,6 +364,10 @@ class MumbaiEvacuationRoutingEngine:
 
         clear_segs = max(0, total_segs - hazard_segments_count)
         exposed_pct = round((hazard_segments_count / max(1, total_segs)) * 100.0, 1)
+        tot_eval = max(1, total_segs)
+        clear_pct = round((clear_segs / tot_eval) * 100.0, 1)
+        caution_pct = round((caution_segments_count / tot_eval) * 100.0, 1)
+        haz_pct = round((severe_segments_count / tot_eval) * 100.0, 1)
 
         explanation = {
             "destination_eligibility_reason": f"Designated emergency destination '{destination_name}' meets capacity and flood safety criteria.",
@@ -374,6 +378,12 @@ class MumbaiEvacuationRoutingEngine:
             "segments_caution": caution_segments_count,
             "segments_hazardous": severe_segments_count,
             "proportion_exposed_pct": exposed_pct,
+            "road_exposure_breakdown": {
+                "total_segments": total_segs,
+                "clear_segments_pct": clear_pct,
+                "caution_segments_pct": caution_pct,
+                "hazardous_segments_pct": haz_pct,
+            },
             "speed_model_assumptions": "Speeds based on OSM road hierarchy (Trunk: 50 km/h, Secondary: 35 km/h, Residential: 20 km/h) reduced dynamically by 50% for 15-30cm water and 85% for >30cm water.",
             "spatial_resolution_caveat": "Hydrodynamic simulation resolution is 30m–120m. Local street micro-topography (curbs, underpasses, speed breakers) may cause localized variations from modeled depth.",
         }
@@ -567,6 +577,7 @@ class MumbaiEvacuationRoutingEngine:
                 "total_distance_km": alt["total_distance_km"],
                 "estimated_travel_time_min": alt["estimated_travel_time_min"],
                 "max_flood_depth_along_route_m": alt["max_flood_depth_along_route_m"],
+                "max_flood_depth_m": alt["max_flood_depth_along_route_m"],
                 "passability_verdict": alt["passability_verdict"],
                 "geometry": alt["geometry"],
                 "distance_diff_km": dist_diff,
@@ -580,14 +591,22 @@ class MumbaiEvacuationRoutingEngine:
     def check_route_staleness(self, route_payload: Dict[str, Any]) -> Dict[str, Any]:
         """Check whether a route calculated under an earlier simulation run is now stale."""
         sim = get_latest_nowcast()
-        if not sim or not route_payload.get("route_found"):
+        route_found = route_payload.get("route_found", True)
+        if not route_found:
             return {"is_stale": False, "reason": None}
 
-        route_run_id = route_payload.get("route_explanation", {}).get("simulation_run_id_used")
-        current_run_id = sim.run_id
+        route_run_id = (
+            route_payload.get("route_explanation", {}).get("simulation_run_id_used")
+            or route_payload.get("simulation_run_id_used")
+        )
+        current_run_id = sim.run_id if sim else None
+
+        if not current_run_id:
+            # If no simulation is currently cached, baseline or older routes are not deemed stale
+            return {"is_stale": False, "reason": None, "current_run_id": None}
 
         if route_run_id and route_run_id != "baseline_topography" and route_run_id != current_run_id:
-            coords = route_payload.get("geometry", {}).get("coordinates", [])
+            coords = route_payload.get("geometry", {}).get("coordinates", []) or route_payload.get("corridor_coordinates", [])
             max_current_d = 0.0
             for pt in coords[::4]:
                 d = self._sample_flood_depth_at(pt[0], pt[1])
@@ -606,7 +625,7 @@ class MumbaiEvacuationRoutingEngine:
                 "reason": f"Route was calculated under previous simulation run {route_run_id}. Newer simulation {current_run_id} is available.",
                 "current_run_id": current_run_id,
             }
-        return {"is_stale": False, "reason": None}
+        return {"is_stale": False, "reason": None, "current_run_id": current_run_id}
 
 
 # Singleton router instance

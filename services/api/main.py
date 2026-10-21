@@ -56,6 +56,19 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.warning("Could not launch initial nowcast run", error=str(e))
 
+    # Pre-warm 3D Copernicus DEM terrain and real building footprints
+    try:
+        import asyncio
+        from services.terrain.subarea_3d import extract_city_terrain_3d
+        from services.buildings.building_3d import extract_city_buildings_3d
+        def _warm_3d():
+            extract_city_terrain_3d(96)
+            extract_city_buildings_3d()
+            logger.info("3D terrain and building caches pre-warmed")
+        asyncio.get_running_loop().run_in_executor(None, _warm_3d)
+    except Exception as e:
+        logger.warning("Could not pre-warm 3D terrain cache", error=str(e))
+
     yield
 
     logger.info("Shutting down API")
@@ -77,15 +90,18 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS — allow both frontend apps
+# CORS — allow both frontend apps on any local port
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",  # citizen-web
-        "http://localhost:3001",  # city-dashboard
-        "http://localhost:5173",  # vite dev
-        "*",  # Allow all origins for development
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3001",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
     ],
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

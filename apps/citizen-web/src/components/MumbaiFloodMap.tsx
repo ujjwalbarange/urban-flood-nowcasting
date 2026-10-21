@@ -683,19 +683,49 @@ export function MumbaiFloodMap() {
         <LayerToggle label="Roads" color="#f59e0b" enabled={showRoads} onToggle={() => setShowRoads(!showRoads)} count={roads?.feature_count} />
 
 
-        {currentRainfall !== null && (
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {currentRainfall !== null && (
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: '6px',
+              padding: '6px 14px', borderRadius: 'var(--radius-full)',
+              background: currentRainfall > 0 ? 'var(--color-info-bg)' : 'var(--color-success-bg)',
+              border: `1px solid ${currentRainfall > 0 ? 'var(--color-info-border)' : 'var(--color-success-border)'}`,
+              fontSize: '13px', fontWeight: 700,
+              color: currentRainfall > 0 ? 'var(--color-info)' : 'var(--color-success)',
+            }}>
+              <span className="status-dot live" />
+              {currentRainfall > 0 ? `🌧 ${currentRainfall.toFixed(1)} mm/hr` : '☀️ No Rain'}
+            </div>
+          )}
+
+          {/* Model Run Status & Provenance Chip (Batch 7) */}
           <div style={{
-            marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '6px',
-            padding: '6px 14px', borderRadius: 'var(--radius-full)',
-            background: currentRainfall > 0 ? 'var(--color-info-bg)' : 'var(--color-success-bg)',
-            border: `1px solid ${currentRainfall > 0 ? 'var(--color-info-border)' : 'var(--color-success-border)'}`,
-            fontSize: '13px', fontWeight: 700,
-            color: currentRainfall > 0 ? 'var(--color-info)' : 'var(--color-success)',
+            padding: '5px 10px', borderRadius: '8px',
+            background: '#ffffff', border: '1px solid #cbd5e1',
+            fontSize: '10.5px', fontWeight: 600, color: '#334155',
+            display: 'flex', alignItems: 'center', gap: '6px',
           }}>
-            <span className="status-dot live" />
-            {currentRainfall > 0 ? `🌧 ${currentRainfall.toFixed(1)} mm/hr` : '☀️ No Rain'}
+            <span style={{
+              padding: '1px 5px', borderRadius: '4px', fontSize: '9px', fontWeight: 800,
+              background: '#f0fdf4',
+              color: '#166534',
+              border: '1px solid #bbf7d0',
+            }}>
+              OBSERVED LIVE
+            </span>
+            <span style={{ color: '#64748b' }}>
+              Run: <strong>{nowcastStatus?.run_id ? String(nowcastStatus.run_id).slice(-8) : '2D-DIFF'}</strong>
+            </span>
+            {activeEvacuationRoute?.is_stale && (
+              <span style={{
+                padding: '1px 5px', borderRadius: '4px', fontSize: '8.5px', fontWeight: 800,
+                background: '#fef2f2', color: '#dc2626', border: '1px solid #fecaca',
+              }}>
+                ⚠️ STALE ROUTE
+              </span>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       {/* Map */}

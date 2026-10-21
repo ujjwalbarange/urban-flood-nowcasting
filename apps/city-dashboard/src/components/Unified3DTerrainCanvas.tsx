@@ -7,7 +7,7 @@ import {
   Building, Hospital, Waves, Mountain, RefreshCw, X, Maximize2, Sliders
 } from 'lucide-react';
 
-const API_BASE = 'http://127.0.0.1:8000/api/v1';
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || '/api/v1';
 
 export interface Unified3DTerrainCanvasProps {
   selectedLocation: { lat: number; lon: number } | null;
@@ -40,10 +40,13 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
   const [subareasList, setSubareasList] = useState<SubareaOption[]>([]);
   const [loadingTerrain, setLoadingTerrain] = useState<boolean>(true);
   const [terrainError, setTerrainError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState<number>(0);
 
-  // ── Terrain & Flood Heightfield Data ──
+  // ── Terrain, Flood & Building Data ──
   const [terrainData, setTerrainData] = useState<any | null>(null);
   const [floodData, setFloodData] = useState<any | null>(null);
+  const [buildingsData, setBuildingsData] = useState<any[]>([]);
+  const [showBuildings, setShowBuildings] = useState<boolean>(true);
 
   // ── Realistic Camera Controls (Natural Scale Default) ──
   // Azimuth (yaw): 0 = looking North, PI/4 = NW isometric angle
@@ -67,8 +70,8 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
   useEffect(() => {
     async function fetchSubareas() {
       try {
-        const res = await fetch(`${API_BASE}/subareas`).then(r => r.json());
-        if (res.subareas) {
+        const res = await fetch(`${API_BASE}/subareas`).then(r => r.ok ? r.json() : null).catch(() => null);
+        if (res?.subareas) {
           setSubareasList(res.subareas);
         }
       } catch { /* subareas list fallback */ }
@@ -76,35 +79,50 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     fetchSubareas();
   }, []);
 
-  // 2. Fetch Terrain & Flood Data whenever focus area or timeline minute changes
+  // 2. Fetch Terrain, Flood & 3D Building Data whenever focus area, minute, or retry changes
   useEffect(() => {
     let active = true;
     async function load3DData() {
       setLoadingTerrain(true);
       setTerrainError(null);
       try {
+        const minuteParam = (typeof timelineMinute === 'number' && !isNaN(timelineMinute) && timelineMinute >= 0)
+          ? `&minute=${timelineMinute}`
+          : '';
+
         let terrainUrl = `${API_BASE}/subareas/city-terrain-3d?target_dim=96`;
-        let floodUrl = `${API_BASE}/subareas/city-flood-3d?target_dim=96&minute=${timelineMinute}`;
+        let floodUrl = `${API_BASE}/subareas/city-flood-3d?target_dim=96${minuteParam}`;
+        let buildingsUrl = `${API_BASE}/subareas/city-buildings-3d?limit=180`;
 
         if (focusMode !== 'citywide') {
           terrainUrl = `${API_BASE}/subareas/${focusMode}/terrain3d?target_dim=80`;
-          floodUrl = `${API_BASE}/subareas/${focusMode}/flood3d?target_dim=80&minute=${timelineMinute}`;
+          floodUrl = `${API_BASE}/subareas/${focusMode}/flood3d?target_dim=80${minuteParam}`;
+          buildingsUrl = `${API_BASE}/subareas/${focusMode}/buildings-3d?limit=150`;
         }
 
-        const [tRes, fRes] = await Promise.all([
-          fetch(terrainUrl).then(r => r.ok ? r.json() : null),
-          fetch(floodUrl).then(r => r.ok ? r.json() : null),
+        const [tRes, fRes, bRes] = await Promise.all([
+          fetch(terrainUrl).then(r => r.ok ? r.json() : null).catch(() => null),
+          fetch(floodUrl).then(r => r.ok ? r.json() : null).catch(() => null),
+          fetch(buildingsUrl).then(r => r.ok ? r.json() : null).catch(() => null),
         ]);
 
         if (!active) return;
-        if (tRes && tRes.elevations) {
+        if (tRes && tRes.elevations && Array.isArray(tRes.elevations)) {
           setTerrainData(tRes);
         } else {
-          throw new Error('Copernicus GLO-30 DEM heightfield unavailable.');
+          throw new Error('Unable to connect to MUFNS Hydrodynamic API (port 8000). Please verify the backend service is running.');
         }
 
         if (fRes) {
           setFloodData(fRes);
+        } else {
+          setFloodData({ available: false, message: 'Flood simulation data currently unavailable for selected minute.' });
+        }
+
+        if (bRes && Array.isArray(bRes.buildings)) {
+          setBuildingsData(bRes.buildings);
+        } else {
+          setBuildingsData([]);
         }
       } catch (err: any) {
         if (active) {
@@ -117,7 +135,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
 
     load3DData();
     return () => { active = false; };
-  }, [focusMode, timelineMinute]);
+  }, [focusMode, timelineMinute, retryCount]);
 
   // Keep water toggle in sync with parent prop
   useEffect(() => {
@@ -498,7 +516,92 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
       }
     }
 
-    // 7. Drape Selected Origin Pin Marker
+    // 7. Render 3D Extruded Buildings (Batch 4)
+    if (showBuildings && buildingsData.length > 0) {
+      const sortedBuildings = [...buildingsData].map(b => {
+        const cPt = projectPoint(
+          b.centroid[0], b.centroid[1], b.base_elevation_m, bounds, width_m, height_m, width, height, minElev
+        );
+        return { building: b, depthSort: cPt.depthSort, cPt };
+      }).sort((a, b) => b.depthSort - a.depthSort);
+
+      for (const item of sortedBuildings) {
+        const b = item.building;
+        const coords: [number, number][] = b.coordinates;
+        if (!coords || coords.length < 3) continue;
+
+        const baseElev = b.base_elevation_m;
+        const roofElev = b.roof_elevation_m || (baseElev + (b.height_m || 8.0));
+
+        const basePts = coords.map(pt => projectPoint(
+          pt[0], pt[1], baseElev, bounds, width_m, height_m, width, height, minElev
+        ));
+        const roofPts = coords.map(pt => projectPoint(
+          pt[0], pt[1], roofElev, bounds, width_m, height_m, width, height, minElev
+        ));
+
+        // Draw vertical walls with directional hillshade
+        for (let i = 0; i < basePts.length - 1; i++) {
+          const bp0 = basePts[i];
+          const bp1 = basePts[i + 1];
+          const rp0 = roofPts[i];
+          const rp1 = roofPts[i + 1];
+
+          ctx.beginPath();
+          ctx.moveTo(bp0.x, bp0.y);
+          ctx.lineTo(bp1.x, bp1.y);
+          ctx.lineTo(rp1.x, rp1.y);
+          ctx.lineTo(rp0.x, rp0.y);
+          ctx.closePath();
+
+          const dx = coords[i + 1][0] - coords[i][0];
+          const dy = coords[i + 1][1] - coords[i][1];
+          const isSunlit = (dx * Math.cos(azimuth) - dy * Math.sin(azimuth)) >= 0;
+
+          if (renderMode === 'shaded') {
+            ctx.fillStyle = isSunlit ? 'rgba(241, 245, 249, 0.94)' : 'rgba(203, 213, 225, 0.94)';
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(100, 116, 139, 0.4)';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          } else {
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+
+        // Draw flat roof
+        ctx.beginPath();
+        ctx.moveTo(roofPts[0].x, roofPts[0].y);
+        for (let i = 1; i < roofPts.length; i++) {
+          ctx.lineTo(roofPts[i].x, roofPts[i].y);
+        }
+        ctx.closePath();
+
+        if (renderMode === 'shaded') {
+          ctx.fillStyle = b.height_source === 'measured_levels' ? '#ffffff' : '#f8fafc';
+          ctx.fill();
+          ctx.strokeStyle = b.height_source === 'measured_levels' ? '#0284c7' : 'rgba(71, 85, 105, 0.5)';
+          ctx.lineWidth = b.height_source === 'measured_levels' ? 1.0 : 0.6;
+          ctx.stroke();
+        } else {
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+
+        // Landmark label for major civic structures
+        if (b.height_source === 'measured_levels' && b.name && zoom >= 1.2) {
+          ctx.fillStyle = '#0f172a';
+          ctx.font = 'bold 9px system-ui, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(b.name, item.cPt.x, item.cPt.y - 12);
+        }
+      }
+    }
+
+    // 8. Drape Selected Origin Pin Marker
     if (selectedLocation) {
       const r_idx = Math.max(0, Math.min(rows - 1, (bounds.max_lat - selectedLocation.lat) / (bounds.max_lat - bounds.min_lat) * (rows - 1)));
       const c_idx = Math.max(0, Math.min(cols - 1, (selectedLocation.lon - bounds.min_lon) / (bounds.max_lon - bounds.min_lon) * (cols - 1)));
@@ -545,7 +648,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     }
 
   }, [
-    terrainData, floodData, projectPoint, azimuth, pitch, zoom,
+    terrainData, floodData, buildingsData, showBuildings, projectPoint, azimuth, pitch, zoom,
     vertExaggeration, renderMode, showWater, showContextFade,
     focusMode, activeRoute, selectedLocation
   ]);
@@ -666,25 +769,54 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         </div>
       )}
 
-      {/* Error Banner */}
+      {/* Error Banner with Multi-Option Recovery */}
       {terrainError && (
         <div style={{
           position: 'absolute', top: '64px', left: '50%', transform: 'translateX(-50%)',
           zIndex: 40, background: '#fef2f2', border: '1px solid #ef4444',
           borderRadius: '8px', padding: '10px 16px', boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
-          display: 'flex', alignItems: 'center', gap: '10px', fontSize: '12px', color: '#991b1b',
+          display: 'flex', alignItems: 'center', gap: '12px', fontSize: '12px', color: '#991b1b',
+          maxWidth: '92%',
         }}>
-          <AlertTriangle size={16} color="#ef4444" />
-          <span>{terrainError}</span>
-          <button
-            onClick={() => setFocusMode('citywide')}
-            style={{
-              background: '#ef4444', color: '#ffffff', border: 'none',
-              padding: '4px 10px', borderRadius: '4px', fontWeight: 700, cursor: 'pointer',
-            }}
-          >
-            Reset Citywide
-          </button>
+          <AlertTriangle size={18} color="#ef4444" style={{ flexShrink: 0 }} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <span style={{ fontWeight: 800, fontSize: '12px' }}>3D Surface Connection Notice</span>
+            <span style={{ fontSize: '11px', color: '#7f1d1d' }}>{terrainError}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginLeft: 'auto', flexShrink: 0 }}>
+            <button
+              onClick={() => setRetryCount(c => c + 1)}
+              style={{
+                background: '#0284c7', color: '#ffffff', border: 'none',
+                padding: '5px 12px', borderRadius: '4px', fontWeight: 700, cursor: 'pointer',
+                fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px',
+              }}
+            >
+              <RefreshCw size={12} /> Retry
+            </button>
+            <button
+              onClick={() => { setFocusMode('citywide'); setRetryCount(c => c + 1); }}
+              style={{
+                background: '#ef4444', color: '#ffffff', border: 'none',
+                padding: '5px 12px', borderRadius: '4px', fontWeight: 700, cursor: 'pointer',
+                fontSize: '11px',
+              }}
+            >
+              Reset Citywide
+            </button>
+            {onClose3D && (
+              <button
+                onClick={onClose3D}
+                style={{
+                  background: '#334155', color: '#ffffff', border: 'none',
+                  padding: '5px 12px', borderRadius: '4px', fontWeight: 700, cursor: 'pointer',
+                  fontSize: '11px',
+                }}
+              >
+                🗺️ Return to 2D Map
+              </button>
+            )}
+          </div>
         </div>
       )}
 
@@ -873,6 +1005,21 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
                 {showWater ? '🌊 ON' : 'OFF'}
               </button>
             </div>
+
+            {/* 3D Buildings Extrusion Toggle (Batch 4) */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '6px' }}>
+              <span style={{ fontSize: '10.5px', color: '#cbd5e1' }}>3D Buildings Extrusion</span>
+              <button
+                onClick={() => setShowBuildings(!showBuildings)}
+                style={{
+                  background: showBuildings ? '#0284c7' : 'rgba(255,255,255,0.1)',
+                  color: '#ffffff', border: 'none', padding: '3px 8px', borderRadius: '4px',
+                  fontSize: '9.5px', fontWeight: 700, cursor: 'pointer',
+                }}
+              >
+                {showBuildings ? '🏢 ON' : 'OFF'}
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -888,6 +1035,11 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         <span style={{ color: '#38bdf8', fontWeight: 700 }}>
           {focusMode === 'citywide' ? 'City-Wide (96×96 Copernicus DEM)' : `Focus: ${focusMode}`}
         </span>
+        {showBuildings && buildingsData.length > 0 && (
+          <span style={{ color: '#cbd5e1', borderLeft: '1px solid rgba(255,255,255,0.2)', paddingLeft: '8px' }}>
+            🏢 {buildingsData.length} Buildings Extruded
+          </span>
+        )}
       </div>
     </div>
   );

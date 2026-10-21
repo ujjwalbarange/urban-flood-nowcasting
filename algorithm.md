@@ -777,4 +777,315 @@ Allow citizens and municipal operators to click *any* geographic point $(\text{l
 - Frontend: `LocationInfoCard.tsx`, `Unified3DTerrainCanvas.tsx`, `MumbaiFloodMap.tsx`
 - Tests: `tests/unit/test_phase4_adaptive_3d_routing.py::TestClickToEvacuatePointRouting`
 
+---
+
+## ALG-VAL-01: Historical Flood-Event Replay & Paired Ground-Truth Benchmark
+
+### 1. Algorithm ID & Name
+- **ID**: `ALG-VAL-01`
+- **Name**: Historical Flood-Event Replay & Paired Ground-Truth Benchmark Engine
+
+### 2. Implementation Status
+- **Status**: Production / Fully Implemented and Verified
+- **Version**: 1.0.0
+
+### 3. Algorithm Type
+- **Type**: New MUFNS Validation, Skill Score & Hydrological Verification Component
+
+### 4. Objective
+Replay documented historical flood events (e.g., July 2024 cloudburst, July 2005 deluge) through the 2D diffusive wave hydrodynamic solver and evaluate modeled inundation against 202 verified IMD/MCGM historical observations and 35 persistent chronic flood hotspots. Compute true paired point depth errors and contingency skill scores without synthetic error proxies, artificial additive constants, or false 100% accuracy claims.
+
+### 5. Workflow Diagram
+```
+[Historical Event Selection (e.g., July 2024 Cloudburst)]
+                           │
+                           ▼
+[Hydrodynamic Simulation: 2D Diffusive Wave Solver]
+                           │
+                           ▼ [Simulated Peak Depth Grid h_sim(r, c)]
+                           │
+   ┌───────────────────────┴────────────────────────┐
+   ▼                                                ▼
+[Spatial Intersection with 35 Hotspots]      [Paired Point Match with 202 Observed Events]
+   │                                                │
+   │                                                ├── Point Obs has Measured Depth:
+   │                                                │     h_err = h_sim - h_obs
+   │                                                │     MAE, RMSE, Mean Bias
+   │                                                └── Point Obs has Categorical Waterlogging:
+   │                                                      Binary Classification (Hit / Miss)
+   ▼                                                ▼
+[Hotspot Coverage & Severity Match]         [Contingency Matrix (TP, FP, FN, TN)]
+   │                                                │
+   └───────────────────────┬────────────────────────┘
+                           │
+                           ▼
+             [Verification Benchmark Report]
+             - Paired Depth Metrics (MAE, RMSE, Bias)
+             - Contingency Skill Scores (POD, Precision, CSI, FAR)
+             - Domain Boundaries & Point-Verification Caveat
+```
+
+### 6. Inputs, Sources, Units & Coordinate Systems
+- **Historical Observations**: 202 verified observation points (`data/cities/mumbai/historical_flood_events.geojson` and `public.historical_flood_events` table).
+- **Flood Hotspots**: 35 chronic low-lying junctions (`mumbai_flood_spatial_data/04_flood_risk/mumbai_flood_hotspots.geojson`).
+- **Simulated Water Depth**: Matrix $h_{\text{sim}}(r, c)$ in metres MSL from 2D diffusive wave simulation.
+- **Coordinate System**: WGS-84 (EPSG:4326) with bilinear spatial lookup into UTM-projected DEM grid.
+
+### 7. Step-by-Step Processing Workflow & Mathematical Formulations
+1. **Paired Point Depth Evaluation**:
+   For each ground-truth observation $i \in \{1, \dots, N\}$ where a numerical flood depth $h_{\text{obs}, i} > 0$ is recorded:
+   $$\text{MAE} = \frac{1}{N} \sum_{i=1}^N \left| h_{\text{sim}, i} - h_{\text{obs}, i} \right|$$
+   $$\text{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^N \left( h_{\text{sim}, i} - h_{\text{obs}, i} \right)^2}$$
+   $$\text{Bias} = \frac{1}{N} \sum_{i=1}^N \left( h_{\text{sim}, i} - h_{\text{obs}, i} \right)$$
+   *Strict Zero-Mock Rule*: When $N = 0$ (no numeric depths reported for the queried time/area), the engine returns `status = "insufficient_validation_data"` with null metrics rather than inventing synthetic depths.
+
+2. **Categorical Contingency Matrix**:
+   Using urban waterlogging threshold $h_{\text{thresh}} = 0.08\text{ m}$ (8 cm):
+   - **True Positive (TP)**: $h_{\text{sim}} \ge h_{\text{thresh}}$ AND $h_{\text{obs}} \ge h_{\text{thresh}}$
+   - **False Positive (FP)**: $h_{\text{sim}} \ge h_{\text{thresh}}$ AND $h_{\text{obs}} < h_{\text{thresh}}$
+   - **False Negative (FN)**: $h_{\text{sim}} < h_{\text{thresh}}$ AND $h_{\text{obs}} \ge h_{\text{thresh}}$
+   - **True Negative (TN)**: $h_{\text{sim}} < h_{\text{thresh}}$ AND $h_{\text{obs}} < h_{\text{thresh}}$
+
+3. **Skill Score Formulations**:
+   $$\text{Recall (Probability of Detection, POD)} = \frac{\text{TP}}{\text{TP} + \text{FN}}$$
+   $$\text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}$$
+   $$\text{Critical Success Index (CSI / Threat Score)} = \frac{\text{TP}}{\text{TP} + \text{FP} + \text{FN}}$$
+   $$\text{False Alarm Ratio (FAR)} = \frac{\text{FP}}{\text{TP} + \text{FP}}$$
+
+### 8. Engineering Constants, Constraints & Thresholds
+- Urban waterlogging threshold: $h_{\text{thresh}} = 0.08\text{ m}$ (BMC standard for vehicular traffic impedance).
+- Spatial pairing search radius: $r_{\text{match}} = 120\text{ m}$ (accounting for DEM grid cell resolution).
+- Insufficient data cutoff: Sample count $N < 1 \implies \text{status} = \text{"insufficient\_validation\_data"}$.
+
+### 9. Outputs & Downstream Consumers
+- Endpoint: `GET /api/v1/validation/historical-benchmark`
+- Consumed by City Dashboard (Validation Module 7) and municipal audit logs.
+
+### 10. Implementation File References
+- Implementation: `services/validation/historical_validation.py::HistoricalValidator`
+- Router: `services/api/routers/validation.py::get_historical_validation_benchmark`
+- Tests: `tests/unit/test_phase5_validation_reliability.py::TestHistoricalValidation`
+
+---
+
+## ALG-UNCERT-01: Hydrodynamic Parameter Sensitivity & Disagreement Analysis
+
+### 1. Algorithm ID & Name
+- **ID**: `ALG-UNCERT-01`
+- **Name**: Hydrodynamic Parameter Sensitivity & Disagreement Analysis Engine
+
+### 2. Implementation Status
+- **Status**: Production / Fully Implemented and Verified
+- **Version**: 1.0.0
+
+### 3. Algorithm Type
+- **Type**: New MUFNS Uncertainty Quantification & Sensitivity Analysis Component
+
+### 4. Objective
+Provide rigorous model uncertainty quantification by running a controlled 5-scenario sensitivity suite on physical governing parameters (rainfall forcing $\pm 20\%$, surface roughness $n \in [0.020, 0.050]$). Report pixel-level depth bounds, inundated area spread, and spatial disagreement masks without claiming uncalibrated Bayesian credible intervals.
+
+### 5. Workflow Diagram
+```
+                     [Baseline Inputs: Catchment, Forcing I_base, Manning n=0.035]
+                                                    │
+                 ┌──────────────────────────────────┼──────────────────────────────────┐
+                 │                                  │                                  │
+                 ▼                                  ▼                                  ▼
+        [Scenario 1: Baseline]           [Scenario 2: Low Rain -20%]        [Scenario 3: High Rain +20%]
+        I = I_base, n = 0.035            I = 0.80 * I_base, n = 0.035       I = 1.20 * I_base, n = 0.035
+                 │                                  │                                  │
+                 └───────────────────┬──────────────┴───────────────────┘
+                                     │
+                 ┌───────────────────┴───────────────────┐
+                 ▼                                       ▼
+       [Scenario 4: Smooth Surface]            [Scenario 5: High Friction / Debris]
+       I = I_base, n = 0.020                   I = I_base, n = 0.050
+                 │                                       │
+                 └───────────────────┬───────────────────┘
+                                     │
+                                     ▼
+                [Pixel-by-Pixel Depth Envelope Aggregation]
+                - z_min(r, c) = min_s h_s(r, c)
+                - z_mean(r, c) = (1/5) sum_s h_s(r, c)
+                - z_max(r, c) = max_s h_s(r, c)
+                                     │
+                                     ▼
+                [Spatial Disagreement Mask M_disagree(r, c)]
+                M_disagree(r, c) = 1 if (max_s >= 0.08m AND min_s < 0.08m) else 0
+                                     │
+                                     ▼
+                      [Model Uncertainty Report]
+                      - Peak depth range [z_min, z_mean, z_max]
+                      - Inundated area spread (km2) and variation (%)
+                      - Disagreement area (km2)
+                      - MANDATORY SCIENTIFIC DISCLAIMER
+```
+
+### 6. Inputs, Sources, Units & Coordinate Systems
+- **Base Rainfall Forcing**: Intensity $I_{\text{base}}$ (mm/h) from observed radar/AWS or NWP forecast.
+- **Topography**: Copernicus GLO-30 DSM elevation matrix $Z(r, c)$ in metres MSL.
+- **Manning's Friction Range**: $n \in [0.020, 0.050]\text{ s}\cdot\text{m}^{-1/3}$ (representing smooth concrete drains vs silted/debris-obstructed channels).
+- **Domain Grid**: Regular Cartesian grid with resolution $\Delta x = \Delta y = 30\text{ m}$.
+
+### 7. Step-by-Step Processing Workflow & Mathematical Formulations
+1. **Controlled Sensitivity Suite Execution**:
+   Evaluate 5 deterministic hydrodynamic simulations:
+   - Scenario 1 (Baseline): $I = I_{\text{base}}, n = 0.035$
+   - Scenario 2 (Low Rainfall): $I = 0.80 \cdot I_{\text{base}}, n = 0.035$
+   - Scenario 3 (High Rainfall): $I = 1.20 \cdot I_{\text{base}}, n = 0.035$
+   - Scenario 4 (Low Friction): $I = I_{\text{base}}, n = 0.020$
+   - Scenario 5 (High Friction): $I = I_{\text{base}}, n = 0.050$
+
+2. **Pixel-Level Depth Envelope**:
+   For each cell $(r, c)$ across the 5 scenario runs $s \in \{1, \dots, 5\}$:
+   $$z_{\min}(r, c) = \min_{s} h_s(r, c)$$
+   $$z_{\text{mean}}(r, c) = \frac{1}{5} \sum_{s=1}^5 h_s(r, c)$$
+   $$z_{\max}(r, c) = \max_{s} h_s(r, c)$$
+
+3. **Spatial Disagreement Binary Mask**:
+   Identifies transition zones where different physical assumptions flip flood categorization:
+   $$M_{\text{disagree}}(r, c) = \begin{cases}
+   1 & \text{if } z_{\max}(r, c) \ge h_{\text{thresh}} \land z_{\min}(r, c) < h_{\text{thresh}} \\
+   0 & \text{otherwise}
+   \end{cases}$$
+   $$\text{Area}_{\text{disagree}} = \sum_{r, c} M_{\text{disagree}}(r, c) \cdot \Delta x \cdot \Delta y$$
+
+4. **Area Variation Percentage**:
+   $$\Delta A_{\text{pct}} = \frac{A_{\max} - A_{\min}}{A_{\text{baseline}}} \times 100\%$$
+
+5. **Scientific Disclaimers (Strictly Enforced)**:
+   The analysis carries explicit disclaimers:
+   - *"Controlled parameter sensitivity suite across physical bounding assumptions."*
+   - *"Does NOT represent a statistically calibrated Bayesian credible interval or formal probability density function."*
+   - *"Real-world flooding can exceed bounds under concurrent extreme storm surges or catastrophic drainage blockage."*
+
+### 8. Engineering Constants, Constraints & Thresholds
+- Rainfall variation: $\pm 20\%$ (standard meteorological uncertainty envelope).
+- Manning's $n$ lower bound: $n_{\min} = 0.020$ (smooth concrete channel).
+- Manning's $n$ upper bound: $n_{\max} = 0.050$ (debris-clogged open channel).
+- Waterlogging classification threshold: $h_{\text{thresh}} = 0.08\text{ m}$.
+
+### 9. Outputs & Downstream Consumers
+- Endpoint: `GET /api/v1/simulations/sensitivity`
+- Consumed by City Dashboard (Uncertainty & Sensitivity Module) and emergency dispatchers.
+
+### 10. Implementation File References
+- Implementation: `services/flood/uncertainty.py::UncertaintyEngine`
+- Router: `services/api/routers/simulations.py::get_sensitivity_analysis`
+- Tests: `tests/unit/test_phase5_validation_reliability.py::TestModelUncertainty`
+
+---
+
+## ALG-ROUT-03: Explainable Multi-Criteria Evacuation Routing & Staleness Detection
+
+### 1. Algorithm ID & Name
+- **ID**: `ALG-ROUT-03`
+- **Name**: Explainable Multi-Criteria Evacuation Routing & Dynamic Staleness Detection Engine
+
+### 2. Implementation Status
+- **Status**: Production / Fully Implemented and Verified
+- **Version**: 1.0.0
+
+### 3. Algorithm Type
+- **Type**: Extension to MUFNS FIGER Routing Engine (Batch 5 & Batch 7)
+
+### 4. Objective
+Provide complete algorithmic transparency into evacuation routing decisions: explain why a specific shelter was selected, compute road exposure breakdowns across safety tiers, present side-by-side trade-off comparisons with alternative corridors, disclose DEM resolution limits vs micro-topography curbs, and dynamically detect and warn when an active route becomes stale due to a newer simulation run.
+
+### 5. Workflow Diagram
+```
+[User Click (Origin Coordinates)] ──> [k-d Tree Snapping to Road Graph]
+                                                  │
+                                                  ▼
+                         [Multi-Destination Evaluation & Ranking]
+                         - Distance Haversine(origin, D_k)
+                         - Inundation at destination h(D_k) < 0.10m
+                         - Candidate shelter eligibility rationale
+                                                  │
+                                                  ▼
+                               [Dijkstra Pathfinding on Graph]
+                               - Primary Route P_1 (lowest flood exposure)
+                               - Alternative Route P_2 (secondary shelter corridor)
+                                                  │
+                 ┌────────────────────────────────┴────────────────────────────────┐
+                 ▼                                                                 ▼
+    [Road Segment Exposure Breakdown]                             [Alternative Corridor Trade-Off]
+    - Clear (<0.15m): Length & %                                  - Delta Distance: d_2 - d_1 (km)
+    - Caution (0.15 - 0.30m): Length & %                          - Delta Time: t_2 - t_1 (min)
+    - Hazardous (>=0.30m): Length & %                             - Delta Peak Depth: h_2 - h_1 (m)
+                 │                                                                 │
+                 └────────────────────────────────┬────────────────────────────────┘
+                                                  │
+                                                  ▼
+                                   [Comprehensive Explanation Payload]
+                                   - Destination eligibility reason
+                                   - Simulation run ID & model timestamp
+                                   - Vehicle speed assumptions (km/h)
+                                   - Spatial resolution caveat (30m DEM vs 15cm curb)
+                                   - Alternative route comparison
+                                                  │
+                                                  ▼
+                               [Dynamic Route Staleness Evaluation]
+                               Does newer nowcast run exist?
+                               Has flood depth along corridor increased > 0.05m?
+                               YES ──> Emit STALE ROUTE warning banner
+```
+
+### 6. Inputs, Sources, Units & Coordinate Systems
+- **Road Network**: 14,563 OSM road segments with connectivity graph.
+- **Shelters & Facilities**: BMC emergency shelters and municipal health facilities.
+- **Simulation Provenance**: Active `run_id`, simulation time, and depth matrix from `get_latest_nowcast()`.
+- **Coordinate System**: WGS-84 (lon, lat) coordinates.
+
+### 7. Step-by-Step Processing Workflow & Mathematical Formulations
+1. **Destination Eligibility Selection**:
+   For each candidate facility $D_k$:
+   $$\text{Eligible}(D_k) = \begin{cases}
+   \text{True} & \text{if } h(D_k) < 0.10\text{ m} \land \text{Haversine}(\text{origin}, D_k) \le 15.0\text{ km} \\
+   \text{False} & \text{otherwise}
+   \end{cases}$$
+   The explanation payload records the exact eligibility reasoning:
+   *"Selected BMC Emergency Shelter '{name}' at {dist} km as the closest flood-safe destination with modeled water depth {depth}m below safety threshold 0.10m."*
+
+2. **Road Segment Inundation Exposure Breakdown**:
+   Along the corridor segments $S = \{e_1, e_2, \dots, e_m\}$ of total length $L_{\text{total}} = \sum_i L(e_i)$:
+   - **Clear Segments**: $L_{\text{clear}} = \sum_{h(e_i) < 0.15} L(e_i)$, $\quad \text{Pct}_{\text{clear}} = (L_{\text{clear}} / L_{\text{total}}) \times 100\%$
+   - **Caution Segments**: $L_{\text{caution}} = \sum_{0.15 \le h(e_i) < 0.30} L(e_i)$, $\quad \text{Pct}_{\text{caution}} = (L_{\text{caution}} / L_{\text{total}}) \times 100\%$
+   - **Hazardous Segments**: $L_{\text{haz}} = \sum_{h(e_i) \ge 0.30} L(e_i)$, $\quad \text{Pct}_{\text{haz}} = (L_{\text{haz}} / L_{\text{total}}) \times 100\%$
+
+3. **Alternative Corridor Trade-Off Comparison**:
+   If a secondary valid shelter $D_2$ is reachable:
+   $$\Delta D = D_2 - D_1 \quad (\text{km})$$
+   $$\Delta T = T_2 - T_1 \quad (\text{min})$$
+   $$\Delta h = \max_{e \in P_2} h(e) - \max_{e \in P_1} h(e) \quad (\text{m})$$
+   Provides explicit trade-off narrative:
+   *"Alternative route to {name} is {$\Delta D$} km longer, but has {$\Delta h$}m lower peak water exposure."*
+
+4. **Micro-Topography & Spatial Resolution Caveat**:
+   Every route response explicitly states:
+   *"Road passable assessment is derived from 30m Copernicus GLO-30 DEM. Micro-topographic features such as 15cm road curbs, underpass dips, construction trenches, and localized drain clogs may cause local water depths to exceed modeled values."*
+
+5. **Dynamic Route Staleness Detection**:
+   When client requests route validation or map updates:
+   $$\text{IsStale} = \begin{cases}
+   \text{True} & \text{if } \text{RunID}_{\text{route}} \ne \text{RunID}_{\text{current}} \land \left( \max_{p \in \text{Route}} h_{\text{current}}(p) > h_{\text{old},\max} + 0.05\text{ m} \right) \\
+   \text{False} & \text{otherwise}
+   \end{cases}$$
+   Emits prominent banner: *"⚠️ STALE ROUTE — Newer simulation run predicts increased flood depth along corridor. Recalculation required."*
+
+### 8. Engineering Constants, Constraints & Thresholds
+- Shelter depth cutoff: $h_{\max,\text{shelter}} = 0.10\text{ m}$ (10 cm).
+- Speed assumptions: $V_{\text{clear}} = 25\text{ km/h}$, $V_{\text{caution}} = 12\text{ km/h}$, $V_{\text{difficult}} = 4\text{ km/h}$.
+- Staleness threshold: $\Delta h_{\text{stale}} = +0.05\text{ m}$ (5 cm depth increase on corridor).
+
+### 9. Outputs & Downstream Consumers
+- Endpoints: `POST /api/v1/subareas/point-evacuation-route`, `POST /api/v1/subareas/check-route-staleness`.
+- Consumed by `LocationInfoCard.tsx` (Route Explanation Drawer, Exposure Bar, Alternative Route Card) and `MumbaiFloodMap.tsx` (Stale Route Warning Chip).
+
+### 10. Implementation File References
+- Implementation: `services/routing/evacuation_engine.py::MumbaiEvacuationRoutingEngine`
+- Router: `services/api/routers/subareas.py::check_route_staleness_endpoint`
+- Tests: `tests/unit/test_phase5_validation_reliability.py::TestExplainableEvacuation`
+
+
 

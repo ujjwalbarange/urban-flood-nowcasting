@@ -33,7 +33,9 @@ logger = structlog.get_logger()
 
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 _HISTORICAL_GEOJSON = _PROJECT_ROOT / "data" / "cities" / "mumbai" / "historical_flood_events.geojson"
-_HOTSPOTS_GEOJSON = _PROJECT_ROOT / "mumbai_flood_data_package" / "08_flood_observations" / "flood_points.geojson"
+_HOTSPOTS_GEOJSON = _PROJECT_ROOT / "mumbai_flood_spatial_data" / "04_flood_risk" / "mumbai_flood_hotspots.geojson"
+if not _HOTSPOTS_GEOJSON.exists():
+    _HOTSPOTS_GEOJSON = _PROJECT_ROOT / "mumbai_flood_data_package" / "08_flood_observations" / "flood_points.geojson"
 if not _HOTSPOTS_GEOJSON.exists():
     _HOTSPOTS_GEOJSON = _PROJECT_ROOT / "data" / "processed" / "flood_hotspots" / "mumbai_flood_hotspots.geojson"
 
@@ -275,7 +277,7 @@ class HistoricalValidator:
             logger.info("Using local historical_flood_events.geojson fallback", reason=str(e))
             return self._load_local_events(start_date, end_date)
 
-    def _load_local_events(self, start_date: str, end_date: str) -> List[Dict[str, Any]]:
+    def _load_local_events(self, start_date: str = "2000-01-01", end_date: str = "2099-12-31") -> List[Dict[str, Any]]:
         """Load matching historical events from local GeoJSON archive (202 verified features)."""
         if not _HISTORICAL_GEOJSON.exists():
             return []
@@ -283,13 +285,13 @@ class HistoricalValidator:
             with open(_HISTORICAL_GEOJSON, "r", encoding="utf-8") as f:
                 data = json.load(f)
             events = []
-            s_date = start_date[:10]
-            e_date = end_date[:10]
+            s_date = (start_date or "2000-01-01")[:10]
+            e_date = (end_date or "2099-12-31")[:10]
             for feat in data.get("features", []):
                 props = feat.get("properties", {})
                 geom = feat.get("geometry", {})
                 ev_date = str(props.get("date", ""))[:10]
-                if s_date <= ev_date <= e_date:
+                if not ev_date or (s_date <= ev_date <= e_date):
                     coords = geom.get("coordinates")
                     if coords and len(coords) >= 2:
                         events.append({

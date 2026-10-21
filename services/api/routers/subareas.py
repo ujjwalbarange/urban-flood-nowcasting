@@ -18,6 +18,7 @@ import structlog
 from services.spatial.hierarchy import get_hierarchy_engine
 from services.terrain.subarea_3d import extract_subarea_terrain_3d, extract_city_terrain_3d
 from services.flood.subarea_flood3d import extract_subarea_flood_3d, extract_city_flood_3d
+from services.buildings.building_3d import extract_subarea_buildings_3d, extract_city_buildings_3d
 from services.routing.evacuation_engine import get_evacuation_routing_engine
 
 logger = structlog.get_logger()
@@ -53,10 +54,24 @@ async def get_city_terrain_3d_endpoint(
 @router.get("/city-flood-3d")
 async def get_city_flood_3d_endpoint(
     target_dim: int = Query(96, ge=32, le=128, description="Grid resolution for 3D mesh (default 96x96)"),
-    minute: Optional[int] = Query(None, description="Optional timeline timestep minute"),
+    minute: Optional[str] = Query(None, description="Optional timeline timestep minute"),
 ):
     """Extract citywide simulated 2D flood depth and calculate 3D water-surface elevation."""
-    return extract_city_flood_3d(target_grid_dim=target_dim, timeline_minute=minute)
+    parsed_minute: Optional[int] = None
+    if minute is not None and str(minute).strip() not in ("", "undefined", "null", "none"):
+        try:
+            parsed_minute = int(minute)
+        except (ValueError, TypeError):
+            parsed_minute = None
+    return extract_city_flood_3d(target_grid_dim=target_dim, timeline_minute=parsed_minute)
+
+
+@router.get("/city-buildings-3d")
+async def get_city_buildings_3d_endpoint(
+    limit: int = Query(180, ge=10, le=500, description="Max building footprints to extract"),
+):
+    """Extract representative 3D building footprints across Greater Mumbai with terrain base heights."""
+    return extract_city_buildings_3d(limit=limit)
 
 
 @router.get("/destinations-near")
@@ -164,18 +179,33 @@ async def get_subarea_terrain_3d_endpoint(
 async def get_subarea_flood_3d_endpoint(
     subarea_id: str,
     target_dim: int = Query(64, ge=32, le=128, description="Grid resolution for 3D mesh (default 64x64)"),
-    minute: Optional[int] = Query(None, description="Optional timeline timestep minute"),
+    minute: Optional[str] = Query(None, description="Optional timeline timestep minute"),
 ):
     """Extract genuine simulated 2D flood depth and calculate 3D water-surface elevation.
 
     z_water = z_terrain + depth (for depth >= 0.01m). Dry cells are transparent/zero.
     """
+    parsed_minute: Optional[int] = None
+    if minute is not None and str(minute).strip() not in ("", "undefined", "null", "none"):
+        try:
+            parsed_minute = int(minute)
+        except (ValueError, TypeError):
+            parsed_minute = None
     flood_data = extract_subarea_flood_3d(
         subarea_id=subarea_id,
         target_grid_dim=target_dim,
-        timeline_minute=minute,
+        timeline_minute=parsed_minute,
     )
     return flood_data
+
+
+@router.get("/{subarea_id}/buildings-3d")
+async def get_subarea_buildings_3d_endpoint(
+    subarea_id: str,
+    limit: int = Query(150, ge=10, le=500, description="Max building footprints to extract"),
+):
+    """Extract 3D building footprints for the active subarea with DEM terrain base heights."""
+    return extract_subarea_buildings_3d(subarea_id=subarea_id, limit=limit)
 
 
 @router.get("/{subarea_id}/destinations")

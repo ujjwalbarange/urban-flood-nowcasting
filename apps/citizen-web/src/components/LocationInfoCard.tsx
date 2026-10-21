@@ -581,9 +581,28 @@ export function LocationInfoCard({
 
                   {activeEvacuationRoute ? (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                      {/* Stale Route Warning Banner (Batch 5.3) */}
+                      {activeEvacuationRoute.is_stale && (
+                        <div style={{
+                          padding: '6px 8px', borderRadius: '4px', background: '#fef2f2', border: '1px solid #fecaca',
+                          color: '#dc2626', fontSize: '9px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px',
+                        }}>
+                          <AlertTriangle size={12} />
+                          ROUTE STALE: New flood nowcast available. Recalculation advised.
+                        </div>
+                      )}
+
                       <div style={{ fontSize: '11.5px', fontWeight: 800, color: '#0f172a' }}>
                         🏁 {activeEvacuationRoute.destination_name}
                       </div>
+
+                      {/* Destination Eligibility (Batch 5.1) */}
+                      {activeEvacuationRoute.route_explanation?.destination_eligibility_reason && (
+                        <div style={{ fontSize: '9px', color: '#15803d', fontStyle: 'italic', background: '#ffffff', padding: '3px 6px', borderRadius: '4px', border: '1px solid #dcfce7' }}>
+                          ✓ {activeEvacuationRoute.route_explanation.destination_eligibility_reason}
+                        </div>
+                      )}
+
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4px', fontSize: '9.5px' }}>
                         <div style={{ background: '#ffffff', padding: '4px 6px', borderRadius: '4px', border: '1px solid #bbf7d0' }}>
                           <span style={{ color: '#64748b', display: 'block' }}>Distance</span>
@@ -600,6 +619,26 @@ export function LocationInfoCard({
                           </strong>
                         </div>
                       </div>
+
+                      {/* Segment Exposure Breakdown */}
+                      {activeEvacuationRoute.route_explanation?.road_exposure_breakdown && (
+                        <div style={{ background: '#ffffff', padding: '6px', borderRadius: '4px', border: '1px solid #e2e8f0', fontSize: '9px' }}>
+                          <span style={{ color: '#475569', fontWeight: 700, display: 'block', marginBottom: '3px' }}>
+                            Corridor Exposure ({activeEvacuationRoute.route_explanation.road_exposure_breakdown.total_segments} OSM segments):
+                          </span>
+                          <div style={{ display: 'flex', gap: '4px', height: '6px', borderRadius: '2px', overflow: 'hidden', marginBottom: '4px' }}>
+                            <div style={{ width: `${activeEvacuationRoute.route_explanation.road_exposure_breakdown.clear_segments_pct}%`, background: '#22c55e' }} title="Clear (<0.15m)" />
+                            <div style={{ width: `${activeEvacuationRoute.route_explanation.road_exposure_breakdown.caution_segments_pct}%`, background: '#f59e0b' }} title="Caution (0.15–0.30m)" />
+                            <div style={{ width: `${activeEvacuationRoute.route_explanation.road_exposure_breakdown.hazardous_segments_pct}%`, background: '#ef4444' }} title="Hazardous (>0.30m)" />
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', color: '#64748b', fontSize: '8.5px' }}>
+                            <span style={{ color: '#16a34a' }}>● Clear: {activeEvacuationRoute.route_explanation.road_exposure_breakdown.clear_segments_pct}%</span>
+                            <span style={{ color: '#d97706' }}>● Caution: {activeEvacuationRoute.route_explanation.road_exposure_breakdown.caution_segments_pct}%</span>
+                            <span style={{ color: '#dc2626' }}>● Hazardous: {activeEvacuationRoute.route_explanation.road_exposure_breakdown.hazardous_segments_pct}%</span>
+                          </div>
+                        </div>
+                      )}
+
                       <div style={{
                         padding: '4px 8px', borderRadius: '4px', fontSize: '9px', fontWeight: 700,
                         background: activeEvacuationRoute.passability_verdict?.includes('CLEAR') ? '#dcfce7' : '#fef3c7',
@@ -607,9 +646,37 @@ export function LocationInfoCard({
                       }}>
                         {activeEvacuationRoute.passability_verdict}
                       </div>
+
+                      {/* Alternative Corridor Comparison Card (Batch 5.2) */}
+                      {activeEvacuationRoute.alternative_route && (
+                        <div style={{ background: '#f8fafc', padding: '6px 8px', borderRadius: '4px', border: '1px solid #cbd5e1', fontSize: '9px' }}>
+                          <span style={{ fontWeight: 800, color: '#334155', display: 'block', marginBottom: '2px' }}>
+                            ⚖️ Candidate Alternative Evaluated:
+                          </span>
+                          <div style={{ color: '#0f172a', fontWeight: 700 }}>
+                            {activeEvacuationRoute.alternative_route.destination_name}
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', color: '#64748b', marginTop: '2px' }}>
+                            <span>Dist: {activeEvacuationRoute.alternative_route.total_distance_km} km</span>
+                            <span>Time: {activeEvacuationRoute.alternative_route.estimated_travel_time_min} min</span>
+                            <span>Max: {activeEvacuationRoute.alternative_route.max_flood_depth_m.toFixed(2)} m</span>
+                          </div>
+                          <div style={{ marginTop: '3px', color: '#1d4ed8', fontWeight: 600, fontSize: '8.5px' }}>
+                            {activeEvacuationRoute.alternative_route.tradeoff_summary}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Spatial Resolution Limitation Caveat (Batch 5.4) */}
                       <div style={{ fontSize: '8px', color: '#64748b', lineHeight: '1.3' }}>
-                        ⚠️ {activeEvacuationRoute.disclaimer}
+                        ℹ️ <strong>Resolution Note:</strong> Hydrodynamic depth is sampled from 30m Copernicus DEM cells. Local curbs (15cm) and culvert blockages are not fully resolved.
                       </div>
+
+                      {activeEvacuationRoute.route_explanation?.simulation_run_id_used && (
+                        <div style={{ fontSize: '7.5px', color: '#94a3b8' }}>
+                          Run ID: {activeEvacuationRoute.route_explanation.simulation_run_id_used} · Solver: 2D Diffusive Wave
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>

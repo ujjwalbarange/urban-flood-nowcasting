@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   Compass, RotateCcw, ZoomIn, ZoomOut, Eye, Layers, Shield,
   AlertTriangle, Navigation, CheckCircle2, ChevronDown,
-  Building, Hospital, Waves, Mountain, RefreshCw, X, Sliders
+  Building, Hospital, Waves, Mountain, RefreshCw, X, Maximize2, Sliders
 } from 'lucide-react';
 
-const API_BASE = 'http://127.0.0.1:8000/api/v1';
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || '/api/v1';
 
 export interface Unified3DTerrainCanvasProps {
   selectedLocation: { lat: number; lon: number } | null;
@@ -40,15 +40,21 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
   const [subareasList, setSubareasList] = useState<SubareaOption[]>([]);
   const [loadingTerrain, setLoadingTerrain] = useState<boolean>(true);
   const [terrainError, setTerrainError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState<number>(0);
 
-  // ── Terrain & Flood Heightfield Data ──
+  // ── Terrain, Flood & Building Data ──
   const [terrainData, setTerrainData] = useState<any | null>(null);
   const [floodData, setFloodData] = useState<any | null>(null);
+  const [buildingsData, setBuildingsData] = useState<any[]>([]);
+  const [showBuildings, setShowBuildings] = useState<boolean>(true);
 
   // ── Realistic Camera Controls (Natural Scale Default) ──
+  // Azimuth (yaw): 0 = looking North, PI/4 = NW isometric angle
   const [azimuth, setAzimuth] = useState<number>(Math.PI * 0.15);
+  // Pitch (tilt): 35 degrees from horizontal
   const [pitch, setPitch] = useState<number>(Math.PI * 0.22);
   const [zoom, setZoom] = useState<number>(1.1);
+  // Natural physical elevation scale by default (1.0x). User can conservatively adjust up to 2.5x.
   const [vertExaggeration, setVertExaggeration] = useState<number>(1.2);
   const [renderMode, setRenderMode] = useState<'shaded' | 'wireframe'>('shaded');
   const [showWater, setShowWater] = useState<boolean>(showWaterOverlay);
@@ -64,8 +70,8 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
   useEffect(() => {
     async function fetchSubareas() {
       try {
-        const res = await fetch(`${API_BASE}/subareas`).then(r => r.json());
-        if (res.subareas) {
+        const res = await fetch(`${API_BASE}/subareas`).then(r => r.ok ? r.json() : null).catch(() => null);
+        if (res?.subareas) {
           setSubareasList(res.subareas);
         }
       } catch { /* subareas list fallback */ }
@@ -73,35 +79,50 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     fetchSubareas();
   }, []);
 
-  // 2. Fetch Terrain & Flood Data whenever focus area or timeline minute changes
+  // 2. Fetch Terrain, Flood & 3D Building Data whenever focus area, minute, or retry changes
   useEffect(() => {
     let active = true;
     async function load3DData() {
       setLoadingTerrain(true);
       setTerrainError(null);
       try {
+        const minuteParam = (typeof timelineMinute === 'number' && !isNaN(timelineMinute) && timelineMinute >= 0)
+          ? `&minute=${timelineMinute}`
+          : '';
+
         let terrainUrl = `${API_BASE}/subareas/city-terrain-3d?target_dim=96`;
-        let floodUrl = `${API_BASE}/subareas/city-flood-3d?target_dim=96&minute=${timelineMinute}`;
+        let floodUrl = `${API_BASE}/subareas/city-flood-3d?target_dim=96${minuteParam}`;
+        let buildingsUrl = `${API_BASE}/subareas/city-buildings-3d?limit=180`;
 
         if (focusMode !== 'citywide') {
           terrainUrl = `${API_BASE}/subareas/${focusMode}/terrain3d?target_dim=80`;
-          floodUrl = `${API_BASE}/subareas/${focusMode}/flood3d?target_dim=80&minute=${timelineMinute}`;
+          floodUrl = `${API_BASE}/subareas/${focusMode}/flood3d?target_dim=80${minuteParam}`;
+          buildingsUrl = `${API_BASE}/subareas/${focusMode}/buildings-3d?limit=150`;
         }
 
-        const [tRes, fRes] = await Promise.all([
-          fetch(terrainUrl).then(r => r.ok ? r.json() : null),
-          fetch(floodUrl).then(r => r.ok ? r.json() : null),
+        const [tRes, fRes, bRes] = await Promise.all([
+          fetch(terrainUrl).then(r => r.ok ? r.json() : null).catch(() => null),
+          fetch(floodUrl).then(r => r.ok ? r.json() : null).catch(() => null),
+          fetch(buildingsUrl).then(r => r.ok ? r.json() : null).catch(() => null),
         ]);
 
         if (!active) return;
-        if (tRes && tRes.elevations) {
+        if (tRes && tRes.elevations && Array.isArray(tRes.elevations)) {
           setTerrainData(tRes);
         } else {
-          throw new Error('Copernicus GLO-30 DEM heightfield unavailable.');
+          throw new Error('Unable to connect to MUFNS Hydrodynamic API (port 8000). Please verify the backend service is running.');
         }
 
         if (fRes) {
           setFloodData(fRes);
+        } else {
+          setFloodData({ available: false, message: 'Flood simulation data currently unavailable for selected minute.' });
+        }
+
+        if (bRes && Array.isArray(bRes.buildings)) {
+          setBuildingsData(bRes.buildings);
+        } else {
+          setBuildingsData([]);
         }
       } catch (err: any) {
         if (active) {
@@ -114,8 +135,9 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
 
     load3DData();
     return () => { active = false; };
-  }, [focusMode, timelineMinute]);
+  }, [focusMode, timelineMinute, retryCount]);
 
+  // Keep water toggle in sync with parent prop
   useEffect(() => {
     setShowWater(showWaterOverlay);
   }, [showWaterOverlay]);
@@ -135,26 +157,31 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     const c_lon = (bounds.min_lon + bounds.max_lon) / 2.0;
     const c_lat = (bounds.min_lat + bounds.max_lat) / 2.0;
 
+    // Convert geographic delta to metric displacement in meters
     const dx_m = (lon - c_lon) * 111320.0 * Math.cos((c_lat * Math.PI) / 180.0);
-    const dy_m = -(lat - c_lat) * 110700.0;
+    const dy_m = -(lat - c_lat) * 110700.0; // Y points North (negative in screen space)
 
+    // Elevation relative to base in meters
     const z_m = Math.max(0, elev - minElev) * vertExaggeration;
 
+    // Rotate horizontal coordinates by azimuth yaw
     const cosA = Math.cos(azimuth);
     const sinA = Math.sin(azimuth);
     const x_rot = dx_m * cosA - dy_m * sinA;
     const y_rot = dx_m * sinA + dy_m * cosA;
 
+    // Physical metric scale factor: pixels per meter
     const maxDim_m = Math.max(width_m, height_m);
     const minDim_px = Math.min(canvasWidth, canvasHeight);
     const scale = (minDim_px * 0.72 * zoom) / maxDim_m;
 
+    // Tilt (pitch) perspective projection
     const sinP = Math.sin(pitch);
     const cosP = Math.cos(pitch);
 
     const screenX = canvasWidth / 2.0 + x_rot * scale;
     const screenY = canvasHeight / 2.0 + (y_rot * sinP - z_m * scale * cosP);
-    const depthSort = y_rot;
+    const depthSort = y_rot; // For painter's algorithm depth sorting
 
     return { x: screenX, y: screenY, depthSort, scale };
   }, [azimuth, pitch, zoom, vertExaggeration]);
@@ -182,12 +209,14 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     const relX = (screenX - canvas.width / 2.0) / scale;
     const relY = (screenY - canvas.height / 2.0) / (scale * Math.max(sinP, 0.15));
 
+    // Inverse rotation
     const dx_m = relX * cosA + relY * sinA;
     const dy_m = -relX * sinA + relY * cosA;
 
     const lon = c_lon + dx_m / (111320.0 * Math.cos((c_lat * Math.PI) / 180.0));
     const lat = c_lat - dy_m / 110700.0;
 
+    // Clamp to valid Mumbai bounds
     if (lon < bounds.min_lon - 0.05 || lon > bounds.max_lon + 0.05 ||
         lat < bounds.min_lat - 0.05 || lat > bounds.max_lat + 0.05) {
       return null;
@@ -207,12 +236,14 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     const height = canvas.height;
     ctx.clearRect(0, 0, width, height);
 
+    // Deep modern GIS gradient background (clean, restrained)
     const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
     bgGrad.addColorStop(0, '#0b1329');
     bgGrad.addColorStop(1, '#1e293b');
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, width, height);
 
+    // Subtle coordinate grid backdrop
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.035)';
     ctx.lineWidth = 1;
     for (let x = 0; x < width; x += 48) {
@@ -240,6 +271,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     const subareaMask: boolean[][] = terrainData.subarea_mask || [];
     const floodDepths: number[][] = floodData?.depths || [];
 
+    // Precalculate all projected vertices on the grid
     const projectedGrid: Array<Array<{ x: number; y: number; depthSort: number }>> = [];
     const waterProjectedGrid: Array<Array<{ x: number; y: number } | null>> = [];
 
@@ -257,6 +289,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         );
         projectedGrid[r][c] = pt;
 
+        // Modeled water surface: z_water = z_bed + h (for h >= 0.01m)
         const depth = floodDepths[r]?.[c] || 0.0;
         if (showWater && depth >= 0.01) {
           const waterPt = projectPoint(
@@ -269,6 +302,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
       }
     }
 
+    // Build Quad Faces for Painter's Algorithm Depth-Sorted Rendering
     interface QuadFace {
       r: number;
       c: number;
@@ -295,15 +329,20 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
       }
     }
 
+    // Sort quads back to front (highest depthSort rendered first)
     quads.sort((a, b) => b.depthSort - a.depthSort);
 
+    // Analytical directional hillshade light vector: Azimuth 315 deg (NW), Solar elevation 45 deg
     const lx = -0.5;
     const ly = -0.5;
     const lz = 0.707;
 
+    // Helper: Realistic Topography Shading (Hypsometric Tint + Hillshade)
     const getTerrainFill = (r: number, c: number, elev: number, inMask: boolean) => {
+      // Natural normalized elevation in range [0, 1]
       const t = Math.max(0, Math.min(1, (elev - minElev) / (maxElev - minElev)));
 
+      // Analytical gradient normal for hillshade
       let dz_dx = 0;
       let dz_dy = 0;
       if (c + 1 < cols && c > 0) {
@@ -313,35 +352,42 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         dz_dy = (elevations[r + 1][c] - elevations[r - 1][c]) * 0.5;
       }
 
+      // Cosine illumination factor
       const normLen = Math.sqrt(dz_dx * dz_dx + dz_dy * dz_dy + 1.0);
       const nx = -dz_dx / normLen;
       const ny = -dz_dy / normLen;
       const nz = 1.0 / normLen;
       const dot = Math.max(0, nx * lx + ny * ly + nz * lz);
-      const hillshade = 0.75 + dot * 0.45;
+      const hillshade = 0.75 + dot * 0.45; // Range [0.75, 1.20]
 
       if (!inMask && showContextFade && focusMode !== 'citywide') {
         const shade = Math.floor(45 * hillshade);
         return `rgb(${shade}, ${shade + 4}, ${shade + 10})`;
       }
 
+      // Topographic Hypsometric Palette:
+      // Sea/Plain (0-8m: Soft Green/Sage) -> Lowland (8-25m: Tan/Gold) -> Hills (25-60m: Terracotta) -> SGNP Peaks (>60m: Slate Rock)
       let baseR = 74, baseG = 135, baseB = 85;
       if (t < 0.12) {
+        // Coastal alluvial plains (Dadar, Kurla, Mahim)
         const f = t / 0.12;
         baseR = Math.floor(65 + f * 45);
         baseG = Math.floor(130 + f * 35);
         baseB = Math.floor(80 - f * 20);
       } else if (t < 0.40) {
+        // Terraces & undulating inland (15 - 45m)
         const f = (t - 0.12) / 0.28;
         baseR = Math.floor(110 + f * 70);
         baseG = Math.floor(165 - f * 20);
         baseB = Math.floor(60 - f * 20);
       } else if (t < 0.75) {
+        // Basalt ridges & rocky outcrops (Antop Hill, Trombay)
         const f = (t - 0.40) / 0.35;
         baseR = Math.floor(180 + f * 20);
         baseG = Math.floor(145 - f * 40);
         baseB = Math.floor(40 + f * 20);
       } else {
+        // National park rocky peaks (Kanheri 450m)
         const f = (t - 0.75) / 0.25;
         baseR = Math.floor(140 - f * 40);
         baseG = Math.floor(145 - f * 35);
@@ -354,14 +400,16 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
       return `rgb(${rVal}, ${gVal}, ${bVal})`;
     };
 
+    // Helper: Established Phase 3 Flood-Depth Palette
     const getWaterFill = (depth: number) => {
-      if (depth < 0.15) return 'rgba(56, 189, 248, 0.72)';
-      if (depth < 0.30) return 'rgba(2, 132, 199, 0.82)';
-      if (depth < 0.60) return 'rgba(234, 179, 8, 0.86)';
-      if (depth < 1.00) return 'rgba(234, 88, 12, 0.90)';
-      return 'rgba(220, 38, 38, 0.94)';
+      if (depth < 0.15) return 'rgba(56, 189, 248, 0.72)'; // Minor puddle (<0.15m): Sky blue
+      if (depth < 0.30) return 'rgba(2, 132, 199, 0.82)';  // Street flood (0.15-0.3m): Cyan
+      if (depth < 0.60) return 'rgba(234, 179, 8, 0.86)';  // Waterlogging (0.3-0.6m): Amber
+      if (depth < 1.00) return 'rgba(234, 88, 12, 0.90)';  // Deep flood (0.6-1.0m): Orange
+      return 'rgba(220, 38, 38, 0.94)';                   // Severe (>1.0m): Crimson
     };
 
+    // Render All Terrain Quads
     for (const q of quads) {
       const p0 = projectedGrid[q.r][q.c];
       const p1 = projectedGrid[q.r][q.c + 1];
@@ -387,6 +435,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         ctx.stroke();
       }
 
+      // Render 3D Water Drape over this quad if flooded (z_water = z_bed + h)
       if (showWater && q.depth >= 0.01) {
         const wp0 = waterProjectedGrid[q.r][q.c] || p0;
         const wp1 = waterProjectedGrid[q.r][q.c + 1] || p1;
@@ -416,11 +465,13 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
       for (let i = 0; i < coords.length; i++) {
         const lon = coords[i][0];
         const lat = coords[i][1];
+        // Bilinear sample elevation from terrain
         const r_idx = Math.max(0, Math.min(rows - 1, (bounds.max_lat - lat) / (bounds.max_lat - bounds.min_lat) * (rows - 1)));
         const c_idx = Math.max(0, Math.min(cols - 1, (lon - bounds.min_lon) / (bounds.max_lon - bounds.min_lon) * (cols - 1)));
         const r0 = Math.floor(r_idx);
         const c0 = Math.floor(c_idx);
         const baseElev = elevations[r0]?.[c0] || minElev;
+        // Float +1.5m above ground/water surface for clean visibility
         const pt = projectPoint(lon, lat, baseElev + 1.5, bounds, width_m, height_m, width, height, minElev);
         pts.push(pt);
       }
@@ -429,6 +480,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         const isClear = (activeRoute.passability_verdict || '').includes('CLEAR');
         const routeColor = isClear ? '#06b6d4' : '#f59e0b';
 
+        // Outer glow
         ctx.beginPath();
         ctx.moveTo(pts[0].x, pts[0].y);
         for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
@@ -438,6 +490,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         ctx.lineJoin = 'round';
         ctx.stroke();
 
+        // Core solid line
         ctx.beginPath();
         ctx.moveTo(pts[0].x, pts[0].y);
         for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
@@ -445,6 +498,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         ctx.lineWidth = 3.5;
         ctx.stroke();
 
+        // Destination Marker (Hospital / Shelter)
         const destPt = pts[pts.length - 1];
         ctx.beginPath();
         ctx.arc(destPt.x, destPt.y, 8, 0, Math.PI * 2);
@@ -454,6 +508,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         ctx.lineWidth = 2;
         ctx.stroke();
 
+        // Label
         ctx.font = 'bold 11px system-ui, -apple-system, sans-serif';
         ctx.fillStyle = '#ffffff';
         ctx.textAlign = 'center';
@@ -461,7 +516,92 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
       }
     }
 
-    // 7. Drape Selected Origin Pin Marker
+    // 7. Render 3D Extruded Buildings (Batch 4)
+    if (showBuildings && buildingsData.length > 0) {
+      const sortedBuildings = [...buildingsData].map(b => {
+        const cPt = projectPoint(
+          b.centroid[0], b.centroid[1], b.base_elevation_m, bounds, width_m, height_m, width, height, minElev
+        );
+        return { building: b, depthSort: cPt.depthSort, cPt };
+      }).sort((a, b) => b.depthSort - a.depthSort);
+
+      for (const item of sortedBuildings) {
+        const b = item.building;
+        const coords: [number, number][] = b.coordinates;
+        if (!coords || coords.length < 3) continue;
+
+        const baseElev = b.base_elevation_m;
+        const roofElev = b.roof_elevation_m || (baseElev + (b.height_m || 8.0));
+
+        const basePts = coords.map(pt => projectPoint(
+          pt[0], pt[1], baseElev, bounds, width_m, height_m, width, height, minElev
+        ));
+        const roofPts = coords.map(pt => projectPoint(
+          pt[0], pt[1], roofElev, bounds, width_m, height_m, width, height, minElev
+        ));
+
+        // Draw vertical walls with directional hillshade
+        for (let i = 0; i < basePts.length - 1; i++) {
+          const bp0 = basePts[i];
+          const bp1 = basePts[i + 1];
+          const rp0 = roofPts[i];
+          const rp1 = roofPts[i + 1];
+
+          ctx.beginPath();
+          ctx.moveTo(bp0.x, bp0.y);
+          ctx.lineTo(bp1.x, bp1.y);
+          ctx.lineTo(rp1.x, rp1.y);
+          ctx.lineTo(rp0.x, rp0.y);
+          ctx.closePath();
+
+          const dx = coords[i + 1][0] - coords[i][0];
+          const dy = coords[i + 1][1] - coords[i][1];
+          const isSunlit = (dx * Math.cos(azimuth) - dy * Math.sin(azimuth)) >= 0;
+
+          if (renderMode === 'shaded') {
+            ctx.fillStyle = isSunlit ? 'rgba(241, 245, 249, 0.94)' : 'rgba(203, 213, 225, 0.94)';
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(100, 116, 139, 0.4)';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          } else {
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+
+        // Draw flat roof
+        ctx.beginPath();
+        ctx.moveTo(roofPts[0].x, roofPts[0].y);
+        for (let i = 1; i < roofPts.length; i++) {
+          ctx.lineTo(roofPts[i].x, roofPts[i].y);
+        }
+        ctx.closePath();
+
+        if (renderMode === 'shaded') {
+          ctx.fillStyle = b.height_source === 'measured_levels' ? '#ffffff' : '#f8fafc';
+          ctx.fill();
+          ctx.strokeStyle = b.height_source === 'measured_levels' ? '#0284c7' : 'rgba(71, 85, 105, 0.5)';
+          ctx.lineWidth = b.height_source === 'measured_levels' ? 1.0 : 0.6;
+          ctx.stroke();
+        } else {
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+
+        // Landmark label for major civic structures
+        if (b.height_source === 'measured_levels' && b.name && zoom >= 1.2) {
+          ctx.fillStyle = '#0f172a';
+          ctx.font = 'bold 9px system-ui, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(b.name, item.cPt.x, item.cPt.y - 12);
+        }
+      }
+    }
+
+    // 8. Drape Selected Origin Pin Marker
     if (selectedLocation) {
       const r_idx = Math.max(0, Math.min(rows - 1, (bounds.max_lat - selectedLocation.lat) / (bounds.max_lat - bounds.min_lat) * (rows - 1)));
       const c_idx = Math.max(0, Math.min(cols - 1, (selectedLocation.lon - bounds.min_lon) / (bounds.max_lon - bounds.min_lon) * (cols - 1)));
@@ -472,12 +612,14 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         bounds, width_m, height_m, width, height, minElev
       );
 
+      // Pulse ring
       ctx.beginPath();
       ctx.arc(selPt.x, selPt.y, 14, 0, Math.PI * 2);
       ctx.strokeStyle = 'rgba(59, 130, 246, 0.5)';
       ctx.lineWidth = 2;
       ctx.stroke();
 
+      // Pin body
       ctx.beginPath();
       ctx.arc(selPt.x, selPt.y, 6, 0, Math.PI * 2);
       ctx.fillStyle = '#ef4444';
@@ -486,6 +628,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
       ctx.lineWidth = 2;
       ctx.stroke();
 
+      // Pin stem
       ctx.beginPath();
       ctx.moveTo(selPt.x, selPt.y);
       ctx.lineTo(selPt.x, selPt.y + 12);
@@ -493,6 +636,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
       ctx.lineWidth = 2;
       ctx.stroke();
 
+      // Location coordinate tag
       ctx.font = 'bold 10px system-ui, sans-serif';
       ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
       const tagText = `${selectedLocation.lat.toFixed(4)}°N, ${selectedLocation.lon.toFixed(4)}°E (${baseElev.toFixed(1)}m)`;
@@ -504,11 +648,12 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     }
 
   }, [
-    terrainData, floodData, projectPoint, azimuth, pitch, zoom,
+    terrainData, floodData, buildingsData, showBuildings, projectPoint, azimuth, pitch, zoom,
     vertExaggeration, renderMode, showWater, showContextFade,
     focusMode, activeRoute, selectedLocation
   ]);
 
+  // Keep Canvas Resized to Parent Container
   useEffect(() => {
     function handleResize() {
       const container = containerRef.current;
@@ -528,6 +673,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     renderScene();
   }, [renderScene]);
 
+  // ── Mouse & Touch Event Handlers ──
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     isDraggingRef.current = true;
     dragStartPosRef.current = { x: e.clientX, y: e.clientY };
@@ -540,6 +686,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     const dy = e.clientY - dragStartPosRef.current.y;
     dragDeltaRef.current = { x: dx, y: dy };
 
+    // Update azimuth (yaw) and pitch (tilt)
     setAzimuth(prev => prev + dx * 0.006);
     setPitch(prev => Math.max(0.1, Math.min(Math.PI * 0.45, prev + dy * 0.005)));
 
@@ -551,6 +698,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
     const wasDragging = Math.abs(dragDeltaRef.current.x) > 3 || Math.abs(dragDeltaRef.current.y) > 3;
     isDraggingRef.current = false;
 
+    // If mouse didn't drag, treat as click to select coordinate on 3D map!
     if (!wasDragging) {
       const rect = canvasRef.current?.getBoundingClientRect();
       if (rect) {
@@ -588,6 +736,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         userSelect: 'none',
       }}
     >
+      {/* 3D Canvas */}
       <canvas
         ref={canvasRef}
         onMouseDown={handleMouseDown}
@@ -602,6 +751,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         }}
       />
 
+      {/* Loading Overlay */}
       {loadingTerrain && (
         <div style={{
           position: 'absolute', inset: 0, zIndex: 30,
@@ -619,31 +769,63 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         </div>
       )}
 
+      {/* Error Banner with Multi-Option Recovery */}
       {terrainError && (
         <div style={{
           position: 'absolute', top: '64px', left: '50%', transform: 'translateX(-50%)',
           zIndex: 40, background: '#fef2f2', border: '1px solid #ef4444',
           borderRadius: '8px', padding: '10px 16px', boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
-          display: 'flex', alignItems: 'center', gap: '10px', fontSize: '12px', color: '#991b1b',
+          display: 'flex', alignItems: 'center', gap: '12px', fontSize: '12px', color: '#991b1b',
+          maxWidth: '92%',
         }}>
-          <AlertTriangle size={16} color="#ef4444" />
-          <span>{terrainError}</span>
-          <button
-            onClick={() => setFocusMode('citywide')}
-            style={{
-              background: '#ef4444', color: '#ffffff', border: 'none',
-              padding: '4px 10px', borderRadius: '4px', fontWeight: 700, cursor: 'pointer',
-            }}
-          >
-            Reset Citywide
-          </button>
+          <AlertTriangle size={18} color="#ef4444" style={{ flexShrink: 0 }} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <span style={{ fontWeight: 800, fontSize: '12px' }}>3D Surface Connection Notice</span>
+            <span style={{ fontSize: '11px', color: '#7f1d1d' }}>{terrainError}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginLeft: 'auto', flexShrink: 0 }}>
+            <button
+              onClick={() => setRetryCount(c => c + 1)}
+              style={{
+                background: '#0284c7', color: '#ffffff', border: 'none',
+                padding: '5px 12px', borderRadius: '4px', fontWeight: 700, cursor: 'pointer',
+                fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px',
+              }}
+            >
+              <RefreshCw size={12} /> Retry
+            </button>
+            <button
+              onClick={() => { setFocusMode('citywide'); setRetryCount(c => c + 1); }}
+              style={{
+                background: '#ef4444', color: '#ffffff', border: 'none',
+                padding: '5px 12px', borderRadius: '4px', fontWeight: 700, cursor: 'pointer',
+                fontSize: '11px',
+              }}
+            >
+              Reset Citywide
+            </button>
+            {onClose3D && (
+              <button
+                onClick={onClose3D}
+                style={{
+                  background: '#334155', color: '#ffffff', border: 'none',
+                  padding: '5px 12px', borderRadius: '4px', fontWeight: 700, cursor: 'pointer',
+                  fontSize: '11px',
+                }}
+              >
+                🗺️ Return to 2D Map
+              </button>
+            )}
+          </div>
         </div>
       )}
 
+      {/* Floating 3D HUD: Focus Area & Camera Toolbar */}
       <div style={{
         position: 'absolute', top: '64px', left: '14px', zIndex: 20,
         display: 'flex', flexDirection: 'column', gap: '8px', pointerEvents: 'auto',
       }}>
+        {/* Dynamic Focus Area Selector */}
         <div style={{
           background: 'rgba(15, 23, 42, 0.92)', backdropFilter: 'blur(8px)',
           border: '1px solid rgba(255, 255, 255, 0.15)',
@@ -673,6 +855,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
           </select>
         </div>
 
+        {/* 3D View Camera Presets & Toggles */}
         <div style={{
           background: 'rgba(15, 23, 42, 0.92)', backdropFilter: 'blur(8px)',
           border: '1px solid rgba(255, 255, 255, 0.15)',
@@ -744,6 +927,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
           </button>
         </div>
 
+        {/* Extended Relief & Exaggeration Drawer */}
         {showControlsDrawer && (
           <div style={{
             background: 'rgba(15, 23, 42, 0.95)', backdropFilter: 'blur(10px)',
@@ -763,6 +947,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
               </button>
             </div>
 
+            {/* Vertical Exaggeration Slider (Real physical scale 1.0x default) */}
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: '#cbd5e1', marginBottom: '3px' }}>
                 <span>VERTICAL EXAGGERATION</span>
@@ -782,6 +967,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
               </div>
             </div>
 
+            {/* Shading Mode */}
             <div style={{ display: 'flex', gap: '4px' }}>
               <button
                 onClick={() => setRenderMode('shaded')}
@@ -805,6 +991,7 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
               </button>
             </div>
 
+            {/* Water Simulation Drape Toggle */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '6px' }}>
               <span style={{ fontSize: '10.5px', color: '#cbd5e1' }}>Simulated Water Drape</span>
               <button
@@ -818,10 +1005,26 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
                 {showWater ? '🌊 ON' : 'OFF'}
               </button>
             </div>
+
+            {/* 3D Buildings Extrusion Toggle (Batch 4) */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '6px' }}>
+              <span style={{ fontSize: '10.5px', color: '#cbd5e1' }}>3D Buildings Extrusion</span>
+              <button
+                onClick={() => setShowBuildings(!showBuildings)}
+                style={{
+                  background: showBuildings ? '#0284c7' : 'rgba(255,255,255,0.1)',
+                  color: '#ffffff', border: 'none', padding: '3px 8px', borderRadius: '4px',
+                  fontSize: '9.5px', fontWeight: 700, cursor: 'pointer',
+                }}
+              >
+                {showBuildings ? '🏢 ON' : 'OFF'}
+              </button>
+            </div>
           </div>
         )}
       </div>
 
+      {/* Bottom Compass & Navigation Indicator */}
       <div style={{
         position: 'absolute', bottom: '16px', right: '16px', zIndex: 20,
         background: 'rgba(15, 23, 42, 0.88)', backdropFilter: 'blur(8px)',
@@ -832,6 +1035,11 @@ export const Unified3DTerrainCanvas: React.FC<Unified3DTerrainCanvasProps> = ({
         <span style={{ color: '#38bdf8', fontWeight: 700 }}>
           {focusMode === 'citywide' ? 'City-Wide (96×96 Copernicus DEM)' : `Focus: ${focusMode}`}
         </span>
+        {showBuildings && buildingsData.length > 0 && (
+          <span style={{ color: '#cbd5e1', borderLeft: '1px solid rgba(255,255,255,0.2)', paddingLeft: '8px' }}>
+            🏢 {buildingsData.length} Buildings Extruded
+          </span>
+        )}
       </div>
     </div>
   );

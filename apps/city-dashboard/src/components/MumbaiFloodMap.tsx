@@ -63,7 +63,7 @@ const MapClickHandler = dynamic<any>(
 import { LocationInfoCard } from './LocationInfoCard';
 import { Unified3DTerrainCanvas } from './Unified3DTerrainCanvas';
 
-const API_BASE = 'http://127.0.0.1:8000/api/v1';
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || '/api/v1';
 
 // Mumbai center coordinates
 const MUMBAI_CENTER: [number, number] = [19.076, 72.877];
@@ -781,11 +781,11 @@ export function MumbaiFloodMap({
           position: 'absolute', top: '12px', left: '14px', right: '14px', zIndex: 900,
           display: 'flex', justifyContent: 'space-between', alignItems: 'center', pointerEvents: 'none',
         }}>
-          {/* Weather Ticker */}
-          <div style={{ pointerEvents: 'auto' }}>
+          {/* Weather Ticker & Provenance Annotation (Batch 7) */}
+          <div style={{ pointerEvents: 'auto', display: 'flex', gap: '6px', alignItems: 'center' }}>
             {currentRainfall !== null && (
               <div style={{
-                padding: '6px 14px',
+                padding: '6px 12px',
                 background: 'rgba(255, 255, 255, 0.96)',
                 border: '1px solid #cbd5e1',
                 borderRadius: '8px',
@@ -801,6 +801,49 @@ export function MumbaiFloodMap({
                 </span>
               </div>
             )}
+
+            {/* Model Run Status & Provenance Chip (Batch 7) */}
+            <div style={{
+              padding: '6px 10px',
+              background: 'rgba(255, 255, 255, 0.96)',
+              border: '1px solid #cbd5e1',
+              borderRadius: '8px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+              fontSize: '10px',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              color: '#334155',
+            }}>
+              <span style={{
+                padding: '1px 5px',
+                borderRadius: '4px',
+                fontSize: '8.5px',
+                fontWeight: 800,
+                background: timelineMinute === 0 ? '#f0fdf4' : '#eff6ff',
+                color: timelineMinute === 0 ? '#166534' : '#1e40af',
+                border: `1px solid ${timelineMinute === 0 ? '#bbf7d0' : '#bfdbfe'}`,
+              }}>
+                {timelineMinute === 0 ? 'OBSERVED LIVE' : `FORECAST +${timelineMinute}m`}
+              </span>
+              <span style={{ color: '#64748b', fontSize: '9.5px' }}>
+                Run: <strong>{nowcastData?.run_id ? String(nowcastData.run_id).slice(-8) : '2D-DIFF'}</strong>
+              </span>
+              {activeEvacuationRoute?.is_stale && (
+                <span style={{
+                  padding: '1px 5px',
+                  borderRadius: '4px',
+                  fontSize: '8px',
+                  fontWeight: 800,
+                  background: '#fef2f2',
+                  color: '#dc2626',
+                  border: '1px solid #fecaca',
+                }}>
+                  ⚠️ ROUTE STALE
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Floating Interactive Forecast Timeline Player */}

@@ -268,6 +268,8 @@ class SimulationProvenance:
             },
             "domain_bounds": self.domain_bounds,
             "output_summary": self.output_summary,
+            "rainfall_classification": self.rainfall_classification.value,
+            "is_valid": self.validation_passed,
             "validation_passed": self.validation_passed,
             "validation_checks": self.validation_checks,
             "warnings": self.warnings,
